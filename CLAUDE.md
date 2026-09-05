@@ -14,6 +14,11 @@ relationship. Keep SLOP1276, all four collection schemas and the generated API.
 Keep the SlopU marks and three institutional colour tokens untouched; pink and
 blue are course accent tokens, never gender labels.
 
+Use native system sans-serif typography for paragraphs, following the student's
+Apple-style readability direction. Keep the serif display headings. Judge body
+size, line spacing and reading width together on real long-form pages at both
+marking viewports; changing the font family alone is not a readability check.
+
 Each week teaches a distinct decision and produces a named piece of a dating
 field guide. Later workshops must explicitly use an earlier piece. Assessments
 test choices and communication in fictional cases: no student needs to get a

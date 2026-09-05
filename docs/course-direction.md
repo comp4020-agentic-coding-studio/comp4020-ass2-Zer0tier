@@ -110,6 +110,29 @@ audit is on port 4322. The site has not been pushed or publicly shipped in this
 session. `pnpm check:evidence` currently fails only on the unchanged PROCESS.md
 template and its example commit citations. That account belongs to the student.
 
+## Paragraph typography refinement
+
+The student next asked for more readable paragraphs aligned with Apple design.
+The shared body stack now starts with `system-ui`, using the device's native
+font rather than downloading a new webfont. [Apple's font reference](https://developer.apple.com/fonts/)
+identifies SF Pro as its platform system font; this is a native-font direction,
+not an embedded copy of SF Pro or a claim of identical rendering on every OS.
+The serif display headings and pink/blue palette remain intact.
+
+The UI/UX skill's line-length and leading guidance informed shared reading
+tokens: 17px body text, 1.65 line-height and a 66ch maximum for long-form prose.
+In the same phone browser, the home description changed from 15.2px/27.36px
+size/line-height to 17px/28.05px, and lecture paragraphs from 16px/25.6px to
+17px/28.05px. Both retain the available 358px width on the 390px viewport.
+Cards use 16px prose; notes use 14px. Paragraph and list spacing were adjusted
+alongside the font so longer passages have distinct, readable groups.
+
+`pnpm check` and `pnpm check:browser` pass after this change, including all 38
+pages at both marking viewports. The home and week 7 lecture were also visually
+reviewed at both sizes. These remain local Chromium checks, not a macOS/Safari
+or public-deployment audit. [Updated lecture, desktop](screenshots/typography-desktop.png)
+and [phone](screenshots/typography-phone.png) record the rendered result.
+
 ## Evidence still owed by the student
 
 Write PROCESS.md after reviewing the prototype. Explain which course-design
