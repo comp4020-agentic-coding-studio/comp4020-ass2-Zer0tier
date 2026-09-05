@@ -1,6 +1,6 @@
 # Your harness
 
-## Assignment 2 direction: How to Find a Partner
+## Assignment 2 direction: Applied Algorithmic Romance & Profile Optimization
 
 Read this file before each task. Read `README.md` and the published assignment
 and assessment pages before planning or building. Evolve in verified increments.
@@ -8,9 +8,10 @@ This assignment needs no separate reflection; `PROCESS.md` is the student's own
 400–600-word account. Keep factual agent work notes in `docs/`, without writing
 first-person experiences or pretending the student accepted an unreviewed result.
 
-The student chose finding a boyfriend or girlfriend, with pink and blue. The
-course narrows that to the path from a first hello to a mutually chosen
-relationship. Keep SLOP1276, all four collection schemas and the generated API.
+The student rejected the broad first-hello course and chose a fourth-year CS
+course about dating-profile systems, experiments and optimization. Use SLOP4276:
+the requested SLOP4214 conflicts with this repo's allocated suffix, 276. Preserve
+all four collection schemas and the generated API.
 Keep the SlopU marks and three institutional colour tokens untouched; pink and
 blue are course accent tokens, never gender labels.
 
@@ -19,11 +20,22 @@ Apple-style readability direction. Keep the serif display headings. Judge body
 size, line spacing and reading width together on real long-form pages at both
 marking viewports; changing the font family alone is not a readability check.
 
-Each week teaches a distinct decision and produces a named piece of a dating
-field guide. Later workshops must explicitly use an earlier piece. Assessments
-test choices and communication in fictional cases: no student needs to get a
-date, use an app, disclose personal history, or recruit another person. Give a
-solo written alternative to every role-play. Never grade romantic outcomes.
+Each week builds an engineering artefact for an evaluated profile release.
+Use technical deadpan: define the objective, implement the model, then find the
+assumption that breaks it. Preserve the requested week 1/3/7/10 anchors and the
+20% data report, 30% midterm exam, 50% profile-deployment project. Later labs must
+use earlier artefacts, not merely link to them. Require algorithm traces,
+statistical reasoning, sensitivity tests and reproducible code appropriate to
+level 4; this is not generic dating advice with CS nouns swapped in.
+
+Platform claims need primary sources. Hinge's public description is not source
+code, and a toy Elo updater is not its algorithm. Label every synthetic dataset
+and assumed probability. "Top 1%" refers only to a named 100-entry course
+benchmark with an explicit score, denominator and tie rule, never human worth or
+a real-app guarantee. Grade evidence and engineering, not rank or romantic
+outcomes. No scraping, real profiles, private messages, app accounts or real-user
+experiments are needed. The final deployment is a labelled fictional static
+profile, with a local build accepted if public hosting is unsuitable.
 
 Protect the actual sequence, assessment preparation and dates in `spec/` using
 literal expected milestones. Human review must still judge the voice, examples,
