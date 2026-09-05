@@ -1,29 +1,30 @@
 ---
-title: "A conversation has two authors"
-description: "Practise opening, following up, sharing and ending a conversation without turning it into an interview."
+title: "Multi-objective romance & the top-1% problem"
+description: "Freeze a scoring rule and a comparison set. Optimizing the metric is easy; defending the metric is the assessed part."
 week: 5
 date: 2027-03-22
 teachers: [mira-chen]
-related: [sessions/05-conversation]
+related: [sessions/05-objectives]
 ---
 
-## The question
+## Top 1% of what, exactly?
 
-Are you listening to their answer, or waiting to deliver your next question?
+A percentile needs a population, a direction and a tie rule. “Top profile” supplies none of them.
 
-## In this lecture
+The course's **Null Island v1** benchmark contains 99 fabricated control feature vectors plus your one candidate: **100 entries**. Its score is 100 × (clarity + specificity + feasibility + exit) / 16. The four inputs are the 0–4 quality features from week 4. All controls and the scoring source are [downloadable](/toolkit/#benchmark).
 
-Our practice pattern is notice, ask, listen, share. It is a classroom scaffold, not a formula for making someone like you. A good follow-up responds to the actual answer, even when that answer takes the conversation somewhere unexpected.
+Use the conservative rank: **1 + the number of controls whose score is greater than or equal to yours**. Ties therefore count against the candidate. Only rank 1/100 supports the course's “top 1%” label. It supports no claim about Tinder, Hinge or a real population.
 
-Sam asks Alex about pottery. Alex says the best part is doing something without a screen. A follow-up about taking breaks fits that answer; a prepared question about favourite films ignores it. Sharing one small experience also gives the other person a turn to ask.
+## Congratulations, you optimized the checklist
 
-Short answers may mean many things: tiredness, nerves, distraction or a wish to stop. You cannot read an internal state from eye contact, reply speed or an emoji. You can reduce pressure: “Nice talking with you; I’m going to rejoin my friends.”
+A candidate scoring 4 on every feature gets 100. The controls deliberately stop below 100. Getting first place is consequently possible and unremarkable. A profile that pastes the rubric into its bio might score well while being unreadable. The project asks you to expose that failure, not conceal it.
 
-Use the introduction card from week 4 to write eight turns. Mark where one speaker takes up a detail, where they contribute something of their own, and where either could leave. The transcript should sound speakable, including pauses and ordinary sentences.
+Use the **Experiment protocol** to distinguish an observed response outcome from a rubric score. You cannot substitute one for the other because the second produces a prettier graph.
 
-## Try it before the workshop
+## Constraints before weights
 
-Bring the introduction card. Write one interested response and one brief response to its conversational opening.
+An infeasible invitation should not become acceptable because it mentions an impressive hobby. Treat case fidelity as a hard constraint, then compare quality scores. Plot two objectives—for example brevity and specificity—and identify non-dominated candidates. Do not force every trade-off into a single number.
 
-Bring your draft to [week 5’s workshop](/sessions/05-conversation/). Keep the final exchange: in week 6 you will decide whether an invitation belongs there.
+## Before the lab
 
+Score both week 4 profiles, compute their conservative ranks, and propose a one-sentence adversarial profile. Freeze a primary objective and a second, shifted evaluation rule for week 9. The [final assessment](/assessments/profile-deployment/) grades the validity of this chain, not whether you win your own leaderboard.

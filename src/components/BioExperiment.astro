@@ -1,0 +1,57 @@
+---
+import { compareBios } from '../lib/romance-models';
+const example = compareBios(120, 1000, 140, 1000);
+---
+<section class="experiment-panel" aria-labelledby="experiment-heading">
+  <h3 id="experiment-heading">Bio experiment sandbox</h3>
+  <p>Balanced synthetic example: A = 120/1,000; B = 140/1,000. B leads by 2.0 percentage points, with z = {example.z!.toFixed(2)}. {example.conclusion}</p>
+  <form id="bio-experiment" hidden novalidate>
+    <div class="experiment-inputs">
+      <fieldset><legend>Bio A · control</legend>
+        <label for="a-positive">Positive responses</label><input id="a-positive" name="a" type="number" min="0" max="1000000" step="1" value="120" required aria-describedby="experiment-help experiment-error" />
+        <label for="a-exposures">Exposures</label><input id="a-exposures" name="nA" type="number" min="1" max="1000000" step="1" value="1000" required aria-describedby="experiment-help experiment-error" />
+      </fieldset>
+      <fieldset><legend>Bio B · variant</legend>
+        <label for="b-positive">Positive responses</label><input id="b-positive" name="b" type="number" min="0" max="1000000" step="1" value="140" required aria-describedby="experiment-help experiment-error" />
+        <label for="b-exposures">Exposures</label><input id="b-exposures" name="nB" type="number" min="1" max="1000000" step="1" value="1000" required aria-describedby="experiment-help experiment-error" />
+      </fieldset>
+    </div>
+    <p id="experiment-help">Whole counts only. Positives cannot exceed exposures. Maximum 1,000,000 exposures per variant.</p>
+    <div class="experiment-actions"><button class="button" type="submit">Compare bios</button><button class="button secondary" type="button" id="bio-reset">Reset example</button></div>
+    <p id="experiment-error" role="alert"></p>
+    <output id="experiment-result" aria-live="polite" aria-atomic="true">A: 12.0% · B: 14.0% · Difference B − A: +2.0 percentage points · z: 1.33. {example.conclusion}</output>
+  </form>
+  <p class="model-caveat">This calculator assumes independent, randomised exposures. It cannot verify either assumption. With fewer than 10 observations in any success/failure cell it withholds the normal approximation; use an appropriate exact method instead. All calculations stay in your browser.</p>
+</section>
+<script>
+  import { compareBios } from '../lib/romance-models';
+  const form = document.querySelector<HTMLFormElement>('#bio-experiment');
+  if (form) {
+    form.hidden = false;
+    const result = document.querySelector<HTMLOutputElement>('#experiment-result')!;
+    const error = document.querySelector<HTMLElement>('#experiment-error')!;
+    const inputs = Array.from(form.querySelectorAll('input'));
+    const calculate = () => {
+      error.textContent = '';
+      inputs.forEach(input => input.removeAttribute('aria-invalid'));
+      const invalid = inputs.find(input => !input.validity.valid);
+      const values = Object.fromEntries(new FormData(form));
+      const a = Number(values.a), nA = Number(values.nA), b = Number(values.b), nB = Number(values.nB);
+      const offending = invalid ?? (a > nA ? inputs[0] : b > nB ? inputs[2] : null);
+      try {
+        if (invalid) throw new RangeError('Enter whole counts within the stated limits; no field can be empty.');
+        const comparison = compareBios(a, nA, b, nB);
+        const delta = comparison.difference * 100;
+        result.textContent = `A: ${(comparison.rateA * 100).toFixed(1)}% · B: ${(comparison.rateB * 100).toFixed(1)}% · Difference B − A: ${delta >= 0 ? '+' : ''}${delta.toFixed(1)} percentage points · z: ${comparison.z === null ? 'not calculated' : comparison.z.toFixed(2)}. ${comparison.conclusion}`;
+        result.hidden = false;
+      } catch (caught) {
+        result.hidden = true;
+        error.textContent = caught instanceof Error ? caught.message : 'Check your counts.';
+        offending?.setAttribute('aria-invalid', 'true');
+        offending?.focus();
+      }
+    };
+    form.addEventListener('submit', event => { event.preventDefault(); calculate(); });
+    form.querySelector('#bio-reset')!.addEventListener('click', () => { form.reset(); calculate(); });
+  }
+</script>

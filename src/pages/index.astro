@@ -6,65 +6,66 @@ import ConnectionArt from '../components/ConnectionArt.astro';
 import { courseMeta } from '../course-config';
 import { formatCourseDate } from '../lib/dates';
 const assessments = (await getPublishedCollection('assessments')).sort((a,b) => a.data.week-b.data.week);
+const [titleMain, titleSpecial] = courseMeta.title.split(' & ');
 ---
 <CourseLayout title={courseMeta.title} description={courseMeta.description} home>
   <div class="home-content">
     <section class="home-hero" aria-labelledby="course-title">
       <div>
-        <span class="eyebrow">School of Everyday Life · Slop University</span>
-        <h1 id="course-title">How to Find<br /><em>a Partner</em><span aria-hidden="true">.</span></h1>
-        <p class="intro">From a first hello to a mutual yes.</p>
-        <p class="description">Meeting someone is one thing. Finding your way to each other is another. A practical course in dating, connection, and the conversations nobody put on your timetable.</p>
+        <span class="eyebrow">Department of Computational Courtship · Slop University</span>
+        <h1 id="course-title" class="technical-title">{titleMain} <em>&amp; {titleSpecial}</em></h1>
+        <p class="intro">Your love life has a loss function.</p>
+        <p class="description">A fourth-year CS course in dating-profile systems. Measure the market, test the bio, model the match. Then defend the suspiciously impressive number on your dashboard.</p>
         <div class="hero-actions">
           <a class="button" href={withBase('/lectures/week-01/')}>Start with week 1 <span aria-hidden="true">↗</span></a>
-          <a class="button secondary" href={withBase('/weeks/')}>Explore the 12 weeks <span aria-hidden="true">→</span></a>
+          <a class="button secondary" href={withBase('/toolkit/')}>Open the lab toolkit <span aria-hidden="true">→</span></a>
         </div>
-        <p class="hero-note">No dating experience required. A little curiosity helps.</p>
+        <p class="hero-note">Bring probability and pseudocode. Relationship status: not a dependency.</p>
       </div>
       <ConnectionArt />
     </section>
 
     <dl class="facts-strip">
-      <div><dt>Your course</dt><dd>{courseMeta.code} · Undergraduate</dd></div>
+      <div><dt>Your course</dt><dd>{courseMeta.code} · Level {courseMeta.level} undergraduate</dd></div>
       <div><dt>Teaching period</dt><dd>{courseMeta.session}, {courseMeta.year}</dd></div>
-      <div><dt>The commitment</dt><dd>12 weeks · 5 hours a week</dd></div>
-      <div><dt>What you leave with</dt><dd>Your own dating field guide</dd></div>
+      <div><dt>The commitment</dt><dd>12 weeks · 6 hours a week</dd></div>
+      <div><dt>Your final release</dt><dd>A profile. A benchmark. A defence.</dd></div>
     </dl>
 
     <div class="home-columns">
       <section aria-labelledby="about-course">
-        <span class="eyebrow">A course for the romantically curious</span>
-        <h2 id="about-course">You can practise the awkward part.</h2>
-        <p>You want to find a boyfriend, girlfriend, or partner. But where do you meet? What do you say? And how do you work out whether you both want the same thing?</p>
-        <p>We take the early stages of dating seriously enough to teach them. Each week, work through a fictional case, try a conversation, and add one useful piece to a dating field guide. There is room for a yes, a no, and “I’m still figuring it out.”</p>
+        <span class="eyebrow">For engineers who read the assumptions</span>
+        <h2 id="about-course">What did you actually optimize?</h2>
+        <p>Dating apps give you recommendations, not their source code. A better response rate might be a better bio. It might also be Tuesday. This course turns that ambiguity into twelve weeks of experiments, algorithms and model criticism.</p>
+        <p>Work on Null Island: an invented local market with downloadable data and one fictional profile to release. Implement a toy ranking system, encounter a statistical reversal, prove a matching property, and discover why a perfect rubric score can still produce a terrible invitation.</p>
         <h3>By the end, you can…</h3>
         <ol class="outcomes">
-          <li>Describe what you want, what you can offer, and the boundaries you bring.</li>
-          <li>Choose a place to meet and start a conversation that has room for two people.</li>
-          <li>Make a clear invitation, plan a first date, and respond thoughtfully to any answer.</li>
-          <li>Discuss compatibility and decide together whether to become partners.</li>
+          <li>Define a sampling frame and an experiment that separates a profile change from an exposure change.</li>
+          <li>Implement and trace ranking, matching and response-policy models under explicit assumptions.</li>
+          <li>Evaluate a frozen candidate with uncertainty, sensitivity tests and an exact simulation check.</li>
+          <li>Deploy a reproducible profile release and defend the limits of its top-1% claim.</li>
         </ol>
       </section>
-      <aside class="notice" aria-labelledby="room-title">
-        <span class="eyebrow">Before your first hello</span>
-        <h3 id="room-title">Your love life stays yours.</h3>
-        <p>Practise with invented people. Work alone or role-play with a willing classmate. Your mark comes from your judgement and communication.</p>
-        <p>Finding a partner is never homework.</p>
-        <a href={withBase('/policies/')}>Read our classroom agreement <span aria-hidden="true">↗</span></a>
+      <aside class="notice" aria-labelledby="benchmark-title">
+        <span class="eyebrow">Read the fine print. It is the course.</span>
+        <h3 id="benchmark-title">Top 1% of 100 invented entries.</h3>
+        <p>One candidate. Ninety-nine synthetic controls. A published quality score and a tie rule that does not flatter you.</p>
+        <p>We grade your engineering, not your rank. No app account, real profile or successful date is required.</p>
+        <a href={withBase('/toolkit/#benchmark')}>Inspect the benchmark <span aria-hidden="true">↗</span></a>
       </aside>
     </div>
 
     <div class="section-heading">
-      <div><span class="eyebrow">The semester, in three chapters</span><h2>Small steps. Real possibilities.</h2></div>
-      <a href={withBase('/weeks/')}>View the full syllabus <span aria-hidden="true">→</span></a>
+      <div><span class="eyebrow">The semester, in three chapters</span><h2>Measure. Model. Ship.</h2></div>
+      <a href={withBase('/weeks/')}>View all twelve dated weeks <span aria-hidden="true">→</span></a>
     </div>
     <div class="phase-grid">
-      <section class="phase-card"><span class="eyebrow">01 / Weeks 1–3</span><h3>Know yourself.</h3><p>Intentions, boundaries, and places you would actually enjoy being. Start with the life you have.</p><a href={withBase('/sessions/01-intentions/')}>Begin with intentions →</a></section>
-      <section class="phase-card"><span class="eyebrow">02 / Weeks 4–7</span><h3>Make a connection.</h3><p>An honest introduction. A conversation that flows. A clear invitation and a first date with room to breathe.</p><a href={withBase('/sessions/04-introductions/')}>Find your opening →</a></section>
-      <section class="phase-card"><span class="eyebrow">03 / Weeks 8–12</span><h3>Choose together.</h3><p>Uncertainty, compatibility, the small disagreements, and the conversation about what you both want next.</p><a href={withBase('/sessions/08-uncertainty/')}>Think about what follows →</a></section>
+      <section class="phase-card"><span class="eyebrow">01 / Weeks 1–3</span><h3>Measure.</h3><p>Hinge, toy Elo, market denominators and Tinder bio A/B tests. First establish what your data can actually say.</p><a href={withBase('/sessions/01-system-boundary/')}>Draw the system boundary →</a></section>
+      <section class="phase-card"><span class="eyebrow">02 / Weeks 4–7</span><h3>Model.</h3><p>Feature contracts, objective functions, stable matching and the game theory of ghosting. Every model gets an escape clause.</p><a href={withBase('/sessions/04-features/')}>Read the feature contract lab →</a></section>
+      <section class="phase-card"><span class="eyebrow">03 / Weeks 8–12</span><h3>Ship.</h3><p>Exposure loops, distribution shift, stochastic first dates and a reproducible release. Include the result you wish had been better.</p><a href={withBase('/sessions/08-feedback/')}>Build the exposure simulator →</a></section>
     </div>
 
-    <div class="section-heading"><div><span class="eyebrow">Assessment</span><h2>A field guide, built as you go.</h2></div><a href={withBase('/assessments/')}>Read the briefs →</a></div>
+    <div class="section-heading"><div><span class="eyebrow">Assessment · 100% accounted for</span><h2>Evidence before confidence.</h2></div><a href={withBase('/assessments/')}>Read the briefs →</a></div>
     <div class="assessment-list">
       {assessments.map((assessment, index) => <a class="assessment-row" href={withBase(`/assessments/${assessment.id}/`)}>
         <span class="eyebrow">0{index + 1}</span><strong>{assessment.data.title}</strong><span class="due">Week {assessment.data.week} · {formatCourseDate(assessment.data.due)}</span><span class="weight">{assessment.data.weight}%</span>
@@ -72,9 +73,9 @@ const assessments = (await getPublishedCollection('assessments')).sort((a,b) => 
     </div>
 
     <div class="home-columns">
-      <section><span class="eyebrow">How we learn</span><h2>Read it. Try it. Make it your own.</h2><p>Mondays: a one-hour lecture, 11 am–12 pm. Thursdays: a 90-minute workshop, 2–3.30 pm. Both meet in Conversation Room 2. Allow another 2½ hours for reading, drafting and assessments.</p><p>Teaching runs from {formatCourseDate(courseMeta.startDate)} to {formatCourseDate(courseMeta.endDate)}, with a break from 5–18 April. No prerequisites; no app account or current relationship needed.</p><a class="button secondary" href={withBase('/people/')}>Meet your teaching team →</a></section>
-      <aside class="notice"><span class="eyebrow">Open your notebook</span><h3>One question to begin.</h3><p>If a relationship fits into your life, what does an ordinary Tuesday together look like?</p><a href={withBase('/decks/week-01/')}>Open the first lecture deck ↗</a></aside>
+      <section><span class="eyebrow">Before you enrol</span><h2>Some prerequisites. No prerequisites for love.</h2><p>Expected background: introductory probability, basic statistical inference, data structures and programming in one language. You should be able to read pseudocode, manipulate a CSV and explain a simple algorithm's runtime. No machine-learning framework is required.</p><p>Mondays: lecture, 11 am–12 pm. Thursdays: lab, 2–3.30 pm. Both meet in Systems Lab 2. Allow another 3½ hours for reading, implementation and assessment. Teaching runs from {formatCourseDate(courseMeta.startDate)} to {formatCourseDate(courseMeta.endDate)}, with a break from 5–18 April.</p><a class="button secondary" href={withBase('/people/')}>Meet your teaching team →</a></section>
+      <aside class="notice"><span class="eyebrow">Try a calculation</span><h3>Bio B got more replies.</h3><p>120/1,000 versus 140/1,000. Is that enough evidence to ship? Change the sample and inspect the assumptions.</p><a href={withBase('/toolkit/#experiment')}>Open the A/B sandbox ↗</a></aside>
     </div>
-    <p class="bottom-note">An imagined course at Slop University. Real questions, fictional classrooms, and no promises about your next meet-cute.</p>
+    <p class="bottom-note">A fictional Slop University course. Real methods, synthetic observations, and no warranty on human behaviour. Hinge and Tinder are case studies, not course partners.</p>
   </div>
 </CourseLayout>

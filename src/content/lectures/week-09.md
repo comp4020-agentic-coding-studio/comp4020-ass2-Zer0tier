@@ -1,29 +1,30 @@
 ---
-title: "Chemistry meets an ordinary Tuesday"
-description: "Explore everyday compatibility without scoring a person or mistaking attraction for agreement."
+title: "Validation after the leaderboard honeymoon"
+description: "Freeze the candidate, change the evaluation conditions and keep the result even when the rank gets worse."
 week: 9
 date: 2027-05-03
 teachers: [mira-chen]
-related: [sessions/09-compatibility]
+related: [sessions/09-validation]
 ---
 
-## The question
+## The test set would like a little privacy
 
-What would you need to learn before calling this a good fit?
+You have a candidate profile, a primary score and 99 controls. You also know the rubric. That makes Null Island v1 a transparent teaching benchmark, not a hidden test of generalisation. Calling its score “out-of-sample performance” would be incorrect.
 
-## In this lecture
+Return to the **Objective specification** frozen in week 5. Preserve the primary leaderboard and evaluate a second rule: double feasibility's weight. Its score is 100 × (clarity + specificity + 2×feasibility + exit) / 20. Recompute *every control* under that same rule before ranking the candidate.
 
-For this case, Alex and Sam have both chosen a second date. Attraction is present; agreement about time, commitment and lifestyle is still unknown. You do not need an exhaustive interview. You need a few questions whose answers could affect your own choices.
+## A shift must change something meaningful
 
-Return to Alex’s week 1 intention to build a committed relationship. Sam may want something casual. “What are you hoping for from dating at the moment?” is more useful than silently treating a second date as a commitment.
+A candidate vector (4, 4, 1, 4) gets 81.25 under the primary score but 70 under the feasibility-weighted score. That is not a bug in arithmetic. The objective moved.
 
-Ask about an ordinary week, what staying in touch looks like, and what each person is ready to offer. Different answers can reveal a mismatch without identifying a villain. Write how Alex could respond if Sam’s honest answer does not fit.
+Now change Alex's Friday availability to Saturday morning. The wording is frozen, so its feasibility evidence may no longer support its previous score. Record a rescore against the changed facts; changing weights and changing evidence are two separate interventions.
 
-Use [love is respect’s relationship spectrum](https://www.loveisrespect.org/everyone-deserves-a-healthy-relationship/relationship-spectrum/) to discuss respect and control. Do not turn the resource into a diagnosis of a character. Distinguish a difference in preference from a behaviour that removes someone’s choice.
+The [scikit-learn guidance on leakage](https://scikit-learn.org/stable/common_pitfalls.html#data-leakage) explains the selection/evaluation boundary. Our transparent fixture cannot create independence by naming a variable `test`. If you revise after seeing the shift, label the result a new development iteration and preserve the failed evaluation.
 
-## Try it before the workshop
+## Rates are not rubric points
 
-Bring your intentions map and uncertainty tree. Draft three questions that could change your character’s decision to keep dating.
+Use week 8's simulator logs to compare response rates under changed exposure allocation. Keep that result in a separate table from the profile quality scores. A model-generated response and a human-assigned feature score are different measurements.
 
-Bring your draft to [week 9’s workshop](/sessions/09-compatibility/). Keep the workable difference. In week 10 you will practise discussing it without making a character accusation.
+## Before the lab
 
+Bring the frozen objective, candidate text and simulator logs. Write the failure criterion before the run: what result would cause you to revise, postpone or reject release? The final project must include the least flattering valid result, not just a screenshot of rank 1.

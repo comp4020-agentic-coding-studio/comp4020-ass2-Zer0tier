@@ -1,11 +1,19 @@
 // New student-directed course contract. These assertions are intentionally red
 // against the previous, working communication course; not regression claims.
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { courseMeta } from '../src/course-config';
 const { nodes } = JSON.parse(readFileSync('dist/api/index.json', 'utf8'));
 
 describe('the algorithmic romance pivot', () => {
+  it('removes the superseded course identity from built pages, including shared layout copy', () => {
+    const pages = readdirSync('dist', { recursive: true, encoding: 'utf8' }).filter(path => path.endsWith('.html'));
+    expect(pages.length).toBeGreaterThan(30);
+    for (const path of pages) {
+      const obsolete = readFileSync(`dist/${path}`, 'utf8').match(/SLOP1276|How to Find a Partner|dating field guide|field-guide piece/i)?.[0] ?? null;
+      expect(obsolete, path).toBeNull();
+    }
+  });
   it('uses the requested CS title and level without losing the allocated suffix', () => {
     expect(courseMeta.code).toBe('SLOP4276');
     expect(courseMeta.title).toBe('Applied Algorithmic Romance & Profile Optimization');

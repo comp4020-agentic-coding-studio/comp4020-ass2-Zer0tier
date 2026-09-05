@@ -1,28 +1,32 @@
 ---
-title: "Your type is not your terms"
-description: "Distinguish preferences, boundaries and attempts to control someone else."
+title: "The local singles market has a denominator"
+description: "Define an addressable pool on fictional Null Island. Trace selection bias before announcing a market opportunity."
 week: 2
 date: 2027-03-01
 teachers: [mira-chen]
-related: [sessions/02-boundaries]
+related: [sessions/02-market]
 ---
 
-## The question
+## Total addressable affection
 
-Which preferences are flexible, and which limits belong to you?
+A dashboard says “300 active profiles.” A pitch deck says “300 opportunities.” Only one of those is even a count.
 
-## In this lecture
+Our [Null Island market CSV](/data/null-island-market.csv) is a completely synthetic three-zone census for one invented week. It contains 300 active profiles, 150 that fit a fictional availability constraint, and 40 with reciprocal eligibility. “Eligible” means meeting the case's scheduling and stated-intention filters. It is not a desirability label.
 
-“I like people who enjoy hiking” is a preference. “I will leave a conversation if someone insults me” describes your action at a boundary. “You must give me your phone password” demands control over someone else. They are different kinds of statement, even when all three begin with a feeling.
+## Three denominators, three questions
 
-Return to the intentions map. Pick one limit involving time, one involving privacy and one involving physical affection. Write how your character could communicate each without threatening, apologising for existing, or requiring the other person to agree.
+The available share is 150/300 = 50%. Reciprocal eligibility among available profiles is 40/150 ≈ 26.7%. Across the entire active pool it is 40/300 ≈ 13.3%. A number without its denominator is a marketing department waiting to happen.
 
-Alex cannot answer messages during an evening shift. Sam likes frequent contact. “I can talk after nine; does that work for you?” makes the constraint discussable. It does not promise that their preferences will fit.
+North has 12 reciprocal cases out of 80 active profiles; South has 18/120; East has 10/100. The pooled rate is not the unweighted mean of arbitrary subgroup percentages. Sum the counts, then divide by the relevant total.
 
-A spoken yes applies to what was actually agreed. Agreeing to coffee does not settle whether someone wants a kiss, a second date or a relationship. Our classroom rule is to ask about each next step and accept a changed answer.
+Treat these values as a census of our invented frame, not a random sample from a real city. There is no sampling uncertainty *within that supplied frame*. There is enormous uncertainty about whether the frame represents anything outside it.
 
-## Try it before the workshop
+## What disappears at the boundary?
 
-Bring your week 1 intentions map. Read [What are my boundaries?](https://www.loveisrespect.org/resources/what-are-my-boundaries/) and select one everyday boundary to discuss.
+An inactive person is outside the active-profile frame, not outside the world. A profile shown to you has survived several selection steps. Reuse the hidden-state boxes from week 1 to draw the funnel: possible population → active pool → available subset → reciprocal subset.
 
-Bring your draft to [week 2’s workshop](/sessions/02-boundaries/). Carry these statements into the meeting-place map: a place to meet has to fit your limits as well as your interests.
+For a sensitivity check, suppose East's active count is under-recorded by 50 while its reciprocal count stays 10. Recompute the pooled rate and say which assumption changed. Do not silently repair a dataset to preserve your headline.
+
+## Before the lab
+
+Download the CSV and read its [dictionary](/toolkit/#market-data). Bring the week 1 map and a script that reproduces all three denominators. This becomes the core of the [20% data report](/assessments/market-report/).

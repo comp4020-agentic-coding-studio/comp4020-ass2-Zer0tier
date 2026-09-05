@@ -1,29 +1,36 @@
 ---
-title: "Put yourself where people are"
-description: "Choose realistic ways to meet people through shared activities, introductions or an optional dating app."
+title: "A/B testing Tinder bios: a statistical approach"
+description: "Preregister a bio comparison, calculate uncertainty and watch a pooled winner lose inside every stratum."
 week: 3
 date: 2027-03-08
 teachers: [mira-chen]
-related: [sessions/03-meeting-places]
+related: [sessions/03-bio-experiment]
 ---
 
-## The question
+## Congratulations on your seven extra observations
 
-Where could you meet someone without making meeting them the whole point?
+Bio A: “Coffee, code, repeat.” Bio B: “Friday coffee, a terrible pun, and a walk if the weather cooperates.” Both describe an invented profile. Neither is being tested on Tinder users.
 
-## In this lecture
+Our balanced toy experiment records A = 120 positive responses from 1,000 exposures and B = 140/1,000. B leads by **2 percentage points**, not “2% more compatible.” The relative lift is about 16.7%; the absolute difference is still 0.02.
 
-The useful question is not “Where are all the single people?” It is “Where can I spend time that fits my life and makes conversation possible?” Compare a recurring society activity, an introduction through a friend and a dating app. None guarantees a match.
+## An estimate is not a deployment decision
 
-For each route, record its time cost, financial cost, accessibility, privacy and whether conversation is welcome. Staff at work and people who cannot easily leave are poor practice audiences. Choose settings where the other person has room to engage or disengage.
+Under independent, randomised exposures, test equal response probabilities using the [NIST pooled two-proportion statistic](https://itl.nist.gov/div898/handbook/prc/section3/prc33.htm):
 
-Alex has Thursday afternoons free and enjoys making things. Sam likes board games but finds loud rooms exhausting. Design one opportunity for each that is worth attending even if nobody asks anybody out. This is a planning exercise: you do not need to approach a stranger.
+```text
+p_pool = (xA + xB) / (nA + nB)
+z = (xB/nB - xA/nA) /
+    sqrt(p_pool * (1-p_pool) * (1/nA + 1/nB))
+```
 
-Use your week 2 boundaries to eliminate one unsuitable setting. That exclusion is a design decision, not a lack of confidence. Your first assessment combines this map with the intentions you began in week 1.
+Here z ≈ 1.33. It does not cross the two-sided 5% normal threshold of 1.96. This is insufficient evidence to reject equal rates under the model, not proof that the bios are equivalent. The [experiment sandbox](/toolkit/#experiment) exposes the calculation and refuses a normal-test conclusion for sparse cells.
 
-## Try it before the workshop
+## The city changed while you were editing
 
-Bring the intentions map and boundary statements. Invent or identify three possible meeting settings; no visit or app account is required.
+In the separate [bio-exposure CSV](/data/bio-exposures.csv), A gets mostly North exposures and B mostly South. A wins in aggregate, 26/100 versus 19/100. Yet B has the higher rate in both zones: 35% versus 30% in North, 15% versus 10% in South. The exposure mix reversed the ranking.
 
-Bring your draft to [week 3’s workshop](/sessions/03-meeting-places/). Use your chosen setting as the audience for next week’s introduction card.
+A sequential before/after edit is not random assignment. More repetitions do not remove that confounder. Reuse week 2's sampling frame to specify who could receive each variant and when.
 
+## Before the lab
+
+Try the balanced and confounded examples in the sandbox. Write your outcome, randomisation unit, fixed sample size, stopping rule and minimum worthwhile effect **before** looking for a winner. Carry the protocol into the report; carry its frozen objective into week 5.

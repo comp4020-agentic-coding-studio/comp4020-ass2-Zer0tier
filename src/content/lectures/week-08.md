@@ -1,29 +1,33 @@
 ---
-title: "A maybe is not a puzzle to solve"
-description: "Handle slow replies, changed plans and rejection using what was said, without inventing motives."
+title: "Feedback loops: rich profiles get richer"
+description: "Separate profile quality from exposure. Simulate how a ranking policy can manufacture its own evidence."
 week: 8
 date: 2027-04-26
 teachers: [mira-chen]
-related: [sessions/08-uncertainty]
+related: [sessions/08-feedback]
 ---
 
-## The question
+## The winner received all the traffic. What a coincidence.
 
-What can you decide when you cannot know what someone else is thinking?
+A recommender does more than predict observations: it helps decide which observations can happen. Our next model allocates 100 synthetic impressions between two profile variants, then treats the resulting positive-response counts as a reason to allocate the next batch.
 
-## In this lecture
+Reuse week 3's distinction between rate and count. If both variants have the same assumed response probability, 80 exposures versus 20 still creates different expected counts. A count-based recommender can mistake its own allocation for quality.
 
-The first date was pleasant. Alex sends a message. Sam does not answer that evening. The observation is one unanswered message. “Sam is testing me” and “I ruined everything” are stories added to it.
+## Two allocation policies
 
-Separate observation, interpretation and action. Alex can decide to return to their evening and wait. If logistics need clarifying, a brief practical follow-up may fit. If Sam declines or asks for no contact, the next action is to stop. Our cases do not reward chasing a more favourable answer.
+Start with 50 impressions per variant. For the next ten rounds compare:
 
-Sam later writes, “I had a nice time, but I’m not interested in another date.” Alex can be disappointed and still reply respectfully. Accepting a no does not require pretending to feel nothing; it requires not making Sam responsible for fixing the disappointment.
+- **Greedy counts:** allocate 90 impressions to the variant with the larger cumulative positive count and 10 to the other; break a tie evenly.
+- **Balanced exploration:** allocate 50 to each every round.
 
-Build a decision tree from the three invitation branches in week 6. Add changed plans, no reply and an explicit refusal. Use the first-date plan to distinguish a practical question from an excuse to keep contacting someone.
+In both models, sample independent Bernoulli responses with assumed p = 0.2 for each variant. Record the random seed, per-round exposure and cumulative rate. [NumPy's binomial sampler](https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.binomial.html) can draw the number of positives in each batch. This probability is invented for the exercise.
 
-## Try it before the workshop
+Repeat with unequal response probabilities, 0.2 and 0.3. A policy that locks in on an early count leader can look different across seeds. Report that variation; one attractive trajectory is not the experiment.
 
-Bring the first-date plan and invitation branches. Write the observed facts of the follow-up case in one sentence, with no guessed motive.
+## Add a stopping state
 
-Bring your draft to [week 8’s workshop](/sessions/08-uncertainty/). A clear yes to another date still leaves compatibility unanswered. That is next week’s work.
+Your **Response policy** contains a terminal refusal. In a separate simulator branch, make one artificial participant unavailable after round 3. Remove that participant from eligible exposure rather than charging their later nonresponses to the bio. An event that never could occur should not become a negative training example.
 
+## Before the lab
+
+Bring your week 3 protocol and week 7 state diagram. Define an exposure log with variant, round, impressions, positives and eligibility. The simulator will generate a distribution shift for week 9, not evidence about a live app's recommender.

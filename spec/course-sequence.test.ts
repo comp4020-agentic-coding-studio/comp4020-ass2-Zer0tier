@@ -14,13 +14,13 @@ const api = JSON.parse(readFileSync("dist/api/index.json", "utf8"));
 const nodes = api.nodes as Node[];
 const workshops = nodes.filter(n => n.type === "sessions").sort((a, b) => a.meta.week - b.meta.week);
 
-describe("the dating field guide students are promised", () => {
+describe("the engineering release students are promised", () => {
   it("builds twelve distinct pieces in the promised order", () => {
     expect(workshops.map(n => n.meta.output)).toEqual([
-      "Intentions map", "Boundary statements", "Meeting-place map",
-      "Introduction card", "Conversation transcript", "Invitation branches",
-      "First-date plan", "Uncertainty decision tree", "Compatibility questions",
-      "Repair dialogue", "Relationship conversation", "Dating field guide",
+      "System boundary map", "Sampling notebook", "Experiment protocol",
+      "Feature contract", "Objective specification", "Matching trace",
+      "Response policy", "Exposure simulator", "Validation report",
+      "Date simulation", "Release candidate", "Reproducibility dossier",
     ]);
   });
 
@@ -43,12 +43,12 @@ describe("the dating field guide students are promised", () => {
   it("keeps three assessed milestones with preparation before each deadline", () => {
     const assessments = nodes.filter(n => n.type === "assessments").sort((a, b) => a.meta.week - b.meta.week);
     expect(assessments.map(n => [n.id, n.meta.week, n.meta.weight])).toEqual([
-      ["assessments/intentions-map", 3, 20],
-      ["assessments/first-date-plan", 7, 30],
-      ["assessments/field-guide", 12, 50],
+      ["assessments/market-report", 4, 20],
+      ["assessments/matchmaking-exam", 7, 30],
+      ["assessments/profile-deployment", 12, 50],
     ]);
     for (const assessment of assessments) {
-      expect(assessment.meta.practiceMode).toBe("fictional-case");
+      expect(assessment.meta.practiceMode).toBe("synthetic-data");
       expect(assessment.meta.preparation.length).toBeGreaterThan(0);
       for (const ref of assessment.meta.preparation) {
         const workshop = nodes.find(n => n.id === ref)!;

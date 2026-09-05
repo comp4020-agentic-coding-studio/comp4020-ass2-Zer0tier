@@ -58,8 +58,10 @@ try {
       });
       if (violations.length || geometry.width !== geometry.scrollWidth || geometry.small.length) findings.push({route,viewport,violations,geometry});
       await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
-      if (['','weeks/','lectures/week-07/','sessions/12-field-guide/','assessments/field-guide/','policies/','decks/week-01/'].includes(route)) {
+      if (['','weeks/','lectures/week-03/','lectures/week-07/','lectures/week-10/','sessions/12-reproducibility/','assessments/profile-deployment/','toolkit/','policies/','decks/week-01/'].includes(route)) {
         await page.screenshot({path:`${screenshots}/${route.replaceAll('/','-') || 'home'}-${viewport.width}.png`,fullPage:!deck});
+        if (route === '') await page.screenshot({path:`${screenshots}/home-${viewport.width}-viewport.png`});
+        if (route === 'toolkit/') await page.locator('.experiment-panel').screenshot({path:`${screenshots}/experiment-${viewport.width}.png`});
       }
     }
     console.log(`Inspected ${routes.length} pages at ${viewport.width}×${viewport.height}.`);
@@ -72,11 +74,15 @@ try {
   const staticPage = await noJs.newPage();
   await staticPage.goto(root+'weeks/');
   assert.equal(await staticPage.locator('.week-row:visible').count(),12);
+  await staticPage.goto(root+'toolkit/');
+  assert.equal(await staticPage.locator('#bio-experiment').isVisible(),false);
+  assert.match(await staticPage.locator('.experiment-panel').innerText(), /z = 1\.33/);
+  assert.equal(await staticPage.getByRole('link',{name:'Download the 99 synthetic controls'}).count(),1);
   await noJs.close();
 
   const page = await browser.newPage({viewport:{width:390,height:844}});
   await page.goto(root+'weeks/');
-  await page.getByRole('button',{name:'Make a connection',exact:true}).click();
+  await page.getByRole('button',{name:'Model',exact:true}).click();
   assert.equal(await page.locator('.week-row:visible').count(),4);
   await page.getByRole('button',{name:'All 12 weeks',exact:true}).focus();
   await page.keyboard.press('Enter');
@@ -92,11 +98,42 @@ try {
   }
   await page.getByRole('button',{name:'Search (Cmd+K)',exact:true}).click();
   const search = page.locator('dialog input');
-  await search.fill('boundaries');
+  await search.fill('stochastic');
   await page.waitForSelector('dialog .at-search-result');
   assert((await page.locator('dialog .at-search-result').count())>0);
   await page.keyboard.press('Escape');
   console.log('Syllabus filter, no-JS content, menu, resize and built search passed.');
+
+  await page.goto(root+'toolkit/');
+  await page.getByRole('button',{name:'Compare bios',exact:true}).click();
+  assert.match(await page.locator('#experiment-result').innerText(), /\+2\.0 percentage points/);
+  assert.match(await page.locator('#experiment-result').innerText(), /No clear difference/);
+  await page.locator('#b-positive').fill('300');
+  await page.getByRole('button',{name:'Compare bios',exact:true}).click();
+  assert.match(await page.locator('#experiment-result').innerText(), /\+18\.0 percentage points/);
+  assert.match(await page.locator('#experiment-result').innerText(), /Difference detected/);
+  await page.setViewportSize({width:1920,height:1080});
+  assert.equal(await page.locator('#b-positive').inputValue(),'300');
+  assert.match(await page.locator('#experiment-result').innerText(), /\+18\.0 percentage points/);
+  await page.setViewportSize({width:390,height:844});
+  await page.locator('#b-positive').fill('1001');
+  await page.getByRole('button',{name:'Compare bios',exact:true}).click();
+  assert.equal(await page.locator('#b-positive').getAttribute('aria-invalid'), 'true');
+  assert.equal(await page.locator('#experiment-result').isVisible(), false);
+  assert.equal(await page.locator('#b-positive').evaluate(el=>el===document.activeElement), true);
+  await page.getByRole('button',{name:'Reset example',exact:true}).click();
+  assert.equal(await page.locator('#experiment-result').isVisible(), true);
+  assert.equal(await page.locator('#experiment-error').innerText(), '');
+  for (const [selector,value] of [['#a-positive','2'],['#a-exposures','8'],['#b-positive','4'],['#b-exposures','8']]) await page.locator(selector).fill(value);
+  await page.getByRole('button',{name:'Compare bios',exact:true}).focus();
+  await page.keyboard.press('Enter');
+  assert.match(await page.locator('#experiment-result').innerText(), /Normal approximation withheld/);
+  const scorer = await page.evaluate(async url => {
+    const model = await import(url);
+    return model.qualityScore([4,4,4,4]);
+  }, root+'data/romance-models.mjs');
+  assert.equal(scorer,100,'Downloadable scorer is a working JavaScript module');
+  console.log('A/B calculator, validation recovery and downloadable scorer passed.');
 
   const network = await page.context().newCDPSession(page);
   await network.send('Network.enable');

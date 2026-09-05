@@ -1,29 +1,32 @@
 ---
-title: "A field guide for your next hello"
-description: "Bring the semester’s work into one practical guide and test it against a new fictional case."
+title: "The top-1% defence & reproducibility audit"
+description: "Rebuild the release, audit the percentile and defend the gap between a better score and a better match."
 week: 12
 date: 2027-05-24
 teachers: [mira-chen]
-related: [sessions/12-field-guide]
+related: [sessions/12-reproducibility]
 ---
 
-## The question
+## Your result has left your laptop
 
-Does your advice still work when the answer changes?
+The final week is a replication attempt. Start from the **Release candidate**, not the convenient files beside it. A reviewer should be able to recover the candidate text, rerun the scorer, count 99 controls and reproduce the conservative rank.
 
-## In this lecture
+If the displayed result is rank 1/100, say “top 1% in Null Island v1 under the declared profile-quality rubric.” Dropping the final clause changes the claim. If two entries tie above you, count both. If your candidate ties with the best control, it is not rank 1 under our rule.
 
-Your final guide is a sequence of choices, not twelve worksheets stapled together. A reader should be able to move from an intention to a meeting opportunity, an invitation, a date and a conversation about what comes next. The branches matter as much as the path forward.
+## A defence in three questions
 
-Use a new case: Jo and Riley meet through friends, live an hour apart and enjoy one date. Jo wants regular weekend time; Riley is moving away at the end of semester. Choose an ending you can justify. Then change one fact: Riley is staying. Show which parts of your reasoning change and which boundaries remain.
+First: what did your optimization improve? Point to the frozen week 5 objective and exact evidence. A response-rate claim cannot be supported by rubric points.
 
-Revisit the intentions map from week 1 and the first-date plan from week 7. Identify one revision that came from feedback. Use the uncertainty tree to avoid writing a conclusion that depends on guessing what Riley secretly wants.
+Second: what would reverse your decision? Show the shifted rule, changed case and logistics failure from weeks 9–10. A limitation that cannot affect any decision is probably just boilerplate.
 
-The guide may end with two people becoming partners or with either choosing to stop. Your mark depends on the clarity, care and coherence of the decisions. No proof of a real date or relationship belongs in the submission.
+Third: what happens when someone reproduces it? Provide one command or a precise manual procedure, expected outputs and the software versions used. Investigate discrepancies before formatting a prettier chart.
 
-## Try it before the workshop
+## A negative result is still a result
 
-Bring the accumulated guide, your earlier assessment feedback and the week 11 two-ending conversation. Read the final assessment checklist.
+Your project can fail to reach the top-1% target and earn full marks. The criteria concern reproducibility, valid evaluation, deployment and technical explanation. A low rank honestly reproduced is stronger engineering evidence than a fabricated high one.
 
-Bring your draft to [week 12’s workshop](/sessions/12-field-guide/). Submit the field guide after the workshop. Keep it as a set of questions you can adapt, rather than a script another person must follow.
+The dataset is deliberately small and synthetic. It teaches the mechanics of a claim, not the habits of a population. The semester ends where week 1 began: which parts of this system can you observe, and which story are you adding yourself?
 
+## Before the lab
+
+Bring the full [final submission bundle](/assessments/profile-deployment/) and your Objective specification. The [last lab](/sessions/12-reproducibility/) is a fresh-environment audit, with a solo reproduction option. Submission closes Friday at 5 pm Canberra time.

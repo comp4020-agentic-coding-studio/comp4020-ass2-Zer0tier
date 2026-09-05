@@ -1,92 +1,118 @@
 ---
-title: "How to Find a Partner · Week 1"
-description: "From a first hello to a mutual yes: intentions, assumptions and the first page of your dating field guide."
+title: "Applied Algorithmic Romance & Profile Optimization · Week 1"
+description: "The Hinge algorithm, a toy Elo update, and the difference between a visible result and an identifiable cause."
 ---
 
 import DeckTools from "../components/DeckTools.astro";
 
 <DeckTools />
 
-# How to Find a Partner
+# Applied Algorithmic Romance
 
-SLOP1276 · Week 01
+& Profile Optimization
 
-From a first hello to a mutual yes.
+SLOP4276 · Week 01
 
----
-
-## Start with an ordinary Tuesday
-
-What would sharing your life actually involve?
-
-Study. Friends. Work. Time alone. Someone else’s plans.
+Your love life has a loss function.
 
 ---
 
-## Want / offer / ask
+## First, find the boundary
 
-- What relationship do I want?
-- What can I honestly offer?
-- What do I need to ask?
+Hinge describes inputs to recommendations, not a public Elo formula.
 
-Three columns. No perfect answers.
+Tinder says it no longer relies on Elo.
 
----
+A platform statement is not a source-code audit.
 
-## Meet Alex and Sam
-
-Alex wants a relationship. Alex works evenings.
-
-Sam likes meeting people. Sam is still deciding.
-
-What can they assume about each other? Very little.
+[Platform sources and lecture notes](/lectures/week-01/)
 
 ---
 
-## An intention is speakable
+## Our inspectable toy model
 
-“I’d like to get to know someone with the possibility of a relationship.”
+E = 1 / (1 + 10^((Q − R) / 400))
 
-What would you need to learn from the other person?
+R′ = R + K × (S − E)
 
----
+R and Q: artificial ratings.
 
-## Your turn · five minutes
+S: a simulated result, 0 or 1.
 
-Choose Alex, yourself, or an invented character.
-
-Write one want, one thing you can offer, and one question.
-
-Then check the plan against an ordinary week.
+This is not Hinge's algorithm.
 
 ---
 
-## The semester’s path
+## One update, by hand
 
-Know yourself → make a connection → choose together.
+R = Q = 1200; K = 32; S = 1.
 
-Every workshop adds one piece to your dating field guide.
+Equal ratings give E = 0.5.
 
-Every next step leaves room for either person to stop.
+R′ = 1200 + 32 × 0.5 = **1216**.
+
+Check the arithmetic before trusting the plot.
+
+---
+
+## Try manipulating K
+
+Reset both ratings to 1200.
+
+With a simulated win:
+
+K = 16 → 1208. K = 64 → 1232.
+
+The rating moved faster.
+
+What evidence says more people connected? None.
+
+---
+
+## Three different denominators
+
+Null Island's synthetic census:
+
+300 active → 150 available → 40 reciprocal.
+
+40/150 ≈ 26.7%.
+
+40/300 ≈ 13.3%.
+
+Same numerator. Different claim.
+
+---
+
+## The semester's pipeline
+
+**Measure** · boundaries, sampling, bio experiments.
+
+**Model** · features, objectives, matching, response games.
+
+**Ship** · feedback, validation, simulation, release.
+
+The output includes its assumptions.
 
 ---
 
 ## What earns a mark?
 
-Intentions map · 20%
+Data report · **20%**
 
-First-date plan · 30%
+Theoretical matchmaking exam · **30%**
 
-Dating field guide · 50%
+Fictional profile deployment · **50%**
 
-Your choices and reasoning. Your relationship status is private.
+Engineering evidence, not romantic outcomes or a required rank.
 
 ---
 
-## Bring your map on Thursday
+## Thursday: bring a failing claim
 
-Use the fictional case or write on your own.
+Implement the toy update and three tests.
 
-Next week: turn a limit into a boundary statement.
+Draw one observable input and one hidden variable.
 
-[Week 1 workshop](/sessions/01-intentions/) · [Course home](/)
+Explain what the toy cannot establish.
+
+[Week 1 lab](/sessions/01-system-boundary/) · [Toolkit](/toolkit/) · [Course home](/)

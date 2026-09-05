@@ -47,14 +47,14 @@ export const slopCourseMetaSchema = z
 // provisioned, and no other course in the cohort has them. Change the first
 // digit to your course's level (and `level` to match); keep the other three.
 export const courseMeta = slopCourseMetaSchema.parse({
-  code: "SLOP1276",
-  title: "How to Find a Partner",
+  code: "SLOP4276",
+  title: "Applied Algorithmic Romance & Profile Optimization",
   session: "Semester 1",
   year: 2027,
-  level: 1,
+  level: 4,
   startDate: "2027-02-22",
   endDate: "2027-05-28",
   description:
-    "From a first hello to a mutual yes. A practical course in meeting people, asking someone out and choosing a relationship together. Build a dating field guide, one thoughtful decision at a time.",
-  tags: ["Dating", "Communication", "Everyday life"],
+    "Dating profiles as a systems engineering problem. Design experiments, trace matching algorithms and deploy a fictional profile against a synthetic benchmark. Then explain what your top-1% score cannot tell you.",
+  tags: ["Computer science", "Experiment design", "Dating systems"],
 }) satisfies CourseMetaInput;

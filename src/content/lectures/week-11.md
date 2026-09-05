@@ -1,29 +1,32 @@
 ---
-title: "So… what are we?"
-description: "Discuss labels, exclusivity, pace and expectations, including the possibility of wanting different things."
+title: "Deploy the profile. Keep the rollback."
+description: "Package one fictional profile as a static release with provenance, accessible presentation and a reversible change history."
 week: 11
 date: 2027-05-17
 teachers: [mira-chen]
-related: [sessions/11-define-it]
+related: [sessions/11-deploy]
 ---
 
-## The question
+## Production is a strong word for a biography
 
-Have you agreed to the same relationship, or just used the same word?
+Deploy a labelled fictional profile for Alex as a static page. It needs no login, tracking pixel, matching API or real contact button. A plain document can be a release; an untraceable screenshot cannot.
 
-## In this lecture
+Your release links the candidate text to its feature evidence, benchmark version, evaluation report and feasibility simulation. That chain lets another person answer “which version produced this number?” without interviewing you.
 
-Several dates do not silently sign a relationship agreement. “Partner”, “boyfriend” and “girlfriend” can mean different expectations to different people. Choosing a label is a conversation about what both people want it to mean.
+## A minimal release contract
 
-Alex is ready to be exclusive. Sam enjoys their time together but is unsure about a relationship. Alex can state what they want and ask Sam directly. Sam can answer honestly. The purpose is to learn whether there is agreement, not to produce a yes by the end of the scene.
+The profile must state that it is fictional coursework, give truthful case-based wording, include no personal identifiers, and work with a keyboard at both course viewports. Any apparent contact action must explain that it is a demo, or be omitted.
 
-Write about time together, exclusivity if relevant, communication and how either person can raise a change. These are possible topics, not a universal template for every relationship. Use your week 9 questions to choose what matters for these characters.
+Publish the page and a short model card: intended use, non-use, data provenance, primary and shifted results, known failures and rollback command. The [final brief](/assessments/profile-deployment/) specifies the exact bundle.
 
-Include two endings: an agreement in both people’s words, and a respectful decision not to continue. Use the repair dialogue from week 10 to keep an uncomfortable answer discussable. A relationship that both choose is one possible ending; being single remains a complete life.
+## Version the decision, not just the file
 
-## Try it before the workshop
+Tag one release candidate. Change one sentence in a second version, rescore it, and explain whether the earlier evidence still applies. A feasibility statement for Friday does not automatically survive a change to Saturday.
 
-Bring compatibility questions and the repair dialogue. Decide what each character wants before drafting their conversation.
+Rollback should restore the old text **and** its matching evidence. Keep the previous release directory or versioned build; do not rewrite the old report to agree with the new profile.
 
-Bring your draft to [week 11’s workshop](/sessions/11-define-it/). Add both endings to the final field guide. You will be assessed on the reasoning in each branch.
+## Before the lab
 
+Bring your **Validation report** and **Date simulation**. Build locally first. Public static hosting is optional within this fictional course; a self-contained local build and recorded demo are accepted on identical marking terms if public hosting is unsuitable. That course policy does not change this website assignment's own public GitHub Pages submission requirement.
+
+The profiler has finally shipped. Its strongest feature should be the list of things it does not claim.

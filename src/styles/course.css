@@ -70,6 +70,9 @@ button, summary { cursor: pointer; }
 .home-hero { display: grid; grid-template-columns: 1.12fr 1fr; gap: 3.5rem; align-items: center; padding: 1rem 0 3.5rem; }
 .home-hero h1 { font-family: var(--course-serif); font-weight: 400; font-size: clamp(3.5rem, 5.6vw, 5.3rem); line-height: 1.03; letter-spacing: -.055em; margin: 1.35rem 0; color: var(--course-ink); }
 .home-hero h1 em { color: var(--course-pink-ink); font-weight: 400; }
+.home-hero h1.technical-title { font-size: clamp(2.5rem, 4vw, 4.2rem); line-height: 1.06; letter-spacing: -.045em; text-wrap: balance; overflow-wrap: break-word; }
+.at-main > h1 { text-wrap: balance; overflow-wrap: break-word; }
+.course-bar > a { max-width: 75ch; }
 .home-hero .intro { font-size: 1.5rem; font-weight: 500; line-height: 1.4; letter-spacing: -.02em; margin-bottom: .85rem; }
 .home-hero .description { color: var(--course-muted); max-width: 46ch; line-height: var(--course-body-leading); font-size: var(--course-body-size); }
 .hero-actions { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: 1.8rem; }
@@ -123,6 +126,20 @@ button, summary { cursor: pointer; }
 .week-nav a { font-size: .82rem; padding: .65rem; color: var(--course-blue-ink); }
 .eyebrow, .facts-strip dt, .week-row .week-meta { font-size: .75rem; }
 .at-main p a:not(.button), .at-main li a, .at-footer a, .course-bar a { display: inline-block; min-height: 24px; }
+.at-main details { max-width: var(--course-reading-width); padding: 1rem; border: 1px solid var(--course-line); border-radius: 8px; margin-block: 1.5rem; }
+.at-main summary { padding: .5rem; color: var(--course-blue-ink); min-height: 44px; font-weight: 600; }
+.experiment-panel { margin-block: 2rem; padding: 1.5rem; border: 1px solid #8a8b91; border-radius: 12px; background: var(--course-blue); }
+.experiment-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.experiment-inputs fieldset { border: 1px solid #7a8290; border-radius: 8px; padding: 1rem; margin: 0; }
+.experiment-inputs legend { padding-inline: .35rem; font-weight: 600; color: var(--course-ink); }
+.experiment-inputs label { display: block; margin-block: .6rem .35rem; }
+.experiment-inputs input { width: 100%; min-height: 44px; padding: .55rem .7rem; font: inherit; color: var(--course-ink); background: var(--course-paper); border: 1px solid #7a8290; border-radius: 5px; }
+.experiment-inputs input[aria-invalid="true"] { border: 2px solid var(--course-pink-ink); }
+.experiment-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+#experiment-help, .model-caveat { font-size: .875rem; line-height: 1.6; }
+#experiment-error { color: #7a173d; font-weight: 600; }
+#experiment-error:empty { margin: 0; }
+#experiment-result { display: block; margin-block: 1.25rem; padding: 1rem; border-radius: 8px; background: var(--course-paper); }
 @media (width < 1000px) {
   .home-hero { gap: 1.5rem; }
   .home-columns { gap: 2rem; }
@@ -139,11 +156,14 @@ button, summary { cursor: pointer; }
   .course-bar { font-size: .75rem; margin-bottom: 1.4rem; }
   .home-hero { grid-template-columns: 1fr; gap: 1rem; padding-top: .4rem; padding-bottom: 2rem; }
   .home-hero h1 { font-size: 3.55rem; margin-block: 1rem; }
+  .home-hero h1.technical-title { font-size: 2.55rem; }
   .home-hero .intro { font-size: 1.4rem; }
   .hero-art { max-width: 390px; margin: 0 auto; }
   .facts-strip { grid-template-columns: 1fr 1fr; row-gap: 1.5rem; }
   .home-columns { grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2.5rem; }
   .phase-grid { grid-template-columns: 1fr; }
+  .experiment-inputs { grid-template-columns: 1fr; }
+  .experiment-panel { padding: 1rem; }
   .phase-card { padding: 1.4rem; }
   .phase-card h3 { margin-top: .8rem; }
   .section-heading { margin-top: 2.5rem; align-items: start; flex-direction: column; }

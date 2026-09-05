@@ -1,29 +1,30 @@
 ---
-title: "Be someone they can reply to"
-description: "Write an honest introduction with enough detail to start a conversation, online or in person."
+title: "Feature engineering without inventing a personality"
+description: "Turn a fictional profile into an auditable feature contract. Missing information is not a zero-valued person."
 week: 4
 date: 2027-03-15
 teachers: [mira-chen]
-related: [sessions/04-introductions]
+related: [sessions/04-features]
 ---
 
-## The question
+## The schema cannot make you interesting
 
-What does “I like music and having fun” give someone to say back?
+The semester's release subject is **Alex**, an invented adult CS student. Alex likes board games and terrible puns, is free Friday 5–7 pm, has a $20 outing budget, uses the bus, and wants to meet someone with the possibility of a relationship. These are all the case facts. A yacht is not an admissible feature-engineering technique.
 
-## In this lecture
+Your profile is an interface to those facts. This week defines four quality features: clarity of intention, specificity, feasibility, and room to decline. Each receives an anchored score from 0 to 4 under the [Null Island v1 contract](/toolkit/#benchmark). They measure the submitted artefact against a case, not an individual's romantic value.
 
-An introduction is an opening, not your entire autobiography. A concrete detail gives the other person something to pick up: “I am trying to learn one song on guitar without stopping halfway” is easier to answer than “I love music.”
+## Missing, false and unobserved
 
-Take the meeting setting you chose last week. Write a short introduction that makes sense there. A friend introducing you at a board-game afternoon needs different words from an optional dating profile. Neither needs an invented personality.
+“Friday evening” is an observed availability statement. No availability statement is missing data. “Every night” contradicts the case. Encoding all three as zero makes downstream interpretation impossible.
 
-Alex drafts: “Always up for spontaneous adventures.” Their evening shifts make that untrue. A revision might say: “Thursday afternoons are my free patch. Usually in a pottery studio; very willing to be distracted by a good bakery.” The detail reveals availability as well as an interest.
+Use a separate evidence record for each score: feature, exact supporting text, case fact, score and reviewer explanation. A numerical column without that record is an opinion with a type annotation.
 
-For an app-style version, leave out addresses, exact routines and identifying workplace details. Review [eSafety’s online dating guidance](https://www.esafety.gov.au/key-topics/staying-safe/online-dating) for privacy considerations. In this course the profile stays a fictional document; publication is never required.
+## A leaky feature can look impressively predictive
 
-## Try it before the workshop
+Suppose you label a bio “good” using its observed replies, then include reply count as a feature when predicting that same label. Your evaluation has already seen the answer. The [scikit-learn leakage guidance](https://scikit-learn.org/stable/common_pitfalls.html#data-leakage) explains why preprocessing and selection must respect the training/test boundary.
 
-Bring the week 3 meeting-place map. Choose either a spoken introduction or a fictional app-style profile, and list two true details about the character.
+In this course, the toy quality score is explicitly a design rubric. It is **not** trained to predict replies, and must not be described as one. Record that limitation in the feature contract.
 
-Bring your draft to [week 4’s workshop](/sessions/04-introductions/). The detail a reader picked becomes the opening line of your week 5 conversation.
+## Before the lab
 
+Bring your week 1 boundary map and week 2 data dictionary. Write two truthful profiles for Alex, and list the evidence needed to score them. The data report is due Friday; this lab supplies its data-quality review, not an extra assessed profile.

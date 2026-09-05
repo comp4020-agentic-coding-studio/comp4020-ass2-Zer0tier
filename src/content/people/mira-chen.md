@@ -1,20 +1,20 @@
 ---
 title: Mira Chen
-description: The course convenor, leading the weekly lectures and helping you connect the semester’s ideas to your final dating field guide.
+description: "The course convenor, leading lectures on measurement, matching and evaluation. Office hours are for difficult assumptions."
 role: convenor
-affiliation: Slop University · School of Everyday Life
-contact: Mondays, 12–1 pm, Conversation Room 2, after the lecture.
+affiliation: Slop University · Department of Computational Courtship
+contact: Mondays, 12–1 pm, Systems Lab 2, after the lecture.
 ---
 
 ## What to bring to Mira
 
-Bring a question about the course’s ideas, a concern about an assessment, or a
-request for an alternative format. Mira leads the lectures and final field-guide
-review. Her teaching question is simple: “Whose choice is missing from this plan?”
+Bring your objective specification, an identification problem or a proposed
+assessment change. Mira leads the lectures and the final technical defence.
+Her recurring question is “what would make this conclusion false?”
 
-For an assessment review, bring the marked work and one criterion you want to
-discuss. For an extension, bring the new date you are asking for; you do not need
-to explain private relationship circumstances.
+For a mark review, bring the marked work and the criterion you want reconsidered.
+For an extension or deferred exam, propose a workable date. Personal relationship
+details are not required to explain a course-design or access issue.
 
-Mira is a fictional member of the SlopU teaching team. The room and consultation
-hours belong to this invented course; this prototype has no live contact service.
+Mira is fictional. These consultation hours describe this invented course;
+the prototype has no live contact or booking service.

@@ -1,29 +1,30 @@
 ---
-title: "Say the small thing before it grows"
-description: "Practise a small disagreement, a concrete request and a response that accepts responsibility."
+title: "Stochastic modeling of the first date"
+description: "Simulate cost, timing and fallback choices. The output is a distribution of logistics, not a probability of love."
 week: 10
 date: 2027-05-10
 teachers: [mira-chen]
-related: [sessions/10-disagreement]
+related: [sessions/10-date-simulation]
 ---
 
-## The question
+## Love is not a Bernoulli variable. A late bus can be.
 
-Can you explain what bothered you without claiming to know who they are?
+Alex's proposed Friday coffee must fit 5–7 pm and $20. We can model logistics without claiming to model chemistry.
 
-## In this lecture
+Use these **fictional assumptions**: each bus leg costs $3; coffee costs $8; a regular trip takes 15 minutes each way; a late outbound bus adds 20 minutes with probability 0.25; a closed café requires a nearby alternative adding $6 and 10 minutes with probability 0.10; the visit itself takes 60 minutes. Assume the two events are independent for the first model.
 
-Alex arrived twenty minutes late and did not send a message. Sam is frustrated. “You never care about anyone” attacks Alex’s character and expands one event into a permanent verdict. “I waited twenty minutes without an update, and I was frustrated” identifies what happened.
+## Enumerate before you simulate
 
-Our exercise uses an observation, its effect and a request: “If you are delayed next time, could you message me?” Alex’s reply needs more than the word sorry. It can acknowledge the wait and say what will change. Sam is free to decide whether that answer is enough.
+Base cost is $14 and base elapsed time is 90 minutes. The late-only case takes 110 minutes. The closed-only case costs $20 and takes 100 minutes. Both events give $20 and 120 minutes. All four cases fit the original limits, including equality at the boundary.
 
-This is a practice case about a minor disagreement between people who feel able to speak. It is not a method for persuading someone to tolerate intimidation or repeated boundary violations. The [policies and support page](/policies/) names outside resources if a case feels close to home.
+Now change the time budget to **110 minutes**. Only the joint event exceeds it, so the model's exact failure probability is 0.25 × 0.10 = **0.025**. Expected cost is $14.60; expected time is 96 minutes. Report the threshold and the independence assumption alongside each number.
 
-Bring back the boundary statement and compatibility difference from earlier weeks. Write a repair dialogue and an alternative ending in which the people decide the difference does not work for them.
+## A simulation needs an oracle
 
-## Try it before the workshop
+Generate 10,000 trials using a fixed seed. Compare the empirical failure rate with 0.025. For independent trials its estimated standard error is sqrt(p_hat × (1−p_hat) / N). An approximate interval describes Monte Carlo noise conditional on this model; it does not validate the invented probabilities.
 
-Bring the week 2 boundary statements and a workable difference from week 9. Use the late-arrival case or invent another minor disagreement.
+Next, keep P(late) = 0.25 but make café closure conditional on a late bus: P(closed | late) = 0.4 and P(closed | on time) = 0. The marginal closure probability is still 0.10, but the events are no longer independent. The joint failure probability becomes 0.25 × 0.4 = **0.10**. Expected time remains 96 minutes; the chance of exceeding 110 minutes quadruples. A mean can hide a changed tail.
 
-Bring your draft to [week 10’s workshop](/sessions/10-disagreement/). This dialogue informs the expectations your characters discuss when deciding whether to become partners.
+## Before the lab
 
+Retrieve the profile's feasibility evidence and week 9 failure threshold. Bring an exact four-state table, a [binomial/random sampler](https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.binomial.html) and one fallback that reduces a specific failure. “Be more spontaneous” is not executable pseudocode.

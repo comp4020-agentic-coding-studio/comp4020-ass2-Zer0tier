@@ -1,28 +1,38 @@
 ---
-title: "Plan a date, not a performance"
-description: "Turn an accepted invitation into a manageable first date with clear practical choices."
+title: "Game theory of \"ghosting\" & optimal response times"
+description: "Model silence as incomplete information. Compare response policies without pretending a delay has one universal meaning."
 week: 7
 date: 2027-04-19
 teachers: [mira-chen]
-related: [sessions/07-first-date]
+related: [sessions/07-response-game]
 ---
 
-## The question
+## Your unread message is not a distributed consensus protocol
 
-Can both people arrive, participate and leave comfortably?
+The title promises an optimal response time. The model asks: optimal for which objective, under what information? Silence may mean busy, uncertain, uninterested, offline or something absent from your model. A missing event is not a reliable psychological label.
 
-## In this lecture
+Week 6 assumed known, fixed preference lists. This week removes that convenience. Define two possible hidden states for an invented recipient: busy with probability q, and not interested with probability 1−q. These are **assumed states**, not estimates of real people.
 
-A first date is time to find out whether you enjoy one another in person. It does not need a grand reveal, an expensive booking or a whole day. Begin with the activity both people actually agreed to.
+## A toy decision table
 
-Alex and Sam agree to coffee. Sam needs step-free access and a quiet place; Alex has a limited budget and a shift later. The plan now has concrete constraints. Choose an accessible fictional venue, a rough duration, a spending limit, separate travel and a way to change or end the plan. Ask about access needs; do not guess from appearances.
+The sender can wait, send one low-pressure clarification, or stop. Use these invented utility values:
 
-[eSafety’s dating guidance](https://www.esafety.gov.au/key-topics/staying-safe/online-dating) recommends letting a friend or family member know where you are going and when. Use its guidance when reviewing the plan; no checklist makes another person’s behaviour predictable.
+| Action | Busy | Not interested |
+| --- | --- | --- |
+| Wait | 1 | −1 |
+| Clarify once | 2 | −2 |
+| Stop | 0 | 0 |
 
-Return to the meeting-place map and invitation branches. Explain why this plan fits these two people. Include a message if the venue becomes unavailable. Your second assessment is due after the workshop, so the feedback can change what you submit.
+Expected utilities are 2q−1, 4q−2 and 0. At q = 0.75, clarification wins this *particular* table with utility 1. At q = 0.25, stopping wins. At q = 0.5, all tie. Changing the assumed cost of unwanted contact can change the selected policy.
 
-## Try it before the workshop
+This is initially a decision problem against an uncertain state, **not yet a strategic game**. To make it a game, specify a recipient action and the recipient's payoffs too. “Nash equilibrium” is not a decorative synonym for best guess.
 
-Bring the week 3 meeting-place map and week 6 yes branch. Read the meeting-in-person section of eSafety’s online dating guidance.
+## The state your optimizer must not ignore
 
-Bring your draft to [week 7’s workshop](/sessions/07-first-date/). Your week 8 case begins with the follow-up after this date.
+An explicit refusal terminates the model. It is not an invitation to adjust the waiting parameter and retry. Silence is not agreement. No timing model gives anyone an obligation to reply.
+
+A response-time recommendation also needs a time-dependent observation model. Our table has none, so it cannot derive a magic number of hours. Identifying that non-identifiability is the correct result, not a missing feature.
+
+## Before the lab
+
+Bring your matching assumptions and calculate the three policies at q = 0.25, 0.5 and 0.75. Then add a recipient payoff and defend it as a modelling choice. The [midterm](/assessments/matchmaking-exam/) follows on Friday; all required practice is on the site.

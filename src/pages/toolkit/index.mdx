@@ -1,0 +1,158 @@
+---
+title: The Null Island toolkit
+description: "Synthetic data, executable models and one suspiciously impressive benchmark. Everything the labs need, without an app account."
+---
+
+import BioExperiment from '../../components/BioExperiment.astro';
+
+## Start here
+
+Null Island is a fictional teaching environment, not a real place or a sample
+of dating-app users. Every row, case and probability below is course-authored.
+These are separate fixtures for separate questions; do not join them as if they
+describe the same people. Files contain no personal data and require no login.
+
+Download the files directly, or use the tables and formulas on this page. Work
+in any language. The shared scorer is also available as a small JavaScript
+module with no runtime dependencies.
+
+<h2 id="market-data">Market data · version 1</h2>
+
+[Download null-island-market.csv](/data/null-island-market.csv). Three synthetic
+zones, one invented week. Columns are non-negative integer counts, not people
+to be identified or contacted.
+
+| Field | Definition within the fictional frame |
+| --- | --- |
+| zone | One of North, South and East; arbitrary geography |
+| active_profiles | Profiles active during the invented observation week |
+| available_profiles | Active profiles satisfying the case's availability constraint |
+| reciprocal_profiles | Available profiles satisfying both sides' stated-intention filters |
+
+In each row, reciprocal ≤ available ≤ active. Totals are **300 active, 150
+available, 40 reciprocal**. These are a census of the fixture, not population
+estimates. Week 2's missing-count scenario adds 50 to East's active count only.
+Keep that scenario separate from the baseline file.
+
+## Bio exposures · version 1
+
+[Download bio-exposures.csv](/data/bio-exposures.csv). Each row is a synthetic
+zone/variant cell. `exposures` is the number shown a variant;
+`positive_responses` is a fabricated binary outcome count. The fixture was
+constructed to reverse the aggregate comparison, not collected from Tinder.
+
+| Zone | Bio A | Bio B |
+| --- | --- | --- |
+| North | 24/80 = 30% | 7/20 = 35% |
+| South | 2/20 = 10% | 12/80 = 15% |
+| Pooled | 26/100 = 26% | 19/100 = 19% |
+
+The counts are intentionally unbalanced across zones. The separate balanced
+example below uses 120/1,000 and 140/1,000; it is **not** a total of this CSV.
+
+<h2 id="experiment">An A/B result you can interrogate</h2>
+
+<BioExperiment />
+
+Try 120 positives from 1,000 exposures for A and 300 from 1,000 for B. Then
+try 2/8 versus 4/8 and inspect the sparse-cell guardrail. Finally enter the
+confounded CSV's aggregate counts. Does a numerical comparison restore random
+assignment? It does not.
+
+The [NIST two-proportion method](https://itl.nist.gov/div898/handbook/prc/section3/prc33.htm)
+uses a pooled rate under the equal-probability null. Our large-sample calculator
+reports z and compares its magnitude with approximately 1.96 for a two-sided
+5% test. Its ten-observation cell guardrail is a conservative course choice,
+not a claim that all larger samples meet the assumptions. It performs no exact
+test, multiple-testing correction or power calculation.
+
+<h2 id="benchmark">Null Island v1 · the top-1% contract</h2>
+
+[Download the 99 synthetic controls](/data/null-island-controls.csv) and
+[the executable model/scorer module](/data/romance-models.mjs).
+Each control is an **invented feature vector**, not a real profile or an observed
+response rate. The controls are a comparator fixture; they were not scored by
+a representative human panel.
+
+The candidate is the fictional Alex profile you build. Alex is an adult CS
+student who likes board games and terrible puns, is free Friday 5–7 pm, has a
+$20 outing budget, uses the bus, and wants to meet someone with the possibility
+of a relationship. No extra biographical facts may be invented to improve its
+score. Gender is not an input to this quality rubric.
+
+### Four features, each from 0 to 4
+
+| Feature | Evidence sought in the candidate text |
+| --- | --- |
+| clarity | A comprehensible statement of what Alex is seeking |
+| specificity | A concrete, case-supported detail someone can respond to |
+| feasibility | An invitation consistent with time, budget and travel facts |
+| exit | Wording that makes declining or not engaging acceptable |
+
+Apply the same rating anchors to each feature: **0** absent; **1** vague;
+**2** specific but contradicted by the case or another statement; **3** usable
+and consistent but missing a relevant detail; **4** explicit and fully supported
+by cited case facts or the wording itself. Attach an evidence quote and a reason
+to every rating. The exit feature concerns wording; it does not claim to
+predict whether another person feels safe. Contradictions additionally fail
+the case-fidelity constraint regardless of their numeric score.
+
+The numeric controls are fabricated examples of these ratings. For reproducible
+generation, rows 1–98 encode `(row × 37) mod 624` as four base-5 digits in
+least-significant-first feature order. Row 99 is `(3,4,4,4)`, an explicit
+near-perfect comparison. This construction excludes `(4,4,4,4)` on purpose.
+The bias is part of the lesson: winning this fixture is not external validation.
+
+### Score, denominator and ties
+
+```text
+primary score = 100 × (clarity + specificity + feasibility + exit) / 16
+rank = 1 + count(control score >= candidate score)
+denominator = 99 controls + 1 candidate = 100
+```
+
+Only **rank 1/100** receives the course's top-1% label. Ties count against the
+candidate. A candidate scoring 100 ranks first; a candidate tying the best
+control does not. This percentile applies only to this synthetic comparison
+and this quality rubric. It predicts neither app rank nor romantic success.
+
+For the prespecified week 9 shift, double feasibility's weight and divide by
+20 instead of 16. Recompute all 99 control scores under that same rule before
+reranking. Separately rescore the candidate when the fictional availability
+changes; do not confuse a weight change with an evidence change.
+
+### Reproduce the score locally
+
+Save the module and controls CSV in the same directory. With Node.js installed,
+run this command from that directory; the source can also be translated into
+your preferred language:
+
+```sh
+node --input-type=module -e '
+import { readFileSync } from "node:fs";
+import { qualityScore, conservativeRank } from "./romance-models.mjs";
+const rows = readFileSync("null-island-controls.csv", "utf8").trim().split("\n").slice(1);
+const controls = rows.map(row => qualityScore(row.split(",").slice(1).map(Number)));
+const score = qualityScore([4, 4, 4, 4]);
+console.log({ score, rank: conservativeRank(score, controls), entries: controls.length + 1 });
+'
+```
+
+Expected output: **score 100, rank 1, entries 100**. Replace the example vector
+with your evidence-backed candidate ratings, not the values needed to win.
+The module also exports `eloUpdate` and `compareBios`, as used in the opening
+labs. `dateLogistics()` returns week 10's exact four-state result: expected cost
+$14.60, expected time 96 minutes and failure probability 0.025 at a 110-minute
+limit. `dateLogistics(0.4, 0)` changes dependence while preserving both marginal
+event probabilities; the means stay fixed but failure becomes 0.10. Use this
+as an oracle after implementing your own simulation.
+
+Downloaded files are version 1 teaching resources, not generated API nodes.
+
+## How to use results in assessments
+
+The [report](/assessments/market-report/) uses the census and exposure fixtures.
+The [exam](/assessments/matchmaking-exam/) uses unfamiliar variants of the same
+methods. The [project](/assessments/profile-deployment/) uses the control fixture,
+feature evidence, shifted evaluation and a working release. A failed hypothesis
+can earn full marks; changing a denominator to make it pass cannot.

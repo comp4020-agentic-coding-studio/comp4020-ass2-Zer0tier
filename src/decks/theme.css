@@ -20,11 +20,13 @@
   --r-link-color-hover: #903252;
   --r-heading-font: Georgia, 'Times New Roman', serif;
   --r-heading-font-weight: 400;
+  --r-main-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 .reveal .slides section:nth-child(even) { background: #dfeaf9; }
 .reveal .slides section:nth-child(odd) { background: #f9dbe7; }
 .reveal .controls { color: #28538a; }
 .reveal .slides section :is(h1,h2) { color: #903252; background: none; text-transform: none; padding: 0; }
+.reveal .slides section :is(h1,h2,p) { text-wrap: balance; overflow-wrap: anywhere; }
 .deck-tools { position: fixed; z-index: 60; inset: auto 0 0; display: flex; justify-content: center; align-items: center; gap: 1rem; padding: .75rem; background: #fffdf9; border-top: 1px solid #dcdad5; font: 16px system-ui, sans-serif; color: #272c38; }
 .deck-tools a, .deck-tools button { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .8rem; color: #28538a; background: #fffdf9; border: 1px solid #8a8b91; border-radius: 4px; font: inherit; cursor: pointer; }
 .deck-tools button:disabled { color: #585d68; background: #f0ede8; cursor: default; }

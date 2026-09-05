@@ -1,18 +1,24 @@
 # The spec
 
-## SLOP1276 prototype checks
+## SLOP4276 prototype checks
 
 `assignment-2.test.ts` protects the allocated code suffix, twelve weeks,
-assessment total and authored deck. `partner-course.test.ts` protects the
-literal field-guide milestones, earlier-work dependencies, assessment
-preparation and the teaching dates across the break. Neither file judges prose
-quality or proves that a declared dependency is educationally useful.
+assessment total and authored deck. `course-sequence.test.ts` protects the
+literal engineering milestones, earlier-work dependencies, assessment
+preparation and the teaching dates across the break. `algorithmic-romance.test.ts`
+protects the student's CS title, level, four weekly anchors, assessment types
+and synthetic benchmark scope. `quantitative-models.test.ts` uses literal
+arithmetic oracles for Elo, the bio experiment, census, control count, conservative
+ties and shifted scoring. None judges prose quality, feature-rating honesty or
+whether a declared dependency is educationally useful.
 
 After `pnpm check`, start `pnpm preview --port 4322` and run
 `pnpm check:browser`. The browser audit checks every built page at 1920×1080 and
 390×844, including rendered contrast and pointer targets, then drives syllabus
 filters, search, mobile navigation, resizing and the deck. It also checks that
-all twelve weeks remain available without JavaScript. Install Playwright's
+all twelve weeks remain available without JavaScript, and drives the A/B
+calculator's valid/invalid/reset states and imports the downloadable scorer.
+Install Playwright's
 Chromium if needed with `pnpm exec playwright install chromium`; Linux needs its
 browser system libraries. `AUDIT_ORIGIN` can select another preview origin.
 
