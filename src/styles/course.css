@@ -99,13 +99,15 @@ button, summary { cursor: pointer; }
 .week-actions a { padding: .55rem .7rem; border: 1px solid var(--course-line); border-radius: 4px; font-size: .75rem; color: var(--course-blue-ink); text-decoration: none; }
 .week-filter { border: 0; padding: 0; margin-top: 1rem; }
 .week-filter legend { font-size: .85rem; margin-bottom: .7rem; }
+.week-filter legend { color: var(--course-ink); }
+.at-footer a { color: #765018; }
 .week-filter .filter-buttons { display: flex; gap: .5rem; flex-wrap: wrap; }
 .week-filter button { font: inherit; font-size: .8rem; padding: .65rem .9rem; min-height: 44px; border-radius: 30px; background: transparent; border: 1px solid #8a8b91; color: var(--course-ink); }
 .week-filter button[aria-pressed="true"] { background: var(--course-blue); border-color: var(--course-blue-ink); }
 .week-nav { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .8rem; border-top: 1px solid var(--course-line); padding-top: 1.5rem; margin-top: 2rem; }
 .week-nav a { font-size: .82rem; padding: .65rem; color: var(--course-blue-ink); }
 .eyebrow, .facts-strip dt, .week-row .week-meta { font-size: .75rem; }
-.at-main p a:not(.button), .at-footer a { display: inline-block; min-height: 24px; }
+.at-main p a:not(.button), .at-main li a, .at-footer a, .course-bar a { display: inline-block; min-height: 24px; }
 @media (width < 1000px) {
   .home-hero { gap: 1.5rem; }
   .home-columns { gap: 2rem; }

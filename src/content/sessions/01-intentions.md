@@ -15,7 +15,7 @@ spec:
 
 ## Before you arrive
 
-Read the course policies and the fictional Alex and Sam case above. Bring three sentences describing an ordinary week for your chosen character.
+Read the course policies and the fictional Alex and Sam case in week 1’s lecture. Bring three sentences describing an ordinary week for your chosen character.
 
 Read [this week’s lecture](/lectures/week-01/) for the worked example.
 
@@ -30,4 +30,3 @@ You can role-play with a willing classmate or write both sides of the fictional 
 **Intentions map.** A reader can identify one intention, one practical constraint and one unanswered question.
 
 Keep the map: next week you will turn its limits into sentences another person can understand.
-

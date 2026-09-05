@@ -337,3 +337,11 @@ Teaching an audit script to assert against a threshold, rather than just
 print the value, finds defects sitting there since a nearly identical one
 was already fixed elsewhere on the page. If a script measures something,
 make it assert against the threshold, not just report the value.
+
+### A browser audit needs a real build and a visible-state measurement
+
+An interrupted build left `dist/` empty; a browser loop then reported zero pages
+inspected. Fail immediately if the expected built course is missing. Measure a
+skip link after focusing it: its intentional 1px hidden box says nothing about
+the keyboard target. Keep browser reports even if a later interaction fails,
+so a search selector error cannot hide the page measurements already collected.
