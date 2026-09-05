@@ -2,6 +2,10 @@
 
 This is an agent-maintained working record, not the student's PROCESS.md.
 
+**Historical checkpoint:** the student subsequently replaced this broad topic
+with [algorithmic romance](algorithmic-romance.md). Keep this record and its
+screenshots as evidence of the earlier version, not the current curriculum.
+
 The student's request was: “For this assignment, I want to choose the topic:
 \"How to find a partner\" which is how to find a boyfriend or girlfriend as the
 course. The theme colour should be pink and blue.”
