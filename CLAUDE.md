@@ -15,10 +15,18 @@ all four collection schemas and the generated API.
 Keep the SlopU marks and three institutional colour tokens untouched; pink and
 blue are course accent tokens, never gender labels.
 
-Use native system sans-serif typography for paragraphs, following the student's
-Apple-style readability direction. Keep the serif display headings. Judge body
-size, line spacing and reading width together on real long-form pages at both
-marking viewports; changing the font family alone is not a readability check.
+The student's latest reference is COMP4130's course navigation: Home, Lectures,
+Tutorials, Assignments, People, Readings, Timetable, Help, FAQ, Policies, in that
+order. Keep the fixed sessions/assessments collection URLs under the new labels;
+every menu entry must lead to a useful course page. The toolkit stays reachable
+from Readings and Tutorials. Do not copy ANU branding or link to its student
+services as though they serve this fictional course.
+
+Use the already bundled Public Sans for headings and reading text, replacing
+the earlier serif display treatment after the student's readability request.
+Use 18px main prose, comfortable leading and a bounded reading width. Judge them
+together on real long-form pages at both marking viewports; a font-family change
+alone is not a readability check. Preserve pink/blue accents and SlopU branding.
 
 Each week builds an engineering artefact for an evaluated profile release.
 Use technical deadpan: define the objective, implement the model, then find the
