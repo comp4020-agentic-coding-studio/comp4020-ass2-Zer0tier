@@ -1,8 +1,8 @@
 ---
-import MdxPageLayout from "astro-theme-university/layouts/MdxPageLayout.astro";
-import { siteConfig } from "../site-config";
+import CourseLayout from './CourseLayout.astro';
+const { frontmatter, ...direct } = Astro.props;
+const page = frontmatter ?? direct;
 ---
-
-<MdxPageLayout siteConfig={siteConfig} {...Astro.props}>
+<CourseLayout title={page.title} description={page.description}>
   <slot />
-</MdxPageLayout>
+</CourseLayout>

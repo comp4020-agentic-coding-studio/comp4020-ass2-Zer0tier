@@ -46,17 +46,15 @@ export const slopCourseMetaSchema = z
 // The code's last three digits were assigned to this repo when it was
 // provisioned, and no other course in the cohort has them. Change the first
 // digit to your course's level (and `level` to match); keep the other three.
-// STARTER_CONTENT: replace this course record, then remove this comment.
 export const courseMeta = slopCourseMetaSchema.parse({
   code: "SLOP1276",
-  title: "Course Title Goes Here",
+  title: "How to Find a Partner",
   session: "Semester 1",
   year: 2027,
   level: 1,
   startDate: "2027-02-22",
   endDate: "2027-05-28",
   description:
-    "One concise paragraph explaining what this course is, who it is for, " +
-    "and why somebody would choose to spend a semester taking it.",
-  tags: ["replace me"],
+    "From a first hello to a mutual yes. A practical course in meeting people, asking someone out and choosing a relationship together. Build a dating field guide, one thoughtful decision at a time.",
+  tags: ["Dating", "Communication", "Everyday life"],
 }) satisfies CourseMetaInput;

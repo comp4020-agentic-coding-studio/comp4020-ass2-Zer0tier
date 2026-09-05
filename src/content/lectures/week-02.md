@@ -1,23 +1,28 @@
 ---
-title: Second lecture
-description:
-  Week 2 — the first substantive material, and the run-up to the first review
+title: "Your type is not your terms"
+description: "Distinguish preferences, boundaries and attempts to control someone else."
 week: 2
 date: 2027-03-01
-teachers:
-  - idris-fenn
-related:
-  - sessions/02-first-review
-  - assessments/assignment-1
+teachers: [mira-chen]
+related: [sessions/02-boundaries]
 ---
 
-<!-- STARTER_CONTENT: replace this lecture, then remove this comment. -->
+## The question
 
-Replace this page. It exists so the lectures listing sorts by week and the
-related block has more than one edge to draw.
+Which preferences are flexible, and which limits belong to you?
 
-## Outline
+## In this lecture
 
-- the first substantive material, and where it shows up in practice
-- what the first review is looking for
-- reading before next week
+“I like people who enjoy hiking” is a preference. “I will leave a conversation if someone insults me” describes your action at a boundary. “You must give me your phone password” demands control over someone else. They are different kinds of statement, even when all three begin with a feeling.
+
+Return to the intentions map. Pick one limit involving time, one involving privacy and one involving physical affection. Write how your character could communicate each without threatening, apologising for existing, or requiring the other person to agree.
+
+Alex cannot answer messages during an evening shift. Sam likes frequent contact. “I can talk after nine; does that work for you?” makes the constraint discussable. It does not promise that their preferences will fit.
+
+A spoken yes applies to what was actually agreed. Agreeing to coffee does not settle whether someone wants a kiss, a second date or a relationship. Our classroom rule is to ask about each next step and accept a changed answer.
+
+## Try it before the workshop
+
+Bring your week 1 intentions map. Read [What are my boundaries?](https://www.loveisrespect.org/resources/what-are-my-boundaries/) and select one everyday boundary to discuss.
+
+Bring your draft to [week 2’s workshop](/sessions/02-boundaries/). Carry these statements into the meeting-place map: a place to meet has to fit your limits as well as your interests.

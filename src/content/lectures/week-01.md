@@ -1,30 +1,29 @@
 ---
-title: Opening lecture
-description:
-  The first lecture — what the course is, why it is shaped this way, and what
-  happens in week 1
+title: "What are you looking for?"
+description: "Separate wanting a partner from wanting approval, and describe the relationship you would actually make time for."
 week: 1
 date: 2027-02-22
-teachers:
-  - marisol-quaye
+teachers: [mira-chen]
 slides: /decks/week-01/
-related:
-  - sessions/01-getting-started
+related: [sessions/01-intentions]
 ---
 
-<!-- STARTER_CONTENT: replace this lecture, then remove this comment. -->
+## The question
 
-Replace this page. A lecture entry says what was covered and links to the pages
-that own the detail, so the lecture stays short and nothing is explained twice.
+Do you want a relationship, or do you want to stop feeling behind?
 
-The `related:` ref above is a graph edge: it renders on this page and on the
-session's, so declare a connection once, on whichever side is convenient.
+## In this lecture
 
-The page renders its `slides:` link automatically. Decks are markdown too,
-under `src/decks/`; the path is part of the lecture's API metadata.
+A boyfriend or girlfriend is a person with a life, not the missing item on a university checklist. Start with the kind of ordinary Tuesday you would want to share. Is there room for study, friends, time alone and the responsibilities you already have?
 
-## Outline
+An intention is something you can communicate: “I would like to get to know someone with the possibility of a relationship.” An expectation is something you assume another person will deliver. An assumption deserves a question before it becomes a demand.
 
-- what the course is for
-- how the weeks are shaped
-- what to do before the first session
+Our semester follows two fictional students, Alex and Sam. Their genders are deliberately unspecified; you can choose them when writing a case. Alex wants a committed relationship but works evenings. Sam enjoys meeting people and has not decided what they want. Neither is wrong. The question is what each can honestly offer.
+
+Your intentions map has three columns: what I want, what I can offer, and what I need to ask. Write it for Alex, yourself, or a completely invented person. Personal disclosure earns no extra marks.
+
+## Try it before the workshop
+
+Read the course policies and the fictional Alex and Sam case above. Bring three sentences describing an ordinary week for your chosen character.
+
+Bring your draft to [week 1’s workshop](/sessions/01-intentions/). Keep the map: next week you will turn its limits into sentences another person can understand.

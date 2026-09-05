@@ -1,0 +1,46 @@
+---
+import { getPublishedCollection } from 'astro-course-university/content';
+import { withBase } from 'astro-theme-university/url';
+import CourseLayout from '../../layouts/CourseLayout.astro';
+import { formatCourseDate } from '../../lib/dates';
+const workshops = (await getPublishedCollection('sessions')).sort((a,b) => a.data.week-b.data.week);
+const lectures = await getPublishedCollection('lectures');
+const assessments = await getPublishedCollection('assessments');
+const phases = ['Know yourself', 'Make a connection', 'Choose together'];
+---
+<CourseLayout title="Twelve weeks. One possibility." description="From knowing what you want to choosing what comes next. Each week adds a piece to your dating field guide.">
+  <p>Lectures: Mondays, 11 am–12 pm. Workshops: Thursdays, 2–3.30 pm. Both meet in Conversation Room 2. Teaching pauses from 5–18 April; week 7 starts on 19 April.</p>
+  <fieldset class="week-filter" hidden>
+    <legend>Explore a chapter</legend>
+    <div class="filter-buttons"><button type="button" aria-pressed="true" data-phase="all">All 12 weeks</button>{phases.map(phase => <button type="button" aria-pressed="false" data-phase={phase}>{phase}</button>)}</div>
+  </fieldset>
+  <p id="week-count" aria-live="polite" class="eyebrow">12 teaching weeks</p>
+  <ol class="week-list">
+    {workshops.map(workshop => {
+      const lecture = lectures.find(item => item.data.week === workshop.data.week)!;
+      const due = assessments.find(item => item.data.week === workshop.data.week);
+      return <li class="week-row" data-week-phase={workshop.data.phase}>
+        <span class="week-number" aria-label={`Week ${workshop.data.week}`}>{String(workshop.data.week).padStart(2,'0')}</span>
+        <div><p class="week-meta">{workshop.data.phase} · Lecture {formatCourseDate(lecture.data.date)}</p><h2><a href={withBase(`/lectures/${lecture.id}/`)}>{workshop.data.title}</a></h2><p>{workshop.data.description}</p><p class="week-meta">Workshop {formatCourseDate(workshop.data.date)} · Make: {workshop.data.output}</p>{due && <p><a href={withBase(`/assessments/${due.id}/`)}>{due.data.title} due {formatCourseDate(due.data.due)} · {due.data.weight}%</a></p>}</div>
+        <div class="week-actions"><a href={withBase(`/lectures/${lecture.id}/`)}>Lecture ↗</a><a href={withBase(`/sessions/${workshop.id}/`)}>Workshop ↗</a></div>
+      </li>;
+    })}
+  </ol>
+</CourseLayout>
+<script>
+  const filter = document.querySelector<HTMLFieldSetElement>('.week-filter');
+  if (filter) {
+    filter.hidden = false;
+    filter.addEventListener('click', event => {
+      const button = (event.target as Element).closest<HTMLButtonElement>('button[data-phase]');
+      if (!button) return;
+      for (const candidate of filter.querySelectorAll('button')) candidate.setAttribute('aria-pressed', String(candidate === button));
+      let count = 0;
+      for (const row of document.querySelectorAll<HTMLElement>('[data-week-phase]')) {
+        row.hidden = button.dataset.phase !== 'all' && row.dataset.weekPhase !== button.dataset.phase;
+        if (!row.hidden) count++;
+      }
+      document.querySelector('#week-count')!.textContent = `${count} teaching weeks`;
+    });
+  }
+</script>

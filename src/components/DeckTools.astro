@@ -1,0 +1,33 @@
+<script>
+  function setupDeckTools() {
+    if (document.querySelector('.deck-tools')) return;
+    const count = document.querySelectorAll('.reveal .slides > section').length;
+    if (!count) return;
+    const nav = document.createElement('nav');
+    nav.className = 'deck-tools';
+    nav.setAttribute('aria-label', 'Slide navigation');
+    const back = document.createElement('a');
+    back.href = `${import.meta.env.BASE_URL}lectures/week-01/`;
+    back.textContent = '← Lecture';
+    const previous = document.createElement('button');
+    previous.type = 'button'; previous.textContent = 'Previous';
+    const status = document.createElement('span');
+    status.setAttribute('aria-live', 'polite');
+    const next = document.createElement('button');
+    next.type = 'button'; next.textContent = 'Next';
+    const current = () => Math.min(count, Math.max(1, Number(location.hash.match(/^#\/(\d+)/)?.[1] ?? 1)));
+    const sync = () => {
+      status.textContent = `${current()} / ${count}`;
+      previous.disabled = current() === 1;
+      next.disabled = current() === count;
+    };
+    previous.addEventListener('click', () => { location.hash = `/${Math.max(1, current()-1)}`; });
+    next.addEventListener('click', () => { location.hash = `/${Math.min(count, current()+1)}`; });
+    nav.append(back, previous, status, next);
+    document.body.append(nav);
+    window.addEventListener('hashchange', sync);
+    sync();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setupDeckTools, {once:true});
+  else setupDeckTools();
+</script>

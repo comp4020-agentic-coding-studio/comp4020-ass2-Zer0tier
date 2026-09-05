@@ -1,0 +1,14 @@
+---
+import { getPublishedCollection } from 'astro-course-university/content';
+import { withBase } from 'astro-theme-university/url';
+interface Props { week: number; collection: 'lectures' | 'sessions'; }
+const { week, collection } = Astro.props;
+const entries = await getPublishedCollection(collection);
+const previous = entries.find(entry => entry.data.week === week - 1);
+const next = entries.find(entry => entry.data.week === week + 1);
+---
+<nav class="week-nav" aria-label="Teaching week navigation">
+  {previous && <a href={withBase(`/${collection}/${previous.id}/`)}>← Week {week - 1}</a>}
+  <a href={withBase('/weeks/')}>All 12 weeks</a>
+  {next && <a href={withBase(`/${collection}/${next.id}/`)}>Week {week + 1} →</a>}
+</nav>

@@ -1,0 +1,32 @@
+---
+import BaseLayout from 'astro-theme-university/layouts/BaseLayout.astro';
+import type { ContentLayoutProps } from 'astro-theme-university/layouts/ContentLayout.astro';
+import { courseMeta } from '../course-config';
+import { siteConfig } from '../site-config';
+import '../styles/course.css';
+interface Props extends ContentLayoutProps { home?: boolean; }
+const { title, description, home = false } = Astro.props;
+---
+<BaseLayout title={`${title} · ${courseMeta.code}`} description={description ?? undefined} {...siteConfig} clientRouter={false}>
+  <div class="course-bar">
+    <a href={import.meta.env.BASE_URL}>{courseMeta.code} <span aria-hidden="true">/</span> {courseMeta.title}</a>
+    <span>{courseMeta.session}, {courseMeta.year}</span>
+  </div>
+  {!home && <h1>{title}</h1>}
+  {!home && description && <p class="lead">{description}</p>}
+  <slot />
+</BaseLayout>
+
+<script>
+  // A home link is current only on home; a section stays current on its pages.
+  for (const link of document.querySelectorAll<HTMLAnchorElement>('.at-nav-links a')) {
+    const path = new URL(link.href).pathname;
+    const active = location.pathname === path || (path !== import.meta.env.BASE_URL && location.pathname.startsWith(path));
+    if (active) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  }
+  document.addEventListener('keydown', event => {
+    const toggle = document.querySelector<HTMLButtonElement>('.at-nav-toggle[aria-expanded="true"]');
+    if (event.key === 'Escape' && toggle) { toggle.click(); toggle.focus(); }
+  });
+</script>
