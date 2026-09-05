@@ -34,3 +34,28 @@ the top and after scrolling: full-page captures alone cannot judge fixed artwork
 The changes are local, not pushed or deployed. `pnpm check:evidence` still reports
 the unchanged student PROCESS.md template and its example citations; that file
 has not been written or edited by the agent.
+
+## Follow-up: a coherent blossom background
+
+The student then requested a background colour that belongs with the blossoms.
+[d8ca0d5](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/d8ca0d5)
+replaces cream paper with blush-white (`#fff7fa`) and the unrelated beige
+diagram, neutral card and footer surfaces with a shared rose tint (`#f9edf2`).
+The page and deck now import `src/styles/course-palette.css`; the inline diagram
+also uses its surface tokens. Pink/blue accents, text colours and SlopU tokens
+remain unchanged. The UI/UX skill informed the shared colour roles and the
+contrast review, rather than replacing the existing visual direction.
+
+The washes now sit inside the branch areas and fade before the reading column,
+avoiding the previous abrupt transition where opaque content covered a gradient.
+The new browser assertion compares actual rendered colours across the header,
+page, diagram, neutral card and footer. It was observed failing on the old
+diagram/footer mismatch before passing with the shared palette. It protects
+consistency, not the aesthetic judgement that blush suits cherry blossom.
+
+Verification again passed 22 tests and all 42 pages at both marking sizes,
+including contrast checks, resizing and the deck. The desktop and phone
+screenshots were inspected; the student PROCESS.md remains untouched.
+
+[Blush desktop](screenshots/blossom-palette-desktop.png) ·
+[Blush phone](screenshots/blossom-palette-phone.png)
