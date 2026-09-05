@@ -32,6 +32,11 @@ For font verification, inspect the loaded primary face: Astro's font variable
 also contains optional local fallbacks. For animated menus, wait until the list
 fits its wrapper and measure clipping; `isVisible()` alone is not enough.
 
+Cherry-blossom decorations frame the course, not the paragraphs. Keep artwork
+static, non-interactive and hidden from assistive technology. Use the wide
+desktop margins and a compact sprig in its own space on smaller screens;
+preserve opaque reading surfaces. Check pointer access and overflow in a browser.
+
 Each week builds an engineering artefact for an evaluated profile release.
 Use technical deadpan: define the objective, implement the model, then find the
 assumption that breaks it. Preserve the requested week 1/3/7/10 anchors and the

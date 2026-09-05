@@ -53,6 +53,34 @@ async function inspectNavigation(page) {
   }
 }
 
+async function inspectDecorations(page) {
+  const decoration = page.locator('[data-course-decoration]');
+  assert.equal(await decoration.count(),2,'The background and compact sprig should be present');
+  for (const layer of await decoration.all()) {
+    assert.equal(await layer.getAttribute('aria-hidden'),'true');
+    assert(await layer.evaluate(el=>el.inert && getComputedStyle(el).pointerEvents === 'none'));
+    assert.equal(await layer.locator('a,button,input,[tabindex]').count(),0);
+    assert.equal(await layer.evaluate(el=>el.getAnimations({subtree:true}).length),0,'Reading decorations stay still');
+  }
+  assert.equal(await page.locator('.at-main').evaluate(el=>getComputedStyle(el).backgroundColor),
+    await page.locator('body').evaluate(el=>getComputedStyle(el).backgroundColor),'Reading surface stays opaque paper');
+  const main = await page.locator('.at-main').boundingBox();
+  if (page.viewportSize().width >= 1440) {
+    assert(await page.locator('.cherry-background').isVisible());
+    const left = await page.locator('.cherry-branch-left').boundingBox();
+    const right = await page.locator('.cherry-branch-right').boundingBox();
+    assert(left.width > 0 && left.x + left.width <= main.x,'Left branch stays in the margin');
+    assert(right.width > 0 && right.x >= main.x + main.width,'Right branch stays in the margin');
+  } else {
+    assert.equal(await page.locator('.cherry-background').isVisible(),false);
+    const sprig = await page.locator('.cherry-sprig').boundingBox();
+    const bar = await page.locator('.course-bar').boundingBox();
+    const next = await page.locator('.cherry-sprig + *').boundingBox();
+    assert(sprig && sprig.height > 0 && sprig.y >= bar.y + bar.height - 1 && sprig.y + sprig.height <= next.y + 1,
+      'Compact sprig has its own space, outside text');
+  }
+}
+
 try {
   for (const viewport of [{width:1920,height:1080},{width:390,height:844}]) {
     const context = await browser.newContext({ viewport, reducedMotion: 'reduce' });
@@ -66,6 +94,7 @@ try {
       const deck = route.startsWith('decks/');
       if (!deck) assert.equal(await page.locator('h1').count(), 1, `One page heading required: ${route}`);
       if (route === '') await inspectNavigation(page);
+      if (['','lectures/week-03/','policies/'].includes(route)) await inspectDecorations(page);
       if (route === 'lectures/week-03/') {
         const prose = await page.locator('.at-main > p:not(.lead)').first().evaluate(el => {
           const style = getComputedStyle(el);
@@ -111,7 +140,12 @@ try {
       await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
       if (['','weeks/','readings/','help/','faq/','lectures/week-03/','lectures/week-07/','lectures/week-10/','sessions/12-reproducibility/','assessments/profile-deployment/','toolkit/','policies/','decks/week-01/'].includes(route)) {
         await page.screenshot({path:`${screenshots}/${route.replaceAll('/','-') || 'home'}-${viewport.width}.png`,fullPage:!deck});
-        if (route === '') await page.screenshot({path:`${screenshots}/home-${viewport.width}-viewport.png`});
+        if (route === '') {
+          await page.screenshot({path:`${screenshots}/home-${viewport.width}-viewport.png`});
+          await page.evaluate(()=>scrollTo({top:800,behavior:'instant'}));
+          await page.screenshot({path:`${screenshots}/home-${viewport.width}-scrolled.png`});
+          await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
+        }
         if (route === 'toolkit/') await page.locator('.experiment-panel').screenshot({path:`${screenshots}/experiment-${viewport.width}.png`});
       }
     }
@@ -143,9 +177,10 @@ try {
   assert.equal(await menu.getAttribute('aria-expanded'),'true');
   await page.keyboard.press('Escape');
   assert.equal(await menu.getAttribute('aria-expanded'),'false');
-  for (const width of [639,640,768,1024,1440,1920,390]) {
+  for (const width of [375,639,640,768,1024,1439,1440,1920,390]) {
     await page.setViewportSize({width,height:844});
     await inspectNavigation(page);
+    await inspectDecorations(page);
     assert(await page.evaluate(()=>document.documentElement.scrollWidth===innerWidth), `Overflow after resize to ${width}`);
   }
   assert.deepEqual(await page.locator('.at-nav-links a[aria-current]').allTextContents(),['Timetable']);

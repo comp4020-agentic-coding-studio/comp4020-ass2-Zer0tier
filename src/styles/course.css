@@ -20,7 +20,10 @@
   --at-gutter: 2rem;
 }
 html { color: var(--course-ink); background: var(--course-paper); font-size: 16px; }
-body { background: var(--course-paper); }
+body { background: var(--course-paper); isolation: isolate; }
+/* The artwork sits outside opaque content surfaces, never behind paragraphs. */
+.at-main, .at-nav, .at-footer { position: relative; z-index: 1; }
+.at-main { background: var(--course-paper); }
 body::after { display: none; }
 [hidden] { display: none !important; }
 * { min-width: 0; }

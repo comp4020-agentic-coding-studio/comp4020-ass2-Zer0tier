@@ -1,0 +1,51 @@
+---
+interface Props { variant?: 'background' | 'sprig'; }
+const { variant = 'background' } = Astro.props;
+---
+<div
+  class:list={['cherry-decoration', variant === 'background' ? 'cherry-background' : 'cherry-sprig']}
+  data-course-decoration={variant}
+  aria-hidden="true"
+  inert
+  data-pagefind-ignore
+>
+  {variant === 'background' && <>
+    <span class="cherry-branch cherry-branch-left"></span>
+    <span class="cherry-branch cherry-branch-right"></span>
+  </>}
+</div>
+
+<style>
+  .cherry-decoration { pointer-events: none; user-select: none; }
+  .cherry-background {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: clip;
+    background:
+      radial-gradient(ellipse at 0% 30%, #f9dbe74d, transparent 32%),
+      radial-gradient(ellipse at 100% 78%, #dfeaf975, transparent 30%);
+  }
+  .cherry-branch {
+    position: absolute;
+    width: clamp(0px, calc((100vw - 74rem) / 2 - 2rem), 22rem);
+    aspect-ratio: 4 / 7;
+    background: url('../assets/images/cherry-branch.svg') center / contain no-repeat;
+    opacity: .8;
+  }
+  .cherry-branch-left { top: 8.5rem; left: 0; }
+  .cherry-branch-right { right: 0; bottom: -1rem; transform: rotate(180deg); }
+  .cherry-sprig { display: none; }
+  @media (width < 1440px) {
+    .cherry-background { display: none; }
+    .cherry-sprig {
+      display: block;
+      height: 3rem;
+      margin-block: -1.25rem .75rem;
+      background: url('../assets/images/cherry-sprig.svg') right center / auto 100% no-repeat;
+    }
+  }
+  @media print, (forced-colors: active) {
+    .cherry-decoration { display: none; }
+  }
+</style>
