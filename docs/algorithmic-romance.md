@@ -2,6 +2,9 @@
 
 Agent-maintained factual notes, not the student's PROCESS.md.
 
+This is the original pivot record. The student's later complete lecture list is
+implemented and verified in [the revised weekly sequence](revised-weekly-sequence.md).
+
 The student rejected the original topic as too broad and requested **Applied
 Algorithmic Romance & Profile Optimization**, a CS/data-science treatment with
 technical deadpan humour. Their anchors were Hinge/Elo in week 1, Tinder bio A/B
