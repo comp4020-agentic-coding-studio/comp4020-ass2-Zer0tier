@@ -82,3 +82,43 @@ of humour, realism of assumed probabilities or coherence by themselves.
 `pnpm check:evidence` still fails only on the unchanged PROCESS.md template and
 its example commit hashes. The student's personal narrative has not been written
 for them. Nothing was pushed or deployed during this revision.
+
+## Follow-up: week 1 has no tutorial
+
+The student corrected the schedule: **“There should not have tutorial at week 1.”**
+[9276d5b](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/9276d5b)
+removes the week 1 session page and its generated entry, retaining the lecture,
+deck and all twelve teaching weeks. The first tutorial stays on 4 March 2027
+(week 2); later tutorial dates and assessments do not move. The deleted page
+remains recoverable in earlier Git history.
+
+The timetable previously iterated over sessions. That conflated teaching weeks
+with tutorial meetings: deletion alone would hide week 1. It now iterates over
+lectures, attaches an optional tutorial and explicitly shows “No tutorial in
+week 1.” The assignment check likewise counts dated lectures rather than
+requiring a tutorial every week. A new, separate contract pins eleven tutorials
+in weeks 2–12 and rejects stale page/API references.
+
+There is no replacement week 1 tutorial homework. Lecture 1 keeps a worked
+input/observation/hidden-state example; the first tutorial creates its boundary
+map within the existing platform audit. Week 8 now consumes that audit, and
+the final handover counts eleven tutorial artefacts. Homepage, tutorial and
+lecture indexes, FAQ, tutor hours, deck and CLAUDE.md agree.
+
+The UI/UX guidance supported retaining collection-backed, static rendering;
+the slides guidance kept the closing slide focused on the corrected next
+meeting. No new visual system or slide layout was introduced.
+
+Both new schedule tests were observed failing against the previous build.
+After implementation, `pnpm check` passes 28 tests and builds 41 pages. The
+browser audit passes all 41 pages at 1920×1080 and 390×844, including the
+lecture-only row, eleven tutorial links, no-JS timetable and Measure filter.
+All nine phone slides still fit. The first timetable row was visually inspected
+at both sizes. A sandbox-blocked Git lookup was diagnosed and the checks rerun
+with permission so the real GitHub Pages base path was verified.
+
+[Desktop week 1](screenshots/lecture-only-week-desktop.png) ·
+[Phone week 1](screenshots/lecture-only-week-phone.png)
+
+PROCESS.md remains untouched, with its existing template/citation evidence
+failures. These changes are local; nothing was pushed or deployed.
