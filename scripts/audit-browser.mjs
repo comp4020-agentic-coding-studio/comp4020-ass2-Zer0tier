@@ -81,6 +81,19 @@ async function inspectDecorations(page) {
   }
 }
 
+async function inspectPalette(page) {
+  const colours = await page.evaluate(() => {
+    const background = selector => getComputedStyle(document.querySelector(selector)).backgroundColor;
+    return {paper:background('body'),header:background('.at-nav'),main:background('.at-main'),
+      footer:background('.at-footer'),panel:background('.phase-card:last-child'),
+      diagram:getComputedStyle(document.querySelector('.hero-art > rect:first-of-type')).fill};
+  });
+  assert.equal(colours.header,colours.paper,'Header and page share the blossom paper colour');
+  assert.equal(colours.main,colours.paper,'Reading area has no mismatched background block');
+  assert.equal(colours.diagram,colours.footer,'Diagram and footer share the supporting surface colour');
+  assert.equal(colours.panel,colours.footer,'Neutral cards share the supporting surface colour');
+}
+
 try {
   for (const viewport of [{width:1920,height:1080},{width:390,height:844}]) {
     const context = await browser.newContext({ viewport, reducedMotion: 'reduce' });
@@ -93,7 +106,10 @@ try {
       await page.evaluate(() => document.fonts.ready);
       const deck = route.startsWith('decks/');
       if (!deck) assert.equal(await page.locator('h1').count(), 1, `One page heading required: ${route}`);
-      if (route === '') await inspectNavigation(page);
+      if (route === '') {
+        await inspectNavigation(page);
+        await inspectPalette(page);
+      }
       if (['','lectures/week-03/','policies/'].includes(route)) await inspectDecorations(page);
       if (route === 'lectures/week-03/') {
         const prose = await page.locator('.at-main > p:not(.lead)').first().evaluate(el => {

@@ -1,36 +1,27 @@
-/* The deck stylesheet. It is one import on purpose.
- *
- * astro-theme-university's deck.css derives every colour it uses from the
- * same --at-* brand tokens the site's own styles derive from, and
- * `brandCss: "astro-theme-slop/slop.css"` in astro.config.ts puts the Slop
- * palette behind those tokens. So a deck already matches the site, and
- * restating a colour here is how the two start to disagree.
- *
- * Deck pages are dark surfaces and they don't load the site's stylesheets ---
- * only the brand CSS and this file. Add your own rules below the import: a
- * slide class you reach for (`_class: quote`), a code-heavy layout, a
- * background. */
+/* Keep the fixed deck foundation. The shared course-only palette gives
+   slides the same blush paper and pink/blue accents as the course pages. */
 @import url("astro-theme-university/styles/deck.css");
+@import '../styles/course-palette.css';
 
 :root {
-  --r-background-color: #fffdf9;
-  --r-main-color: #272c38;
-  --r-heading-color: #903252;
-  --r-link-color: #28538a;
-  --r-link-color-hover: #903252;
+  --r-background-color: var(--course-paper);
+  --r-main-color: var(--course-ink);
+  --r-heading-color: var(--course-pink-ink);
+  --r-link-color: var(--course-blue-ink);
+  --r-link-color-hover: var(--course-pink-ink);
   --r-heading-font: var(--font-public-sans, 'Public Sans'), system-ui, sans-serif;
   --r-heading-font-weight: 600;
   --r-main-font: var(--font-public-sans, 'Public Sans'), system-ui, sans-serif;
 }
-.reveal .slides section:nth-child(even) { background: #dfeaf9; }
-.reveal .slides section:nth-child(odd) { background: #f9dbe7; }
-.reveal .controls { color: #28538a; }
-.reveal .slides section :is(h1,h2) { color: #903252; background: none; text-transform: none; padding: 0; }
+.reveal .slides section:nth-child(even) { background: var(--course-blue); }
+.reveal .slides section:nth-child(odd) { background: var(--course-pink); }
+.reveal .controls { color: var(--course-blue-ink); }
+.reveal .slides section :is(h1,h2) { color: var(--course-pink-ink); background: none; text-transform: none; padding: 0; }
 .reveal .slides section :is(h1,h2,p) { text-wrap: balance; overflow-wrap: anywhere; }
-.deck-tools { position: fixed; z-index: 60; inset: auto 0 0; display: flex; justify-content: center; align-items: center; gap: 1rem; padding: .75rem; background: #fffdf9; border-top: 1px solid #dcdad5; font: 16px var(--r-main-font); color: #272c38; }
-.deck-tools a, .deck-tools button { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .8rem; color: #28538a; background: #fffdf9; border: 1px solid #8a8b91; border-radius: 4px; font: inherit; cursor: pointer; }
-.deck-tools button:disabled { color: #585d68; background: #f0ede8; cursor: default; }
-.deck-tools :focus-visible { outline: 3px solid #903252; outline-offset: 3px; }
+.deck-tools { position: fixed; z-index: 60; inset: auto 0 0; display: flex; justify-content: center; align-items: center; gap: 1rem; padding: .75rem; background: var(--course-paper); border-top: 1px solid var(--course-line); font: 16px var(--r-main-font); color: var(--course-ink); }
+.deck-tools a, .deck-tools button { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .8rem; color: var(--course-blue-ink); background: var(--course-paper); border: 1px solid #8a8b91; border-radius: 4px; font: inherit; cursor: pointer; }
+.deck-tools button:disabled { color: var(--course-muted); background: var(--course-surface); cursor: default; }
+.deck-tools :focus-visible { outline: 3px solid var(--course-pink-ink); outline-offset: 3px; }
 .astromotion-help-hint-dismiss, .astromotion-help-hint-keys { opacity: 1; }
 @media (width < 640px) {
   .reveal .slides { width: 100% !important; height: calc(100dvh - 90px) !important; transform: none !important; top: 0 !important; left: 0 !important; }

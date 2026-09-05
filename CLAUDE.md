@@ -36,6 +36,10 @@ Cherry-blossom decorations frame the course, not the paragraphs. Keep artwork
 static, non-interactive and hidden from assistive technology. Use the wide
 desktop margins and a compact sprig in its own space on smaller screens;
 preserve opaque reading surfaces. Check pointer access and overflow in a browser.
+The background palette should belong to the blossoms: blush-white paper,
+rose-tinted supporting surfaces and a restrained blue accent. Share course
+colour tokens between pages, diagram and deck; do not reintroduce cream/beige
+patches. Decorative washes must fade out before the reading column's edges.
 
 Each week builds an engineering artefact for an evaluated profile release.
 Use technical deadpan: define the objective, implement the model, then find the

@@ -1,0 +1,16 @@
+/* Course colours only. SlopU's institutional tokens remain untouched.
+   Pages, native artwork and the deck share these surface roles. */
+:root {
+  --course-pink: #f9dbe7;
+  --course-pink-ink: #903252;
+  --course-blue: #dfeaf9;
+  --course-blue-ink: #28538a;
+  --course-ink: #272c38;
+  --course-muted: #585d68;
+  --course-paper: #fff7fa;
+  --course-surface: #f9edf2;
+  --course-surface-raised: #fffafb;
+  --course-line: #e3cfd8;
+  --course-blossom-wash: #f6dfe9;
+  --course-blue-wash: #e8edf8;
+}
