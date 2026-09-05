@@ -1,36 +1,35 @@
 ---
-title: "A/B testing Tinder bios: a statistical approach"
-description: "Preregister a bio comparison, calculate uncertainty and watch a pooled winner lose inside every stratum."
+title: "Data Acquisition: Photography as a Quantitative Asset"
+description: "Treat profile photos as traceable information assets. Test lighting, identity ambiguity and detection confidence using fictional image records."
 week: 3
 date: 2027-03-08
 teachers: [mira-chen]
-related: [sessions/03-bio-experiment]
+keyConcept: "Minimizing the “Is that their ex cropped out?” uncertainty variable"
+related: [sessions/03-photo-assets]
 ---
 
-## Congratulations on your seven extra observations
+## Your first data pipeline has a camera
 
-Bio A: “Coffee, code, repeat.” Bio B: “Friday coffee, a terrible pun, and a walk if the weather cooperates.” Both describe an invented profile. Neither is being tested on Tinder users.
+A profile photograph is an information asset, not a universal attractiveness measurement. Record provenance, permission, crop, lighting and what a viewer is meant to identify. Use drawings, placeholders or explicitly fictional artwork; nobody needs to upload their face.
 
-Our balanced toy experiment records A = 120 positive responses from 1,000 exposures and B = 140/1,000. B leads by **2 percentage points**, not “2% more compatible.” The relative lift is about 16.7%; the absolute difference is still 0.02.
+For a **constructed lighting exercise**, define the key-to-fill ratio as key-light intensity divided by fill-light intensity. Inputs 200 and 100 arbitrary units give **2:1**. This is our measurement convention, not a claim that a particular ratio causes matches. Background contrast and a crop can change legibility independently of that ratio.
 
-## An estimate is not a deployment decision
+## Confidence is not chemistry
 
-Under independent, randomised exposures, test equal response probabilities using the [NIST pooled two-proportion statistic](https://itl.nist.gov/div898/handbook/prc/section3/prc33.htm):
+A face detector's confidence concerns its own detection task. It does not measure honesty, compatibility or consent. In our mock asset manifest, a group photo receives confidence 0.98 yet leaves the fictional subject unidentified. A crisp answer to the wrong question is still the wrong answer.
 
-```text
-p_pool = (xA + xB) / (nA + nB)
-z = (xB/nB - xA/nA) /
-    sqrt(p_pool * (1-p_pool) * (1/nA + 1/nB))
-```
+Use this **invented ten-trial-per-category fixture**, where a failure means “the mock annotation cannot identify the intended subject”:
 
-Here z ≈ 1.33. It does not cross the two-sided 5% normal threshold of 1.96. This is insufficient evidence to reject equal rates under the model, not proof that the bios are equivalent. The [experiment sandbox](/toolkit/#experiment) exposes the calculation and refuses a normal-test conclusion for sparse cells.
+- Group photos: 6 failures out of 10.
+- Fishing photos: 2 failures out of 10.
+- Mirror selfies: 3 failures out of 10.
 
-## The city changed while you were editing
+These are course inputs, not observed dating failure rates. Different crops, contexts or annotation rules could reverse the order. Do not extrapolate ten fabricated trials into advice for humanity.
 
-In the separate [bio-exposure CSV](/data/bio-exposures.csv), A gets mostly North exposures and B mostly South. A wins in aggregate, 26/100 versus 19/100. Yet B has the higher rate in both zones: 35% versus 30% in North, 15% versus 10% in South. The exposure mix reversed the ranking.
+## Key concept: the cropped-ex uncertainty variable
 
-A sequential before/after edit is not random assignment. More repetitions do not remove that confounder. Reuse week 2's sampling frame to specify who could receive each variant and when.
+Minimise the “Is that their ex cropped out?” uncertainty variable by documenting what the image actually shows—not by asserting who an unseen person was. One ambiguous crop among three candidate assets gives an ambiguity fraction of **1/3** under our binary annotation rule.
 
-## Before the lab
+Bring three fictional asset records to the tutorial. Test missing provenance, an ambiguous group crop and an unsupported identity claim. Select an asset by information quality, retain the rejected alternatives, and write useful alt text. Week 4 must keep this photo choice fixed while changing the bio; otherwise the experiment changes two inputs at once.
 
-Try the balanced and confounded examples in the sandbox. Write your outcome, randomisation unit, fixed sample size, stopping rule and minimum worthwhile effect **before** looking for a winner. Carry the protocol into the report; carry its frozen objective into week 5.
+[Continue to the week 3 tutorial](/sessions/03-photo-assets/).

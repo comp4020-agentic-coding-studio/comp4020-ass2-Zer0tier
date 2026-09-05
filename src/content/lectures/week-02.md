@@ -1,32 +1,36 @@
 ---
-title: "The local singles market has a denominator"
-description: "Define an addressable pool on fictional Null Island. Trace selection bias before announcing a market opportunity."
+title: "Platform Architecture and the Elo Hierarchy"
+description: "Inspect Tinder, Bumble and Hinge disclosures, implement toy Elo and distinguish a visibility hierarchy from an observed measure of attractiveness."
 week: 2
 date: 2027-03-01
 teachers: [mira-chen]
-related: [sessions/02-market]
+keyConcept: "The rich-get-richer dynamics of algorithmically enforced attractiveness"
+related: [sessions/02-platforms]
 ---
 
-## Total addressable affection
+## Architecture before folklore
 
-A dashboard says “300 active profiles.” A pitch deck says “300 opportunities.” Only one of those is even a count.
+Tinder, Bumble and Hinge all mediate who encounters whom. Separate candidate retrieval, filtering, ordering, exposure and mutual selection: a profile cannot receive a like from someone who never sees it.
 
-Our [Null Island market CSV](/data/null-island-market.csv) is a completely synthetic three-zone census for one invented week. It contains 300 active profiles, 150 that fit a fictional availability constraint, and 40 with reciprocal eligibility. “Eligible” means meeting the case's scheduling and stated-intention filters. It is not a desirability label.
+[Tinder's matching explainer](https://www.tinderpressroom.com/powering-tinder-r-the-method-behind-our-matching) says it no longer relies on Elo. [Hinge describes](https://help.hinge.co/hc/en-us/articles/360011233073-What-is-Most-Compatible) preferences, activity and liking patterns; [Bumble's Discover documentation](https://support.bumble.com/hc/en-us/articles/28423668110621-Using-the-Discover-tab) describes recommendations informed by profile information and previous matches. These accounts do not disclose scoring weights or a numerical “mass-swipe right” penalty.
 
-## Three denominators, three questions
+## An Elo hierarchy we can inspect
 
-The available share is 150/300 = 50%. Reciprocal eligibility among available profiles is 40/150 ≈ 26.7%. Across the entire active pool it is 40/300 ≈ 13.3%. A number without its denominator is a marketing department waiting to happen.
+Treat internal Elo scores and swipe penalties as **toy-model hypotheses**, not recovered app code. For artificial ratings R and Q, simulated result S in {0,1}, and update factor K:
 
-North has 12 reciprocal cases out of 80 active profiles; South has 18/120; East has 10/100. The pooled rate is not the unweighted mean of arbitrary subgroup percentages. Sum the counts, then divide by the relevant total.
+```text
+E = 1 / (1 + 10^((Q - R) / 400))
+R_next = R + K * (S - E)
+```
 
-Treat these values as a census of our invented frame, not a random sample from a real city. There is no sampling uncertainty *within that supplied frame*. There is enormous uncertainty about whether the frame represents anything outside it.
+R = Q = 1200, K = 32 and S = 1 gives **1216**. A loss from the same starting state gives **1184**. Add an assumed mass-swipe penalty of 8 to the winning update and obtain 1208. You changed your implementation, not Tinder.
 
-## What disappears at the boundary?
+## Key concept: rich-get-richer dynamics
 
-An inactive person is outside the active-profile frame, not outside the world. A profile shown to you has survived several selection steps. Reuse the hidden-state boxes from week 1 to draw the funnel: possible population → active pool → available subset → reciprocal subset.
+If yesterday's likes buy today's exposure, exposure can produce the next round of likes. The system may enforce a hierarchy that looks like “attractiveness” while partly measuring visibility. Compare raw likes with likes per exposure; without that denominator, popularity is doing its own performance review.
 
-For a sensitivity check, suppose East's active count is under-recorded by 50 while its reciprocal count stays 10. Recompute the pooled rate and say which assumption changed. Do not silently repair a dataset to preserve your headline.
+The [synthetic census](/toolkit/) has 300 active profiles, 150 available and 40 reciprocally eligible. The rates 40/150 ≈ 26.7% and 40/300 ≈ 13.3% answer different questions. Add 50 missing active profiles without adding eligible profiles: the latter becomes 40/350 ≈ 11.4%.
 
-## Before the lab
+For the lab, extend your boundary map into a claim/source/unknown audit, implement Elo, and reproduce these denominators. This supplies the population definitions for the report.
 
-Download the CSV and read its [dictionary](/toolkit/#market-data). Bring the week 1 map and a script that reproduces all three denominators. This becomes the core of the [20% data report](/assessments/market-report/).
+[Continue to the week 2 tutorial](/sessions/02-platforms/).

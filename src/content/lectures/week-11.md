@@ -1,32 +1,31 @@
 ---
-title: "Deploy the profile. Keep the rollback."
-description: "Package one fictional profile as a static release with provenance, accessible presentation and a reversible change history."
+title: "Post-Date Analytics and The \"Second Date\" Metric"
+description: "Separate observed agreement from inferred subtext. Audit the time budget, evaluate a frozen profile and prepare a reproducible release."
 week: 11
 date: 2027-05-17
 teachers: [mira-chen]
-related: [sessions/11-deploy]
+keyConcept: "Calculating Return on Investment (ROI) of time spent vs. romantic viability"
+related: [sessions/11-follow-up]
 ---
 
-## Production is a strong word for a biography
+## The dashboard after the date
 
-Deploy a labelled fictional profile for Alex as a static page. It needs no login, tracking pixel, matching API or real contact button. A plain document can be a release; an untraceable screenshot cannot.
+A first date produces sparse observations, not a labelled training set. “I had a nice time” is text someone said; it does not specify whether they want another date. Ask a clear optional follow-up rather than training a subtext classifier on one sentence.
 
-Your release links the candidate text to its feature evidence, benchmark version, evaluation report and feasibility simulation. That chain lets another person answer “which version produced this number?” without interviewing you.
+Our fictional log contains 90 minutes together, 20 minutes of travel and five minutes composing a follow-up: **115 minutes** total. Record a second date only when both explicitly agree. Pending, declined and unobserved are distinct states; an observation window ending does not make pending equal to rejection.
 
-## A minimal release contract
+## Key concept: return on investment
 
-The profile must state that it is fictional coursework, give truthful case-based wording, include no personal identifiers, and work with a keyboard at both course viewports. Any apparent contact action must explain that it is a demo, or be omitted.
+ROI here is a critiqueable allocation model for **your own time**, not a price assigned to another person. If an invented benefit is 10 units and the time cost is 115 minutes, 10/115 ≈ **0.087 units/minute**. The arithmetic is defined; the “benefit” is assumed. Change that assumption before announcing romantic viability.
 
-Publish the page and a short model card: intended use, non-use, data provenance, primary and shifted results, known failures and rollback command. The [final brief](/assessments/profile-deployment/) specifies the exact bundle.
+Use week 7's model to compare one clarification, waiting and stopping. No universal follow-up delay follows from the calculation. A refusal is terminal regardless of projected returns. Continuing requires mutual interest, not a sunk-cost argument.
 
-## Version the decision, not just the file
+## Evaluate before revising
 
-Tag one release candidate. Change one sentence in a second version, rescore it, and explain whether the earlier evidence still applies. A feasibility statement for Friday does not automatically survive a change to Saturday.
+Freeze the week 5 candidate and run the [100-entry benchmark](/toolkit/#benchmark). Then double feasibility's weight for candidate **and all controls**. A feature vector (4,4,1,4) changes from **81.25** to **70** because the weighted denominator changes from 16 to 20.
 
-Rollback should restore the old text **and** its matching evidence. Keep the previous release directory or versioned build; do not rewrite the old report to agree with the new profile.
+Next, change Alex's available time in a clearly separate fictional case and audit which statements break. Report the original result before revising the profile. [scikit-learn's leakage guidance](https://scikit-learn.org/stable/common_pitfalls.html#data-leakage) explains why evaluation data should not quietly steer the supposedly untouched model.
 
-## Before the lab
+Bring the date-transition model and offline plan. Produce the follow-up evaluation plus a labelled static release candidate, test keyboard access and both marking viewports, and keep one disappointing result. Week 12 needs something reproducible to maintain.
 
-Bring your **Validation report** and **Date simulation**. Build locally first. Public static hosting is optional within this fictional course; a self-contained local build and recorded demo are accepted on identical marking terms if public hosting is unsuitable. That course policy does not change this website assignment's own public GitHub Pages submission requirement.
-
-The profiler has finally shipped. Its strongest feature should be the list of things it does not claim.
+[Continue to the week 11 tutorial](/sessions/11-follow-up/).

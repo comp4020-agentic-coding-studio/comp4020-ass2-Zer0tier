@@ -1,30 +1,31 @@
 ---
-title: "Feature engineering without inventing a personality"
-description: "Turn a fictional profile into an auditable feature contract. Missing information is not a zero-valued person."
+title: "Natural Language Processing in Profile Bios"
+description: "Tokenise clichés, hold the photo constant and A/B test fictional bios. Explain why a pooled winner can lose in both exposure groups."
 week: 4
 date: 2027-03-15
 teachers: [mira-chen]
-related: [sessions/04-features]
+keyConcept: "Avoiding string redundancy and cliché overflow"
+related: [sessions/04-bio-experiment]
 ---
 
-## The schema cannot make you interesting
+## A bio is a very small language model input
 
-The semester's release subject is **Alex**, an invented adult CS student. Alex likes board games and terrible puns, is free Friday 5–7 pm, has a $20 outing budget, uses the bus, and wants to meet someone with the possibility of a relationship. These are all the case facts. A yacht is not an admissible feature-engineering technique.
+This week introduces Natural Language Processing in profile bios: tokenisation, a declared character budget, cliché detection and A/B testing. Our lab limit is **150 Unicode code points**; it is not a current limit claimed for Tinder, Bumble or Hinge.
 
-Your profile is an interface to those facts. This week defines four quality features: clarity of intention, specificity, feasibility, and room to decline. Each receives an anchored score from 0 to 4 under the [Null Island v1 contract](/toolkit/#benchmark). They measure the submitted artefact against a case, not an individual's romantic value.
+Lowercase and split text into word tokens for the toy trope counter. Count exact sequences such as “must love dogs” and “partner in crime,” then divide their matched tokens by all tokens. Publish how punctuation and overlapping phrases are handled. Keyword density measures repetition, not a personality defect.
 
-## Missing, false and unobserved
+## Key concept: string redundancy and cliché overflow
 
-“Friday evening” is an observed availability statement. No availability statement is missing data. “Every night” contradicts the case. Encoding all three as zero makes downstream interpretation impossible.
+Alex is an adult CS student who likes board games and bad puns, can meet Friday 5–7 pm, travels by bus, has a $20 budget and wants a relationship. These [case facts](/toolkit/#benchmark) are immutable. An exciting invented hobby is a data-integrity failure.
 
-Use a separate evidence record for each score: feature, exact supporting text, case fact, score and reviewer explanation. A numerical column without that record is an opinion with a type annotation.
+Compare “Looking for a partner in crime” with “Board games or bad puns? Coffee on Friday before seven works for me.” Keep the photo manifest and case facts fixed. Score clarity, specificity, feasibility and exit using the toolkit's 0–4 anchors. Engagement remains a separate outcome.
 
-## A leaky feature can look impressively predictive
+## The pooled winner loses both zones
 
-Suppose you label a bio “good” using its observed replies, then include reply count as a feature when predicting that same label. Your evaluation has already seen the answer. The [scikit-learn leakage guidance](https://scikit-learn.org/stable/common_pitfalls.html#data-leakage) explains why preprocessing and selection must respect the training/test boundary.
+In the supplied synthetic exposure file, A has 26 positives/100 exposures and B has 19/100. Yet B leads within North (35% versus 30%) and South (15% versus 10%). Unequal exposure mixes reverse the aggregate ranking. This observational comparison does not establish a bio effect.
 
-In this course, the toy quality score is explicitly a design rubric. It is **not** trained to predict replies, and must not be described as one. Record that limitation in the feature contract.
+Design a stratified randomised experiment with a fixed stopping rule and one primary outcome. In the **separate balanced fixture**, A = 120/1000 and B = 140/1000 gives a two-percentage-point difference and pooled z ≈ **1.33**. The [NIST two-proportion method](https://itl.nist.gov/div898/handbook/prc/section3/prc33.htm) supplies the calculation; non-rejection is not equivalence.
 
-## Before the lab
+Use the [calculator and data](/toolkit/) in Thursday's lab. The market report is due Friday **19 March, 5 pm**: include denominators, the reversal and a testable follow-up, not a victory announcement.
 
-Bring your week 1 boundary map and week 2 data dictionary. Write two truthful profiles for Alex, and list the evidence needed to score them. The data report is due Friday; this lab supplies its data-quality review, not an extra assessed profile.
+[Continue to the week 4 tutorial](/sessions/04-bio-experiment/).

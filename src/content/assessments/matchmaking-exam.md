@@ -1,12 +1,12 @@
 ---
 title: "Midterm: Theoretical Matchmaking"
-description: "An individual, 90-minute exam on measurement, experiments, deferred acceptance and decisions under incomplete information."
+description: "An individual, 90-minute exam on measurement, bio experiments, mutual-selection probability and asynchronous decisions under incomplete information."
 week: 7
 due: 2027-04-23T12:30:00+10:00
 weight: 30
 practiceMode: synthetic-data
-preparation: ["sessions/03-bio-experiment","sessions/06-stable-matching","sessions/07-response-game"]
-related: ["sessions/03-bio-experiment","sessions/06-stable-matching","sessions/07-response-game"]
+preparation: ["sessions/02-platforms","sessions/04-bio-experiment","sessions/05-match-probability","sessions/06-message-tree","sessions/07-communication"]
+related: ["sessions/02-platforms","sessions/04-bio-experiment","sessions/05-match-probability","sessions/06-message-tree","sessions/07-communication"]
 marking:
   mode: weighted
   criteria:
@@ -14,9 +14,9 @@ marking:
       weight: 20
     - name: "Bio experiments and statistical interpretation · Question 2"
       weight: 20
-    - name: "Matching algorithm and proof · Question 3"
+    - name: "Mutual selection and message protocols · Question 3"
       weight: 30
-    - name: "Response game and sensitivity · Question 4"
+    - name: "Poisson arrivals, response games and sensitivity · Question 4"
       weight: 30
 spec:
   - "Use only fictional cases and synthetic data; no real romantic outcome is graded."
@@ -33,8 +33,8 @@ The exam covers weeks **1–7**. It is individual and closed internet. Bring a n
 
 - **20 marks — measurement.** Identify a population, denominator and confounder from a small unfamiliar dataset.
 - **20 marks — experiments.** Compute a two-proportion statistic from supplied counts, check the model assumptions and interpret a non-rejection correctly.
-- **30 marks — matching.** Trace deferred acceptance, find a blocking pair in a proposed alternative and justify termination/stability under the stated preference assumptions.
-- **30 marks — response decisions.** Calculate expected utilities, locate a policy-change threshold and distinguish a decision against a hidden state from a two-player game.
+- **30 marks — mutual selection and protocols.** Calculate a joint selection probability and a repeated-exposure result under stated assumptions. Trace an opening-message decision tree with missing information and a refusal.
+- **30 marks — asynchronous decisions.** Calculate a Poisson zero-arrival probability, locate a utility threshold and trace best responses in a supplied two-player payoff table. Explain why no calculation establishes a universal reply time.
 
 Show your working. Unsupported numerical answers cannot receive the marks allocated to reasoning. Arithmetic slips can receive method credit if the setup is correct. No question asks you to infer a real person's feelings.
 
@@ -43,21 +43,21 @@ Show your working. Unsupported numerical answers cannot receive the marks alloca
 Try these before opening the answers:
 
 1. A synthetic frame has 200 active profiles, 80 available and 16 reciprocally eligible. State the reciprocal-to-active and reciprocal-to-available rates.
-2. In the week 3 balanced example, B leads by two percentage points and z ≈ 1.33. What does a two-sided 5% normal test establish?
-3. Trace the complete two-by-two preferences in [week 6](/lectures/week-06/), then remove Y from A's acceptable list.
-4. With clarification utility 7q−5 and waiting utility 2q−1, when does clarification beat both waiting and stopping?
+2. In the week 4 balanced example, B leads by two percentage points and z ≈ 1.33. What does a two-sided 5% normal test establish?
+3. P(A) = 0.30 and P(B given A) = 0.20. Calculate mutual selection and the expected number across twenty equivalent exposures. Which extra assumption allows a chance-of-at-least-one calculation? What does the week 6 tree do with an explicit refusal?
+4. With a Poisson rate of 0.4/hour, calculate no arrivals in two hours. With clarification utility 7q−5 and waiting utility 2q−1, when does clarification beat both waiting and stopping? In week 7's Ask/Wait game, identify each player's best response.
 
 <details>
 <summary>Open the practice answers</summary>
 
 1. 16/200 = 8%; 16/80 = 20%. The denominators answer different questions.
 2. It does not reject equal probabilities under the assumed independent randomised model. This is not evidence of equivalence, and it does not repair a confounded design.
-3. Complete lists give A–Y and B–X. With A accepting only X, B remains with X and A remains unmatched.
-4. Clarification beats stopping at q > 5/7 and waiting at q > 4/5. It beats both only at q > 0.8; at 0.8 it ties waiting. The utilities and prior are assumptions.
+3. The joint probability is 0.06; expected count is 1.2. Independent events with the same probability permit 1 − 0.94²⁰ ≈ 70.99%. An explicit refusal selects stop before any optimisation branch.
+4. exp(−0.8) ≈ 0.4493. Clarification beats stopping at q > 5/7 and waiting at q > 4/5: it beats both only at q > 0.8. At 0.8 it ties waiting. Ask is a best response to either action in the supplied game, so (Ask, Ask) is its equilibrium. These conclusions depend on invented rates, utilities and payoffs.
 
 </details>
 
-The [bio lab](/sessions/03-bio-experiment/), [matching lab](/sessions/06-stable-matching/) and [response-policy lab](/sessions/07-response-game/) provide the corresponding practice. The question shapes are fixed; the exam uses different counts, preferences and payoffs.
+The [bio lab](/sessions/04-bio-experiment/), [match-probability lab](/sessions/05-match-probability/), [message-tree lab](/sessions/06-message-tree/) and [communication lab](/sessions/07-communication/) provide practice. The question shapes are fixed; the exam uses different counts, branches and payoffs. Markov chains and threat detection occur later and are not examined here.
 
 ## Access, absence and feedback
 

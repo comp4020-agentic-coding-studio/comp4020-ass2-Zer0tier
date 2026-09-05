@@ -15,7 +15,7 @@ const [titleMain, titleSpecial] = courseMeta.title.split(' & ');
         <span class="eyebrow">Department of Computational Courtship · Slop University</span>
         <h1 id="course-title" class="technical-title">{titleMain} <em>&amp; {titleSpecial}</em></h1>
         <p class="intro">Your love life has a loss function.</p>
-        <p class="description">A fourth-year CS course in dating-profile systems. Measure the market, test the bio, model the match. Then defend the suspiciously impressive number on your dashboard.</p>
+        <p class="description">A fourth-year CS course in algorithmic romance: from profile photos and bio tests to first-date Markov chains and graceful endings. Every optimisation ships with its assumptions.</p>
         <div class="hero-actions">
           <a class="button" href={withBase('/lectures/week-01/')}>Start with week 1 <span aria-hidden="true">↗</span></a>
           <a class="button secondary" href={withBase('/toolkit/')}>Open the lab toolkit <span aria-hidden="true">→</span></a>
@@ -37,13 +37,13 @@ const [titleMain, titleSpecial] = courseMeta.title.split(' & ');
         <span class="eyebrow">For engineers who read the assumptions</span>
         <h2 id="about-course">What did you actually optimize?</h2>
         <p>Dating apps give you recommendations, not their source code. A better response rate might be a better bio. It might also be Tuesday. This course turns that ambiguity into twelve weeks of experiments, algorithms and model criticism.</p>
-        <p>Work on Null Island: an invented local market with downloadable data and one fictional profile to release. Implement a toy ranking system, encounter a statistical reversal, prove a matching property, and discover why a perfect rubric score can still produce a terrible invitation.</p>
+        <p>Work on Null Island: an invented local market with downloadable data and one fictional profile to release. Audit a toy ranking system, encounter a statistical reversal, trace a conversation through a Markov chain, and discover why a perfect rubric score can still produce a terrible invitation.</p>
         <h3>By the end, you can…</h3>
         <ol class="outcomes">
           <li>Define a sampling frame and an experiment that separates a profile change from an exposure change.</li>
-          <li>Implement and trace ranking, matching and response-policy models under explicit assumptions.</li>
+          <li>Implement ranking, mutual-selection, messaging and conversation-state models under explicit assumptions.</li>
           <li>Evaluate a frozen candidate with uncertainty, sensitivity tests and an exact simulation check.</li>
-          <li>Deploy a reproducible profile release and defend the limits of its top-1% claim.</li>
+          <li>Deploy a reproducible fictional profile with a threat model, maintenance plan and defensible top-1% claim.</li>
         </ol>
       </section>
       <aside class="notice" aria-labelledby="benchmark-title">
@@ -60,9 +60,9 @@ const [titleMain, titleSpecial] = courseMeta.title.split(' & ');
       <a href={withBase('/weeks/')}>View all twelve dated weeks <span aria-hidden="true">→</span></a>
     </div>
     <div class="phase-grid">
-      <section class="phase-card"><span class="eyebrow">01 / Weeks 1–3</span><h3>Measure.</h3><p>Hinge, toy Elo, market denominators and Tinder bio A/B tests. First establish what your data can actually say.</p><a href={withBase('/sessions/01-system-boundary/')}>Draw the system boundary →</a></section>
-      <section class="phase-card"><span class="eyebrow">02 / Weeks 4–7</span><h3>Model.</h3><p>Feature contracts, objective functions, stable matching and the game theory of ghosting. Every model gets an escape clause.</p><a href={withBase('/sessions/04-features/')}>Read the feature contract lab →</a></section>
-      <section class="phase-card"><span class="eyebrow">03 / Weeks 8–12</span><h3>Ship.</h3><p>Exposure loops, distribution shift, stochastic first dates and a reproducible release. Include the result you wish had been better.</p><a href={withBase('/sessions/08-feedback/')}>Build the exposure simulator →</a></section>
+      <section class="phase-card"><span class="eyebrow">01 / Weeks 1–3</span><h3>Measure.</h3><p>The course boundary, platform architecture and photo assets. Establish what a source, a denominator and an image can actually tell you.</p><a href={withBase('/sessions/01-system-boundary/')}>Draw the system boundary →</a></section>
+      <section class="phase-card"><span class="eyebrow">02 / Weeks 4–7</span><h3>Model.</h3><p>NLP and bio A/B tests, mutual-selection probability, opening messages and asynchronous response games. Every protocol needs a stop state.</p><a href={withBase('/sessions/04-bio-experiment/')}>Write the bio experiment protocol →</a></section>
+      <section class="phase-card"><span class="eyebrow">03 / Weeks 8–12</span><h3>Ship.</h3><p>Threat detection, offline handover, Markov first dates, follow-up and maintenance. Build the release and document how it can end.</p><a href={withBase('/sessions/08-threat-model/')}>Inspect the threat model →</a></section>
     </div>
 
     <div class="section-heading"><div><span class="eyebrow">Assessment · 100% accounted for</span><h2>Evidence before confidence.</h2></div><a href={withBase('/assessments/')}>Read the briefs →</a></div>

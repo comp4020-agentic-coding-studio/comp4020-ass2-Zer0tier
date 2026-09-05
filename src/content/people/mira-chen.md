@@ -1,6 +1,6 @@
 ---
 title: Mira Chen
-description: "The course convenor, leading lectures on measurement, matching and evaluation. Office hours are for difficult assumptions."
+description: "The course convenor, leading lectures on measurement, probabilistic systems and evaluation. Office hours are for difficult assumptions."
 role: convenor
 affiliation: Slop University · Department of Computational Courtship
 contact: Mondays, 12–1 pm, Systems Lab 2, after the lecture.
@@ -8,7 +8,7 @@ contact: Mondays, 12–1 pm, Systems Lab 2, after the lecture.
 
 ## What to bring to Mira
 
-Bring your objective specification, an identification problem or a proposed
+Bring your frozen objective, an identification problem or a proposed
 assessment change. Mira leads the lectures and the final technical defence.
 Her recurring question is “what would make this conclusion false?”
 

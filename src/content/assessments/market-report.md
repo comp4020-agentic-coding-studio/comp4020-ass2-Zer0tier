@@ -5,8 +5,8 @@ week: 4
 due: 2027-03-19T17:00:00+11:00
 weight: 20
 practiceMode: synthetic-data
-preparation: ["sessions/02-market","sessions/03-bio-experiment","sessions/04-features"]
-related: ["sessions/02-market","sessions/03-bio-experiment","sessions/04-features"]
+preparation: ["sessions/02-platforms","sessions/03-photo-assets","sessions/04-bio-experiment"]
+related: ["sessions/02-platforms","sessions/03-photo-assets","sessions/04-bio-experiment"]
 marking:
   mode: weighted
   criteria:
@@ -37,7 +37,7 @@ Use the [market census and bio-exposure files](/toolkit/) to audit those three c
 4. Propose a stratified randomised follow-up experiment with one primary outcome, a fixed stopping rule and a minimum worthwhile effect.
 5. Distinguish sampling uncertainty, model uncertainty and the absence of real-world external validity. Do not attach a population confidence interval to an invented census and call it research.
 
-Use the [Sampling notebook](/sessions/02-market/), [Experiment protocol](/sessions/03-bio-experiment/) and [Feature contract](/sessions/04-features/) as your preparation. The feature work supports the data-quality critique; a candidate profile is not a report requirement.
+Use the [Platform audit](/sessions/02-platforms/), [Photo asset manifest](/sessions/03-photo-assets/) and [Bio experiment protocol](/sessions/04-bio-experiment/) as your preparation. The photo manifest helps explain why an experiment must hold non-bio inputs constant; a candidate profile is not a report requirement.
 
 ## What you submit
 

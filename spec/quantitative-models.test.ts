@@ -2,11 +2,36 @@
 // external validity, random assignment, good prose or browser layout.
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { compareBios, conservativeRank, dateLogistics, eloUpdate, qualityScore } from '../src/lib/romance-models';
+import { compareBios, conservativeRank, dateLogistics, dateTransitions, eloUpdate, poissonSilence, qualityScore } from '../src/lib/romance-models';
 
 const csv = (path: string) => readFileSync(path, 'utf8').trim().split('\n').slice(1).map(line => line.split(','));
 
 describe('reproducible course calculations', () => {
+  it('calculates the stated Poisson zero-count example without prescribing a reply delay', () => {
+    expect(poissonSilence(0.4, 2)).toBeCloseTo(0.4493289641, 9);
+    expect(poissonSilence(0, 2)).toBe(1);
+    expect(poissonSilence(0.4, 0)).toBe(1);
+    expect(() => poissonSilence(-0.4, 2)).toThrow();
+    expect(() => poissonSilence(0.4, Infinity)).toThrow();
+  });
+  it('matches literal one- and two-step conversation distributions', () => {
+    expect(dateTransitions(0)).toEqual([1, 0, 0, 0]);
+    expect(dateTransitions(1)).toEqual([0.5, 0.2, 0.2, 0.1]);
+    const expected = [0.31, 0.16, 0.32, 0.21];
+    dateTransitions(2).forEach((p, index) => expect(p).toBeCloseTo(expected[index], 12));
+    expect(dateTransitions(100).reduce((sum, p) => sum + p, 0)).toBeCloseTo(1, 12);
+  });
+  it('keeps agreed and ended states absorbing, validates inputs and preserves the starting vector', () => {
+    expect(dateTransitions(20, [0, 0, 1, 0])).toEqual([0, 0, 1, 0]);
+    expect(dateTransitions(20, [0, 0, 0, 1])).toEqual([0, 0, 0, 1]);
+    const initial = [0, 1, 0, 0];
+    expect(dateTransitions(1, initial)).toEqual([0.3, 0.3, 0.1, 0.3]);
+    expect(initial).toEqual([0, 1, 0, 0]);
+    for (const invalid of [-1, 1.5, Infinity, 10001]) expect(() => dateTransitions(invalid)).toThrow();
+    for (const invalid of [[1, 0], [1, 1, 0, 0], [-1, 1, 1, 0], [NaN, 0, 0, 0]]) {
+      expect(() => dateTransitions(2, invalid)).toThrow();
+    }
+  });
   it('updates the toy Elo model, not a purported app algorithm', () => {
     expect(eloUpdate(1200, 1200, 1)).toBe(1216);
     expect(eloUpdate(1200, 1200, 0)).toBe(1184);

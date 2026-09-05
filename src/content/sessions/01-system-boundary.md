@@ -1,6 +1,6 @@
 ---
-title: "The Hinge algorithm & Elo score manipulation"
-description: "Reverse-engineer the claim before the system. Implement a toy Elo update and separate observed behaviour from proprietary internals."
+title: "Introduction to Algorithmic Romance"
+description: "Meet the syllabus, the No Feelings data policy and the Romantic Turing Test. Draw the boundary of the system before trying to optimise it."
 week: 1
 date: 2027-02-25
 teachers: [eli-brooks]
@@ -9,23 +9,23 @@ output: "System boundary map"
 buildsOn: []
 related: ["lectures/week-01"]
 spec:
-  - "The first equal-rating win is 1216; proprietary platform internals remain explicitly unknown."
+  - "Supported case facts and observable events remain distinguishable from invented emotion labels."
   - "Use synthetic data; solo implementation and review are accepted."
 ---
 
 ## Inputs
 
-Bring your toy Elo function and the two platform descriptions from [week 1](/lectures/week-01/). No account, profile screenshot or real swipe history is required.
+Bring the week 1 lecture, [policies](/policies/) and [Alex's fictional case](/toolkit/#benchmark). No personal profile is required.
 
-## 90-minute lab
+## 90-minute tutorial
 
-1. **15 minutes — draw the system.** Mark each variable controllable, observable or hidden. Separate recommendation exposure from a response after exposure.
-2. **25 minutes — implement and test.** Starting at 1200, calculate a win and a loss against an unchanged 1200 comparison rating. Log the expected result before each update. Check the first win is 1216.
-3. **25 minutes — attempt manipulation.** Replay the same simulated results with K = 16 and K = 64. Explain why a faster rating change says nothing about additional mutual interest.
-4. **25 minutes — write the boundary.** Add a claim/source/unknown table. Label the Elo experiment as a toy model, not recovered Hinge code.
+1. **20 minutes — map the boundary.** Separate input facts, observable events and hidden state. “Reply received” and “interest inferred” must occupy different boxes.
+2. **25 minutes — run the Romantic Turing Test.** Rewrite the optimisation-script bio as two concrete sentences using only supplied facts. Mark the evidence for each claim.
+3. **20 minutes — audit acquisition.** Compare parsing the supplied synthetic CSV with scraping a public profile. Record provenance, permission, purpose and minimum fields; the latter is not an authorised lab activity.
+4. **25 minutes — define acceptance.** Write three checks: no invented case facts, no emotion labels presented as observations, and an explicit stop path.
 
 ## Deliverable: System boundary map
 
-Commit your diagram, function, three tests and a 150-word identification note to your own lab notebook. Solo work is the default; optional pair review examines the code, not anyone's dating history.
+Save the diagram, fictional bio and a 150-word boundary note in your versioned notebook. Include one supported claim and one rejected claim. Solo work is the default; optional peer review concerns the model, not anybody's dating history.
 
-Next week's sampling notebook must use your distinction between being shown and being available. Keep that boundary in version control.
+Week 2 uses this map to distinguish a platform's disclosures from your assumptions.

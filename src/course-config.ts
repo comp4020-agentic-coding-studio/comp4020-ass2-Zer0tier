@@ -55,6 +55,6 @@ export const courseMeta = slopCourseMetaSchema.parse({
   startDate: "2027-02-22",
   endDate: "2027-05-28",
   description:
-    "Dating profiles as a systems engineering problem. Design experiments, trace matching algorithms and deploy a fictional profile against a synthetic benchmark. Then explain what your top-1% score cannot tell you.",
+    "Algorithmic romance from profile assets to graceful endings. Test bios, model mutual selection and first-date transitions, then deploy a fictional profile against a synthetic benchmark. Explain what the score cannot tell you.",
   tags: ["Computer science", "Experiment design", "Dating systems"],
 }) satisfies CourseMetaInput;

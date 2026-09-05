@@ -43,9 +43,16 @@ patches. Decorative washes must fade out before the reading column's edges.
 
 Each week builds an engineering artefact for an evaluated profile release.
 Use technical deadpan: define the objective, implement the model, then find the
-assumption that breaks it. Preserve the requested week 1/3/7/10 anchors and the
-20% data report, 30% midterm exam, 50% profile-deployment project. Later labs must
-use earlier artefacts, not merely link to them. Require algorithm traces,
+assumption that breaks it. The student's revised twelve-week sequence is the
+contract: introduction; platform architecture/Elo; photography; NLP/bio A/B
+testing; match probability; opening messages; asynchronous communication;
+threat detection; offline handover; Markov first dates; follow-up evaluation;
+relationship maintenance and endings. Protect all twelve titles and key
+concepts in spec/, not just four anchors. Keep the 20% data report, 30% midterm
+exam and 50% profile-deployment project. Preparation must precede assessment:
+bio testing is now week 4, and the exam cannot require the removed stable-
+matching lesson. Preserve existing teaching dates and the pink/blossom design.
+Later labs must use earlier artefacts, not merely link to them. Require algorithm traces,
 statistical reasoning, sensitivity tests and reproducible code appropriate to
 level 4; this is not generic dating advice with CS nouns swapped in.
 
@@ -55,8 +62,14 @@ and assumed probability. "Top 1%" refers only to a named 100-entry course
 benchmark with an explicit score, denominator and tie rule, never human worth or
 a real-app guarantee. Grade evidence and engineering, not rank or romantic
 outcomes. No scraping, real profiles, private messages, app accounts or real-user
-experiments are needed. The final deployment is a labelled fictional static
-profile, with a local build accepted if public hosting is unsuitable.
+experiments are needed. Teach scraping ethics through supplied synthetic data,
+not instructions to harvest local people. "No Feelings" prohibits invented
+emotion labels in a dataset, not feelings in people. The Romantic Turing Test
+is a fictional-profile consistency exercise, not human impersonation. A
+message can invite a reply, never require one; explicit refusal is terminal.
+Photo confidence, response timing and body language do not establish consent.
+The final deployment is a labelled fictional static profile, with a local build
+accepted if public hosting is unsuitable.
 
 Protect the actual sequence, assessment preparation and dates in `spec/` using
 literal expected milestones. Human review must still judge the voice, examples,

@@ -1,34 +1,36 @@
 ---
-title: "The Hinge algorithm & Elo score manipulation"
-description: "Reverse-engineer the claim before the system. Implement a toy Elo update and separate observed behaviour from proprietary internals."
+title: "Introduction to Algorithmic Romance"
+description: "Meet the syllabus, the No Feelings data policy and the Romantic Turing Test. Draw the boundary of the system before trying to optimise it."
 week: 1
 date: 2027-02-22
 teachers: [mira-chen]
+keyConcept: "The Romantic Turing Test"
 slides: /decks/week-01/
 related: [sessions/01-system-boundary]
 ---
 
-## Your algorithm does not know that you are charming
+## The syllabus drop
 
-A profile goes in; a recommendation comes out. That does not make the intervening system observable. This week separates three objects: a platform's public description, a mathematical model, and a story someone tells about an unexplained result.
+The opening provocation: **love is not a mystery; it is an inefficient market problem solvable through data structures.** We will spend twelve weeks implementing that claim—and finding where its types stop making sense. A recommendation, a reply and a relationship are three different outputs. Returning HTTP 200 is not evidence of affection.
 
-[Hinge's Most Compatible documentation](https://help.hinge.co/hc/en-us/articles/360011233073-What-is-Most-Compatible) names mutual dealbreakers, recent activity and patterns of likes. It does not publish the weights or an Elo equation. [Tinder's matching explainer](https://www.tinderpressroom.com/powering-tinder-r-the-method-behind-our-matching), updated 11 July 2022, says Tinder no longer relies on Elo. These are platform statements, not an independent code audit.
+This is a fourth-year course for students comfortable with probability and pseudocode. Work on **Null Island**, our fictional market, using [supplied synthetic data](/toolkit/). No dating account, partner or disclosure of your own life is required.
 
-## A system we can actually inspect
+## One system, twelve weeks
 
-For our **toy model**, let an artificial profile's rating be R, its comparison profile's rating Q, and its simulated result S be 0 or 1:
+Start with platform architecture and photo assets. Move through bio experiments, mutual-selection probability, opening messages and asynchronous communication. Then examine threats, offline logistics, Markov first dates, follow-up decisions and maintenance. Each Thursday adds one artefact to the same fictional profile release.
 
-```text
-E = 1 / (1 + 10^((Q - R) / 400))
-R_next = R + 32 * (S - E)
-```
+The [data report](/assessments/market-report/) is **20%**, due 19 March. The [midterm](/assessments/matchmaking-exam/) is **30%**, on 23 April. The [final profile deployment](/assessments/profile-deployment/) is **50%**, due 28 May. Evidence earns marks; romantic outcomes and benchmark rank do not.
 
-With R = Q = 1200 and S = 1, E = 0.5 and R_next = 1216. Resetting the initial rating or changing K changes the trajectory. It does not establish that you have manipulated Hinge. We are scoring artificial events, not a person's worth.
+## The strict “No Feelings” policy
 
-Draw the boundary around inputs you control, outputs you observe and state you cannot see. Ten extra likes after editing a bio could reflect the bio, exposure, timing or a platform change. A ranking story needs an identification strategy, not a confident voice-over.
+A dataset may contain “reply observed.” It may not silently convert that into “likes Alex.” This is a restriction on unsupported labels, not on having feelings. People can change their minds without filing a bug report.
 
-## Before the lab
+Our scraping ethics begin with provenance, permission, purpose and minimisation. Public visibility is not permission to harvest a neighbourhood. Parse the course's synthetic CSVs; do not scrape apps, private messages or classmates. The [policies](/policies/) define the boundary.
 
-Read the two short platform sources and [the data contract](/toolkit/). Implement the update in any language. Test equal ratings, a loss, and an extreme rating gap. Bring one falsifiable hypothesis and one claim your available observations cannot establish.
+## Key concept: the Romantic Turing Test
 
-[Week 1 slides](/decks/week-01/) contain the worked update. The [system-boundary lab](/sessions/01-system-boundary/) starts the engineering notebook used throughout the semester.
+Can a fictional bio convince a reader that it describes a person rather than a collection of optimization scripts? Compare “high-availability companion seeking synergistic engagement” with “Board games, bad puns, and coffee on Friday before seven.” The second can be checked against Alex's case facts. Neither is permission to impersonate someone.
+
+For Thursday, draw inputs, observable events and hidden state. Bring one sentence your data can support and one it cannot. The [lecture deck](/decks/week-01/) supplies the semester map.
+
+[Continue to the week 1 tutorial](/sessions/01-system-boundary/).

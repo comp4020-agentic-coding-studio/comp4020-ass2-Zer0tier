@@ -116,7 +116,7 @@ candidate. A candidate scoring 100 ranks first; a candidate tying the best
 control does not. This percentile applies only to this synthetic comparison
 and this quality rubric. It predicts neither app rank nor romantic success.
 
-For the prespecified week 9 shift, double feasibility's weight and divide by
+For the prespecified week 11 shift, double feasibility's weight and divide by
 20 instead of 16. Recompute all 99 control scores under that same rule before
 reranking. Separately rescore the candidate when the fictional availability
 changes; do not confuse a weight change with an evidence change.
@@ -140,12 +140,21 @@ console.log({ score, rank: conservativeRank(score, controls), entries: controls.
 
 Expected output: **score 100, rank 1, entries 100**. Replace the example vector
 with your evidence-backed candidate ratings, not the values needed to win.
-The module also exports `eloUpdate` and `compareBios`, as used in the opening
-labs. `dateLogistics()` returns week 10's exact four-state result: expected cost
-$14.60, expected time 96 minutes and failure probability 0.025 at a 110-minute
-limit. `dateLogistics(0.4, 0)` changes dependence while preserving both marginal
-event probabilities; the means stay fixed but failure becomes 0.10. Use this
-as an oracle after implementing your own simulation.
+<h2 id="reference-models">Reference models by week</h2>
+
+The downloadable module retains the same scorer and adds the conversation
+model used in the revised sequence:
+
+- **Week 2:** `eloUpdate(1200, 1200, 1)` returns 1216 for toy Elo.
+- **Week 4:** `compareBios(120, 1000, 140, 1000)` returns a 0.02 difference and z ≈ 1.33.
+- **Week 7:** `poissonSilence(0.4, 2)` returns approximately 0.4493, the assumed probability of zero arrivals in two hours.
+- **Week 9:** `dateLogistics()` enumerates four travel/closure states. Expected cost is $14.60, time 96 minutes and failure probability 0.025 at a 110-minute limit. `dateLogistics(0.4, 0)` preserves marginal event probabilities and means but changes failure to 0.10.
+- **Week 10:** `dateTransitions(2)` returns **[0.31, 0.16, 0.32, 0.21]** in C/A/N/E order, starting in conversation. The matrix is in [lecture 10](/lectures/week-10/); N and E are absorbing. An optional initial vector lets you test a different starting state.
+
+The travel contingency model and the conversation chain answer different
+questions. Use their exact results as oracles for your own implementation.
+Seeded Monte Carlo is student work, not a claim that these probabilities were
+observed in real dates.
 
 Downloaded files are version 1 teaching resources, not generated API nodes.
 

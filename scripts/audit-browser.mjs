@@ -154,7 +154,7 @@ try {
       });
       if (violations.length || geometry.width !== geometry.scrollWidth || geometry.small.length) findings.push({route,viewport,violations,geometry});
       await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
-      if (['','weeks/','readings/','help/','faq/','lectures/week-03/','lectures/week-07/','lectures/week-10/','sessions/12-reproducibility/','assessments/profile-deployment/','toolkit/','policies/','decks/week-01/'].includes(route)) {
+      if (['','weeks/','readings/','help/','faq/','lectures/week-03/','lectures/week-07/','lectures/week-10/','sessions/12-maintenance/','assessments/profile-deployment/','toolkit/','policies/','decks/week-01/'].includes(route)) {
         await page.screenshot({path:`${screenshots}/${route.replaceAll('/','-') || 'home'}-${viewport.width}.png`,fullPage:!deck});
         if (route === '') {
           await page.screenshot({path:`${screenshots}/home-${viewport.width}-viewport.png`});

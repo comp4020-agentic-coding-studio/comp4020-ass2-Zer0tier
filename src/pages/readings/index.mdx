@@ -4,46 +4,43 @@ description: "Read the claim, inspect the assumptions, then try to break the mod
 heroTitle: Readings
 ---
 
-Start with the relevant lecture page: it names the question you should bring
-to the reading. These sources support the semester's models; none is a manual
-for making another person like you.
+Start with each lecture's question and its worked example. These primary sources
+support particular techniques or factual claims; they do not validate the
+fictional romance models we construct around them.
 
-The [course toolkit](/toolkit/) holds the synthetic datasets, A/B calculator,
-99-profile benchmark and downloadable reference scorer used in tutorials.
+The [course toolkit](/toolkit/) contains synthetic datasets, the A/B calculator,
+the 99-control benchmark and downloadable reference models. It is required
+preparation throughout the semester.
 
-## Weeks 1–3: what was actually measured?
+## Weeks 1–3: boundaries, platforms and photo assets
 
-- [Hinge: What is Most Compatible?](https://help.hinge.co/hc/en-us/articles/360011233073-What-is-Most-Compatible)
-  Read alongside [week 1](/lectures/week-01/). Separate what the platform
-  discloses from what you would have to infer. A missing equation is not
-  permission to invent one.
-- [Tinder: the method behind our matching](https://www.tinderpressroom.com/powering-tinder-r-the-method-behind-our-matching)
-  Compare its account with the toy Elo model in week 1. Treat this as a
-  platform's description, not an independent audit of its implementation.
-- [NIST: comparing two proportions](https://itl.nist.gov/div898/handbook/prc/section3/prc33.htm)
-  For [week 3](/lectures/week-03/), find the pooled proportion and standard
-  error. Explain why changing an exposure count can change the conclusion
-  without changing the observed percentage-point difference.
+Week 1 uses the [course policies](/policies/) and [Alex's case](/toolkit/#benchmark).
+For [week 2](/lectures/week-02/), compare these three platform accounts:
 
-## Weeks 4–7: a model needs a boundary
+- [Tinder: the method behind our matching](https://www.tinderpressroom.com/powering-tinder-r-the-method-behind-our-matching). Locate the statement that Elo is no longer used; do not mistake our toy model for a disclosure.
+- [Hinge: What is Most Compatible?](https://help.hinge.co/hc/en-us/articles/360011233073-What-is-Most-Compatible). Separate named recommendation inputs from undisclosed weights.
+- [Bumble: using the Discover tab](https://support.bumble.com/hc/en-us/articles/28423668110621-Using-the-Discover-tab). Identify the recommendation surface being described rather than generalising to every feature.
 
-- [scikit-learn: common pitfalls and data leakage](https://scikit-learn.org/stable/common_pitfalls.html#data-leakage)
-  Read for [week 4](/lectures/week-04/), then revisit in
-  [week 9](/lectures/week-09/). Trace the moment an evaluation result starts
-  influencing a design decision. Renaming the data `test` does not undo it.
-- [Gale and Shapley: College Admissions and the Stability of Marriage (PDF)](https://www.or.mist.i.u-tokyo.ac.jp/takeda/FreshmanCourse/GaleShapley.pdf)
-  For [week 6](/lectures/week-06/), focus on the definition of stability and
-  the proposal procedure. Hand-trace our four-by-four example before trying
-  to prove anything about it. “Stable” has a precise meaning here.
+Week 3 uses the lecture's fictional photo manifest and declared lighting
+convention. Its identification-failure counts are teaching fixtures, not a study.
 
-## Weeks 8–12: simulation is not observation
+## Weeks 4–7: bios, probabilities and protocols
 
-- [NumPy: Generator.binomial](https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.binomial.html)
-  Use with [week 8](/lectures/week-08/) and
-  [week 10](/lectures/week-10/). Locate `n`, `p` and `size`; state which values
-  you assumed rather than measured. The model can be implemented in another
-  language or a spreadsheet.
+- [NIST: comparing two proportions](https://itl.nist.gov/div898/handbook/prc/section3/prc33.htm). For [week 4](/lectures/week-04/), identify the pooled rate and standard error. Explain why a test does not repair confounded exposure.
+- [SciPy: Poisson distribution](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.poisson.html). For [week 7](/lectures/week-07/), use the probability of zero counts and state what the parameter means. A count model does not prescribe a reply delay.
 
-The later weeks reuse these ideas to evaluate and release one coherent project.
-There is no separate reading hurdle: preparation and the artefact to bring are
-listed on each [tutorial page](/sessions/).
+Weeks 5 and 6 use the conditional-probability calculation and decision tree
+provided in their lecture notes. Bring those models, not real message histories.
+
+## Weeks 8–12: threats, meetings and maintenance
+
+- [FTC: what to know about romance scams](https://consumer.ftc.gov/articles/what-know-about-romance-scams). For [week 8](/lectures/week-08/), distinguish concrete risk signals from proof and identify what a reverse-image search cannot settle.
+- [eSafety: online dating](https://www.esafety.gov.au/key-topics/staying-safe/online-dating). For [week 9](/lectures/week-09/), turn offline-meeting guidance into a fictional handover with public-location, exit and cancellation checks.
+- [scikit-learn: common pitfalls and data leakage](https://scikit-learn.org/stable/common_pitfalls.html#data-leakage). For [week 11](/lectures/week-11/), trace when evaluation begins influencing a supposedly frozen candidate.
+
+Week 10's Markov matrix is fully specified in the lecture and reference module.
+Week 12 uses the accumulated release record and policies to write maintenance
+and exit protocols. There is no extra textbook or personal disclosure task.
+
+Every [tutorial](/sessions/) lists the earlier artefacts to bring and the
+calculation or decision that will use them.

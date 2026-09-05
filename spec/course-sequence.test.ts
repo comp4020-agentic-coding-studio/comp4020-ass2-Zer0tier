@@ -17,11 +17,19 @@ const workshops = nodes.filter(n => n.type === "sessions").sort((a, b) => a.meta
 describe("the engineering release students are promised", () => {
   it("builds twelve distinct pieces in the promised order", () => {
     expect(workshops.map(n => n.meta.output)).toEqual([
-      "System boundary map", "Sampling notebook", "Experiment protocol",
-      "Feature contract", "Objective specification", "Matching trace",
-      "Response policy", "Exposure simulator", "Validation report",
-      "Date simulation", "Release candidate", "Reproducibility dossier",
-    ]);
+      "System boundary map",
+      "Platform audit",
+      "Photo asset manifest",
+      "Bio experiment protocol",
+      "Match probability model",
+      "Message decision tree",
+      "Communication state machine",
+      "Threat model",
+      "Offline handover plan",
+      "Date transition model",
+      "Follow-up evaluation",
+      "Maintenance and exit manual"
+]);
   });
 
   it("pairs each workshop with a lecture and explicitly builds on earlier work", () => {
@@ -57,6 +65,24 @@ describe("the engineering release students are promised", () => {
         expect(assessment.related).toContain(ref);
       }
     }
+  });
+
+  it("prepares the revised exam with taught topics and opens the deck with the syllabus", () => {
+    const exam = nodes.find(n => n.id === "assessments/matchmaking-exam")!;
+    expect(exam.meta.preparation).toEqual([
+      "sessions/02-platforms", "sessions/04-bio-experiment", "sessions/05-match-probability",
+      "sessions/06-message-tree", "sessions/07-communication",
+    ]);
+    const examText = readFileSync("dist/assessments/matchmaking-exam/index.html", "utf8");
+    expect(examText).toContain("Poisson");
+    expect(examText).toContain("mutual selection and protocols");
+    expect(examText).not.toMatch(/deferred acceptance|blocking pair|stable matching/i);
+    const deck = readFileSync("dist/decks/week-01/index.html", "utf8");
+    expect(deck).toContain("Romantic Turing Test");
+    expect(deck).toContain("No Feelings");
+    expect(deck).toContain("Data report");
+    expect(deck).toContain("Midterm exam");
+    expect(deck).toContain("Fictional profile release");
   });
 
   it("keeps weekly lectures on Mondays and workshops on Thursdays, across the break", () => {

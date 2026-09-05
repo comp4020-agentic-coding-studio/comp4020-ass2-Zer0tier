@@ -1,33 +1,31 @@
 ---
-title: "Feedback loops: rich profiles get richer"
-description: "Separate profile quality from exposure. Simulate how a ranking policy can manufacture its own evidence."
+title: "Threat Modeling and Anomaly Detection"
+description: "Detect bots, financial scams and identity inconsistencies in synthetic cases. Calculate the cost of false alarms before trusting a flag."
 week: 8
 date: 2027-04-26
 teachers: [mira-chen]
-related: [sessions/08-feedback]
+keyConcept: "False positives vs. false negatives in romantic threat detection"
+related: [sessions/08-threat-model]
 ---
 
-## The winner received all the traffic. What a coincidence.
+## Your match may have a business model
 
-A recommender does more than predict observations: it helps decide which observations can happen. Our next model allocates 100 synthetic impressions between two profile variants, then treats the resulting positive-response counts as a reason to allocate the next batch.
+Threat modeling asks what must be protected, who might misuse the interaction, and where trust changes. For our fictional profile system, assets include contact details, money, images and the ability to leave. Trust boundaries include a new link, an off-platform payment request and a request for private information.
 
-Reuse week 3's distinction between rate and count. If both variants have the same assumed response probability, 80 exposures versus 20 still creates different expected counts. A count-based recommender can mistake its own allocation for quality.
+The [FTC's romance-scam guidance](https://consumer.ftc.gov/articles/what-know-about-romance-scams) describes fabricated identities and requests for money, and suggests checking inconsistent image identities. We use synthetic case cards—not investigations of actual people.
 
-## Two allocation policies
+## Signals are not verdicts
 
-Start with 50 impressions per variant. For the next ten rounds compare:
+Classify a scripted bot, a financial scam and a misrepresented identity separately. Syntax inconsistencies can prompt review; multilingual writing or an unusual sentence is not proof of deception. A reverse-image match can have innocent explanations, and no match does not establish authenticity. Do not upload someone else's face to a service for this exercise.
 
-- **Greedy counts:** allocate 90 impressions to the variant with the larger cumulative positive count and 10 to the other; break a tie evenly.
-- **Balanced exploration:** allocate 50 to each every round.
+A case card combining an urgent transfer request and conflicting identity details needs a different response from one containing a typo. Record the observable evidence, uncertainty and least intrusive next step.
 
-In both models, sample independent Bernoulli responses with assumed p = 0.2 for each variant. Record the random seed, per-round exposure and cumulative rate. [NumPy's binomial sampler](https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.binomial.html) can draw the number of positives in each batch. This probability is invented for the exercise.
+## Key concept: false positives versus false negatives
 
-Repeat with unequal response probabilities, 0.2 and 0.3. A policy that locks in on an early count leader can look different across seeds. Report that variation; one attractive trajectory is not the experiment.
+Our **invented 100-case test set** contains ten malicious cases. A detector flags eight correctly, misses two, and wrongly flags eighteen of the ninety benign cases.
 
-## Add a stopping state
+Precision = 8/26 ≈ **30.8%**; recall = 8/10 = **80%**; false-positive rate = 18/90 = **20%**. A flag is usually wrong in this fixture. Quoting recall alone would make a very convincing sales slide.
 
-Your **Response policy** contains a terminal refusal. In a separate simulator branch, make one artificial participant unavailable after round 3. Remove that participant from eligible exposure rather than charging their later nonresponses to the bio. An event that never could occur should not become a negative training example.
+Bring the week 7 communication state machine. Add review and closed states without turning “suspicious” into an automatic accusation. In the lab, change the review threshold, compare missed threats with needless escalations, and prohibit collection of more personal data just to improve your score. The final release must not collect real contact details or payments.
 
-## Before the lab
-
-Bring your week 3 protocol and week 7 state diagram. Define an exposure log with variant, round, impressions, positives and eligibility. The simulator will generate a distribution shift for week 9, not evidence about a live app's recommender.
+[Continue to the week 8 tutorial](/sessions/08-threat-model/).

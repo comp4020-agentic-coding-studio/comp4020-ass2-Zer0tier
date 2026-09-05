@@ -1,30 +1,31 @@
 ---
-title: "Validation after the leaderboard honeymoon"
-description: "Freeze the candidate, change the evaluation conditions and keep the result even when the rank gets worse."
+title: "Transitioning to Offline Environments"
+description: "Plan the digital-to-physical handshake: public venues, transport, accessible exits, confirmation and an agreed approach to the bill."
 week: 9
 date: 2027-05-03
 teachers: [mira-chen]
-related: [sessions/09-validation]
+keyConcept: "Reducing the friction of the digital-to-physical handshake"
+related: [sessions/09-offline-handover]
 ---
 
-## The test set would like a little privacy
+## Migrating to the physical server
 
-You have a candidate profile, a primary score and 99 controls. You also know the rubric. That makes Null Island v1 a transparent teaching benchmark, not a hidden test of generalisation. Calling its score “out-of-sample performance” would be incorrect.
+An offline meeting has transport constraints, an opening time and people who can change their minds. There is no atomic transaction covering all three.
 
-Return to the **Objective specification** frozen in week 5. Preserve the primary leaderboard and evaluate a second rule: double feasibility's weight. Its score is 100 × (clarity + specificity + 2×feasibility + exit) / 20. Recompute *every control* under that same rule before ranking the candidate.
+Build a venue-selection algorithm using hard constraints first: a public setting, an accessible route appropriate to the fictional case, Alex's Friday 5–7 pm window, the bus connection and a $20 total budget. Then compare softer preferences such as ambient noise and lighting. An attractive weighted score must not cancel a failed exit route.
 
-## A shift must change something meaningful
+The [eSafety online-dating guide](https://www.esafety.gov.au/key-topics/staying-safe/online-dating) covers planning for meeting offline. Apply it to fictional scenarios; a course checklist cannot guarantee safety.
 
-A candidate vector (4, 4, 1, 4) gets 81.25 under the primary score but 70 under the feasibility-weighted score. That is not a bug in arithmetic. The objective moved.
+## Cost sharing is a protocol
 
-Now change Alex's Friday availability to Saturday morning. The wording is frozen, so its feasibility evidence may no longer support its previous score. Record a rescore against the changed facts; changing weights and changing evidence are two separate interventions.
+State each person's proposed contribution and obtain agreement before assuming a split. In our worked plan, two $6 drinks and $2 of Alex's transport total $14 if Alex offers to cover both drinks. Splitting the drinks changes Alex's total to $8. Either proposal can be declined. The price is an invented fixture, not a venue recommendation.
 
-The [scikit-learn guidance on leakage](https://scikit-learn.org/stable/common_pitfalls.html#data-leakage) explains the selection/evaluation boundary. Our transparent fixture cannot create independence by naming a variable `test`. If you revise after seeing the shift, label the result a new development iteration and preserve the failed evaluation.
+## Key concept: the digital-to-physical handshake
 
-## Rates are not rubric points
+A complete handover contains a proposed place and time, an agreed cost arrangement, a confirmation point, an accessible alternative and a way to cancel. Confirmation is not irrevocable permission for the rest of the evening.
 
-Use week 8's simulator logs to compare response rates under changed exposure allocation. Keep that result in a separate table from the profile quality scores. A model-generated response and a human-assigned feature score are different measurements.
+For a contingency exercise, assume a base $14 cost and 90 minutes, a late bus adding 20 minutes with probability 0.25, and a closed venue adding $6 and 10 minutes with probability 0.10. Under independence, expected cost is **$14.60**, duration **96 minutes**, and exceeding 110 minutes has probability **2.5%**. These assumed events are enumerated by the [reference model](/toolkit/#reference-models).
 
-## Before the lab
+Bring week 8's trust boundaries. Produce a handover plan with a cancel branch and show which constraint rejects each unsuitable venue. Next week models the conversation after arrival, not another bus journey.
 
-Bring the frozen objective, candidate text and simulator logs. Write the failure criterion before the run: what result would cause you to revise, postpone or reject release? The final project must include the least flattering valid result, not just a screenshot of rank 1.
+[Continue to the week 9 tutorial](/sessions/09-offline-handover/).

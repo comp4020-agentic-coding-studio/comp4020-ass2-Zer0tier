@@ -1,30 +1,29 @@
 ---
-title: "Multi-objective romance & the top-1% problem"
-description: "Freeze a scoring rule and a comparison set. Optimizing the metric is easy; defending the metric is the assessed part."
+title: "The Mathematics of the \"Match\""
+description: "Calculate mutual-selection probabilities, constrain the travel radius and separate peak Sunday exposure from a higher match rate."
 week: 5
 date: 2027-03-22
 teachers: [mira-chen]
-related: [sessions/05-objectives]
+keyConcept: "Peak system load: Sunday evening swiping"
+related: [sessions/05-match-probability]
 ---
 
-## Top 1% of what, exactly?
+## A match is a joint event
 
-A percentile needs a population, a direction and a tie rule. “Top profile” supplies none of them.
+Define A as one fictional participant selecting another, and B as the reverse selection. Then P(A and B) = P(A) × P(B given A). Replacing the conditional term with P(B) requires independence; mutual preferences make that a substantial assumption.
 
-The course's **Null Island v1** benchmark contains 99 fabricated control feature vectors plus your one candidate: **100 entries**. Its score is 100 × (clarity + specificity + feasibility + exit) / 16. The four inputs are the 0–4 quality features from week 4. All controls and the scoring source are [downloadable](/toolkit/#benchmark).
+In a **toy pool**, P(A) = 0.30 and P(B given A) = 0.20, so mutual selection has probability **0.06**. Twenty comparable exposures have an expected 1.2 matches. Only if events are independent with the same probability does the chance of at least one become 1 − 0.94²⁰ ≈ **70.99%**. Expectation is not a guaranteed booking.
 
-Use the conservative rank: **1 + the number of controls whose score is greater than or equal to yours**. Ties therefore count against the candidate. Only rank 1/100 supports the course's “top 1%” label. It supports no claim about Tinder, Hinge or a real population.
+## Radius is a transport constraint
 
-## Congratulations, you optimized the checklist
+Alex's bus journey matters more than a straight-line circle. Define an acceptable venue as one reachable within the stated time and $20 total budget. A larger radius can add candidates and remove feasible meetings. More rows is not automatically a better query result.
 
-A candidate scoring 4 on every feature gets 100. The controls deliberately stop below 100. Getting first place is consequently possible and unremarkable. A profile that pastes the rubric into its bio might score well while being unreadable. The project asks you to expose that failure, not conceal it.
+Model a swipe cap as a supplied parameter, not a claimed live platform limit. Compare two strategies with the same cap and eligible pool; otherwise the experiment has quietly purchased extra exposure.
 
-Use the **Experiment protocol** to distinguish an observed response outcome from a rubric score. You cannot substitute one for the other because the second produces a prettier graph.
+## Key concept: peak system load
 
-## Constraints before weights
+“Sunday evening swiping” is our synthetic peak-load scenario, not an established universal best time. Suppose Sunday produces 8 matches from 40 exposures, while Tuesday produces 3 from 10. Sunday has more matches; Tuesday has the higher rate, **30% versus 20%**. Neither count identifies the effect of the clock.
 
-An infeasible invitation should not become acceptable because it mentions an impressive hobby. Treat case fidelity as a hard constraint, then compare quality scores. Plot two objectives—for example brevity and specificity—and identify non-dominated candidates. Do not force every trade-off into a single number.
+Bring the platform denominators and frozen photo/bio candidate to the lab. Compute the joint event, state the independence assumptions, then freeze the [final project's](/assessments/profile-deployment/) primary quality score, controls version and conservative tie rule. Keep reciprocal-match probability separate from that rubric score. A top-1% rubric result is not a 99% chance of a date.
 
-## Before the lab
-
-Score both week 4 profiles, compute their conservative ranks, and propose a one-sentence adversarial profile. Freeze a primary objective and a second, shifted evaluation rule for week 9. The [final assessment](/assessments/profile-deployment/) grades the validity of this chain, not whether you win your own leaderboard.
+[Continue to the week 5 tutorial](/sessions/05-match-probability/).

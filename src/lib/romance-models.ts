@@ -41,7 +41,7 @@ export function conservativeRank(candidateScore: number, controls: number[]) {
   return 1 + controls.filter(score => score >= candidateScore).length;
 }
 
-/** Exact four-state oracle for the fictional week 10 logistics model. */
+/** Exact four-state oracle for the fictional week 9 logistics model. */
 export function dateLogistics(closureWhenLate = 0.1, closureWhenOnTime = 0.1, timeLimit = 110) {
   if (![closureWhenLate, closureWhenOnTime].every(p => Number.isFinite(p) && p >= 0 && p <= 1) ||
     !Number.isFinite(timeLimit) || timeLimit < 0) throw new RangeError('Use probabilities in [0,1] and a non-negative time limit.');
@@ -61,4 +61,33 @@ export function dateLogistics(closureWhenLate = 0.1, closureWhenOnTime = 0.1, ti
     failureProbability: states.filter(state => state.minutes > timeLimit || state.cost > 20)
       .reduce((sum, state) => sum + state.probability, 0),
   };
+}
+
+/** Zero arrivals in a toy homogeneous Poisson process, not an optimal reply time. */
+export function poissonSilence(ratePerHour: number, hours: number) {
+  if (![ratePerHour, hours].every(n => Number.isFinite(n) && n >= 0)) {
+    throw new RangeError('Use a finite non-negative rate and observation duration.');
+  }
+  return Math.exp(-ratePerHour * hours);
+}
+
+/** Week 10 exact row-vector propagation in C/A/N/E order. Probabilities are invented. */
+export function dateTransitions(steps: number, initial: number[] = [1, 0, 0, 0]) {
+  if (!Number.isSafeInteger(steps) || steps < 0 || steps > 10_000 ||
+    initial.length !== 4 || !initial.every(p => Number.isFinite(p) && p >= 0 && p <= 1) ||
+    Math.abs(initial.reduce((sum, p) => sum + p, 0) - 1) > 1e-12) {
+    throw new RangeError('Use 0–10,000 whole steps and four probabilities summing to one.');
+  }
+  const matrix = [
+    [0.5, 0.2, 0.2, 0.1],
+    [0.3, 0.3, 0.1, 0.3],
+    [0, 0, 1, 0],
+    [0, 0, 0, 1],
+  ];
+  let distribution = [...initial];
+  for (let step = 0; step < steps; step++) {
+    distribution = matrix[0].map((_, column) =>
+      distribution.reduce((sum, probability, row) => sum + probability * matrix[row][column], 0));
+  }
+  return distribution;
 }

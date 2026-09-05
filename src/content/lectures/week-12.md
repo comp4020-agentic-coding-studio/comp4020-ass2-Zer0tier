@@ -1,32 +1,31 @@
 ---
-title: "The top-1% defence & reproducibility audit"
-description: "Rebuild the release, audit the percentile and defend the gap between a better score and a better match."
+title: "System Maintenance and Graceful Deprecation"
+description: "Design explicit relationship agreements, change requests and respectful endings. Reproduce the final release and document its maintenance."
 week: 12
 date: 2027-05-24
 teachers: [mira-chen]
-related: [sessions/12-reproducibility]
+keyConcept: "Long-term relationship architecture and avoiding the “comfortable rut” system crash"
+related: [sessions/12-maintenance]
 ---
 
-## Your result has left your laptop
+## Acquisition was only the first subsystem
 
-The final week is a replication attempt. Start from the **Release candidate**, not the convenient files beside it. A reviewer should be able to recover the candidate text, rerun the scorer, count 99 controls and reproduce the conservative rank.
+A relationship is not a successfully acquired user. Maintenance requires agreements that can change, communication about those changes, and room for either person to leave. The software analogy is useful until it begins claiming ownership of a human.
 
-If the displayed result is rank 1/100, say “top 1% in Null Island v1 under the declared profile-quality rubric.” Dropping the final clause changes the claim. If two entries tie above you, count both. If your candidate ties with the best control, it is not rank 1 under our rule.
+An **exclusive lock** is our metaphor for a mutually agreed monogamous arrangement, not a lock one person obtains on another. **Concurrent processes** model ethical non-monogamy only when the people involved knowingly agree to the relevant boundaries. Neither architecture is this course's default or optimisation target.
 
-## A defence in three questions
+## Version the agreement, not the person
 
-First: what did your optimization improve? Point to the frozen week 5 objective and exact evidence. A response-rate claim cannot be supported by rubric points.
+For a fictional change request, record the current agreement, proposed change, who needs to agree and what happens if they do not. A stale local assumption must not silently become everyone's new contract. Discuss privacy without collecting anyone's real relationship history.
 
-Second: what would reverse your decision? Show the shifted rule, changed case and logistics failure from weeks 9–10. A limitation that cannot affect any decision is probably just boilerplate.
+The “comfortable rut” is our maintenance scenario: the old routine no longer suits one participant. Schedule an optional check-in, surface the changed requirement and allow disagreement. More monitoring is not automatically better maintenance.
 
-Third: what happens when someone reproduces it? Provide one command or a precise manual procedure, expected outputs and the software versions used. Investigate discrepancies before formatting a prettier chart.
+## Key concept: graceful deprecation
 
-## A negative result is still a result
+A breakup protocol should communicate an ending clearly, respect safety and boundaries, and settle practical dependencies without repeated persuasion. There is no algorithm that guarantees zero emotional pain or “catastrophic emotional data loss.” Do not promise one.
 
-Your project can fail to reach the top-1% target and earn full marks. The criteria concern reproducibility, valid evaluation, deployment and technical explanation. A low rank honestly reproduced is stronger engineering evidence than a fabricated high one.
+Separate software rollback from relationships: you can restore a previous static site version; you cannot restore somebody else's consent from a backup. For the course release, document what you store, why, and how to remove your own synthetic artefacts. Never demand access to another person's accounts or logs.
 
-The dataset is deliberately small and synthetic. It teaches the mechanics of a claim, not the habits of a population. The semester ends where week 1 began: which parts of this system can you observe, and which story are you adding yourself?
+Bring week 11's release candidate. The lab produces a maintenance and exit manual, a clean reproduction log and a demonstrated software rollback. Check that every earlier model can terminate without retrying a refusal. Submit the [final project](/assessments/profile-deployment/) on **28 May, 5 pm** with its limitations intact. The semester ends when the evidence is reproducible, not when the dashboard finally flatters you.
 
-## Before the lab
-
-Bring the full [final submission bundle](/assessments/profile-deployment/) and your Objective specification. The [last lab](/sessions/12-reproducibility/) is a fresh-environment audit, with a solo reproduction option. Submission closes Friday at 5 pm Canberra time.
+[Continue to the week 12 tutorial](/sessions/12-maintenance/).

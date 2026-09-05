@@ -1,5 +1,4 @@
-// New student-directed course contract. These assertions are intentionally red
-// against the previous, working communication course; not regression claims.
+// Student-directed course contracts: built metadata, not a judgement of prose.
 import { readFileSync, readdirSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { courseMeta } from '../src/course-config';
@@ -19,11 +18,36 @@ describe('the algorithmic romance pivot', () => {
     expect(courseMeta.title).toBe('Applied Algorithmic Romance & Profile Optimization');
     expect(courseMeta.level).toBe(4);
   });
-  it('keeps the four specific weekly anchors', () => {
-    for (const [week, topic] of [[1, 'Elo'], [3, 'A/B'], [7, 'ghosting'], [10, 'Stochastic']] as const) {
-      const lecture = nodes.find((n: any) => n.type === 'lectures' && n.meta.week === week);
-      expect(lecture?.title).toContain(topic);
-    }
+  it('teaches the twelve requested lecture titles and key concepts in order', () => {
+    const lectures = nodes.filter((n: any) => n.type === 'lectures').sort((a: any, b: any) => a.meta.week - b.meta.week);
+    expect(lectures.map((n: any) => n.title)).toEqual([
+      "Introduction to Algorithmic Romance",
+      "Platform Architecture and the Elo Hierarchy",
+      "Data Acquisition: Photography as a Quantitative Asset",
+      "Natural Language Processing in Profile Bios",
+      "The Mathematics of the \"Match\"",
+      "Interaction Protocols: The Initial Message",
+      "Game Theory and Asynchronous Communication",
+      "Threat Modeling and Anomaly Detection",
+      "Transitioning to Offline Environments",
+      "Stochastic Modeling of the First Date",
+      "Post-Date Analytics and The \"Second Date\" Metric",
+      "System Maintenance and Graceful Deprecation"
+]);
+    expect(lectures.map((n: any) => n.meta.keyConcept)).toEqual([
+      "The Romantic Turing Test",
+      "The rich-get-richer dynamics of algorithmically enforced attractiveness",
+      "Minimizing the “Is that their ex cropped out?” uncertainty variable",
+      "Avoiding string redundancy and cliché overflow",
+      "Peak system load: Sunday evening swiping",
+      "Bypassing the conversational firewall",
+      "Managing latency and read-receipt strategy",
+      "False positives vs. false negatives in romantic threat detection",
+      "Reducing the friction of the digital-to-physical handshake",
+      "Navigating the “Who pays?” deadlock",
+      "Calculating Return on Investment (ROI) of time spent vs. romantic viability",
+      "Long-term relationship architecture and avoiding the “comfortable rut” system crash"
+]);
   });
   it('assesses a synthetic data report, exam and benchmarked profile release', () => {
     const work = nodes.filter((n: any) => n.type === 'assessments').sort((a: any, b: any) => a.meta.week - b.meta.week);

@@ -1,15 +1,15 @@
 ---
-title: "Applied Algorithmic Romance & Profile Optimization · Week 1"
-description: "The Hinge algorithm, a toy Elo update, and the difference between a visible result and an identifiable cause."
+title: "Introduction to Algorithmic Romance · Week 1"
+description: "The syllabus drop: an inefficient market, the No Feelings data policy and a Romantic Turing Test with a very small dataset."
 ---
 
 import DeckTools from "../components/DeckTools.astro";
 
 <DeckTools />
 
-# Applied Algorithmic Romance
+# Algorithmic Romance
 
-& Profile Optimization
+The syllabus drop.
 
 SLOP4276 · Week 01
 
@@ -17,102 +17,96 @@ Your love life has a loss function.
 
 ---
 
-## First, find the boundary
+## The opening provocation
 
-Hinge describes inputs to recommendations, not a public Elo formula.
+Love is not a mystery.
 
-Tinder says it no longer relies on Elo.
+It is an inefficient market problem solvable through data structures.
 
-A platform statement is not a source-code audit.
-
-[Platform sources and lecture notes](/lectures/week-01/)
+Our job: implement the claim, then find where its types stop making sense.
 
 ---
 
-## Our inspectable toy model
+## Three different outputs
 
-E = 1 / (1 + 10^((Q − R) / 400))
+A recommendation is not a reply.
 
-R′ = R + K × (S − E)
+A reply is not a relationship.
 
-R and Q: artificial ratings.
+“Reply observed” is data.
 
-S: a simulated result, 0 or 1.
+“They like Alex” is an inference.
 
-This is not Hinge's algorithm.
-
----
-
-## One update, by hand
-
-R = Q = 1200; K = 32; S = 1.
-
-Equal ratings give E = 0.5.
-
-R′ = 1200 + 32 × 0.5 = **1216**.
-
-Check the arithmetic before trusting the plot.
+Returning HTTP 200 is not evidence of affection.
 
 ---
 
-## Try manipulating K
+## Twelve weeks, one system
 
-Reset both ratings to 1200.
+**1–3 · Measure:** introduction, platforms, photos.
 
-With a simulated win:
+**4–7 · Model:** bios, matches, messages, latency.
 
-K = 16 → 1208. K = 64 → 1232.
+**8–12 · Ship:** threats, offline plans, first dates, follow-up, maintenance.
 
-The rating moved faster.
-
-What evidence says more people connected? None.
+Each tutorial hands an artefact to the next.
 
 ---
 
-## Three different denominators
+## Strictly: “No Feelings”
 
-Null Island's synthetic census:
+Do not invent emotion labels in a dataset.
 
-300 active → 150 available → 40 reciprocal.
+People still get to have feelings.
 
-40/150 ≈ 26.7%.
+They can decline, leave or change their minds.
 
-40/300 ≈ 13.3%.
-
-Same numerator. Different claim.
+A refusal is terminal, not a transient error.
 
 ---
 
-## The semester's pipeline
+## Romantic Turing Test
 
-**Measure** · boundaries, sampling, bio experiments.
+A: “Seeking synergistic engagement.”
 
-**Model** · features, objectives, matching, response games.
+B: “Board games, bad puns, and coffee on Friday before seven.”
 
-**Ship** · feedback, validation, simulation, release.
+Which describes our fictional Alex?
 
-The output includes its assumptions.
+Check the case facts. Do not invent a better person.
+
+---
+
+## Acquisition ethics
+
+Use the supplied synthetic data.
+
+Check provenance, permission, purpose and minimum fields.
+
+No app scraping, private messages or real-user experiments.
+
+Public visibility is not a harvesting licence.
 
 ---
 
 ## What earns a mark?
 
-Data report · **20%**
+Data report · **20%** · 19 March
 
-Theoretical matchmaking exam · **30%**
+Midterm exam · **30%** · 23 April
 
-Fictional profile deployment · **50%**
+Fictional profile release · **50%** · 28 May
 
 Engineering evidence, not romantic outcomes or a required rank.
 
 ---
 
-## Thursday: bring a failing claim
+## Thursday: draw the boundary
 
-Implement the toy update and three tests.
+Bring one observable event and one hidden variable.
 
-Draw one observable input and one hidden variable.
+Rewrite the script-like bio using supported facts.
 
-Explain what the toy cannot establish.
+Add a stop path and a rejected claim.
 
-[Week 1 lab](/sessions/01-system-boundary/) · [Toolkit](/toolkit/) · [Course home](/)
+[Week 1 tutorial](/sessions/01-system-boundary/) · [Toolkit](/toolkit/) · [Course home](/)
