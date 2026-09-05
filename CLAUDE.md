@@ -41,7 +41,13 @@ rose-tinted supporting surfaces and a restrained blue accent. Share course
 colour tokens between pages, diagram and deck; do not reintroduce cream/beige
 patches. Decorative washes must fade out before the reading column's edges.
 
-Each week builds an engineering artefact for an evaluated profile release.
+Week 1 is lecture-only: no tutorial, lab meeting or separate tutorial deliverable.
+Tutorials run in weeks 2–12, starting 4 March 2027. Build the timetable from all
+twelve lectures and attach tutorials only where they exist; never remove a
+teaching week just because it has no tutorial. Week 2 uses the week 1 lecture's
+boundary example and creates its own map within the platform audit. Protect
+the twelve-lecture/eleven-tutorial split and absence of stale links in spec/.
+Each tutorial builds an engineering artefact for an evaluated profile release.
 Use technical deadpan: define the objective, implement the model, then find the
 assumption that breaks it. The student's revised twelve-week sequence is the
 contract: introduction; platform architecture/Elo; photography; NLP/bio A/B

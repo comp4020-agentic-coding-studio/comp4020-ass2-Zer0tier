@@ -26,6 +26,6 @@ Bring the **Follow-up evaluation**, **Threat model** and all versioned inputs. D
 
 ## Deliverable: Maintenance and exit manual
 
-Save the manual, clean-run log, rollback evidence and a one-page handover index linking your twelve artefacts. No workflow may interpret a refusal as a transient error.
+Save the manual, clean-run log, rollback evidence and a one-page handover index linking your eleven tutorial artefacts. No workflow may interpret a refusal as a transient error.
 
 Submit the [final project](/assessments/profile-deployment/) by **28 May, 5 pm**. A reproducible missed rank target is acceptable; an invented success is not.

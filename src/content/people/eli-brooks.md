@@ -3,7 +3,7 @@ title: Eli Brooks
 description: "The lab tutor, helping students debug denominators, algorithm traces and experiments that accidentally test the calendar."
 role: tutor
 affiliation: Slop University · Department of Computational Courtship
-contact: Thursdays, 3.30–4 pm, Systems Lab 2, after the lab.
+contact: Thursdays in weeks 2–12, 3.30–4 pm, Systems Lab 2, after the lab.
 ---
 
 ## What to bring to Eli

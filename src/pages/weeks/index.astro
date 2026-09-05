@@ -4,25 +4,38 @@ import { withBase } from 'astro-theme-university/url';
 import CourseLayout from '../../layouts/CourseLayout.astro';
 import { formatCourseDate } from '../../lib/dates';
 const workshops = (await getPublishedCollection('sessions')).sort((a,b) => a.data.week-b.data.week);
-const lectures = await getPublishedCollection('lectures');
+const lectures = (await getPublishedCollection('lectures')).sort((a,b) => a.data.week-b.data.week);
 const assessments = await getPublishedCollection('assessments');
 const phases = ['Measure', 'Model', 'Ship'];
+const phaseFor = (week: number) => phases[week <= 3 ? 0 : week <= 7 ? 1 : 2];
 ---
 <CourseLayout title="Timetable" description="Twelve weeks. One evaluated release. Every tutorial produces an engineering artefact the next stage can inspect.">
-  <p>Lectures: Mondays, 11 am–12 pm. Tutorials: Thursdays, 2–3.30 pm. Both meet in Systems Lab 2. Teaching pauses from 5–18 April; week 7 starts on 19 April. The midterm is 23 April, 11 am–12.30 pm.</p>
+  <p>Lectures: Mondays, 11 am–12 pm. Tutorials: Thursdays, 2–3.30 pm, in weeks 2–12 only, starting 4 March. Both meet in Systems Lab 2. Week 1 is lecture-only. Teaching pauses from 5–18 April; week 7 starts on 19 April. The midterm is 23 April, 11 am–12.30 pm.</p>
   <fieldset class="week-filter" hidden>
     <legend>Explore a chapter</legend>
     <div class="filter-buttons"><button type="button" aria-pressed="true" data-phase="all">All 12 weeks</button>{phases.map(phase => <button type="button" aria-pressed="false" data-phase={phase}>{phase}</button>)}</div>
   </fieldset>
   <p id="week-count" aria-live="polite" class="eyebrow">12 teaching weeks</p>
   <ol class="week-list">
-    {workshops.map(workshop => {
-      const lecture = lectures.find(item => item.data.week === workshop.data.week)!;
-      const due = assessments.find(item => item.data.week === workshop.data.week);
-      return <li class="week-row" data-week-phase={workshop.data.phase}>
-        <span class="week-number" aria-label={`Week ${workshop.data.week}`}>{String(workshop.data.week).padStart(2,'0')}</span>
-        <div><p class="week-meta">{workshop.data.phase} · Lecture {formatCourseDate(lecture.data.date)}</p><h2><a href={withBase(`/lectures/${lecture.id}/`)}>{workshop.data.title}</a></h2><p>{workshop.data.description}</p><p class="week-meta">Tutorial {formatCourseDate(workshop.data.date)} · Make: {workshop.data.output}</p>{due && <p><a href={withBase(`/assessments/${due.id}/`)}>{due.data.title} · {formatCourseDate(due.data.due)} · {due.data.weight}%</a></p>}</div>
-        <div class="week-actions"><a href={withBase(`/lectures/${lecture.id}/`)}>Lecture ↗</a><a href={withBase(`/sessions/${workshop.id}/`)}>Tutorial ↗</a></div>
+    {lectures.map(lecture => {
+      const workshop = workshops.find(item => item.data.week === lecture.data.week);
+      const due = assessments.find(item => item.data.week === lecture.data.week);
+      const phase = phaseFor(lecture.data.week);
+      return <li class="week-row" data-week={lecture.data.week} data-week-phase={phase}>
+        <span class="week-number" aria-label={`Week ${lecture.data.week}`}>{String(lecture.data.week).padStart(2,'0')}</span>
+        <div>
+          <p class="week-meta">{phase} · Lecture {formatCourseDate(lecture.data.date)}</p>
+          <h2><a href={withBase(`/lectures/${lecture.id}/`)}>{lecture.data.title}</a></h2>
+          <p>{lecture.data.description}</p>
+          <p class="week-meta">{workshop
+            ? <>Tutorial {formatCourseDate(workshop.data.date)} · Make: {workshop.data.output}</>
+            : <>No tutorial in week {lecture.data.week} · Lecture only</>}</p>
+          {due && <p><a href={withBase(`/assessments/${due.id}/`)}>{due.data.title} · {formatCourseDate(due.data.due)} · {due.data.weight}%</a></p>}
+        </div>
+        <div class="week-actions">
+          <a href={withBase(`/lectures/${lecture.id}/`)}>Lecture ↗</a>
+          {workshop && <a href={withBase(`/sessions/${workshop.id}/`)}>Tutorial ↗</a>}
+        </div>
       </li>;
     })}
   </ol>

@@ -6,7 +6,7 @@ date: 2027-02-22
 teachers: [mira-chen]
 keyConcept: "The Romantic Turing Test"
 slides: /decks/week-01/
-related: [sessions/01-system-boundary]
+related: [sessions/02-platforms]
 ---
 
 ## The syllabus drop
@@ -17,7 +17,9 @@ This is a fourth-year course for students comfortable with probability and pseud
 
 ## One system, twelve weeks
 
-Start with platform architecture and photo assets. Move through bio experiments, mutual-selection probability, opening messages and asynchronous communication. Then examine threats, offline logistics, Markov first dates, follow-up decisions and maintenance. Each Thursday adds one artefact to the same fictional profile release.
+Start with platform architecture and photo assets. Move through bio experiments, mutual-selection probability, opening messages and asynchronous communication. Then examine threats, offline logistics, Markov first dates, follow-up decisions and maintenance. From week 2, each Thursday tutorial adds one artefact to the same fictional profile release.
+
+**No tutorial in week 1.** This week is lecture-only. The first tutorial is **Thursday 4 March, 2–3.30 pm**, in week 2.
 
 The [data report](/assessments/market-report/) is **20%**, due 19 March. The [midterm](/assessments/matchmaking-exam/) is **30%**, on 23 April. The [final profile deployment](/assessments/profile-deployment/) is **50%**, due 28 May. Evidence earns marks; romantic outcomes and benchmark rank do not.
 
@@ -31,6 +33,8 @@ Our scraping ethics begin with provenance, permission, purpose and minimisation.
 
 Can a fictional bio convince a reader that it describes a person rather than a collection of optimization scripts? Compare “high-availability companion seeking synergistic engagement” with “Board games, bad puns, and coffee on Friday before seven.” The second can be checked against Alex's case facts. Neither is permission to impersonate someone.
 
-For Thursday, draw inputs, observable events and hidden state. Bring one sentence your data can support and one it cannot. The [lecture deck](/decks/week-01/) supplies the semester map.
+## A boundary example from the lecture
 
-[Continue to the week 1 tutorial](/sessions/01-system-boundary/).
+Put Alex's supplied availability under inputs, “reply received” under observable events, and the recipient's motivation under hidden state. The first two can support a factual statement; the third cannot be recovered from a reply alone. Week 2 develops this example into a platform audit. There is no separate week 1 tutorial deliverable.
+
+The [lecture deck](/decks/week-01/) supplies the semester map. Continue to [week 2's lecture](/lectures/week-02/) and the [first tutorial](/sessions/02-platforms/).

@@ -81,6 +81,17 @@ async function inspectDecorations(page) {
   }
 }
 
+async function inspectTutorialSchedule(page) {
+  assert.equal(await page.locator('.week-row:visible').count(), 12);
+  const firstWeek = page.locator('.week-row[data-week="1"]');
+  assert(await firstWeek.isVisible(), 'The lecture-only week remains in the timetable');
+  assert.match(await firstWeek.innerText(), /No tutorial in week 1/);
+  assert.equal(await firstWeek.locator('a[href*="/sessions/"]').count(), 0);
+  assert.equal(await firstWeek.locator('a[href*="/lectures/week-01/"]').count(), 2);
+  const secondWeek = page.locator('.week-row[data-week="2"]');
+  assert.equal(await secondWeek.locator('a[href*="/sessions/02-platforms/"]').count(), 1);
+}
+
 async function inspectPalette(page) {
   const colours = await page.evaluate(() => {
     const background = selector => getComputedStyle(document.querySelector(selector)).backgroundColor;
@@ -106,6 +117,16 @@ try {
       await page.evaluate(() => document.fonts.ready);
       const deck = route.startsWith('decks/');
       if (!deck) assert.equal(await page.locator('h1').count(), 1, `One page heading required: ${route}`);
+      if (route === 'weeks/') {
+        await inspectTutorialSchedule(page);
+        await page.locator('.week-row[data-week="1"]').screenshot({path:`${screenshots}/lecture-only-week-${viewport.width}.png`});
+      }
+      if (route === 'sessions/') {
+        const tutorialLinks = page.locator('.at-main a[href*="/sessions/"]');
+        assert.equal(await tutorialLinks.count(), 11);
+        assert((await tutorialLinks.first().getAttribute('href')).endsWith('/sessions/02-platforms/'));
+        assert.match(await page.locator('.at-main').innerText(), /No tutorial in week 1/);
+      }
       if (route === '') {
         await inspectNavigation(page);
         await inspectPalette(page);
@@ -174,7 +195,7 @@ try {
   const noJs = await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
   const staticPage = await noJs.newPage();
   await staticPage.goto(root+'weeks/');
-  assert.equal(await staticPage.locator('.week-row:visible').count(),12);
+  await inspectTutorialSchedule(staticPage);
   await staticPage.goto(root+'toolkit/');
   assert.equal(await staticPage.locator('#bio-experiment').isVisible(),false);
   assert.match(await staticPage.locator('.experiment-panel').innerText(), /z = 1\.33/);
@@ -188,6 +209,11 @@ try {
   await page.getByRole('button',{name:'All 12 weeks',exact:true}).focus();
   await page.keyboard.press('Enter');
   assert.equal(await page.locator('.week-row:visible').count(),12);
+  await page.getByRole('button',{name:'Measure',exact:true}).click();
+  assert.equal(await page.locator('.week-row:visible').count(),3);
+  assert(await page.locator('.week-row[data-week="1"]').isVisible());
+  await page.getByRole('button',{name:'All 12 weeks',exact:true}).click();
+  await inspectTutorialSchedule(page);
   const menu = page.getByRole('button',{name:'Menu',exact:true});
   await menu.click();
   assert.equal(await menu.getAttribute('aria-expanded'),'true');

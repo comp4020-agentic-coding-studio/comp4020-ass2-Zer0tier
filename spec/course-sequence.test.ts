@@ -15,9 +15,8 @@ const nodes = api.nodes as Node[];
 const workshops = nodes.filter(n => n.type === "sessions").sort((a, b) => a.meta.week - b.meta.week);
 
 describe("the engineering release students are promised", () => {
-  it("builds twelve distinct pieces in the promised order", () => {
+  it("builds eleven tutorial artefacts in the promised order", () => {
     expect(workshops.map(n => n.meta.output)).toEqual([
-      "System boundary map",
       "Platform audit",
       "Photo asset manifest",
       "Bio experiment protocol",
@@ -87,7 +86,7 @@ describe("the engineering release students are promised", () => {
 
   it("keeps weekly lectures on Mondays and workshops on Thursdays, across the break", () => {
     expect(workshops.map(n => String(n.meta.date).slice(0, 10))).toEqual([
-      "2027-02-25", "2027-03-04", "2027-03-11", "2027-03-18",
+      "2027-03-04", "2027-03-11", "2027-03-18",
       "2027-03-25", "2027-04-01", "2027-04-22", "2027-04-29",
       "2027-05-06", "2027-05-13", "2027-05-20", "2027-05-27",
     ]);

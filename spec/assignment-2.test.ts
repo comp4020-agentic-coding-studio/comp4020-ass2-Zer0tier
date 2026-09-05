@@ -30,13 +30,14 @@ describe("Assignment 2 spec", () => {
   });
 
   it("runs across twelve dated teaching weeks", () => {
-    const weeks = byType("sessions")
+    // Twelve teaching weeks do not require twelve tutorial meetings.
+    const weeks = byType("lectures")
       .map((n) => n.meta?.week)
       .sort((a, b) => (a as number) - (b as number));
     expect(weeks).toEqual(Array.from({ length: 12 }, (_, i) => i + 1));
 
-    for (const session of byType("sessions")) {
-      expect(session.meta?.date, `${session.id} has no date`).toMatch(/^\d{4}-\d{2}-\d{2}/);
+    for (const lecture of byType("lectures")) {
+      expect(lecture.meta?.date, `${lecture.id} has no date`).toMatch(/^\d{4}-\d{2}-\d{2}/);
     }
   });
 

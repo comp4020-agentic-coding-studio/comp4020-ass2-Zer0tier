@@ -6,8 +6,8 @@ date: 2027-04-29
 teachers: [eli-brooks]
 phase: Ship
 output: "Threat model"
-buildsOn: ["sessions/01-system-boundary","sessions/07-communication"]
-related: ["lectures/week-08","sessions/01-system-boundary","sessions/07-communication"]
+buildsOn: ["sessions/02-platforms","sessions/07-communication"]
+related: ["lectures/week-08","sessions/02-platforms","sessions/07-communication"]
 spec:
   - "TP 8, FN 2, FP 18 and TN 72 yield precision 8/26; a flag is evidence for review, not proof of malice."
   - "Use synthetic data; solo implementation and review are accepted."
@@ -15,7 +15,7 @@ spec:
 
 ## Inputs
 
-Bring the **Communication state machine** and **System boundary map**. Work with invented case cards, never real identities.
+Bring the **Communication state machine** and the boundary map from your week 2 **Platform audit**. Work with invented case cards, never real identities.
 
 ## 90-minute tutorial
 
