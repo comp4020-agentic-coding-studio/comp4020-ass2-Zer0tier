@@ -8,8 +8,8 @@ const lectures = await getPublishedCollection('lectures');
 const assessments = await getPublishedCollection('assessments');
 const phases = ['Measure', 'Model', 'Ship'];
 ---
-<CourseLayout title="Twelve weeks. One evaluated release." description="Measure, model and ship a fictional dating profile. Every lab produces an engineering artefact the next stage can inspect.">
-  <p>Lectures: Mondays, 11 am–12 pm. Labs: Thursdays, 2–3.30 pm. Both meet in Systems Lab 2. Teaching pauses from 5–18 April; week 7 starts on 19 April. The midterm is 23 April, 11 am–12.30 pm.</p>
+<CourseLayout title="Timetable" description="Twelve weeks. One evaluated release. Every tutorial produces an engineering artefact the next stage can inspect.">
+  <p>Lectures: Mondays, 11 am–12 pm. Tutorials: Thursdays, 2–3.30 pm. Both meet in Systems Lab 2. Teaching pauses from 5–18 April; week 7 starts on 19 April. The midterm is 23 April, 11 am–12.30 pm.</p>
   <fieldset class="week-filter" hidden>
     <legend>Explore a chapter</legend>
     <div class="filter-buttons"><button type="button" aria-pressed="true" data-phase="all">All 12 weeks</button>{phases.map(phase => <button type="button" aria-pressed="false" data-phase={phase}>{phase}</button>)}</div>
@@ -21,8 +21,8 @@ const phases = ['Measure', 'Model', 'Ship'];
       const due = assessments.find(item => item.data.week === workshop.data.week);
       return <li class="week-row" data-week-phase={workshop.data.phase}>
         <span class="week-number" aria-label={`Week ${workshop.data.week}`}>{String(workshop.data.week).padStart(2,'0')}</span>
-        <div><p class="week-meta">{workshop.data.phase} · Lecture {formatCourseDate(lecture.data.date)}</p><h2><a href={withBase(`/lectures/${lecture.id}/`)}>{workshop.data.title}</a></h2><p>{workshop.data.description}</p><p class="week-meta">Lab {formatCourseDate(workshop.data.date)} · Make: {workshop.data.output}</p>{due && <p><a href={withBase(`/assessments/${due.id}/`)}>{due.data.title} · {formatCourseDate(due.data.due)} · {due.data.weight}%</a></p>}</div>
-        <div class="week-actions"><a href={withBase(`/lectures/${lecture.id}/`)}>Lecture ↗</a><a href={withBase(`/sessions/${workshop.id}/`)}>Lab ↗</a></div>
+        <div><p class="week-meta">{workshop.data.phase} · Lecture {formatCourseDate(lecture.data.date)}</p><h2><a href={withBase(`/lectures/${lecture.id}/`)}>{workshop.data.title}</a></h2><p>{workshop.data.description}</p><p class="week-meta">Tutorial {formatCourseDate(workshop.data.date)} · Make: {workshop.data.output}</p>{due && <p><a href={withBase(`/assessments/${due.id}/`)}>{due.data.title} · {formatCourseDate(due.data.due)} · {due.data.weight}%</a></p>}</div>
+        <div class="week-actions"><a href={withBase(`/lectures/${lecture.id}/`)}>Lecture ↗</a><a href={withBase(`/sessions/${workshop.id}/`)}>Tutorial ↗</a></div>
       </li>;
     })}
   </ol>

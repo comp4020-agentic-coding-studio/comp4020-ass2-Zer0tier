@@ -17,6 +17,41 @@ const findings = [];
 const consoleErrors = [];
 const screenshots = process.env.AUDIT_SCREENSHOTS ?? '/tmp/partner-audit';
 mkdirSync(screenshots, { recursive: true });
+const navigationLabels = ['Home','Lectures','Tutorials','Assignments','People','Readings','Timetable','Help','FAQ','Policies'];
+
+async function inspectNavigation(page) {
+  const toggle = page.getByRole('button',{name:'Menu',exact:true});
+  const phone = await toggle.isVisible();
+  if (phone) {
+    await toggle.click();
+    // A link can report visible while its parent still clips it mid-transition.
+    // Wait for the entire list to fit before measuring or taking evidence.
+    await page.waitForFunction(() => {
+      const wrapper = document.querySelector('.at-nav-links-wrapper');
+      const list = document.querySelector('.at-nav-links');
+      return wrapper.clientHeight >= list.scrollHeight - 1;
+    });
+  }
+  const links = page.locator('.at-nav-links a');
+  assert.deepEqual(await links.allTextContents(),navigationLabels);
+  for (const link of await links.all()) {
+    assert(await link.isVisible(),`Hidden menu section: ${await link.innerText()}`);
+    const box = await link.boundingBox();
+    assert(box && box.x >= 0 && box.x + box.width <= page.viewportSize().width,
+      `Clipped menu section: ${await link.innerText()}`);
+    assert(box.height >= 44,'Navigation targets should be at least 44px tall');
+    if (phone) {
+      const wrapper = await page.locator('.at-nav-links-wrapper').boundingBox();
+      assert(wrapper && box.y >= wrapper.y && box.y + box.height <= wrapper.y + wrapper.height + 1,
+        `Menu wrapper clips ${await link.innerText()}`);
+    }
+  }
+  if (phone) {
+    await page.screenshot({path:`${screenshots}/menu-${page.viewportSize().width}.png`});
+    await page.keyboard.press('Escape');
+    assert.equal(await toggle.getAttribute('aria-expanded'),'false');
+  }
+}
 
 try {
   for (const viewport of [{width:1920,height:1080},{width:390,height:844}]) {
@@ -30,6 +65,22 @@ try {
       await page.evaluate(() => document.fonts.ready);
       const deck = route.startsWith('decks/');
       if (!deck) assert.equal(await page.locator('h1').count(), 1, `One page heading required: ${route}`);
+      if (route === '') await inspectNavigation(page);
+      if (route === 'lectures/week-03/') {
+        const prose = await page.locator('.at-main > p:not(.lead)').first().evaluate(el => {
+          const style = getComputedStyle(el);
+          // Astro's variable contains a family list, including a local Arial
+          // fallback that need not exist on Linux. Check the primary face.
+          const family = getComputedStyle(document.documentElement).getPropertyValue('--font-public-sans').split(',')[0].trim();
+          return {font:style.fontFamily,family,size:parseFloat(style.fontSize),leading:parseFloat(style.lineHeight),
+            width:el.getBoundingClientRect().width,max:parseFloat(style.maxWidth),
+            loaded:[...document.fonts].some(face=>face.family===family.replaceAll('"','') && face.style==='normal' && face.status==='loaded')};
+        });
+        assert(prose.family && prose.loaded,'The bundled reading font must load');
+        assert(prose.font.startsWith(prose.family),'Main prose must use the bundled Public Sans family');
+        assert.equal(prose.size,18,'Main reading text should be 18px');
+        assert(prose.leading >= 29.5 && prose.width <= prose.max + 1,'Comfortable leading and bounded reading width');
+      }
       if (deck) {
         await page.waitForSelector('.reveal.ready');
         await page.keyboard.press('Escape');
@@ -58,7 +109,7 @@ try {
       });
       if (violations.length || geometry.width !== geometry.scrollWidth || geometry.small.length) findings.push({route,viewport,violations,geometry});
       await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
-      if (['','weeks/','lectures/week-03/','lectures/week-07/','lectures/week-10/','sessions/12-reproducibility/','assessments/profile-deployment/','toolkit/','policies/','decks/week-01/'].includes(route)) {
+      if (['','weeks/','readings/','help/','faq/','lectures/week-03/','lectures/week-07/','lectures/week-10/','sessions/12-reproducibility/','assessments/profile-deployment/','toolkit/','policies/','decks/week-01/'].includes(route)) {
         await page.screenshot({path:`${screenshots}/${route.replaceAll('/','-') || 'home'}-${viewport.width}.png`,fullPage:!deck});
         if (route === '') await page.screenshot({path:`${screenshots}/home-${viewport.width}-viewport.png`});
         if (route === 'toolkit/') await page.locator('.experiment-panel').screenshot({path:`${screenshots}/experiment-${viewport.width}.png`});
@@ -94,8 +145,10 @@ try {
   assert.equal(await menu.getAttribute('aria-expanded'),'false');
   for (const width of [639,640,768,1024,1440,1920,390]) {
     await page.setViewportSize({width,height:844});
+    await inspectNavigation(page);
     assert(await page.evaluate(()=>document.documentElement.scrollWidth===innerWidth), `Overflow after resize to ${width}`);
   }
+  assert.deepEqual(await page.locator('.at-nav-links a[aria-current]').allTextContents(),['Timetable']);
   await page.getByRole('button',{name:'Search (Cmd+K)',exact:true}).click();
   const search = page.locator('dialog input');
   await search.fill('stochastic');
@@ -103,6 +156,17 @@ try {
   assert((await page.locator('dialog .at-search-result').count())>0);
   await page.keyboard.press('Escape');
   console.log('Syllabus filter, no-JS content, menu, resize and built search passed.');
+
+  await page.goto(root+'faq/');
+  const question = page.locator('summary').first();
+  await question.focus();
+  await page.keyboard.press('Enter');
+  assert.equal(await question.evaluate(el=>el.parentElement.open),true);
+  assert.equal(await page.getByRole('link',{name:'participation policies',exact:true}).isVisible(),true);
+  await page.screenshot({path:`${screenshots}/faq-expanded-390.png`,fullPage:true});
+  await page.keyboard.press('Enter');
+  assert.equal(await question.evaluate(el=>el.parentElement.open),false);
+  console.log('FAQ disclosure opens and closes with the keyboard.');
 
   await page.goto(root+'toolkit/');
   await page.getByRole('button',{name:'Compare bios',exact:true}).click();
