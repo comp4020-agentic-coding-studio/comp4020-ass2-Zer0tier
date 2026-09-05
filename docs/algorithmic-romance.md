@@ -8,7 +8,9 @@ technical deadpan humour. Their anchors were Hinge/Elo in week 1, Tinder bio A/B
 tests in week 3, ghosting/game theory in week 7, and first-date stochastic models
 in week 10. The assessment split stays 20/30/50, now a report, exam and deployment.
 This supersedes the curriculum in [the earlier record](course-direction.md);
-the pink/blue accents and native system paragraph typography are retained.
+the pink/blue accents and native system paragraph typography were retained at
+that checkpoint. The later [navigation and readability update](navigation-readability.md)
+replaces that typography with Public Sans.
 
 ## Constraints made explicit before implementation
 

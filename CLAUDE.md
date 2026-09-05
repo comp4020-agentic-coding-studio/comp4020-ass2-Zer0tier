@@ -28,6 +28,10 @@ Use 18px main prose, comfortable leading and a bounded reading width. Judge them
 together on real long-form pages at both marking viewports; a font-family change
 alone is not a readability check. Preserve pink/blue accents and SlopU branding.
 
+For font verification, inspect the loaded primary face: Astro's font variable
+also contains optional local fallbacks. For animated menus, wait until the list
+fits its wrapper and measure clipping; `isVisible()` alone is not enough.
+
 Each week builds an engineering artefact for an evaluated profile release.
 Use technical deadpan: define the objective, implement the model, then find the
 assumption that breaks it. Preserve the requested week 1/3/7/10 anchors and the
