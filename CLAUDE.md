@@ -1,5 +1,31 @@
 # Your harness
 
+## Assignment 2 direction: How to Find a Partner
+
+Read this file before each task. Read `README.md` and the published assignment
+and assessment pages before planning or building. Evolve in verified increments.
+This assignment needs no separate reflection; `PROCESS.md` is the student's own
+400–600-word account. Keep factual agent work notes in `docs/`, without writing
+first-person experiences or pretending the student accepted an unreviewed result.
+
+The student chose finding a boyfriend or girlfriend, with pink and blue. The
+course narrows that to the path from a first hello to a mutually chosen
+relationship. Keep SLOP1276, all four collection schemas and the generated API.
+Keep the SlopU marks and three institutional colour tokens untouched; pink and
+blue are course accent tokens, never gender labels.
+
+Each week teaches a distinct decision and produces a named piece of a dating
+field guide. Later workshops must explicitly use an earlier piece. Assessments
+test choices and communication in fictional cases: no student needs to get a
+date, use an app, disclose personal history, or recruit another person. Give a
+solo written alternative to every role-play. Never grade romantic outcomes.
+
+Protect the actual sequence, assessment preparation and dates in `spec/` using
+literal expected milestones. Human review must still judge the voice, examples,
+and whether the later task really needs the earlier work. A metadata link alone
+does not prove that. Verify outside reading links and distinguish a course
+exercise from a research finding; never invent dating success statistics.
+
 The platform under you is fixed and documented in `README.md`, and the
 [course website](https://comp.anu.edu.au/courses/comp4020-agentic-coding-studio/)
 publishes this deliverable's brief and spec. Read both before you plan or
