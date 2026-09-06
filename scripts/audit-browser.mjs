@@ -3,6 +3,7 @@ import { createRequire } from 'node:module';
 import { readdirSync, mkdirSync, writeFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { gitOrigin, resolveDeployment } from './pages-base.ts';
+import { inspectDeck } from './audit-decks.mjs';
 
 const { base } = resolveDeployment(process.env, gitOrigin);
 const origin = process.env.AUDIT_ORIGIN ?? 'http://127.0.0.1:4322';
@@ -95,14 +96,10 @@ async function inspectTutorialSchedule(page) {
 async function inspectPalette(page) {
   const colours = await page.evaluate(() => {
     const background = selector => getComputedStyle(document.querySelector(selector)).backgroundColor;
-    return {paper:background('body'),header:background('.at-nav'),main:background('.at-main'),
-      footer:background('.at-footer'),panel:background('.phase-card:last-child'),
-      diagram:getComputedStyle(document.querySelector('.hero-art > rect:first-of-type')).fill};
+    return {paper:background('body'),header:background('.at-nav'),main:background('.at-main')};
   });
   assert.equal(colours.header,colours.paper,'Header and page share the blossom paper colour');
   assert.equal(colours.main,colours.paper,'Reading area has no mismatched background block');
-  assert.equal(colours.diagram,colours.footer,'Diagram and footer share the supporting surface colour');
-  assert.equal(colours.panel,colours.footer,'Neutral cards share the supporting surface colour');
 }
 
 try {
@@ -149,9 +146,6 @@ try {
       }
       if (deck) {
         await page.waitForSelector('.reveal.ready');
-        await page.keyboard.press('Escape');
-        // Escape dismisses the first-run hint; do not toggle overview mode.
-        if (await page.locator('.reveal.overview').count()) await page.keyboard.press('Escape');
       }
       await page.addScriptTag({path:axePath});
       const violations = await page.evaluate(async () => (await window.axe.run(document, {
@@ -281,28 +275,15 @@ try {
   await network.send('Network.setCacheDisabled',{cacheDisabled:true});
   await network.send('Network.emulateNetworkConditions',{offline:false,latency:150,downloadThroughput:200000,uploadThroughput:100000});
   await page.goto(root);
-  assert.equal(await page.getByRole('link',{name:'Start with week 1'}).count(),1);
+  assert.equal(await page.getByRole('region',{name:'Course materials'}).getByRole('link',{name:/^Lectures/}).count(),1);
   assert(await page.evaluate(()=>document.documentElement.scrollWidth===innerWidth));
   await network.send('Network.emulateNetworkConditions',{offline:false,latency:0,downloadThroughput:-1,uploadThroughput:-1});
   await network.detach();
   console.log('Phone homepage remained usable with a cold cache, 150ms latency and 200kB/s download.');
 
-  await page.goto(root+'decks/week-01/');
-  await page.waitForSelector('.reveal.ready');
-  if (await page.locator('.astromotion-help-hint').count()) await page.locator('.astromotion-help-hint').click();
-  await page.getByRole('button',{name:'Next',exact:true}).click();
-  await page.waitForFunction(()=>location.hash==='#/2');
-  await page.locator('.reveal').click({position:{x:20,y:20}});
-  await page.keyboard.press('ArrowRight');
-  await page.waitForFunction(()=>location.hash==='#/3');
-  for (let slide=1;slide<=9;slide++) {
-    await page.goto(`${root}decks/week-01/#/${slide}`);
-    await page.waitForSelector('.reveal.ready');
-    await page.waitForFunction(expected => document.querySelector('.slides > section.present') === document.querySelectorAll('.slides > section')[expected-1], slide);
-    const fits = await page.locator('.slides > section.present').evaluate(el=>el.scrollHeight<=el.clientHeight+1);
-    assert(fits, `Slide ${slide} exceeds phone slide area`);
+  for (const route of routes.filter(route => route.startsWith('decks/'))) {
+    await inspectDeck(page, root + route, screenshots);
   }
-  console.log('Deck buttons, arrow keys and every phone slide passed.');
   assert.deepEqual(consoleErrors, [], 'Browser JavaScript errors');
   writeFileSync(`${screenshots}/report.json`,JSON.stringify({routes:routes.length,findings,consoleErrors},null,2));
   assert.equal(findings.length,0,'Browser accessibility or target-size findings');

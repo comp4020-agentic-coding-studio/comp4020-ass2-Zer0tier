@@ -8,10 +8,11 @@ This assignment needs no separate reflection; `PROCESS.md` is the student's own
 400–600-word account. Keep factual agent work notes in `docs/`, without writing
 first-person experiences or pretending the student accepted an unreviewed result.
 
-The student rejected the broad first-hello course and chose a fourth-year CS
-course about dating-profile systems, experiments and optimization. Use SLOP4276:
-the requested SLOP4214 conflicts with this repo's allocated suffix, 276. Preserve
-all four collection schemas and the generated API.
+The student rejected the broad first-hello course and chose a CS course about
+dating-profile systems, experiments and optimization. Keep the provisioned
+course code **SLOP1276** unchanged, as explicitly requested. Keep metadata at
+level 1 to match the code, and do not describe the course as fourth-year.
+Preserve all four collection schemas and the generated API.
 Keep the SlopU marks and three institutional colour tokens untouched; pink and
 blue are course accent tokens, never gender labels.
 
@@ -58,9 +59,9 @@ concepts in spec/, not just four anchors. Keep the 20% data report, 30% midterm
 exam and 50% profile-deployment project. Preparation must precede assessment:
 bio testing is now week 4, and the exam cannot require the removed stable-
 matching lesson. Preserve existing teaching dates and the pink/blossom design.
-Later labs must use earlier artefacts, not merely link to them. Require algorithm traces,
-statistical reasoning, sensitivity tests and reproducible code appropriate to
-level 4; this is not generic dating advice with CS nouns swapped in.
+Later labs must use earlier artefacts, not merely link to them. Require algorithm
+traces, statistical reasoning, sensitivity tests and reproducible code; keep
+these tied to the course's probability and pseudocode prerequisites.
 
 Platform claims need primary sources. Hinge's public description is not source
 code, and a toy Elo updater is not its algorithm. Label every synthetic dataset
@@ -93,6 +94,10 @@ build.
 - Keep the dev server running (`pnpm dev`) so you see changes as you make
   them.
 - Run `pnpm check` before you push.
+- After each requested change is complete and verified, commit the work before
+  ending the task. The student explicitly requires commits after changes.
+- Push when requested; include all completed local commits when the student
+  asks to push everything so far.
 - Open the page in a browser and look at it. The rendered page is the truth;
   your mental model of it isn't.
 - When a check fails, read its output before you change anything.

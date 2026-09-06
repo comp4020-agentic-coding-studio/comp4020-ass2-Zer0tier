@@ -1,12 +1,13 @@
 # The spec
 
-## SLOP4276 prototype checks
+## SLOP1276 prototype checks
 
 `assignment-2.test.ts` protects the allocated code suffix, twelve weeks,
 assessment total and authored deck. `course-sequence.test.ts` protects the
 literal engineering milestones, earlier-work dependencies, assessment
 preparation and the teaching dates across the break. `algorithmic-romance.test.ts`
-protects the student's CS title, level, four weekly anchors, assessment types
+protects the student's CS title, unchanged SLOP1276 code and matching level-1
+metadata, four weekly anchors, assessment types
 and synthetic benchmark scope. `quantitative-models.test.ts` uses literal
 arithmetic oracles for Elo, the bio experiment, census, control count, conservative
 ties and shifted scoring. None judges prose quality, feature-rating honesty or
@@ -18,6 +19,10 @@ After `pnpm check`, start `pnpm preview --port 4322` and run
 filters, search, mobile navigation, resizing and the deck. It also checks that
 all twelve weeks remain available without JavaScript, and drives the A/B
 calculator's valid/invalid/reset states and imports the downloadable scorer.
+The deck checks cover slides without controls or first-visit hints, A/D and
+wheel navigation, Esc returning to the lecture, keyboard/input conflicts,
+and all slides fitting at five viewport sizes. Run just those checks
+against the built preview with `node scripts/audit-decks.mjs`.
 Install Playwright's
 Chromium if needed with `pnpm exec playwright install chromium`; Linux needs its
 browser system libraries. `AUDIT_ORIGIN` can select another preview origin.

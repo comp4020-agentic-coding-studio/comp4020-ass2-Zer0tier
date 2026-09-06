@@ -17,9 +17,10 @@ replaces that typography with Public Sans.
 
 ## Constraints made explicit before implementation
 
-The requested SLOP4214 conflicts with the fixed suffix 276 documented in README
-and `spec/assignment-2.test.ts`. The implementation uses SLOP4276, retaining the
-student's level-4 choice. This conflict was explained before edits.
+The student's latest instruction preserves the provisioned code **SLOP1276**
+unchanged, superseding the earlier proposed code and level. The metadata uses
+level 1 to match the code. This is protected in `spec/algorithmic-romance.test.ts`;
+`spec/assignment-2.test.ts` also protects the allocated suffix 276.
 
 The course's repeated question becomes: **what did you actually optimize?**
 The path is measurement (weeks 1–3), modelling (4–7), and validation/deployment

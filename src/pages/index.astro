@@ -1,81 +1,130 @@
 ---
-import { getPublishedCollection } from 'astro-course-university/content';
 import { withBase } from 'astro-theme-university/url';
 import CourseLayout from '../layouts/CourseLayout.astro';
-import ConnectionArt from '../components/ConnectionArt.astro';
 import { courseMeta } from '../course-config';
-import { formatCourseDate } from '../lib/dates';
-const assessments = (await getPublishedCollection('assessments')).sort((a,b) => a.data.week-b.data.week);
-const [titleMain, titleSpecial] = courseMeta.title.split(' & ');
+import { sessionLabels } from '../site-config';
+
+const materials = [
+  { title: 'Lectures', href: '/lectures/', description: 'Weekly lecture notes, worked examples and the introductory slide deck.' },
+  { title: sessionLabels.plural, href: '/sessions/', description: 'Practical labs, preparation and exercises for weeks 2–12.' },
+  { title: 'Assignments', href: '/assessments/', description: 'Data report, midterm exam and profile-deployment project briefs.' },
+  { title: 'Readings', href: '/readings/', description: 'Weekly sources and guidance on what to take from them.' },
+  { title: 'Course toolkit', href: '/toolkit/', description: 'Synthetic datasets, executable models and the Null Island benchmark.' },
+  { title: 'Timetable', href: '/weeks/', description: 'All twelve teaching weeks, tutorial dates and assessment deadlines.' },
+];
 ---
+
 <CourseLayout title={courseMeta.title} description={courseMeta.description} home>
-  <div class="home-content">
-    <section class="home-hero" aria-labelledby="course-title">
-      <div>
-        <span class="eyebrow">Department of Computational Courtship · Slop University</span>
-        <h1 id="course-title" class="technical-title">{titleMain} <em>&amp; {titleSpecial}</em></h1>
-        <p class="intro">Your love life has a loss function.</p>
-        <p class="description">A fourth-year CS course in algorithmic romance: from profile photos and bio tests to first-date Markov chains and graceful endings. Every optimisation ships with its assumptions.</p>
-        <div class="hero-actions">
-          <a class="button" href={withBase('/lectures/week-01/')}>Start with week 1 <span aria-hidden="true">↗</span></a>
-          <a class="button secondary" href={withBase('/toolkit/')}>Open the lab toolkit <span aria-hidden="true">→</span></a>
-        </div>
-        <p class="hero-note">Bring probability and pseudocode. Relationship status: not a dependency.</p>
-      </div>
-      <ConnectionArt />
+  <div class="course-home">
+    <header class="course-introduction">
+      <h1>{courseMeta.title}</h1>
+      <p>A computer science course exploring dating-profile systems through probability, experiment design and algorithmic modelling. Study platform rankings, profile photos and bios, messaging, first-date models and relationship maintenance.</p>
+      <p>Across twelve weeks, use synthetic data and fictional cases to test assumptions and build a reproducible profile release. Assessment focuses on your engineering and evidence; no dating-app account or real-world dating experiment is required.</p>
+    </header>
+
+    <section aria-labelledby="learning-outcomes">
+      <h2 id="learning-outcomes">Learning outcomes</h2>
+      <p>At the completion of this course, you will be able to:</p>
+      <ol class="outcomes">
+        <li>Define a sampling frame and an experiment that separates a profile change from an exposure change.</li>
+        <li>Implement ranking, mutual-selection, messaging and conversation-state models under explicit assumptions.</li>
+        <li>Evaluate a frozen candidate with uncertainty, sensitivity tests and an exact simulation check.</li>
+        <li>Deploy a reproducible fictional profile with a threat model, maintenance plan and a defensible evaluation against the synthetic Null Island benchmark.</li>
+      </ol>
     </section>
 
-    <dl class="facts-strip">
-      <div><dt>Your course</dt><dd>{courseMeta.code} · Level {courseMeta.level} undergraduate</dd></div>
-      <div><dt>Teaching period</dt><dd>{courseMeta.session}, {courseMeta.year}</dd></div>
-      <div><dt>The commitment</dt><dd>12 weeks · 6 hours a week</dd></div>
-      <div><dt>Your final release</dt><dd>A profile. A benchmark. A defence.</dd></div>
-    </dl>
-
-    <div class="home-columns">
-      <section aria-labelledby="about-course">
-        <span class="eyebrow">For engineers who read the assumptions</span>
-        <h2 id="about-course">What did you actually optimize?</h2>
-        <p>Dating apps give you recommendations, not their source code. A better response rate might be a better bio. It might also be Tuesday. This course turns that ambiguity into twelve weeks of experiments, algorithms and model criticism.</p>
-        <p>Work on Null Island: an invented local market with downloadable data and one fictional profile to release. Audit a toy ranking system, encounter a statistical reversal, trace a conversation through a Markov chain, and discover why a perfect rubric score can still produce a terrible invitation.</p>
-        <h3>By the end, you can…</h3>
-        <ol class="outcomes">
-          <li>Define a sampling frame and an experiment that separates a profile change from an exposure change.</li>
-          <li>Implement ranking, mutual-selection, messaging and conversation-state models under explicit assumptions.</li>
-          <li>Evaluate a frozen candidate with uncertainty, sensitivity tests and an exact simulation check.</li>
-          <li>Deploy a reproducible fictional profile with a threat model, maintenance plan and defensible top-1% claim.</li>
-        </ol>
-      </section>
-      <aside class="notice" aria-labelledby="benchmark-title">
-        <span class="eyebrow">Read the fine print. It is the course.</span>
-        <h3 id="benchmark-title">Top 1% of 100 invented entries.</h3>
-        <p>One candidate. Ninety-nine synthetic controls. A published quality score and a tie rule that does not flatter you.</p>
-        <p>We grade your engineering, not your rank. No app account, real profile or successful date is required.</p>
-        <a href={withBase('/toolkit/#benchmark')}>Inspect the benchmark <span aria-hidden="true">↗</span></a>
-      </aside>
-    </div>
-
-    <div class="section-heading">
-      <div><span class="eyebrow">The semester, in three chapters</span><h2>Measure. Model. Ship.</h2></div>
-      <a href={withBase('/weeks/')}>View all twelve dated weeks <span aria-hidden="true">→</span></a>
-    </div>
-    <div class="phase-grid">
-      <section class="phase-card"><span class="eyebrow">01 / Weeks 1–3</span><h3>Measure.</h3><p>The course boundary, platform architecture and photo assets. Establish what a source, a denominator and an image can actually tell you.</p><a href={withBase('/lectures/week-01/')}>Draw the system boundary →</a></section>
-      <section class="phase-card"><span class="eyebrow">02 / Weeks 4–7</span><h3>Model.</h3><p>NLP and bio A/B tests, mutual-selection probability, opening messages and asynchronous response games. Every protocol needs a stop state.</p><a href={withBase('/sessions/04-bio-experiment/')}>Write the bio experiment protocol →</a></section>
-      <section class="phase-card"><span class="eyebrow">03 / Weeks 8–12</span><h3>Ship.</h3><p>Threat detection, offline handover, Markov first dates, follow-up and maintenance. Build the release and document how it can end.</p><a href={withBase('/sessions/08-threat-model/')}>Inspect the threat model →</a></section>
-    </div>
-
-    <div class="section-heading"><div><span class="eyebrow">Assessment · 100% accounted for</span><h2>Evidence before confidence.</h2></div><a href={withBase('/assessments/')}>Read the briefs →</a></div>
-    <div class="assessment-list">
-      {assessments.map((assessment, index) => <a class="assessment-row" href={withBase(`/assessments/${assessment.id}/`)}>
-        <span class="eyebrow">0{index + 1}</span><strong>{assessment.data.title}</strong><span class="due">Week {assessment.data.week} · {formatCourseDate(assessment.data.due)}</span><span class="weight">{assessment.data.weight}%</span>
-      </a>)}
-    </div>
-
-    <div class="home-columns">
-      <section><span class="eyebrow">Before you enrol</span><h2>Some prerequisites. No prerequisites for love.</h2><p>Expected background: introductory probability, basic statistical inference, data structures and programming in one language. You should be able to read pseudocode, manipulate a CSV and explain a simple algorithm's runtime. No machine-learning framework is required.</p><p>Mondays: lecture, 11 am–12 pm. Thursdays in weeks 2–12: lab, 2–3.30 pm, starting 4 March. Week 1 is lecture-only. Both meet in Systems Lab 2. In tutorial weeks, allow another 3½ hours for reading, implementation and assessment. Teaching runs from {formatCourseDate(courseMeta.startDate)} to {formatCourseDate(courseMeta.endDate)}, with a break from 5–18 April.</p><a class="button secondary" href={withBase('/people/')}>Meet your teaching team →</a></section>
-      <aside class="notice"><span class="eyebrow">Try a calculation</span><h3>Bio B got more replies.</h3><p>120/1,000 versus 140/1,000. Is that enough evidence to ship? Change the sample and inspect the assumptions.</p><a href={withBase('/toolkit/#experiment')}>Open the A/B sandbox ↗</a></aside>
-    </div>
-    <p class="bottom-note">A fictional Slop University course. Real methods, synthetic observations, and no warranty on human behaviour. Hinge and Tinder are case studies, not course partners.</p>
+    <section class="course-materials" aria-labelledby="course-materials">
+      <h2 id="course-materials">Course materials</h2>
+      <ul role="list">
+        {materials.map(material => (
+          <li>
+            <a href={withBase(material.href)}>
+              <strong>{material.title} <span aria-hidden="true">→</span></strong>
+              <span class="material-description">{material.description}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
   </div>
 </CourseLayout>
+
+<style>
+  .course-home {
+    max-width: 58rem;
+  }
+
+  .course-introduction h1 {
+    max-width: 28ch;
+    margin: 0 0 1.5rem;
+    color: var(--course-ink);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -.03em;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  .course-home p,
+  .outcomes {
+    max-width: var(--course-reading-width);
+    margin-block: 0 1rem;
+  }
+
+  .course-home h2 {
+    margin-block: 2.5rem 1rem;
+  }
+
+  .course-materials ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .course-materials li {
+    margin: 0;
+    border-top: 1px solid var(--course-line);
+  }
+
+  .course-materials a {
+    display: block;
+    height: 100%;
+    padding: 1rem .5rem;
+    text-decoration: none;
+  }
+
+  .course-materials a:hover,
+  .course-materials a:focus-visible {
+    background: var(--course-blue);
+  }
+
+  .course-materials strong {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    font-weight: 600;
+  }
+
+  .course-materials a:hover strong,
+  .course-materials a:focus-visible strong {
+    text-decoration: underline;
+  }
+
+  .material-description {
+    display: block;
+    margin-top: .35rem;
+    color: var(--course-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 639px) {
+    .course-materials ul {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -13,7 +13,7 @@ related: [sessions/02-platforms]
 
 The opening provocation: **love is not a mystery; it is an inefficient market problem solvable through data structures.** We will spend twelve weeks implementing that claim—and finding where its types stop making sense. A recommendation, a reply and a relationship are three different outputs. Returning HTTP 200 is not evidence of affection.
 
-This is a fourth-year course for students comfortable with probability and pseudocode. Work on **Null Island**, our fictional market, using [supplied synthetic data](/toolkit/). No dating account, partner or disclosure of your own life is required.
+This course is for students comfortable with probability and pseudocode. Work on **Null Island**, our fictional market, using [supplied synthetic data](/toolkit/). No dating account, partner or disclosure of your own life is required.
 
 ## One system, twelve weeks
 

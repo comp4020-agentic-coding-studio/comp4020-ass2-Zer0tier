@@ -2,7 +2,7 @@
   <rect width="1200" height="630" fill="#fffdf9"/>
   <circle cx="980" cy="310" r="250" fill="#dfeaf9"/>
   <path d="M910 455C875 421 753 330 753 245C753 158 866 141 910 217C954 141 1067 158 1067 245C1067 330 945 421 910 455Z" fill="#f9dbe7" stroke="#903252" stroke-width="3"/>
-  <text x="75" y="110" fill="#8a5c13" font-family="sans-serif" font-size="23" letter-spacing="4">SLOP UNIVERSITY · SLOP4276</text>
+  <text x="75" y="110" fill="#8a5c13" font-family="sans-serif" font-size="23" letter-spacing="4">SLOP UNIVERSITY · SLOP1276</text>
   <text x="70" y="220" fill="#272c38" font-family="Georgia,serif" font-size="60">Applied Algorithmic</text>
   <text x="70" y="300" fill="#903252" font-family="Georgia,serif" font-size="60" font-style="italic">Romance &amp;</text>
   <text x="70" y="380" fill="#272c38" font-family="Georgia,serif" font-size="60">Profile Optimization</text>
