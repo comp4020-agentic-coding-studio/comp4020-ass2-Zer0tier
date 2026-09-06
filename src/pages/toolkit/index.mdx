@@ -118,6 +118,22 @@ Use `independentOpportunities` only under its stated independence assumption.
 An empty opportunity list has zero chance of a match; a zero-exposure rate is
 undefined. Neither match probabilities nor observed rates are quality scores.
 
+## Week 6 message protocol cases · version 1
+
+The [four-file Week 6 workbook](/lectures/week-06/#run-the-worked-calculations)
+combines [authored recipient and message cases](/data/week-06-cases.json),
+[routing and utility functions](/data/week-06-models.mjs),
+an [executable trace log](/data/week-06-worked-examples.mjs), and the existing
+model module linked below. Save them together and run
+`node week-06-worked-examples.mjs` offline with Node.
+
+Ten cases distinguish refusal, pending, replies, missing context and unknown
+boundaries. The classifier produces a local decision and never sends or stores
+a message. Separate exercises reproduce 2/10 and 4/10 reply rates, a cost
+crossover at 0.10 utility units per second, ties, defer and an inadmissible
+pressure option. The probabilities and costs are assumed; the code does not
+infer permission, shared interests or message quality from prose.
+
 <h2 id="benchmark">Null Island v1 · the top-1% contract</h2>
 
 [Download the 99 synthetic controls](/data/null-island-controls.csv) and

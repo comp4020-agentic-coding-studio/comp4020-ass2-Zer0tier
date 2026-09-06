@@ -1,0 +1,558 @@
+---
+title: "Interaction Protocols: The Initial Message · Week 6"
+description: "A three-hour teaching pack: evidence-backed openers, ordered guards, reply denominators, cost sensitivity and the handoff to asynchronous states."
+---
+
+import DeckTools from "../components/DeckTools.astro";
+import DeckBars from "../components/DeckBars.astro";
+import MessageFigure from "../components/MessageFigure.astro";
+
+<DeckTools />
+
+# Your opener needs a stop condition
+
+Interaction Protocols: The Initial Message
+
+SLOP1276 · Week 06
+
+A reply is an event. It is not an obligation.
+
+---
+
+## The engineering output
+
+Build a **Message decision tree** with an inspectable trace.
+
+Use evidence to choose context without inventing shared interests.
+
+Compare reply counts and composition costs under declared assumptions.
+
+Carry refusal and pending behaviour into Week 7.
+
+---
+
+## A three-hour protocol review
+
+Context **30 min** · routing **35 min** · break **10 min**.
+
+Rates and costs **35 min** · objectives **35 min**.
+
+Adversarial review and handoff **35 min**.
+
+Exercises and worked debriefs fit around the scheduled 90-minute tutorial.
+
+---
+
+## Keep the candidate and invitation fixed
+
+Alex: adult CS student; board games, terrible puns; a possible relationship.
+
+**Friday 5–7 pm · bus · $20 total.**
+
+Week 4 supplies the supported bio and frozen photo.
+
+Week 5 supplies the checked invitation. A feasible plan does not establish recipient availability.
+
+---
+
+## Recipient facts are a separate input
+
+**G1:** “I like board games.”
+
+**U1:** no topic field supplied.
+
+**H1:** “I like hiking.”
+
+These are fictional case cards. G1's quote does not establish a preferred game; H1's hobby does not become Alex's.
+
+---
+
+## Show the evidence behind “shared”
+
+<MessageFigure kind="evidence" />
+
+---
+
+## Exercise · repair two openers
+
+**5 minutes.** For U1: “You love board games, so let's play Friday.”
+
+For H1: “As a fellow hiker, I know your favourite trail.”
+
+Identify every unsupported claim. Write a plain introduction and a separate G1-specific question.
+
+Keep the invitation optional and Alex's facts fixed.
+
+---
+
+## Answer · replace the invented premise
+
+Plain: **“Hi, I'm Alex. I'd like to get to know you. Fine to pass.”**
+
+G1: **“You mentioned board games. Co-op or competitive? No pressure to reply.”**
+
+U1 has no supplied hobby or Friday availability. Alex has no supplied hiking history, and H1's favourite trail is unknown.
+
+---
+
+## Bypassing the conversational firewall
+
+Here, “bypassing” means **removing avoidable ambiguity**.
+
+A niche joke can require an unexplained reference. A plain question can expose what information is missing.
+
+Neither wording bypasses a refusal. “Forces a response” is a deliberately broken objective.
+
+---
+
+## Put the boundary before the opportunity
+
+<MessageFigure kind="guards" />
+
+---
+
+## Define the snapshot before the branches
+
+`closed`: true or false. `boundary`: clear, declined, blocked or unknown.
+
+`sent`: whether Alex's opener was recorded. `inbound`: none, reply or decline.
+
+`recipient`: a supplied case ID and quoted topic evidence, or missing topic data.
+
+These are authored labels, not sentiment inferred from text.
+
+---
+
+## One return per decision
+
+Terminal evidence → **stop**.
+
+Unknown or inconsistent metadata → **review**.
+
+Reply to a recorded opener → **respond**; sent without reply → **pending**.
+
+Otherwise inspect context → **draft-context** or **draft-plain**.
+
+“Draft” means review locally. Nothing is sent by this model.
+
+---
+
+## Exercise · trace the first applicable guard
+
+**7 minutes.** G1's board-games quote is present in every case.
+
+Case A: prior refusal, no opener sent.
+
+Case B: opener sent, no reply. Case C: opener sent, new reply.
+
+Case D: conversation closed, then a late reply appears.
+
+Record the guards reached and the output, not just the final label.
+
+---
+
+## Answer · the topic branch is never reached
+
+<MessageFigure kind="trace" />
+
+Case C → **respond to the actual reply**. Case D → **stop**.
+
+---
+
+## Unknown is not false
+
+Missing topic → a plain draft can avoid a shared-interest claim.
+
+Unknown boundary → **review**, with no draft.
+
+The string `"false"` is not the Boolean `false`.
+
+The workbook checks types explicitly. It does not interpret a missing record as proof that contact is appropriate.
+
+---
+
+## Pending is a complete output
+
+The opener has already been sent and no inbound reply is recorded.
+
+Do not infer “uninterested,” “busy” or “playing games.”
+
+A read receipt changes neither the topic evidence nor the refusal rule.
+
+Re-running the classifier on the same snapshot returns **pending**, not a fresh opener.
+
+---
+
+## A pure function does not remember a send
+
+`routeMessage(snapshot)` returns an action, reason and trace.
+
+It does not mutate the snapshot, send a message or store history.
+
+If a caller forgets to record a send, the next call still sees “not sent.”
+
+Duplicate prevention needs reliable state in a real system; this workbook makes no delivery guarantee.
+
+---
+
+## Elapsed time supplies no new fact
+
+<MessageFigure kind="timeline" />
+
+---
+
+## Exercise · contradictory and broken inputs
+
+**5 minutes.** Predict the output for each:
+
+Refusal plus malformed recipient metadata.
+
+Unknown boundary plus a good shared-topic quote.
+
+A reply recorded although no opener was sent in this conversation.
+
+An empty topic list with valid routing metadata.
+
+---
+
+## Answer · priority is executable policy
+
+Refusal → **stop**, before inspecting the broken topic.
+
+Unknown boundary → **review**. Inconsistent send/reply history → **review**.
+
+Empty topic list → **draft-plain**.
+
+An ordered `if` chain returns at the first applicable guard. Independent `if` assignments can overwrite the stop.
+
+[MDN: if…else evaluation order](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)
+
+---
+
+## Break · ten minutes
+
+Keep the decision trace and evidence quotes.
+
+Next: your reply-rate dashboard has a very small denominator.
+
+Its confidence is not a feature.
+
+---
+
+## Define a reply exposure
+
+One fictional matched conversation assigned one opener, with one exposure and a complete **48-hour observation window**.
+
+Any inbound reply counts once, including a decline.
+
+Two disjoint groups: ten “Hey” and ten board-game openers.
+
+Authored counts, no random allocation and no messages actually sent.
+
+---
+
+## Reproduce the tiny comparison
+
+<DeckBars caption="Invented reply-count fixture · ten conversations per opener" maximum={1} scale="Observed reply-rate scale: 0–100%. Replies include explicit declines." rows={[
+  { label: 'Hey', value: 0.2, display: '2 / 10 = 20%' },
+  { label: 'Games', value: 0.4, display: '4 / 10 = 40%' }
+]} />
+
+---
+
+## Three summaries, three labels
+
+Reply-count difference: **4 − 2 = 2 replies**.
+
+Rate difference: **0.40 − 0.20 = 0.20**, or **20 percentage points**.
+
+Rate ratio: **0.40 / 0.20 = 2**.
+
+“Twice the observed rate” is not proof that a board-game opener doubles anyone's reply probability.
+
+---
+
+## Exercise · change one row
+
+**5 minutes.** Recode one Games reply as no reply. What happens to its rate and the difference?
+
+Now discover that one observation window is incomplete. May it be coded as no reply?
+
+What should 0 replies from 0 exposures return? What about 11 from 10?
+
+---
+
+## Answer · small denominators move quickly
+
+Three replies from ten → **30%**; the difference falls to **10 points**.
+
+An incomplete window needs repair or a prespecified missing-data method, not a fabricated zero.
+
+0/0 is **undefined**; 11/10 is invalid.
+
+Week 4's conservative normal-test guardrail withholds z for 2/10 versus 4/10. That is not evidence of equality.
+
+---
+
+## Composition time is another input
+
+<DeckBars caption="Separate utility fixture · assumed composition times" maximum={40} scale="Scale: 0–40 seconds. These are invented costs, not timings from writers." rows={[
+  { label: 'Hey', value: 10, display: '10 seconds' },
+  { label: 'Games', value: 30, display: '30 seconds' }
+]} />
+
+---
+
+## A ratio can reward the wrong thing
+
+Assume p = 0.20 and 0.40 for the cost exercise.
+
+Expected replies per composition second: **0.20/10 = 0.020** versus **0.40/30 ≈ 0.0133**.
+
+The cheap opener wins this ratio while losing per-opportunity probability.
+
+Choose the objective explicitly. Recipient effort and conversation quality are absent here.
+
+---
+
+## Price the time in the same units
+
+**U = Vp − λt**
+
+V = 10 utility units per reply; p = assumed reply probability.
+
+t = composition seconds; λ = utility units per second.
+
+Both terms are utility units. This is a toy score for admissible options, not a value assigned to a person.
+
+---
+
+## Exercise · calculate before choosing
+
+**7 minutes.** At λ = 0.05, compare:
+
+Hey: p = 0.20, t = 10 seconds.
+
+Games: p = 0.40, t = 30 seconds.
+
+Defer: U = 0. Use V = 10 for both messages.
+
+State what was omitted from the model.
+
+---
+
+## Answer · subtract the priced cost
+
+Hey: **10 × 0.20 − 0.05 × 10 = 1.5**.
+
+Games: **10 × 0.40 − 0.05 × 30 = 2.5**.
+
+Games has the larger utility under these inputs; both exceed defer's zero.
+
+The probabilities are assumed separately from the tiny count fixture. Reply quality, recipient effort and future interaction are omitted.
+
+---
+
+## Derive the crossover
+
+U(Games) − U(Hey) = **2 − 20λ**.
+
+Games wins their pairwise comparison when **λ < 0.10**.
+
+They tie at **λ = 0.10**; Hey wins when λ > 0.10.
+
+Still compare the best message with **defer = 0**.
+
+---
+
+## A changed cost changes the answer
+
+<MessageFigure kind="utility" />
+
+---
+
+## Exercise · ties and abstention
+
+**5 minutes.** Compute both utilities at λ = 0.10, 0.15 and 0.25.
+
+Find where Hey ties defer.
+
+Then reduce the assumed Games probability to 0.25 while keeping λ = 0.05.
+
+Does the earlier “winner” survive every change?
+
+---
+
+## Answer · keep all declared ties visible
+
+λ = 0.10: **1 and 1**. λ = 0.15: **0.5 and −0.5**.
+
+λ = 0.25: **−0.5 and −3.5**, so defer wins.
+
+Hey ties defer at **λ = 0.20**. At p(Games) = 0.25 and λ = 0.05, Games scores **1**, below Hey's **1.5**.
+
+No utility tie authorises a send.
+
+---
+
+## The inputs carry the conclusion
+
+The 0.20/0.40 probabilities in the utility exercise are **assumptions**, even though they match the tiny fixture's numerical rates.
+
+A normal test cannot repair missing random allocation.
+
+Change the cost, probability or objective and the preference may change.
+
+[NIST: comparing two proportions](https://itl.nist.gov/div898/handbook/prc/section3/prc33.htm)
+
+---
+
+## “Any reply” includes “please stop”
+
+A demand can increase the counted event while violating the protocol's purpose.
+
+Separate **answers**, **declines** and **no reply** by authored message content.
+
+Do not attach emotion labels to those counts.
+
+The next fixture is a constructed counterexample, not an experiment on recipients.
+
+---
+
+## The demand wins the wrong counter
+
+<DeckBars caption="Separate pressure fixture · ten fictional conversations per row" maximum={1} scale="Any-reply rate includes answers plus declines. The demand is inadmissible." rows={[
+  { label: 'Optional', value: 0.4, display: '3 answers + 1 decline = 40%' },
+  { label: 'Demand', value: 0.6, display: '1 answer + 5 declines = 60%' }
+]} />
+
+---
+
+## The response content changes the reading
+
+<DeckBars caption="Same pressure fixture · replies that answer the question" maximum={1} scale="Answer rate uses all ten exposures. An answer is not agreement to meet." rows={[
+  { label: 'Optional', value: 0.3, display: '3 / 10 = 30%' },
+  { label: 'Demand', value: 0.1, display: '1 / 10 = 10%' }
+]} />
+
+---
+
+## Exercise · repair the optimiser
+
+**6 minutes.** “Give pressure a small utility penalty; choose it whenever its reply score still wins.”
+
+Explain why that can still select the demand.
+
+Replace the penalty with a decision rule. Identify who supplies the admissibility label and what the code can verify.
+
+---
+
+## Answer · filter before scoring
+
+First exclude boundary violations and unsupported claims. Then compare the remaining options and defer.
+
+The demand is **inadmissible regardless of its score**.
+
+Admissibility comes from explicit case/policy review. The numeric function cannot discover coercion in prose.
+
+A “no pressure” suffix does not cancel a contradictory demand elsewhere.
+
+---
+
+## Build tests around conflicting conditions
+
+Refusal **and** an attractive shared topic.
+
+Closed history **and** a late reply.
+
+Pending **and** a high predicted reply probability.
+
+Missing hobby **and** a tempting personalised template.
+
+An ordinary happy-path example will not expose priority errors.
+
+---
+
+## Exercise · break the guard order
+
+**7 minutes.** Put the context branch before refusal. Run the G1 refusal case and explain the failure.
+
+Restore the order. Try `sent: "false"`, a reply without a recorded opener, and malformed topic evidence.
+
+Re-run the same pending snapshot. Check that it was not mutated.
+
+---
+
+## Answer · assert behaviour, not branch names
+
+G1 plus refusal must return **stop**, never a contextual draft.
+
+String Boolean, inconsistent history and malformed topic evidence → **review**.
+
+Repeated pending input → **pending**, with unchanged input.
+
+Preserve a literal expected action and the executed trace for each case.
+
+---
+
+## What passing tests cannot certify
+
+A quote field can be non-empty and still misrepresent the source.
+
+The tree assumes human-authored boundary and topic labels. It does not understand sarcasm or resolve ambiguous refusals.
+
+A trace proves which code path ran, not that its inputs were true.
+
+Escalate ambiguity to review; never invent a favourable missing fact.
+
+---
+
+## Hand the constraints to the state machine
+
+<MessageFigure kind="handoff" />
+
+---
+
+## Run the four-file workbook offline
+
+Save the files linked in the [lecture notes](/lectures/week-06/#run-the-worked-calculations) in one folder.
+
+Run `node week-06-worked-examples.mjs`.
+
+Inspect ten routing traces, 20/40% reply rates, cost crossovers, ties and the excluded pressure option.
+
+Use a spreadsheet or another language if preferred. Nothing connects to a messaging service.
+
+---
+
+## Exercise · write the handoff contract
+
+**6 minutes.** Save your decision tree, supported openers, invitation version and recipient evidence.
+
+Add literal tests for refusal, unknown context, pending and late reply after closure.
+
+State the utility units, assumptions, admissibility review and tie rule.
+
+Review another record or audit your own.
+
+---
+
+## Next: events, latency and the midterm
+
+Week 7 adds sent, pending, replied, declined and closed states, observation timeouts and explicit utility games.
+
+Keep the refusal-first rule. A timeout does not authorise another message.
+
+The midterm is **23 April, 11 am–12.30 pm**. Practise tracing unfamiliar branches on paper; the exam does not allow executable code.
+
+---
+
+## Exit ticket · three repairs
+
+“Shared hobby missing” → use a plain draft, **not an invented fact**.
+
+“No reply yet” → **pending**, not a guessed motive or a resend.
+
+“Pressure gets more replies” → **exclude the violation before scoring**.
+
+Save the **Message decision tree**. Week 7 must preserve its stop.

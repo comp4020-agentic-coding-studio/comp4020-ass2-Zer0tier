@@ -1,0 +1,99 @@
+---
+import cases from '../../public/data/week-06-cases.json';
+import { compareDrafts, routeMessage } from '../../public/data/week-06-models.mjs';
+interface Props { kind: 'evidence' | 'guards' | 'trace' | 'timeline' | 'utility' | 'handoff'; }
+const { kind } = Astro.props;
+const baseline = { closed: false, boundary: 'clear', sent: false, inbound: 'none', recipient: cases.recipients[0] };
+---
+<figure class="message-figure">
+  {kind === 'evidence' && <>
+    <figcaption>Supported context needs evidence from both sides</figcaption>
+    <div class="message-columns">
+      <div class="message-card"><strong>Alex · fixed course case</strong><span>Likes board games and terrible puns.</span></div>
+      <div class="message-card"><strong>Recipient G1 · authored case</strong><span>“I like board games.”</span></div>
+    </div>
+    <div class="message-result">Shared topic: board games. Preferred game, humour and Friday availability remain unknown.</div>
+  </>}
+  {kind === 'guards' && <>
+    <figcaption>Evaluate top to bottom · return at the first applicable branch</figcaption>
+    <ol class="guard-list">
+      <li><strong>Closed / declined / blocked?</strong><span>Yes → stop</span></li>
+      <li><strong>Routing metadata uncertain?</strong><span>Yes → review</span></li>
+      <li><strong>Opener sent + reply received?</strong><span>Yes → respond to content</span></li>
+      <li><strong>Opener sent, no reply?</strong><span>Yes → pending</span></li>
+      <li><strong>No opener yet?</strong><span>Supported context → contextual draft; otherwise plain draft</span></li>
+    </ol>
+    <div class="figure-note">Malformed history or topic evidence also goes to review. Every output is local; nothing is sent.</div>
+  </>}
+  {kind === 'trace' && <>
+    <figcaption>Same shared topic · different history, different output</figcaption>
+    <div class="message-columns">
+      {[{ name: 'Prior refusal', input: { ...baseline, boundary: 'declined' } }, { name: 'Already sent', input: { ...baseline, sent: true } }].map(({ name, input }) => {
+        const output = routeMessage(input);
+        return <div class="message-card"><strong>{name}</strong><span>{output.trace.join(' → ')}</span><b>{output.action}</b><span>{output.reason}</span></div>;
+      })}
+    </div>
+    <div class="figure-note">Neither path reaches the context branch. A tempting topic cannot change priority.</div>
+  </>}
+  {kind === 'timeline' && <>
+    <figcaption>Snapshot exercise · time does not supply an inbound event</figcaption>
+    <div class="message-columns three">
+      <div class="message-card"><strong>Before any send</strong><b>draft-context</b><span>Review a supported opener.</span></div>
+      <div class="message-card"><strong>Send recorded</strong><b>pending</b><span>No inbound reply.</span></div>
+      <div class="message-card"><strong>Later, still no reply</strong><b>pending</b><span>Do not draft another opener.</span></div>
+    </div>
+    <div class="figure-note">The classifier does not record sends, advance a clock or create a timeout. Week 7 adds those events.</div>
+  </>}
+  {kind === 'utility' && <>
+    <figcaption>U = 10p − λt · assumed probabilities, arbitrary utility units</figcaption>
+    <table class="utility-table">
+      <thead><tr><th scope="col">λ / second</th><th scope="col">Hey</th><th scope="col">Games</th><th scope="col">Maximum</th></tr></thead>
+      <tbody>{[0.05, 0.1, 0.15, 0.25].map(lambda => {
+        const result = compareDrafts(cases.utilityOptions, 10, lambda);
+        return <tr><th scope="row">{lambda.toFixed(2)}</th><td>{result.scores[1].utility.toFixed(1)}</td><td>{result.scores[2].utility.toFixed(1)}</td><td>{result.winners.join(' + ')}</td></tr>;
+      })}</tbody>
+    </table>
+    <div class="figure-note">Defer has utility 0. Ties are retained for review. No utility score authorises contact.</div>
+  </>}
+  {kind === 'handoff' && <>
+    <figcaption>Week 6 decisions become Week 7 state requirements</figcaption>
+    <div class="message-columns">
+      <div class="message-card"><strong>Preserve the inputs</strong><span>Candidate and invitation versions, recipient evidence, boundary and send history.</span></div>
+      <div class="message-card"><strong>Preserve the stop</strong><span>Declined → closed. A late reply, read receipt or timeout cannot automatically reopen it.</span></div>
+    </div>
+    <div class="figure-note">Next week supplies events, transitions and timing. This week supplies their constraints.</div>
+  </>}
+</figure>
+<style>
+  .message-figure { width: min(100%, 1100px); margin: .5rem auto 1rem; text-align: left; }
+  figcaption, .figure-note, .message-result { font-size: clamp(16px, 1.3vw, 24px); line-height: 1.35; }
+  figcaption { margin-bottom: .7rem; }
+  .figure-note, .message-result { margin-top: .7rem; }
+  .message-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
+  .message-columns.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .message-card { display: grid; align-content: start; gap: .6rem; padding: 1rem; border: 2px solid var(--course-blue-ink); border-radius: 8px; background: var(--course-paper); color: var(--course-ink); font-size: clamp(18px, 1.6vw, 30px); line-height: 1.35; }
+  .message-card > strong { color: var(--course-blue-ink); }
+  .message-card b { color: var(--course-pink-ink); }
+  ol.guard-list { display: grid; gap: .5rem; list-style: none; padding: 0; margin: 0; counter-reset: guard; }
+  ol.guard-list li { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin: 0; padding: .6rem .8rem; border-left: 4px solid var(--course-blue-ink); background: var(--course-paper); color: var(--course-ink); font-size: clamp(18px, 1.5vw, 28px) !important; line-height: 1.3; counter-increment: guard; }
+  .guard-list strong::before { content: counter(guard) ' · '; }
+  .utility-table { border-collapse: collapse; width: 100%; font-size: clamp(16px, 1.6vw, 30px); line-height: 1.4; }
+  .utility-table :is(td,th) { padding: .6rem; border-bottom: 1px solid var(--course-blue-ink); text-align: left; color: var(--course-ink); background: var(--course-paper); }
+  .utility-table thead { background: var(--course-paper); color: var(--course-ink); }
+  @media (width < 650px) {
+    .message-columns, .message-columns.three { grid-template-columns: 1fr; gap: .5rem; }
+    .message-card { padding: .7rem; gap: .4rem; }
+    ol.guard-list li { grid-template-columns: 1fr; gap: .15rem; padding: .3rem .6rem; }
+    .utility-table :is(td,th) { padding: .5rem .3rem; }
+  }
+  @media (height < 540px) {
+    .message-figure { margin: .2rem auto; }
+    figcaption { margin-bottom: .3rem; }
+    .figure-note, .message-result { margin-top: .3rem; }
+    .message-card { font-size: 18px; line-height: 1.25; padding: .6rem; gap: .3rem; }
+    ol.guard-list { gap: .2rem; }
+    ol.guard-list li { padding: .3rem .6rem; font-size: 18px !important; margin: 0; }
+    .utility-table { font-size: 18px; }
+    .utility-table :is(td,th) { padding: .3rem; }
+  }
+</style>

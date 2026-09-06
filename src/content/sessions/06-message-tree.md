@@ -15,17 +15,23 @@ spec:
 
 ## Inputs
 
-Bring the **Bio experiment protocol** and **Match probability model**. Keep the invitation within the same fictional facts and constraints.
+Bring the **Bio experiment protocol** and **Match probability model**: the supported bio, frozen **A-portrait-v1** photo, and checked invitation with its route assumptions. Recipient availability remains unknown. Save the [four-file Week 6 workbook](/lectures/week-06/#run-the-worked-calculations), or use its tables in a spreadsheet or your preferred language. All recipient cards and counts are authored fixtures; no real profiles, app account or messaging history are required.
 
 ## 90-minute tutorial
 
-1. **20 minutes — classify openers.** Compare “hey,” a niche joke and a specific question. State the supported context each requires.
-2. **25 minutes — build the tree.** Implement the lecture's branches for prior refusal, shared topic, unknown topic, reply and pending. A refusal check runs before optimisation.
-3. **20 minutes — count without overclaiming.** Reproduce invented reply rates 2/10 and 4/10. Give one cost assumption that changes which message your toy objective prefers.
-4. **25 minutes — adversarial cases.** Test a recipient who declines, a missing hobby field and a message demanding an answer. Show why a higher pressured-reply count fails the objective's intended use.
+1. **20 minutes — classify and repair openers.** Compare “Hey,” the campaign/queue joke, the board-games question and the plain introduction. Join each claimed shared detail to an Alex fact and a supplied recipient quote. Repair the U1 and H1 examples without inventing interests, history or availability. Keep the Week 5 invitation optional and separate from the frozen bio.
+2. **25 minutes — implement the ordered tree.** Use the declared snapshot fields and return stop, review, respond, pending or a local draft. Trace refusal plus a shared topic, sent-without-reply, a reply to an opener and a late reply after closure. Test missing topic evidence, unknown boundaries and malformed Boolean/history values. The function returns a decision; it does not send or store a message.
+3. **20 minutes — calculate rates and costs.** Reproduce 2/10 and 4/10, the 20-point difference and ratio 2; then recode one reply and explain the changed comparison. Calculate U = 10p − λt with the separate assumed probabilities and ten/thirty-second costs. Verify the crossover at λ = 0.10, the message tie, and defer winning at λ = 0.25.
+4. **25 minutes — adversarial review and handoff.** Move context ahead of refusal and show a literal test failing; restore the order. Compare the separate pressure fixture's any-reply and answer rates, excluding the demand before scoring. Test repeated pending input and unchanged input data. Exchange or self-review the evidence, then save the constraints Week 7's state machine must preserve.
+
+The [180-minute teaching route](/lectures/week-06/#a-180-minute-teaching-route) provides explanations, separate worked answers and a break around these practical tasks. Bring completed lecture exercises for review rather than repeating them. Solo implementation and review are accepted.
 
 ## Deliverable: Message decision tree
 
-Save the tree or pseudocode, two supported openers and at least three literal input/output tests. “Pending” must not imply permission to send again.
+Save one notebook or equivalent bundle with the ordered tree or pseudocode, input schema, two supported openers, evidence quotes and the earlier invitation version. Include at least three literal input/output tests covering refusal, missing topic and pending; add unknown-boundary and closed/late-reply cases to defend priority. Preserve both the expected output and executed trace.
 
-Week 7 converts these branches into states and events, preserving the refusal-first rule.
+Attach the reply-rate working, the cost crossover and tie rule, one changed-probability scenario, and the pressure-objective repair. State that the probability inputs and costs are assumed, admissibility is a supplied review judgement, and the classifier neither understands free text nor persists send history. “Pending” must not imply permission to send again. A green trace cannot establish that a quote is true.
+
+The [lecture notes](/lectures/week-06/) and executable workbook contain worked checks. The [midterm](/assessments/matchmaking-exam/) uses unfamiliar branches on paper, so practise explaining the decision without running the supplied code.
+
+Week 7 converts these branches into states and events, preserving the refusal-first rule. Pass along the closed-state requirement, distinction between no reply and missing data, and the need to record sends separately. Timing, queues and observation timeouts are next week's work.

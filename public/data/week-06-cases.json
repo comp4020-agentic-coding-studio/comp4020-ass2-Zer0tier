@@ -1,0 +1,42 @@
+{
+  "version": "week-06-v1",
+  "scope": "Authored fictional teaching cases. No messages were sent, no real recipients were studied, and no probability is fitted to app data. The routing, reply-count, utility and pressure cases are separate fixtures.",
+  "recipients": [
+    { "id": "G1", "topics": [{ "topic": "board-games", "quote": "I like board games." }] },
+    { "id": "U1", "topics": null },
+    { "id": "H1", "topics": [{ "topic": "hiking", "quote": "I like hiking." }] }
+  ],
+  "messages": [
+    { "id": "hey", "text": "Hey.", "requires": "No shared hobby claim; intentionally little context." },
+    { "id": "games", "text": "You mentioned board games. Co-op or competitive? No pressure to reply.", "requires": "A supplied recipient board-games quote, plus Alex's existing board-games fact." },
+    { "id": "plain", "text": "Hi, I'm Alex. I'd like to get to know you. Fine to pass.", "requires": "Alex's supplied intent; no claim about the recipient's interests." },
+    { "id": "joke", "text": "Is this a co-op campaign or a competitive matchmaking queue? Fine to pass.", "requires": "Even with a board-games quote, understanding the campaign/queue joke is not supplied." }
+  ],
+  "routingCases": [
+    { "id": "shared", "snapshot": { "closed": false, "boundary": "clear", "sent": false, "inbound": "none", "recipientId": "G1" }, "expected": "draft-context" },
+    { "id": "unknown-topic", "snapshot": { "closed": false, "boundary": "clear", "sent": false, "inbound": "none", "recipientId": "U1" }, "expected": "draft-plain" },
+    { "id": "unsupported-shared-topic", "snapshot": { "closed": false, "boundary": "clear", "sent": false, "inbound": "none", "recipientId": "H1" }, "expected": "draft-plain" },
+    { "id": "prior-refusal", "snapshot": { "closed": false, "boundary": "declined", "sent": false, "inbound": "none", "recipientId": "G1" }, "expected": "stop" },
+    { "id": "blocked", "snapshot": { "closed": false, "boundary": "blocked", "sent": false, "inbound": "none", "recipientId": "G1" }, "expected": "stop" },
+    { "id": "pending", "snapshot": { "closed": false, "boundary": "clear", "sent": true, "inbound": "none", "recipientId": "G1" }, "expected": "pending" },
+    { "id": "reply", "snapshot": { "closed": false, "boundary": "clear", "sent": true, "inbound": "reply", "recipientId": "G1" }, "expected": "respond" },
+    { "id": "new-decline", "snapshot": { "closed": false, "boundary": "clear", "sent": true, "inbound": "decline", "recipientId": "G1" }, "expected": "stop" },
+    { "id": "closed-late-reply", "snapshot": { "closed": true, "boundary": "clear", "sent": true, "inbound": "reply", "recipientId": "G1" }, "expected": "stop" },
+    { "id": "unknown-boundary", "snapshot": { "closed": false, "boundary": "unknown", "sent": false, "inbound": "none", "recipientId": "G1" }, "expected": "review" }
+  ],
+  "replyScope": "Two disjoint groups of ten invented matched conversations, each with one assigned opener, one exposure and a completed 48-hour observation window. Any inbound reply, including a decline, counts once. No random allocation is supplied.",
+  "replyCounts": [
+    { "id": "hey", "exposures": 10, "replies": 2 },
+    { "id": "games", "exposures": 10, "replies": 4 }
+  ],
+  "utilityScope": "Independent decision exercise. Probabilities 0.20 and 0.40 are assumed inputs, not validated estimates from the tiny reply fixture. Costs count composition time only; value and time price are arbitrary utility units.",
+  "utilityOptions": [
+    { "id": "hey", "probability": 0.2, "seconds": 10, "admissible": true },
+    { "id": "games", "probability": 0.4, "seconds": 30, "admissible": true }
+  ],
+  "pressureScope": "A separate counterexample to maximising any reply. Categories describe authored response content, not feelings. Counts are fabricated, not outcomes of a real intervention or the two-group reply fixture.",
+  "pressureCases": [
+    { "id": "optional", "answers": 3, "declines": 1, "none": 6, "admissible": true },
+    { "id": "demand", "answers": 1, "declines": 5, "none": 4, "admissible": false }
+  ]
+}
