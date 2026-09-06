@@ -1,0 +1,116 @@
+---
+import cases from '../../public/data/week-07-cases.json';
+import { compareResponses } from '../../public/data/week-07-models.mjs';
+import { poissonSilence } from '../lib/romance-models';
+interface Props { kind: 'events' | 'mixture' | 'decision' | 'game' | 'changed-game' | 'states' | 'axes' | 'timeline' | 'closed' | 'handoff'; }
+const { kind } = Astro.props;
+const matrix = cases.games[kind === 'changed-game' ? 1 : 0].payoffs;
+---
+<figure class="communication-figure">
+  {kind === 'events' && <>
+    <figcaption>Separate authored log · observation hours from a common origin</figcaption>
+    <ol class="event-track">
+      {['Send · 0 h', 'Delivery · 0.2 h', 'Read · 0.5 h', 'Reply · 1.5 h'].map((label, i) => <li><strong>{i + 1} · {label}</strong><span>Different observed event</span></li>)}
+    </ol>
+    <div class="figure-note">This complete trace does not make missing receipts observable or explain a person's motives.</div>
+  </>}
+  {kind === 'mixture' && <>
+    <figcaption>Two assumed models · each has expected count 0.8 over two hours</figcaption>
+    <div class="figure-columns">
+      <div class="figure-card"><strong>One rate: 0.4/hour</strong><b>{(poissonSilence(0.4, 2) * 100).toFixed(1)}% zero</b><span>exp(−0.8)</span></div>
+      <div class="figure-card"><strong>Half rate 0; half 0.8/hour</strong><b>{((0.5 + 0.5 * poissonSilence(0.8, 2)) * 100).toFixed(1)}% zero</b><span>0.5 + 0.5 × exp(−1.6)</span></div>
+    </div>
+    <div class="figure-note">A common mean does not imply a common zero-count probability. Neither model is fitted to a person.</div>
+  </>}
+  {kind === 'decision' && <>
+    <figcaption>C = 7q − 5 · W = 2q − 1 · stop = 0</figcaption>
+    <table class="figure-table">
+      <thead><tr><th scope="col">q</th><th scope="col">C</th><th scope="col">W</th><th scope="col">Maximum</th></tr></thead>
+      <tbody>{cases.decision.qValues.map(q => {
+        const result = compareResponses(q, cases.decision);
+        return <tr><th scope="row">{q.toFixed(1)}</th><td>{(7*q-5).toFixed(1)}</td><td>{(2*q-1).toFixed(1)}</td><td>{result.winners.join(' + ')}</td></tr>;
+      })}</tbody>
+    </table>
+    <div class="figure-note">Assumed utilities and q. Clarification is included only after separate admissibility review.</div>
+  </>}
+  {['game', 'changed-game'].includes(kind) && <>
+    <figcaption>Authored one-shot game · every pair is (A's utility, B's utility)</figcaption>
+    <table class="figure-table game-table">
+      <thead><tr><th scope="col">A ↓ / B →</th><th scope="col">Ask</th><th scope="col">Wait</th></tr></thead>
+      <tbody>{['Ask','Wait'].map((action, row) => <tr><th scope="row">{action}</th>{matrix[row].map(pair => <td>({pair.join(', ')})</td>)}</tr>)}</tbody>
+    </table>
+    <div class="figure-note">{kind === 'game' ? 'Read A down a fixed column; read B across a fixed row. Compare each player’s own coordinate.' : 'Only Ask/Ask changed to (−1, −1). Recompute best responses before claiming dominance.'}</div>
+  </>}
+  {kind === 'states' && <>
+    <figcaption>One ordinary path · arrows represent labelled event transitions</figcaption>
+    <ol class="event-track states">
+      {[['ready','Week 6 draft'],['sent','← send record'],['pending','← wait record'],['replied','← reply record']].map(([phase, event]) => <li><strong>{phase}</strong><span>{event}</span></li>)}
+    </ol>
+    <div class="figure-result">From any open phase: decline → declined → closed, in one step.</div>
+    <div class="figure-note">Receipts retain the phase. Every later event after closed returns stop.</div>
+  </>}
+  {kind === 'axes' && <>
+    <figcaption>Conversation phase and completed-window result answer different questions</figcaption>
+    <div class="figure-columns three">
+      <div class="figure-card"><strong>Timeout at 2 h</strong><b>pending / no-reply</b><span>No reply in the window.</span></div>
+      <div class="figure-card"><strong>Late reply at 3 h</strong><b>replied / no-reply</b><span>Review late content; keep the window result.</span></div>
+      <div class="figure-card"><strong>Decline at 1 h</strong><b>closed / reply</b><span>A refusal is a reply and a terminal boundary.</span></div>
+    </div>
+  </>}
+  {kind === 'timeline' && <>
+    <figcaption>Authored replay · two-hour window [0, 2)</figcaption>
+    <table class="figure-table">
+      <thead><tr><th scope="col">Hour</th><th scope="col">Event</th><th scope="col">Phase</th><th scope="col">Window</th></tr></thead>
+      <tbody>{[['0','send','sent','open'],['0.1','wait','pending','open'],['2','timeout','pending','no-reply'],['3','reply','replied','no-reply']].map(([at,event,phase,window]) => <tr><th scope="row">{at}</th><td>{event}</td><td>{phase}</td><td>{window}</td></tr>)}</tbody>
+    </table>
+    <div class="figure-note">The late reply does not rewrite the completed observation window. No row sends a message.</div>
+  </>}
+  {kind === 'closed' && <>
+    <figcaption>Same late reply · a different prior event changes the result</figcaption>
+    <div class="figure-columns">
+      <div class="figure-card"><strong>Timeout, then reply</strong><b>pending → replied</b><span>Review late content. Observation remains no-reply.</span></div>
+      <div class="figure-card"><strong>Refusal, then reply</strong><b>closed → closed</b><span>Stop. The late event cannot reopen the conversation.</span></div>
+    </div>
+  </>}
+  {kind === 'handoff' && <>
+    <figcaption>Week 8 extends this machine with evidence-based review</figcaption>
+    <div class="figure-columns">
+      <div class="figure-card"><strong>Carry the record</strong><span>Candidate, invitation, Week 6 decision, event IDs, window convention and closure reason.</span></div>
+      <div class="figure-card"><strong>Preserve uncertainty</strong><span>A timeout or missing receipt is not a threat verdict. Closed remains terminal.</span></div>
+    </div>
+    <div class="figure-note">The Week 7 workbook does not implement a threat detector or a resume-from-review path.</div>
+  </>}
+</figure>
+<style>
+  .communication-figure { width: min(100%, 1100px); margin: .5rem auto 1rem; text-align: left; }
+  figcaption, .figure-note, .figure-result { font-size: clamp(16px, 1.3vw, 24px); line-height: 1.35; }
+  figcaption { margin-bottom: .7rem; }
+  .figure-note, .figure-result { margin-top: .7rem; }
+  .figure-columns { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .8rem; }
+  .figure-columns.three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .figure-card, ol.event-track li { display: grid; align-content: start; gap: .5rem; padding: .8rem; border: 2px solid var(--course-blue-ink); border-radius: 8px; background: var(--course-paper); color: var(--course-ink); font-size: clamp(18px, 1.6vw, 30px) !important; line-height: 1.3; }
+  .figure-card strong, .event-track strong { color: var(--course-blue-ink); }
+  .figure-card b { color: var(--course-pink-ink); }
+  ol.event-track { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: .6rem; list-style: none; margin: 0; padding: 0; }
+  ol.event-track li { margin: 0; }
+  .figure-table { border-collapse: collapse; width: 100%; font-size: clamp(16px, 1.6vw, 30px); line-height: 1.35; }
+  .figure-table :is(th,td) { text-align: left; padding: .6rem; color: var(--course-ink); background: var(--course-paper); border-bottom: 1px solid var(--course-blue-ink); }
+  .game-table :is(th,td) { padding: 1rem; }
+  @media (width < 650px) {
+    .figure-columns, .figure-columns.three { grid-template-columns: 1fr; gap: .5rem; }
+    .figure-card { padding: .6rem; gap: .35rem; }
+    ol.event-track { grid-template-columns: repeat(2,minmax(0,1fr)); gap: .5rem; }
+    ol.event-track.states { grid-template-columns: 1fr; }
+    ol.event-track.states li { grid-template-columns: 1fr 1.4fr; padding: .4rem .6rem; }
+    .states span { text-align: right; }
+    .figure-table :is(th,td) { padding: .5rem .3rem; }
+  }
+  @media (height < 540px) {
+    .communication-figure { margin: .2rem auto; }
+    figcaption { margin-bottom: .3rem; }
+    .figure-note, .figure-result { margin-top: .3rem; }
+    .figure-card, ol.event-track li { padding: .5rem; gap: .3rem; font-size: 18px !important; line-height: 1.25; }
+    .figure-table { font-size: 18px; }
+    .figure-table :is(th,td) { padding: .3rem; }
+  }
+</style>

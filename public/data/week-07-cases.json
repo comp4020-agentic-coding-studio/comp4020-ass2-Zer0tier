@@ -1,0 +1,24 @@
+{
+  "version": "week-07-v1",
+  "scope": "All events, rates, probabilities, costs and payoffs are authored teaching inputs. The arrival, decision and game exercises are separate models. No messages were sent; replay emits no messages.",
+  "handoff": {
+    "candidateVersion": "week-04:A-portrait-v1+supported-bio",
+    "invitationVersion": "week-05-v1:library",
+    "snapshot": { "closed": false, "boundary": "clear", "sent": false, "inbound": "none", "recipient": { "id": "G1", "topics": [{ "topic": "board-games", "quote": "I like board games." }] } }
+  },
+  "arrivals": { "ratePerHour": 0.4, "hours": 2, "event": "Any inbound message, including a decline; delivery/read receipts are not arrivals.", "rateAlternatives": [0.2, 0.4, 0.8], "mixture": [{ "weight": 0.5, "ratePerHour": 0 }, { "weight": 0.5, "ratePerHour": 0.8 }] },
+  "decision": { "qValues": [0.3, 0.5, 0.8, 0.9], "clarificationCost": 5, "clarificationAllowed": true, "scope": "The base numerical comparison assumes a separately reviewed admissible clarification. Neither q nor a read receipt supplies that review. It is not a pending-state send rule." },
+  "games": [
+    { "id": "base", "actions": ["Ask", "Wait"], "payoffs": [[[1,1],[2,0]],[[0,2],[0,0]]] },
+    { "id": "collision-cost", "actions": ["Ask", "Wait"], "payoffs": [[[-1,-1],[2,0]],[[0,2],[0,0]]] }
+  ],
+  "windowHours": 2,
+  "traces": [
+    { "id": "receipt-then-reply", "events": [{"id":"s","type":"send","at":0},{"id":"w","type":"wait","at":0.1},{"id":"r","type":"read","at":0.5},{"id":"a","type":"reply","at":1.5}], "expected": {"phase":"replied","observation":"reply","closure":null} },
+    { "id": "timeout-then-late-reply", "events": [{"id":"s","type":"send","at":0},{"id":"w","type":"wait","at":0.1},{"id":"t","type":"timeout","at":2},{"id":"a","type":"reply","at":3}], "expected": {"phase":"replied","observation":"no-reply","closure":null} },
+    { "id": "refusal-then-late-reply", "events": [{"id":"s","type":"send","at":0},{"id":"w","type":"wait","at":0.1},{"id":"d","type":"decline","at":1},{"id":"a","type":"reply","at":3}], "expected": {"phase":"closed","observation":"reply","closure":"decline"} },
+    { "id": "reply-on-deadline", "events": [{"id":"s","type":"send","at":0},{"id":"a","type":"reply","at":2}], "expected": {"phase":"replied","observation":"no-reply","closure":null} },
+    { "id": "duplicate-send-record", "events": [{"id":"s","type":"send","at":0},{"id":"w","type":"wait","at":0.1},{"id":"s","type":"send","at":0}], "expected": {"phase":"pending","observation":"open","closure":null} },
+    { "id": "local-close-before-window", "events": [{"id":"s","type":"send","at":0},{"id":"c","type":"close","at":1},{"id":"a","type":"reply","at":1.5}], "expected": {"phase":"closed","observation":"ended","closure":"close"} }
+  ]
+}

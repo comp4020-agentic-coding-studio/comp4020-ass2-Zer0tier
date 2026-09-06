@@ -1,0 +1,542 @@
+---
+title: "Game Theory and Asynchronous Communication · Week 7"
+description: "A three-hour teaching pack: arrival counts, response utilities, best responses, event replay and terminal boundaries."
+---
+
+import DeckTools from "../components/DeckTools.astro";
+import DeckBars from "../components/DeckBars.astro";
+import CommunicationFigure from "../components/CommunicationFigure.astro";
+
+<DeckTools />
+
+# Nobody owes your queue a service-level agreement
+
+Game Theory and Asynchronous Communication
+
+SLOP1276 · Week 07
+
+A read receipt is an observation. Your next assumption is optional.
+
+---
+
+## The engineering output
+
+Build a **Communication state machine** from Week 6's tree.
+
+Calculate arrival counts and separate them from a recommended reply time.
+
+Solve utilities, best responses and changed payoffs.
+
+Trace timeouts, duplicates and refusal without emitting a message.
+
+---
+
+## A three-hour model review
+
+Events and handoff **30 min** · arrivals **30 min** · break **10 min**.
+
+Decisions **35 min** · two-player games **35 min**.
+
+State implementation, adversarial tests and handoff **40 min**.
+
+Worked debriefs fit around the scheduled 90-minute tutorial.
+
+---
+
+## Reconnect the versions after the break
+
+Alex: board games, terrible puns, a possible relationship.
+
+**Friday 5–7 pm · bus · $20 total.**
+
+Carry the supported bio, frozen photo, checked Library invitation and G1's quote.
+
+The constructor calls Week 6's actual classifier. A pending or closed record cannot start a fresh opener.
+
+---
+
+## Four events, four observations
+
+<CommunicationFigure kind="events" />
+
+---
+
+## Exercise · repair the receipt inference
+
+**5 minutes.** Send at 0 h, read at 0.5 h, no reply observed by 2 h.
+
+“They read it, so they want a reminder.”
+
+Separate recorded events from the invented conclusion.
+
+What does a missing delivery receipt establish?
+
+---
+
+## Answer · keep the observations
+
+Keep the send time, read observation and absence of an observed reply.
+
+Remove the motive and reminder inference.
+
+A missing delivery receipt does not establish non-delivery.
+
+Neither this trace nor the earlier feasible invitation establishes acceptance.
+
+---
+
+## Name the clock you actually have
+
+`at` is **observation time in hours**, from one synthetic origin.
+
+It need not equal a server's underlying event time.
+
+The reducer retains read and delivery observations separately. It does not fabricate a missing timestamp.
+
+These are authored logs, not claims about a real app's receipt behaviour.
+
+---
+
+## Count a declared event
+
+The toy arrival model counts **inbound messages**, including declines.
+
+Send, delivery and read receipts are not inbound-message arrivals.
+
+Assume a homogeneous Poisson process with **λ = 0.4 events/hour**.
+
+The state traces are separate fixtures; six authored examples cannot validate this rate.
+
+---
+
+## Rate times duration gives a mean count
+
+μ = λt = **0.4 × 2 = 0.8 events**.
+
+P(N = k) = exp(−μ) × μᵏ / k!
+
+P(N = 0) = **exp(−0.8) ≈ 0.449329**.
+
+[SciPy: Poisson count distribution](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.poisson.html)
+
+---
+
+## Change the assumed rate
+
+<DeckBars caption="Toy homogeneous models · zero inbound messages over two hours" maximum={1} scale="Probability scale: 0–100%. Rates are assumed, not fitted to a recipient." rows={[
+  { label: '0.2 / hour', value: 0.670320046, display: '67.03%' },
+  { label: '0.4 / hour', value: 0.449328964, display: '44.93%' },
+  { label: '0.8 / hour', value: 0.201896518, display: '20.19%' }
+]} />
+
+---
+
+## A count is not a reply deadline
+
+Expected count **0.8** does not mean **80% chance** of at least one arrival.
+
+That probability is **1 − exp(−0.8) ≈ 55.07%**.
+
+A count may exceed one. A probability cannot.
+
+Neither number identifies when someone should reply or when another message is appropriate.
+
+---
+
+## Exercise · compute three quantities
+
+**6 minutes.** At λ = 0.4/hour and t = 2 hours, calculate:
+
+Zero arrivals, at least one arrival, and exactly one arrival.
+
+Then use λ = 0.2 and 0.8 for zero arrivals.
+
+What happens at zero rate or zero duration?
+
+---
+
+## Answer · keep the event definitions
+
+Zero: **0.449329**. At least one: **0.550671**.
+
+Exactly one: **0.8 × exp(−0.8) ≈ 0.359463**.
+
+At rates 0.2 and 0.8, zero-count probabilities are **0.670320** and **0.201897**.
+
+At zero rate or duration, zero arrivals has probability 1. Negative or non-finite inputs are invalid.
+
+---
+
+## The process assumptions do work
+
+Constant rate; independent counts in disjoint intervals.
+
+Work, sleep, notifications and clustered turns are omitted structure.
+
+After zero in the first two hours, the next two still have zero probability exp(−0.8) **under this process**.
+
+[MIT: Poisson processes, §§4-5–4-6](https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-spring-2006/8c03011e0c589bdc9c302dd6d49df162_chapter4.pdf)
+
+---
+
+## Same mean, different silence probability
+
+<CommunicationFigure kind="mixture" />
+
+---
+
+## Break · ten minutes
+
+Keep λ, duration and the event definition beside every probability.
+
+Next: your optimiser has three options and only checked two.
+
+That is a small implementation detail with a large conclusion attached.
+
+---
+
+## One decision maker, three options
+
+Clarify: **7q − 5**. Wait: **2q − 1**. Stop: **0**.
+
+q is an assumed probability that clarification would be welcome.
+
+Costs and coefficients are arbitrary utility units.
+
+This is a decision against uncertainty; the other person is not yet a strategic player in this model.
+
+---
+
+## Positive utility is not enough
+
+Clarify beats stop when **q > 5/7**.
+
+Clarify beats wait when **5q > 4**, or **q > 0.8**.
+
+It must beat both.
+
+At q = 0.75, clarify scores 0.25 but wait scores 0.50. A positive score can still lose.
+
+---
+
+## Solve the whole decision policy
+
+<CommunicationFigure kind="decision" />
+
+---
+
+## Exercise · change the cost
+
+**7 minutes.** Replace clarification's cost 5 with **6**.
+
+Compare clarify, wait and stop at q = 0.9 and 1.
+
+Can clarification strictly win anywhere on [0,1]?
+
+Now use cost 4. Find the crossover with waiting and check stop too.
+
+---
+
+## Answer · a threshold can leave the domain
+
+Cost 6, q = 0.9: clarify **0.3**, wait **0.8**, stop **0**.
+
+At q = 1: clarify and wait tie at **1**.
+
+Clarification never strictly beats waiting on [0,1].
+
+Cost 4: clarify and wait tie at **q = 0.6**, both scoring **0.2**.
+
+---
+
+## Declare the double-text penalty
+
+Let d ≥ 0 be an **assumed extra cost**.
+
+U(C) = 7q − 5 − d.
+
+Clarify beats wait only if **q > 0.8 + d/5**.
+
+At d = 1, strict preference is impossible. This is sensitivity to a parameter, not a measured social law.
+
+---
+
+## q is not the Poisson complement
+
+“Would welcome clarification” differs from “an inbound message arrives.”
+
+Do not set q = 1 − P(zero) without a model and evidence connecting those events.
+
+A receipt also supplies no q.
+
+The workbook assumes q; it does not estimate feelings, attention or consent.
+
+---
+
+## Review admissibility before ranking
+
+The base arithmetic assumes a separately reviewed admissible clarification.
+
+`clarificationAllowed: false` excludes it, even at q = 0.9.
+
+Week 6's pending branch supplies no automatic clarification opportunity.
+
+The state reducer has no second-send transition. Closed selects stop before any utility comparison.
+
+---
+
+## Now give both players a choice
+
+A and B each choose **Ask** or **Wait**, simultaneously, once.
+
+Each payoff depends on the pair of choices.
+
+Rows belong to A; columns belong to B; each cell is **(A, B)**.
+
+This is a separate invented game with admissible actions, not a reconstruction of a conversation.
+
+---
+
+## Read the correct payoff coordinate
+
+<CommunicationFigure kind="game" />
+
+---
+
+## Find both players' best responses
+
+Fix B = Ask: A receives **1 for Ask, 0 for Wait**.
+
+Fix B = Wait: A receives **2 for Ask, 0 for Wait**.
+
+Ask is better against either opposing action: **strict dominance**.
+
+Use B's second coordinate to repeat the check. B also strictly prefers Ask against either action.
+
+---
+
+## Equilibrium is a joint check
+
+A Nash equilibrium puts **both players on best responses**.
+
+Neither improves by changing alone while the other choice stays fixed.
+
+Here the unique equilibrium is **(Ask, Ask)**, because Ask strictly dominates for both.
+
+[MIT: best responses and Nash equilibrium](https://ocw.mit.edu/courses/14-75-political-economy-and-economic-development-fall-2012/bf65c969a9bfd655e50589ba7283cda8_MIT14_75F12_Recitation8.pdf)
+
+---
+
+## Change one cell, change the game
+
+<CommunicationFigure kind="changed-game" />
+
+---
+
+## Exercise · repair the dominance claim
+
+**7 minutes.** In the changed matrix, mark A's and B's best responses.
+
+Does Ask still strictly dominate Wait?
+
+Check all four cells for a profitable unilateral change.
+
+List every pure equilibrium. Keep the two payoff coordinates separate.
+
+---
+
+## Answer · two pure equilibria remain
+
+Against Ask, choose **Wait: 0 beats −1**.
+
+Against Wait, choose **Ask: 2 beats 0**.
+
+The equilibria are **(Ask, Wait)** and **(Wait, Ask)**.
+
+At Ask/Ask, either player can improve by waiting. At Wait/Wait, either can improve by asking. Neither action strictly dominates.
+
+---
+
+## Mix only after calculating indifference
+
+Let r be the other player's Ask probability in the changed game.
+
+Expected Ask payoff: **−r + 2(1 − r) = 2 − 3r**.
+
+Wait payoff: **0**. Equalise them: **r = 2/3**.
+
+By symmetry, both choosing Ask with probability 2/3 form a mixed equilibrium. Both actions then yield zero expected utility.
+
+---
+
+## A game result is not a texting script
+
+r is a strategy probability; q is the separate welcome assumption; λ is an arrival rate.
+
+The mixed calculation does not remove the two pure equilibria.
+
+Payoffs are invented. Equilibrium does not establish consent or predict behaviour.
+
+Do not turn 2/3 into a rule for randomising real messages.
+
+---
+
+## Turn the tree into event transitions
+
+<CommunicationFigure kind="states" />
+
+---
+
+## Keep phase separate from observation
+
+<CommunicationFigure kind="axes" />
+
+---
+
+## Write the contract before the timer
+
+Each event has **ID, type and observation hours**. Retain the returned snapshot.
+
+The window is **[send time, send time + 2 h)**.
+
+Two hours is this trace fixture's convention; Week 6's aggregate fixture used 48 hours.
+
+This reducer has no real clock, persistence, network or background scheduler.
+
+---
+
+## Replay an observation timeout
+
+<CommunicationFigure kind="timeline" />
+
+---
+
+## Exercise · substitute a refusal
+
+Send at 0, wait at 0.1, timeout at 2, reply at 3.
+
+Now replace the timeout with **decline at 1**.
+
+Trace phase, observation outcome and local action for both histories.
+
+Explain why the same late reply produces different results. Include this in the tutorial's implementation review.
+
+---
+
+## Answer · one ends a window, one closes contact
+
+Timeout trace: **replied / no-reply**, with late-content review.
+
+Refusal trace: **closed / reply**, with closure reason decline.
+
+The decline itself counts as an inbound reply before the deadline. Later events leave closed unchanged.
+
+A local close before the deadline without a reply gives **ended**, not a completed no-reply window.
+
+---
+
+## Duplicate records need an identity rule
+
+Same event ID, type and time → **no-op**.
+
+Same ID with different content → **conflict for review**.
+
+A new second-send ID is rejected. Old timestamps on new events are rejected too.
+
+This works only with retained state and IDs. It is not an exactly-once delivery guarantee.
+
+---
+
+## Check expiry before classifying the reply
+
+If an open observation reaches **time ≥ deadline**, freeze no-reply.
+
+Then process the supplied event.
+
+A late reply is late even when no explicit timeout event came first.
+
+Nothing wakes up automatically: replay progresses only when the caller supplies an event.
+
+---
+
+## Exercise · test the exact endpoint
+
+Compare replies at **1.999 h** and **2 h** in a window starting at 0.
+
+At 2 h, process timeout then reply; reverse their order in a second trace.
+
+Should the window result change with that order?
+
+Predict the literal outcomes before running the workbook.
+
+---
+
+## Answer · equality is outside this window
+
+At 1.999 h: observation **reply**.
+
+At 2 h: observation **no-reply**, with late-content review.
+
+Both equal-time orders end **replied / no-reply**.
+
+The ≥ expiry check enforces the half-open convention. Changing it to > breaks the endpoint test.
+
+---
+
+## A refusal must survive a competing event
+
+<CommunicationFigure kind="closed" />
+
+---
+
+## Break the rule to test the test
+
+Temporarily remove the closed-state guard. Replay refusal, then late reply.
+
+The expected **closed** phase must fail if it becomes replied.
+
+Restore the guard and run again. Check input snapshots remain unchanged.
+
+A literal state assertion tests behaviour; searching the code for “closed” does not.
+
+---
+
+## Run five files offline
+
+Save the five files linked in the [lecture notes](/lectures/week-07/#run-the-worked-calculations) together.
+
+Run `node week-07-worked-examples.mjs`.
+
+Inspect arrival counts, changed costs, both games and six event traces.
+
+The download reuses Week 6's classifier and the existing Poisson module. It emits no messages.
+
+---
+
+## Hand over evidence, not a verdict
+
+<CommunicationFigure kind="handoff" />
+
+---
+
+## Prepare the reasoning for paper
+
+Midterm: **23 April, 11 am–12.30 pm**.
+
+Question 4: Poisson zero count, utility threshold and best responses in supplied payoffs.
+
+Use a non-programmable calculator and your permitted double-sided A4 notes. No executable code or AI tools during the exam.
+
+Show assumptions and working. Practice values are not promised exam inputs.
+
+---
+
+## Exit ticket · three broken conclusions
+
+“0.8 expected arrivals means 80% chance.” → Use **1 − exp(−0.8)**.
+
+“At q = 0.75, positive clarification utility wins.” → **Waiting is larger**.
+
+“A late reply reopens refusal.” → **Closed stays closed**.
+
+Save the Communication state machine and its literal traces for Week 8.

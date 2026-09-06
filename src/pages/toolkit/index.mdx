@@ -134,6 +134,21 @@ crossover at 0.10 utility units per second, ties, defer and an inadmissible
 pressure option. The probabilities and costs are assumed; the code does not
 infer permission, shared interests or message quality from prose.
 
+## Week 7 communication cases · version 1
+
+The [five-file Week 7 workbook](/lectures/week-07/#run-the-worked-calculations)
+contains [authored event and numerical cases](/data/week-07-cases.json),
+[state, utility and payoff functions](/data/week-07-models.mjs), and an
+[executable report](/data/week-07-worked-examples.mjs). It also needs the
+[Week 6 classifier](/data/week-06-models.mjs) and the existing model module below.
+Save all five together and run `node week-07-worked-examples.mjs` offline.
+
+The constructor reuses Week 6's decision; event replay distinguishes an expired
+observation window from terminal closure. Separate exercises calculate Poisson
+counts, cost thresholds, best responses and changed equilibria. No rate or
+utility is fitted to a person, no event sends a message, and no real timer or
+durable queue runs. The completed record becomes Week 8's threat-review input.
+
 <h2 id="benchmark">Null Island v1 · the top-1% contract</h2>
 
 [Download the 99 synthetic controls](/data/null-island-controls.csv) and
