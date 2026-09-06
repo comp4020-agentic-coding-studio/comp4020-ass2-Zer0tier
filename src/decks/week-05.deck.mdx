@@ -1,0 +1,557 @@
+---
+title: "The Mathematics of the Match · Week 5"
+description: "A three-hour teaching pack: conditional probability, repeated opportunities, feasible invitations, peak exposure and a frozen benchmark."
+---
+
+import DeckTools from "../components/DeckTools.astro";
+import DeckBars from "../components/DeckBars.astro";
+import MatchFigure from "../components/MatchFigure.astro";
+
+<DeckTools />
+
+# Your expected date is not a booking
+
+The Mathematics of the “Match”
+
+SLOP1276 · Week 05
+
+One selection is an event. A match needs both.
+
+---
+
+## The engineering output
+
+Build a **Match probability model** with explicit denominators.
+
+Separate an expected count from the chance of at least one match.
+
+Check Alex's travel constraints and audit the Sunday comparison.
+
+Freeze a quality target that never masquerades as a probability.
+
+---
+
+## A three-hour modelling route
+
+Joint events **30 min** · repeated opportunities **35 min**.
+
+Break **10 min** · feasibility and caps **35 min**.
+
+Peak exposure **35 min** · benchmark and handoff **35 min**.
+
+The notes map exercises and debriefs to lecture, tutorial and study time.
+
+---
+
+## Start with the frozen inputs
+
+Week 2: platform audit and exposure denominators.
+
+Week 4: supported candidate text and **A-portrait-v1**.
+
+Alex: adult CS student, board games, terrible puns; possible relationship.
+
+**Friday 5–7 pm · bus travel · $20 total.**
+
+---
+
+## Define one opportunity
+
+One eligible fictional pair, offered both selection directions, with a complete **24-hour outcome window**.
+
+**A:** first participant selects. **B:** reverse selection.
+
+**M = A ∩ B:** at most one mutual match per pair.
+
+All fixtures are authored. Week 4's positive response is a different outcome.
+
+---
+
+## Read the branches, then multiply
+
+<MatchFigure kind="tree" />
+
+---
+
+## The intersection has six pairs
+
+<MatchFigure kind="cells" />
+
+---
+
+## Conditional is doing work here
+
+**P(A ∩ B) = P(A) × P(B | A)**
+
+Here: **0.30 × 0.20 = 0.06**.
+
+The marginal P(B) is **13/100**, not 6/30. Multiplying the marginals gives 0.039 and the wrong joint probability.
+
+[MIT: conditional product rule, §17.4](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf)
+
+---
+
+## Exercise · change the denominator
+
+**6 minutes.** Use the 100-pair table: both 6, A only 24, B only 7, neither 63.
+
+Find P(B), P(B | A), P(A | B), and P(A or B).
+
+Decide whether A and B are independent in this fixture.
+
+Explain what happens if nobody selects A's direction.
+
+---
+
+## Answer · the arrow is not reversible
+
+P(B) = **13/100**. P(B | A) = **6/30 = 20%**.
+
+P(A | B) = **6/13 ≈ 46.15%**.
+
+P(A or B) = **37/100**. Count the six mutual pairs once.
+
+The events are dependent: 0.20 ≠ 0.13. With zero A selections, P(B | A) is undefined; the joint count is zero.
+
+---
+
+## Twenty opportunities: what is X?
+
+Let **Iᵢ = 1** for a mutual match on opportunity i, otherwise 0.
+
+**X = I₁ + … + I₂₀** is a count, not a probability.
+
+The repeated model generates new pair opportunities. It does not draw the table's rows without replacement.
+
+---
+
+## Expectation adds, even with dependence
+
+**E[X] = Σ P(Mᵢ)**
+
+Twenty marginal probabilities of 0.06 give **E[X] = 1.2**.
+
+An expectation can be fractional. The realised count cannot.
+
+Linearity needs no independence between opportunities. The individual probabilities still need justification.
+
+[MIT: linearity of expectation, §18.5](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf)
+
+---
+
+## At least one: use the complement
+
+With **independent** match indicators and the **same p = 0.06**:
+
+P(X = 0) = **0.94²⁰ ≈ 0.2901**.
+
+P(X ≥ 1) = **1 − 0.94²⁰ ≈ 70.99%**.
+
+This model leaves about a 29% chance of zero. It does not book 1.2 meetings.
+
+---
+
+## Where the count can land
+
+<DeckBars caption="Binomial toy model · n = 20, p = 0.06" maximum={1} scale="Probability scale: 0–1. The three categories cover all possible counts." rows={[
+  { label: 'Zero', value: 0.2901062411, display: '29.01%' },
+  { label: 'Exactly one', value: 0.3703483929, display: '37.03%' },
+  { label: 'Two or more', value: 0.3395453659, display: '33.95%' }
+]} />
+
+[NIST: binomial distribution](https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm)
+
+---
+
+## Exercise · audit the model calls
+
+**7 minutes.** Reproduce 1.2 and 70.99% in code or a spreadsheet.
+
+Check zero opportunities, p = 0 and p = 1.
+
+Now give every opportunity the outcome of **one shared Bernoulli draw**, with success probability 0.06.
+
+Which earlier answer survives?
+
+---
+
+## Answer · same mean, different chance
+
+Zero opportunities: expected **0**, chance of one **0**.
+
+Twenty opportunities at p = 0: **0 and 0**; at p = 1: **20 and 1**.
+
+Shared draw: X = 20 with probability 0.06, otherwise X = 0.
+
+**E[X] = 1.2**, but **P(X ≥ 1) = 6%**. Dependence changes the distribution.
+
+---
+
+## The marginal probabilities stayed fixed
+
+<DeckBars caption="Two joint models · each opportunity still has p = 0.06" maximum={1} scale="Chance of at least one across twenty. Both models have expected count 1.2." rows={[
+  { label: 'Independent', value: 0.7098937589, display: '70.99%' },
+  { label: 'Shared draw', value: 0.06, display: '6.00%' }
+]} />
+
+The shared draw is a deliberate stress test, not a claim about real users.
+
+---
+
+## Unequal probabilities need their own product
+
+For independent events: **P(any) = 1 − ∏(1 − pᵢ)**.
+
+Ten at 0.02 and ten at 0.10 give **E[X] = 1.2** and **P(any) ≈ 71.51%**.
+
+Replacing every pᵢ with the mean 0.06 gives 70.99% instead.
+
+Equal means do not imply equal distributions.
+
+---
+
+## Sensitivity to the reciprocal branch
+
+<DeckBars caption="Assumed P(B | A) changes · P(A) = 0.30, twenty independent opportunities" maximum={1} scale="Chance of at least one. These are scenarios, not confidence-interval bounds." rows={[
+  { label: '0.10', value: 0.4562056571, display: 'p = 0.03 → 45.62%' },
+  { label: '0.20', value: 0.7098937589, display: 'p = 0.06 → 70.99%' },
+  { label: '0.40', value: 0.9224372064, display: 'p = 0.12 → 92.24%' }
+]} />
+
+---
+
+## Two different independence questions
+
+**Within a pair:** is P(B | A) equal to P(B)? The table says no.
+
+**Across opportunities:** are M₁, …, M₂₀ mutually independent? The repeated toy model assumes yes.
+
+You may use conditional selection within each pair and independent match indicators across pairs. State both choices.
+
+---
+
+## Break · ten minutes
+
+Keep your event definitions and calculation trace.
+
+Next: your model has found a match six kilometres away.
+
+Your bus timetable would like to review the pull request.
+
+---
+
+## A radius is not a journey
+
+Straight-line distance does not encode routes, waiting or return travel.
+
+Treat the three venue records as **invented options**, not extra facts about Alex.
+
+Start at 17:00. Include the entire outing before 19:00 and every cost within $20.
+
+---
+
+## Check the whole itinerary
+
+<MatchFigure kind="journey" />
+
+---
+
+## A hard constraint is a predicate
+
+**minutes = outbound + meeting + return**
+
+**cost = return transport + activity**
+
+Feasible means **minutes ≤ 120 AND cost ≤ $20**.
+
+Travel legs already include walking and waiting. Never count the return fare twice or omit the return journey.
+
+---
+
+## Exercise · choose a feasible invitation
+
+**8 minutes.** Audit all three invented options. Each meeting lasts 60 minutes.
+
+Library: 20 min each way; $6 transport + $8 activity.
+
+Arcade: 35 min each way; $6 + $10.
+
+Riverside: 15 min each way; $6 + $16.
+
+Choose only after checking both constraints.
+
+---
+
+## Time alone rejects the closest option
+
+<DeckBars caption="Full outing time · fictional bus routes" maximum={140} scale="Scale: 0–140 minutes. Alex's hard limit is 120 minutes." rows={[
+  { label: 'Library · 2 km', value: 100, display: '100 min · time passes' },
+  { label: 'Arcade · 1 km', value: 130, display: '130 min · time fails' },
+  { label: 'Riverside · 6 km', value: 90, display: '90 min · time passes' }
+]} />
+
+---
+
+## Budget supplies a separate rejection
+
+<DeckBars caption="Alex's complete cost · fictional prices" maximum={25} scale="Scale: $0–$25. Alex's hard limit is $20 total." rows={[
+  { label: 'Library', value: 14, display: '$14 · feasible' },
+  { label: 'Arcade', value: 16, display: '$16 · time still fails' },
+  { label: 'Riverside', value: 22, display: '$22 · budget fails' }
+]} />
+
+---
+
+## Passing is not having spare capacity
+
+Library reserve: **20 minutes and $6**.
+
+Exercise · **4 minutes:** add 10 minutes to each travel leg. Then add 11 instead. Test an outing costing exactly $20 and one costing $20.01.
+
+Keep Alex's limits fixed; vary the fictional route inputs.
+
+---
+
+## Answer · boundary conditions count
+
+Ten extra minutes each way: **120 minutes**, passes with no time reserve.
+
+Eleven extra each way: **122 minutes**, fails.
+
+Exactly **$20 passes**; **$20.01 fails**. Store cents as integers.
+
+A desired buffer is a separate declared decision rule. Passing a deterministic case is no reliability guarantee.
+
+---
+
+## The cap is an input, not an app disclosure
+
+Course cap: **20 offered pair opportunities** in each strategy.
+
+Baseline: P(A) = 0.30, P(B | A) = 0.20.
+
+Broader selection: P(A) = 0.60, P(B | A) = 0.10.
+
+Both assumed models give **p = 0.06 and expected count 1.2**. More outgoing selections need not improve this objective.
+
+---
+
+## Keep the feasible denominator visible
+
+If only **10 of 20 offered opportunities** satisfy the declared eligibility filter, 0.06 per eligible opportunity gives **0.6 expected eligible matches**.
+
+Report offered, eligible and selected counts separately.
+
+Use the same pool and cap for a controlled strategy comparison. Changing eligibility changes the question.
+
+---
+
+## Peak system load: Sunday evening swiping
+
+This is the week's **synthetic peak-load scenario**.
+
+Sunday: **8 mutual matches / 40 exposures**.
+
+Tuesday: **3 mutual matches / 10 exposures**.
+
+Separate disjoint fictional pools; no random time assignment. These rows are not the earlier 100-pair table.
+
+---
+
+## Sunday wins on counts
+
+<DeckBars caption="Authored window fixture · mutual-match counts" maximum={10} scale="Scale: 0–10 matches. The exposure denominators are shown beside each count." rows={[
+  { label: 'Sunday', value: 8, display: '8 matches / 40 exposures' },
+  { label: 'Tuesday', value: 3, display: '3 matches / 10 exposures' }
+]} />
+
+---
+
+## Tuesday wins on observed rate
+
+<DeckBars caption="Same authored windows · matches divided by exposures" maximum={1} scale="Rate scale: 0–100%. Higher observed rate does not establish a clock effect." rows={[
+  { label: 'Sunday', value: 0.2, display: '8 / 40 = 20%' },
+  { label: 'Tuesday', value: 0.3, display: '3 / 10 = 30%' }
+]} />
+
+---
+
+## Exercise · repair the headline
+
+**6 minutes.** “Sunday is 2.67 times better, so move every session there.”
+
+Identify the quantity behind 2.67. Compute the exposure ratio, rate difference and rate ratio.
+
+Write one sentence the table supports and one causal question it cannot answer.
+
+---
+
+## Answer · name what improved
+
+Count ratio: **8/3 ≈ 2.67**. Exposure ratio: **40/10 = 4**.
+
+Sunday − Tuesday: **−10 percentage points**. Rate ratio: **0.20/0.30 ≈ 0.67**.
+
+Sunday has more observed matches and a lower observed rate.
+
+The effect of moving the same eligible population to Sunday remains unknown.
+
+---
+
+## A shared cap gives a hypothetical comparison
+
+Suppose both windows offered **20 eligible exposures**, and their observed rates transferred unchanged.
+
+Expected counts would be **4 on Sunday and 6 on Tuesday**.
+
+These are plug-in scenarios, not new observations or a randomised result.
+
+With zero exposures, a rate is **undefined**, not 0%.
+
+---
+
+## Exercise · repair the time experiment
+
+**8 minutes.** “Use old bio A on Sunday, new B on Tuesday. Reuse viewers. Stop when Tuesday wins.”
+
+Specify the unit, frozen inputs, assignment, outcome window and stopping rule for a **simulation-only proposal**.
+
+List what must be supplied before it can run. The existing counts do not supply a generator.
+
+---
+
+## Answer · preserve one contrast
+
+Freeze the photo, text, pool eligibility and all non-time settings.
+
+Randomly assign **200 distinct simulated pairs per window**, once each; finish all 24-hour windows before analysis.
+
+Count mutual matches per assigned pair. Repair missing or duplicate records.
+
+Prespecify the generator, seed and rate difference. The cap is an exercise choice, not a power calculation.
+
+---
+
+## What a simulation would establish
+
+A synthetic experiment checks behaviour **under its generator**.
+
+The generator must say whether time changes selection probabilities; assignment alone cannot invent that mechanism.
+
+Tiny observed counts do not justify certainty. Week 4's normal-test guardrail withholds z here.
+
+No data in this pack establishes a universal best time.
+
+---
+
+## Freeze the right project objective
+
+<MatchFigure kind="contract" />
+
+---
+
+## Four ratings need four pieces of evidence
+
+**Clarity:** what Alex is seeking.
+
+**Specificity:** a supported detail someone can respond to.
+
+**Feasibility:** time, bus and total-budget consistency.
+
+**Exit:** declining or not engaging is acceptable.
+
+Use the toolkit's 0–4 anchors. Quote the evidence before assigning a score.
+
+---
+
+## Exercise · rank is not score
+
+**7 minutes.** Score the illustrative vectors **[4, 4, 3, 4]** and **[4, 4, 4, 4]**.
+
+Load all **99 Null Island v1 controls** and rank each candidate.
+
+Use **rank = 1 + count(control ≥ candidate)**.
+
+Explain why changing ≥ to > would reward a tie.
+
+---
+
+## Answer · the tie occupies a place
+
+[4, 4, 3, 4] scores **93.75** and ranks **2/100**.
+
+[4, 4, 4, 4] scores **100** and ranks **1/100**.
+
+One control also scores 93.75. Ties count against the candidate.
+
+These are arithmetic examples. Your candidate's ratings must follow its evidence.
+
+---
+
+## The benchmark has a designed ceiling
+
+The 99 controls are **invented feature vectors**; the maximum is 93.75.
+
+The generator intentionally excludes [4, 4, 4, 4]. Winning this fixture is not external validation.
+
+Only **rank 1/100** receives the course's top-1% label.
+
+A score of 100 predicts neither a match nor a date.
+
+---
+
+## Freeze before evaluation influences revision
+
+Record candidate text version, photo fingerprint and venue assumptions.
+
+Save feature evidence, primary scoring rule, control file fingerprint, **100-entry denominator** and conservative ties.
+
+Prespecify Week 11's double-feasibility sensitivity and separate availability shift.
+
+Preserve the baseline; label later revisions separately.
+
+---
+
+## Run the workbook offline
+
+Save the five linked files from the [lecture notes](/lectures/week-05/#run-the-worked-calculations) in one folder.
+
+Run `node week-05-worked-examples.mjs`.
+
+Inspect the pair table, independent and shared-draw answers, venue decisions, Sunday rates and control ranks.
+
+Use a spreadsheet or another language if preferred; retain the same definitions.
+
+---
+
+## Exercise · defend the frozen record
+
+**6 minutes.** Review your neighbour's record, or audit your own.
+
+Can you reproduce the text and inputs? Locate each rating's evidence? Explain every denominator?
+
+Show the 93.75-score example beside the 0.06 match model without converting one into the other.
+
+Return one concrete correction and its reason.
+
+---
+
+## Handoff · a feasible invitation is still optional
+
+“Library games table Friday 17:20–18:20? My bus trip and activity fit $14 total. Fine to pass.”
+
+An example under the invented route inputs; recipient availability is still unknown.
+
+Week 6 uses your supported bio and checked invitation in its message tree. A match never bypasses the refusal-first branch.
+
+---
+
+## Exit ticket · fix three category errors
+
+“Expected 1.2” → a model mean, **not a booking**.
+
+“Sunday wins” → more counts, **lower observed rate**.
+
+“Top 1%” → **rank 1/100 in a named rubric fixture**.
+
+Save the **Match probability model** and frozen objective record. Bring both to Week 6; keep the baseline for Week 11.

@@ -1,0 +1,102 @@
+---
+import cases from '../../public/data/week-05-cases.json';
+import { venueDecision } from '../../public/data/week-05-models.mjs';
+interface Props { kind: 'tree' | 'cells' | 'journey' | 'contract'; }
+const { kind } = Astro.props;
+---
+<figure class="match-figure">
+  {kind === 'tree' && <>
+    <figcaption>Conditional tree · 100 authored pair outcomes</figcaption>
+    <div class="branch-grid">
+      <div class="branch"><strong>A selects · 30 / 100</strong>
+        <div class="leaf selected"><b>B selects · 6 / 30</b><span>Both: 0.30 × 0.20 = 0.06</span></div>
+        <div class="leaf"><b>B does not · 24 / 30</b><span>A only: 0.30 × 0.80 = 0.24</span></div>
+      </div>
+      <div class="branch"><strong>A does not · 70 / 100</strong>
+        <div class="leaf"><b>B selects · 7 / 70</b><span>B only: 0.70 × 0.10 = 0.07</span></div>
+        <div class="leaf"><b>B does not · 63 / 70</b><span>Neither: 0.70 × 0.90 = 0.63</span></div>
+      </div>
+    </div>
+    <div class="figure-note">Each second-stage fraction conditions on its own branch.</div>
+  </>}
+  {kind === 'cells' && <>
+    <figcaption>One hundred pairs · one square per pair</figcaption>
+    <div class="outcome-grid" aria-hidden="true">
+      {Array.from({ length: 100 }, (_, i) => <span class:list={[i < 6 ? 'both' : i < 30 ? 'a-only' : i < 37 ? 'b-only' : 'neither']} />)}
+    </div>
+    <dl class="cell-key">
+      <div><dt>Both select</dt><dd>6 / 100</dd></div>
+      <div><dt>A only</dt><dd>24 / 100</dd></div>
+      <div><dt>B only</dt><dd>7 / 100</dd></div>
+      <div><dt>Neither</dt><dd>63 / 100</dd></div>
+    </dl>
+    <div class="figure-note">A selects in 30 pairs. B selects in 13. The intersection has six.</div>
+  </>}
+  {kind === 'journey' && <>
+    <figcaption>Library option · invented Friday itinerary</figcaption>
+    <div class="journey-strip">
+      <div><strong>17:00–17:20</strong><span>Bus + walk + wait</span><b>20 min</b></div>
+      <div><strong>17:20–18:20</strong><span>Games table</span><b>60 min</b></div>
+      <div><strong>18:20–18:40</strong><span>Return journey</span><b>20 min</b></div>
+    </div>
+    <div class="figure-note">{venueDecision(cases.venues[0]).minutes} minutes total · $6 return transport + $8 activity = $14.</div>
+    <div class="figure-note">Home by 19:00 under these inputs. Reserve: 20 minutes and $6.</div>
+  </>}
+  {kind === 'contract' && <>
+    <figcaption>Two outputs with different meanings</figcaption>
+    <div class="branch-grid">
+      <div class="contract-card"><strong>Match model</strong><b>p = 0.06</b><span>Mutual selection per eligible pair under supplied probabilities.</span></div>
+      <div class="contract-card"><strong>Quality benchmark</strong><b>93.75 / 100</b><span>Rubric score for the illustrative vector [4, 4, 3, 4].</span></div>
+    </div>
+    <div class="figure-note">No conversion is defined between these scales. Rank requires the 99 controls.</div>
+  </>}
+</figure>
+<style>
+  .match-figure { width: min(100%, 1100px); margin: .5rem auto 1rem; text-align: left; }
+  figcaption, .figure-note { font-size: clamp(16px, 1.3vw, 24px); line-height: 1.35; }
+  figcaption { margin-bottom: .7rem; }
+  .figure-note { margin-top: .7rem; }
+  .branch-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
+  .branch, .contract-card { padding: .8rem; border: 2px solid var(--course-blue-ink); border-radius: 8px; background: var(--course-paper); color: var(--course-ink); }
+  .branch > strong, .contract-card > strong { display: block; color: var(--course-blue-ink); margin-bottom: .6rem; }
+  .branch, .contract-card, .journey-strip { font-size: clamp(18px, 1.6vw, 30px); line-height: 1.35; }
+  .leaf { margin-top: .5rem; padding-left: .7rem; border-left: 4px solid var(--course-pink-ink); }
+  .leaf b, .leaf span, .contract-card b, .contract-card span { display: block; }
+  .leaf span { font-size: clamp(16px, 1.3vw, 24px); }
+  .selected { border-color: var(--course-blue-ink); }
+  .outcome-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; width: min(100%, 350px); margin: auto; }
+  .outcome-grid span { aspect-ratio: 1; border: 1px solid var(--course-blue-ink); }
+  .both { background: var(--course-blue-ink); }
+  .a-only { background: var(--course-pink-ink); }
+  .b-only { background: var(--course-blue); }
+  .neither { background: var(--course-paper); }
+  .cell-key { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; font-size: clamp(16px, 1.3vw, 24px); line-height: 1.3; margin: .6rem 0 0; }
+  .cell-key > div { border-top: 5px solid var(--course-blue-ink); padding-top: .3rem; }
+  .cell-key > div:nth-child(2) { border-color: var(--course-pink-ink); }
+  .cell-key > div:nth-child(3) { border-color: var(--course-blue); }
+  .cell-key > div:nth-child(4) { border-top: 1px solid var(--course-blue-ink); }
+  .cell-key dd { margin: .2rem 0 0; font-weight: 600; }
+  .journey-strip { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: .5rem; }
+  .journey-strip > div { display: grid; gap: .4rem; padding: .8rem; border: 2px solid var(--course-blue-ink); border-radius: 8px; background: var(--course-blue); color: var(--course-ink); }
+  .journey-strip > div:nth-child(2) { background: var(--course-pink); }
+  @media (width < 650px) {
+    .branch-grid { grid-template-columns: 1fr; gap: .5rem; }
+    .branch, .contract-card { padding: .6rem; }
+    .outcome-grid { width: min(100%, 220px); gap: 3px; }
+    .cell-key { grid-template-columns: 1fr 1fr; }
+    .journey-strip { grid-template-columns: 1fr; }
+    .journey-strip > div { grid-template-columns: 1fr 1fr; padding: .6rem; }
+    .journey-strip b { grid-column: 2; grid-row: 1; text-align: right; }
+    .journey-strip span { grid-column: 1 / -1; }
+  }
+  @media (height < 540px) {
+    .match-figure { margin: .2rem auto; }
+    figcaption { margin-bottom: .3rem; }
+    .figure-note { margin-top: .3rem; }
+    .branch, .contract-card, .journey-strip { font-size: 18px; line-height: 1.2; }
+    .branch, .contract-card, .journey-strip > div { padding: .5rem; }
+    .leaf { margin-top: .3rem; }
+    .outcome-grid { width: 140px; gap: 2px; }
+    .cell-key { font-size: 16px; }
+  }
+</style>

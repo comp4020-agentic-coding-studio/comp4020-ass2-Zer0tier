@@ -1,0 +1,32 @@
+{
+  "version": "week-05-v1",
+  "scope": "Authored fictional teaching fixtures, not app logs, fitted probabilities or measurements of the Week 4 bios. Each case below is a separate scenario; do not join their rows.",
+  "pairTable": {
+    "unit": "One of 100 eligible fictional pairs, with both selection decisions supplied, even if the first is no. All decisions refer to one complete invented 24-hour window.",
+    "both": 6,
+    "aOnly": 24,
+    "bOnly": 7,
+    "neither": 63
+  },
+  "repeated": {
+    "scope": "A separate probability model of new eligible pair opportunities, not sampling the 100 table rows without replacement.",
+    "pA": 0.3,
+    "pBGivenA": 0.2,
+    "opportunities": 20
+  },
+  "venues": [
+    { "id": "library", "name": "Library games table", "distanceKm": 2, "outboundMinutes": 20, "meetingMinutes": 60, "returnMinutes": 20, "transportCents": 600, "activityCents": 800 },
+    { "id": "arcade", "name": "Arcade table", "distanceKm": 1, "outboundMinutes": 35, "meetingMinutes": 60, "returnMinutes": 35, "transportCents": 600, "activityCents": 1000 },
+    { "id": "riverside", "name": "Riverside games room", "distanceKm": 6, "outboundMinutes": 15, "meetingMinutes": 60, "returnMinutes": 15, "transportCents": 600, "activityCents": 1600 }
+  ],
+  "venueScope": "Invented Friday routes and prices. Each travel leg includes bus, walking and waiting; transportCents covers both legs. Meeting and all travel must fit 17:00–19:00; costs are Alex's total. These are options, not new biography or real venue advice.",
+  "windows": [
+    { "id": "sunday", "label": "Sunday evening", "exposures": 40, "matches": 8 },
+    { "id": "tuesday", "label": "Tuesday evening", "exposures": 10, "matches": 3 }
+  ],
+  "windowUnit": "One distinct eligible fictional pair offered both selection directions, with a complete 24-hour outcome window. At most one mutual match per pair. Separate disjoint pools; time was not randomly assigned.",
+  "capStrategies": [
+    { "id": "baseline", "offered": 20, "eligible": 20, "pA": 0.3, "pBGivenA": 0.2 },
+    { "id": "broader", "offered": 20, "eligible": 20, "pA": 0.6, "pBGivenA": 0.1 }
+  ]
+}

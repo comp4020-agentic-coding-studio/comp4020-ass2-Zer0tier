@@ -98,6 +98,26 @@ reports z and compares its magnitude with approximately 1.96 for a two-sided
 not a claim that all larger samples meet the assumptions. It performs no exact
 test, multiple-testing correction or power calculation.
 
+## Week 5 match probability cases · version 1
+
+The [Week 5 five-file workbook](/lectures/week-05/#run-the-worked-calculations)
+contains a [case file](/data/week-05-cases.json),
+[standalone probability and constraint functions](/data/week-05-models.mjs),
+and an [executable calculation log](/data/week-05-worked-examples.mjs).
+Save those alongside the existing scorer and controls linked below; run
+`node week-05-worked-examples.mjs` offline with Node.
+
+Separate authored scenarios cover a 100-pair selection table, twenty new
+opportunities, three invented bus itineraries, Sunday 8/40 versus Tuesday 3/10,
+and a fixed-cap strategy comparison. They are not measurements of the Week 4
+texts and cannot be joined to the other fixtures. The log reproduces the
+0.06 joint event, 1.2 expected matches, 70.99% independent chance of at least
+one, 6% shared-draw counterexample, venue constraints and conservative ranks.
+
+Use `independentOpportunities` only under its stated independence assumption.
+An empty opportunity list has zero chance of a match; a zero-exposure rate is
+undefined. Neither match probabilities nor observed rates are quality scores.
+
 <h2 id="benchmark">Null Island v1 · the top-1% contract</h2>
 
 [Download the 99 synthetic controls](/data/null-island-controls.csv) and
