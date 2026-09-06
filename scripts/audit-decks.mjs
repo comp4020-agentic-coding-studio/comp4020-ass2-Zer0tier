@@ -3,7 +3,11 @@ import assert from 'node:assert/strict';
 import { mkdirSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 import { gitOrigin, resolveDeployment } from './pages-base.ts';
+
+const themeRequire = createRequire(import.meta.resolve('astro-theme-university'));
+const axePath = themeRequire.resolve('axe-core/axe.min.js');
 
 export async function inspectDeck(page, url, screenshots) {
   // Exercise the first-visit hint as a normal browser would, rather than
@@ -88,6 +92,8 @@ export async function inspectDeck(page, url, screenshots) {
   await page.getByRole('link', { name: 'Open the slides', exact: true }).click();
   await page.waitForSelector('.reveal.ready');
   await expectSlide(1);
+  await page.addScriptTag({ path: axePath });
+  const deck = new URL(url).pathname.split('/').filter(Boolean).at(-1);
 
   for (const viewport of [
     { width: 1920, height: 1080 }, { width: 390, height: 844 },
@@ -116,8 +122,19 @@ export async function inspectDeck(page, url, screenshots) {
         `Slide ${slide} must fill ${viewport.width}×${viewport.height}: ${JSON.stringify(geometry)}`);
       assert(geometry.fits && !geometry.overflow && !geometry.obscured,
         `Slide ${slide} content must fit the screen at ${viewport.width}×${viewport.height}`);
+      // Figures are often on later slides, invisible to an arrival-page audit.
+      if ([1920, 390].includes(viewport.width) && await page.locator('.slides > section.present figure').count()) {
+        const figures = await page.locator('.slides > section.present figure').evaluateAll(items => items.every(figure =>
+          figure.scrollWidth <= figure.clientWidth + 1 &&
+          [...figure.querySelectorAll('img')].every(img => img.complete && img.naturalWidth > 0)));
+        assert(figures, `${deck} slide ${slide}: figures fit and images load`);
+        const violations = await page.evaluate(async () => (await window.axe.run(document, {
+          runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'] },
+        })).violations.map(item => ({ id: item.id, targets: item.nodes.map(node => node.target) })));
+        assert.deepEqual(violations, [], `${deck} slide ${slide} accessibility at ${viewport.width}px`);
+        if (screenshots) await page.screenshot({ path: `${screenshots}/${deck}-slide-${slide}-${viewport.width}.png` });
+      }
       if (slide === 1 && screenshots) {
-        const deck = new URL(url).pathname.split('/').filter(Boolean).at(-1);
         await page.screenshot({ path: `${screenshots}/fullscreen-${deck}-${viewport.width}.png` });
       }
     }

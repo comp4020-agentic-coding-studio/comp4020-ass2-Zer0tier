@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="150 0 300 400" role="img" aria-labelledby="title desc">
+  <title id="title">Fictional Alex at a board-game table</title>
+  <desc id="desc">Teaching illustration of fictional Alex, labelled on a blue top, behind a table with three game tiles.</desc>
+  <rect width="600" height="400" fill="#dfeaf9"/>
+  <rect x="30" y="30" width="120" height="210" rx="8" fill="#fff7fa" stroke="#28538a" stroke-width="3"/>
+  <path d="M90 30v210M30 135h120" stroke="#28538a" stroke-width="3"/>
+  <circle cx="300" cy="115" r="53" fill="#f9dbe7" stroke="#272c38" stroke-width="4"/>
+  <path d="M248 109q-5-65 52-60t53 64q-35-6-61-35-14 25-44 31" fill="#272c38"/>
+  <path d="M225 282v-54q0-63 75-63t75 63v54" fill="#28538a" stroke="#272c38" stroke-width="4"/>
+  <circle cx="282" cy="116" r="4" fill="#272c38"/><circle cx="318" cy="116" r="4" fill="#272c38"/>
+  <path d="M284 139q16 12 32 0" fill="none" stroke="#272c38" stroke-width="3"/>
+  <rect x="262" y="205" width="76" height="32" rx="4" fill="#fff7fa"/>
+  <text x="300" y="227" text-anchor="middle" font-family="sans-serif" font-size="21" fill="#272c38">ALEX</text>
+  <path d="M70 282h460l40 118H30z" fill="#fff7fa" stroke="#28538a" stroke-width="4"/>
+  <g stroke="#903252" stroke-width="3" fill="#f9dbe7"><rect x="226" y="310" width="42" height="42"/><rect x="274" y="310" width="42" height="42"/><rect x="322" y="310" width="42" height="42"/></g>
+  <circle cx="247" cy="331" r="7" fill="#903252"/><path d="m295 319 12 23h-24z" fill="#903252"/><path d="M335 323h16v16h-16z" fill="#903252"/>
+</svg>

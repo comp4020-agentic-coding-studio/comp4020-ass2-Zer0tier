@@ -1,0 +1,119 @@
+{
+  "dataset": "SLOP1276 Week 3 synthetic photo assets v1",
+  "scope": "Original teaching drawings and invented annotations. Scores are mock inputs; no detector or human annotation study was run. Permission statuses are exercise fixtures, separate from the course artwork's actual provenance.",
+  "lighting": [
+    {
+      "id": "L1",
+      "key": 200,
+      "fill": 100
+    },
+    {
+      "id": "L2",
+      "key": 200,
+      "fill": 50
+    },
+    {
+      "id": "L3",
+      "key": 100,
+      "fill": 100
+    },
+    {
+      "id": "L4",
+      "key": 400,
+      "fill": 200
+    }
+  ],
+  "assets": [
+    {
+      "id": "A",
+      "revision": "A-portrait-v1",
+      "source": "Original SLOP1276 schematic drawing photo-a.svg",
+      "source_file": "photo-a.svg",
+      "file": "photo-a-crop.svg",
+      "source_size": [
+        600,
+        400
+      ],
+      "crop": {
+        "x": 150,
+        "y": 0,
+        "width": 300,
+        "height": 400
+      },
+      "permission": "recorded",
+      "intended_subject": "Fictional Alex, identified by the supplied label",
+      "subject_clear": true,
+      "crop_ambiguous": false,
+      "detector_confidence": 0.92,
+      "alt": "Teaching illustration of fictional Alex, labelled on a blue top, behind a table with three game tiles.",
+      "sha256": "e210d94c86f7ca5195b36d364df32f19b927a768563de6a674b64f318c1e8d33",
+      "source_sha256": "e3db8d29a8c9fd66396ecee7e4a11a1e5779987efacde38f86843308a010a6ee",
+      "detector_scope": "Mock face-presence score for source_file; not a calibrated probability"
+    },
+    {
+      "id": "B",
+      "revision": "B-partial-v1",
+      "source": "Original SLOP1276 schematic drawing photo-b.svg",
+      "source_file": "photo-b.svg",
+      "file": "photo-b-crop.svg",
+      "source_size": [
+        600,
+        400
+      ],
+      "crop": {
+        "x": 90,
+        "y": 20,
+        "width": 330,
+        "height": 360
+      },
+      "permission": "recorded",
+      "intended_subject": "Unresolved: neither figure has an identity label",
+      "subject_clear": false,
+      "crop_ambiguous": true,
+      "detector_confidence": 0.98,
+      "alt": "Teaching crop of two unlabelled fictional adults; the blue figure is complete and the rose figure is cut at the right edge. Their relationship is unknown.",
+      "sha256": "524767d8369cc759084ecc67b2f3c7e6f1402dafdd3caf62b41af3dce2793906",
+      "source_sha256": "f16640a6a7a1efd7b7211298458fa1ceec69c901e5fffb52b1c92ea28aadbc56",
+      "detector_scope": "Mock face-presence score for source_file; not a calibrated probability"
+    },
+    {
+      "id": "C",
+      "revision": "C-mirror-v1",
+      "source": "Original SLOP1276 schematic drawing photo-c.svg",
+      "source_file": "photo-c.svg",
+      "file": "photo-c.svg",
+      "source_size": [
+        600,
+        400
+      ],
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "width": 600,
+        "height": 400
+      },
+      "permission": "unknown",
+      "intended_subject": "Unresolved: a device obscures part of the face",
+      "subject_clear": false,
+      "crop_ambiguous": false,
+      "detector_confidence": 0.94,
+      "alt": "Teaching illustration of a fictional adult in a mirror with a phone covering part of the face.",
+      "sha256": "2093454ae360f88fb68850e9f05bb41aa8ac08406de6a0669b083cce04daf910",
+      "source_sha256": "2093454ae360f88fb68850e9f05bb41aa8ac08406de6a0669b083cce04daf910",
+      "detector_scope": "Mock face-presence score for source_file; not a calibrated probability"
+    }
+  ],
+  "frozen": {
+    "asset_id": "A",
+    "revision": "A-portrait-v1",
+    "file": "photo-a-crop.svg",
+    "crop": {
+      "x": 150,
+      "y": 0,
+      "width": 300,
+      "height": 400
+    },
+    "alt": "Teaching illustration of fictional Alex, labelled on a blue top, behind a table with three game tiles.",
+    "sha256": "e210d94c86f7ca5195b36d364df32f19b927a768563de6a674b64f318c1e8d33"
+  }
+}

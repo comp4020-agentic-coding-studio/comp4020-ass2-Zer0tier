@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" role="img" aria-labelledby="title desc">
+  <title id="title">Two unlabelled fictional adults</title>
+  <desc id="desc">Two schematic adults stand together. Neither figure is labelled as the intended subject. Their relationship is unspecified.</desc>
+  <rect width="600" height="400" fill="#f9dbe7"/>
+  <path d="M0 300q150-80 300-10t300 0v110H0z" fill="#dfeaf9"/>
+  <g stroke="#272c38" stroke-width="4">
+    <circle cx="180" cy="118" r="50" fill="#fff7fa"/>
+    <path d="M110 355V230q0-66 70-66t70 66v125" fill="#28538a"/>
+    <circle cx="420" cy="118" r="50" fill="#fff7fa"/>
+    <path d="M350 355V230q0-66 70-66t70 66v125" fill="#903252"/>
+  </g>
+  <g fill="#272c38"><circle cx="164" cy="119" r="4"/><circle cx="196" cy="119" r="4"/><circle cx="404" cy="119" r="4"/><circle cx="436" cy="119" r="4"/></g>
+  <g fill="none" stroke="#272c38" stroke-width="3"><path d="M165 141h30"/><path d="M405 141h30"/></g>
+</svg>

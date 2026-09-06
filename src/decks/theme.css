@@ -17,6 +17,7 @@
 .reveal .slides section:nth-child(odd) { background: var(--course-pink); }
 .reveal .slides section :is(h1,h2) { color: var(--course-pink-ink); background: none; text-transform: none; padding: 0; }
 .reveal .slides section :is(h1,h2,p) { text-wrap: balance; overflow-wrap: anywhere; }
+.reveal .slides section a { text-decoration: underline; text-underline-offset: .15em; }
 .reveal .deck-formula { font-size: clamp(20px, 2.4vw, 46px); line-height: 1.8; font-variant-numeric: tabular-nums; }
 /* Lecture slides open with content alone, including a viewer's first visit. */
 .astromotion-help-hint,

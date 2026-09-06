@@ -15,6 +15,11 @@ the built model and CSV files, checking stateful Elo and exposure allocation.
 None judges prose quality, feature-rating honesty or
 whether a declared dependency is educationally useful.
 
+`photo-kit.test.ts` extracts the exact Week 3 student ZIP, checks it against the
+individual downloads, runs its workbook and verifies literal numeric answers.
+It changes image bytes and frozen crop metadata in temporary copies to prove
+that those changes are rejected. The drawings and labels still need human review.
+
 After `pnpm check`, start `pnpm preview --port 4322` and run
 `pnpm check:browser`. The browser audit checks every built page at 1920×1080 and
 390×844, including rendered contrast and pointer targets, then drives syllabus
@@ -24,7 +29,9 @@ calculator's valid/invalid/reset states and imports the downloadable scorer.
 It focuses and scrolls a wide Week 2 teaching table using the keyboard.
 The deck checks cover slides without controls or first-visit hints, A/D and
 wheel navigation, Esc returning to the lecture, keyboard/input conflicts,
-and all slides fitting at five viewport sizes. Run just those checks
+and all slides fitting at five viewport sizes. Later figure slides also receive
+axe checks, image-loading checks and screenshots at desktop and phone widths.
+Run just those checks
 against the built preview with `node scripts/audit-decks.mjs`.
 Install Playwright's
 Chromium if needed with `pnpm exec playwright install chromium`; Linux needs its

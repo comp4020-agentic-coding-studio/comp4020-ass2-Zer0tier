@@ -1,0 +1,531 @@
+---
+title: "Photography as a Quantitative Asset · Week 3"
+description: "A three-hour teaching pack: measure light, inspect crops, audit identification labels and freeze a fictional photo asset for Week 4."
+---
+
+import DeckTools from "../components/DeckTools.astro";
+import DeckBars from "../components/DeckBars.astro";
+import PhotoFigure from "../components/PhotoFigure.astro";
+
+<DeckTools />
+
+# Your first data pipeline has a camera
+
+Data Acquisition: Photography as a Quantitative Asset
+
+SLOP1276 · Week 03
+
+A crisp answer to the wrong question is still the wrong answer.
+
+---
+
+## What you will be able to do
+
+Record an image's **origin, permission and transformation**.
+
+Calculate a declared lighting ratio and an identification-failure rate.
+
+Separate detection confidence from identity evidence.
+
+Select and freeze a photo using inspectable information checks.
+
+---
+
+## A three-hour image audit
+
+Provenance **25 min** · lighting **30 min** · crops and identity **35 min**.
+
+Break **10 min** · annotation data **35 min**.
+
+Manifest **30 min** · freeze and handoff **15 min**.
+
+Includes exercises and debriefs. The notes explain how to split the pack across teaching and study.
+
+---
+
+## Alex's facts stay fixed
+
+Fictional adult CS student; board games and terrible puns.
+
+**Friday 5–7 pm · $20 total · bus travel.**
+
+Wants to meet someone, with the possibility of a relationship.
+
+Our drawings represent the case. They do not add a real appearance or an invented hobby.
+
+---
+
+## Bring the Week 2 boundary
+
+Your platform audit separates **inputs, observations and unknowns**.
+
+Apply it to images: where did the file come from, what changed, and what does it show?
+
+A visible face is an observation. “This is Alex” requires supporting case information.
+
+---
+
+## An image needs a history
+
+<PhotoFigure kind="pipeline" />
+
+Keep the original and the derivative. A crop is a new version, not an erased past.
+
+---
+
+## Meet the three asset records
+
+<PhotoFigure kind="contact" />
+
+Which record would you inspect first before selecting an image for Alex?
+
+---
+
+## Check provenance · 6 min
+
+For A, B and C, record **source, permission, intended subject and unknowns**.
+
+The kit deliberately leaves C's exercise permission status unknown.
+
+Does a sharp picture fill a missing permission field?
+
+Use the supplied drawings and records; no camera or personal photograph is required.
+
+---
+
+## Provenance debrief
+
+All three files have a recorded course-drawing source.
+
+**A:** supplied Alex label; exercise permission recorded.
+
+**B:** permission recorded, but identity and crop context unresolved.
+
+**C:** permission unknown in the exercise. Keep that gap visible; image quality cannot repair it.
+
+---
+
+## Key and fill have different jobs
+
+<PhotoFigure kind="lighting" />
+
+[Nikon's lighting introduction](https://www.nikonusa.com/learn-and-explore/c/tips-and-techniques/introduction-to-three-point-lighting-other-video-lighting-techniques) describes a main light and a fill that reduces shadows.
+
+---
+
+## Declare what your ratio measures
+
+For this exercise: **key-to-fill = key reading / fill reading**.
+
+Use the same unit and measurement setup for both readings.
+
+**200 / 100 = 2:1**.
+
+This is our source-reading convention. It is not a measured bright-side/shadow-side ratio or a match predictor.
+
+---
+
+## Four lighting records
+
+<DeckBars caption="Synthetic readings · ratios under the declared key/fill convention" maximum={4} scale="Bar scale: 0–4 units of key per unit of fill. No app outcomes were measured." rows={[
+  { label: 'L1 · 200/100', value: 2, display: '2:1' },
+  { label: 'L2 · 200/50', value: 4, display: '4:1' },
+  { label: 'L3 · 100/100', value: 1, display: '1:1' },
+  { label: 'L4 · 400/200', value: 2, display: '2:1' }
+]} />
+
+L1 and L4 have the same ratio with different absolute readings.
+
+---
+
+## Change the fill · 6 min
+
+Keep the key reading at **200**. Change fill from **100 to 50**.
+
+Calculate the new ratio. Then double both original readings.
+
+What does each change preserve?
+
+Finally, try fill = 0. Decide what the calculation should report.
+
+---
+
+## Lighting answers
+
+Halve fill: **200 / 50 = 4:1**.
+
+Double both: **400 / 200 = 2:1**; the ratio is unchanged.
+
+Fill = 0: the finite ratio is **undefined**. Flag it explicitly.
+
+A ratio alone cannot reconstruct the image's exposure, colour or background.
+
+---
+
+## Background separation is another variable
+
+<PhotoFigure kind="contrast" />
+
+Do not infer a light-meter reading from these colours. Record the background and lighting separately.
+
+---
+
+## Design one controlled comparison · 5 min
+
+Hypothesis: changing fill changes visible shadow detail in a chosen setup.
+
+Specify what stays fixed: subject, pose, framing, background and camera settings.
+
+Change one light input; define how shadow detail will be judged.
+
+A proposed procedure using drawings is sufficient. This is not a dating experiment.
+
+---
+
+## A useful capture record
+
+Save the setup ID, source file, camera settings if applicable, key/fill readings and units.
+
+Record the changed input and the annotation rule before comparison.
+
+Our supplied readings support arithmetic only; they contain no measured shadow-detail outcomes.
+
+Do not announce that the hypothesis passed without observations.
+
+---
+
+## A crop is a transformation
+
+<PhotoFigure kind="crop-a" />
+
+Record **x, y, width and height** in the original coordinate system.
+
+---
+
+## Count the retained area
+
+A's source is **600 × 400** coordinate units.
+
+Its crop is **300 × 400**, starting at **(150, 0)**.
+
+Retained fraction = **120,000 / 240,000 = 50%**.
+
+Half the area remains. That is not a 50% information score; inspect what the crop preserves.
+
+---
+
+## Inspect the rectangle · 8 min
+
+Use the A comparison: does the Alex label remain? Do the game tiles remain?
+
+Check **x + width ≤ source width** and **y + height ≤ source height**.
+
+Now try **x = 450, width = 300** on the same source.
+
+Decide whether this proposed crop is valid before discussing its style.
+
+---
+
+## Crop debrief
+
+Original crop: **150 + 300 = 450 ≤ 600**; height ends at 400.
+
+The supplied label and game tiles stay visible.
+
+Changed crop: **450 + 300 = 750 > 600**. Reject the rectangle.
+
+Area arithmetic checks geometry. The image and annotation check meaning.
+
+---
+
+## The partial-person problem
+
+<PhotoFigure kind="crop-b" />
+
+What can you say about the figure cut by the right edge?
+
+---
+
+## Annotate without a biography · 6 min
+
+**A:** “A second figure is partially visible at the edge.”
+
+**B:** “That is Alex's ex, cropped out.”
+
+Which sentence describes visible evidence? What would justify the other?
+
+Write an uncertainty note and a next action. Do not guess who either figure is.
+
+---
+
+## Make the uncertainty inspectable
+
+Accept A as a description. B invents identity and relationship history.
+
+Record **crop ambiguity = true** and **intended subject unresolved**.
+
+Keep the source and request a supported subject label or a different asset.
+
+This is the “cropped-ex” variable: flag missing context, not somebody's supposed relationship.
+
+---
+
+## Detection answers a smaller question
+
+<PhotoFigure kind="detection" />
+
+[Google's ML Kit documentation](https://developers.google.com/ml-kit/vision/face-detection) explicitly separates face detection from recognising individuals.
+
+---
+
+## Confidence cannot fill an identity field
+
+In our mock record, B has confidence **0.98** but no supported intended-subject label.
+
+Its score concerns the detector's supposed task. It establishes no identity, compatibility or consent.
+
+A has a lower mock score, **0.92**, and stronger supplied identity evidence.
+
+Choose the check that answers the actual question.
+
+---
+
+## Break · 10 minutes
+
+Leave one uncertain field in the manifest.
+
+Next: turn “I cannot tell who this is” into an explicit annotation rule.
+
+Then audit the denominator and the reviewers.
+
+---
+
+## Define failure before counting
+
+Rule: **the supplied cues do not uniquely identify the intended subject**.
+
+<DeckBars caption="Separate synthetic trial fixture · reviewer 1 labels" maximum={100} scale="Bar scale: 0–100% identification failures, with 10 invented trials per category." rows={[
+  { label: 'Group', value: 60, display: '6 / 10 = 60%' },
+  { label: 'Fishing', value: 20, display: '2 / 10 = 20%' },
+  { label: 'Mirror', value: 30, display: '3 / 10 = 30%' }
+]} />
+
+These are neither match rates nor measurements of our three drawings.
+
+---
+
+## Reproduce the rates · 6 min
+
+Open `identification-trials.csv` in the [photo kit](/data/week-03-photo-kit.zip).
+
+For each category, count reviewer 1 failures and divide by that category's trial count.
+
+Check unique trial IDs and labels in **{0, 1}**.
+
+State the event and denominator beside every percentage.
+
+---
+
+## Two datasets, two denominators
+
+**Manifest:** one ambiguous crop among **three assets** → **1/3**.
+
+**Trial file:** six identification failures among **ten group trials** → **6/10**.
+
+The assets and trials are separate fixtures. Do not join them as if they describe the same images.
+
+Crop ambiguity and identification failure are different labels.
+
+---
+
+## A pooled number needs a frame
+
+Reviewer 1 marks **6 + 2 + 3 = 11** failures across **30** trials.
+
+Pooled failure fraction = **11/30 ≈ 36.7%**.
+
+The three groups contribute equally here. With unequal trial counts, use total failures / total trials.
+
+The result describes this constructed fixture, not photographs in general.
+
+---
+
+## Same totals, different labels
+
+<PhotoFigure kind="agreement" />
+
+Each reviewer reports **six failures**. Are their annotations identical?
+
+---
+
+## Compare the reviewers · 4 min
+
+Find every disagreement among G01–G10.
+
+Compute **agreements / trials**.
+
+Write one clarification that could help reviewers apply the subject-identification rule consistently.
+
+If they agree, have they necessarily identified the subject correctly?
+
+---
+
+## Agreement debrief
+
+Disagreements: **G06 and G07**.
+
+Agreement = **8 / 10 = 80%**.
+
+Both reviewers have six failures, but on different trials.
+
+Agreement measures consistency between these labels, not correctness. A supported reference annotation is a separate requirement.
+
+---
+
+## One label can move a small rate
+
+In a separate sensitivity copy, change reviewer 1's **G06 from failure to pass**.
+
+Group failures fall from **6/10 to 5/10**: **60% → 50%**.
+
+Keep the baseline and record the reason for the revision.
+
+Invented trials cannot establish a universal ranking of photo categories.
+
+---
+
+## Build a manifest, not a beauty score
+
+**Origin:** asset ID, source and exercise permission status.
+
+**Transformation:** original size, crop rectangle and revision.
+
+**Meaning:** intended subject, supporting cue, ambiguity and alt text.
+
+**Review:** decision, reasons and the exact file selected.
+
+---
+
+## Alt text carries the relevant information
+
+[W3C's informative-image guidance](https://www.w3.org/WAI/tutorials/images/informative/) asks for a text alternative that conveys the image's purpose and content.
+
+Here, the subject label and visible crop matter to the exercise.
+
+“Photo” loses that information. “Attractive and trustworthy” invents an assessment.
+
+Describe what the reader needs for this task.
+
+---
+
+## Write the alternative · 5 min
+
+Write one sentence for A's portrait crop.
+
+Identify the fictional teaching image, its supplied Alex label and the relevant visible objects.
+
+Then write B's uncertainty note without inventing a relationship.
+
+Compare your wording with the actual crop before opening the worked answer.
+
+---
+
+## Alt-text worked answers
+
+**A:** “Teaching illustration of fictional Alex, labelled on a blue top, behind a table with three game tiles.”
+
+**B:** “Two unlabelled fictional adults; the rose figure is cut at the right edge. Their relationship is unknown.”
+
+These descriptions use supplied or visible evidence. They add no personality, attraction or consent label.
+
+---
+
+## Apply the acceptance checks
+
+Require a recorded source, exercise permission, supported intended subject and valid crop.
+
+Keep crop ambiguity explicit and supply relevant alt text.
+
+Block missing required information before selecting an asset.
+
+A high detector score cannot compensate for a failed permission or identity check.
+
+---
+
+## Implement the audit · 8 min
+
+Validate the three records, then return **pass/block plus reasons** for each.
+
+Test a blank source and an out-of-bounds crop. Neither should pass.
+
+Retain blocked records. Select from the eligible set, then freeze the file and metadata.
+
+The downloadable workbook supplies assertions after your own attempt.
+
+---
+
+## Selection: worked answer
+
+**A passes:** supplied identity, permission record, valid crop and useful description.
+
+**B blocked:** unresolved subject and ambiguous crop.
+
+**C blocked:** unknown exercise permission and obscured subject.
+
+One of three crops is ambiguous, yet only one of three assets passes. Those fractions answer different questions.
+
+---
+
+## Freeze what Week 4 will compare
+
+<PhotoFigure kind="freeze" />
+
+Record a file fingerprint with the revision. It detects changed bytes; it does not prove the image is truthful.
+
+---
+
+## Repair the experiment · 4 min
+
+Version A uses bio A and photo A. Version B uses bio B and photo B.
+
+Suppose B receives more responses. Which change produced the difference?
+
+Rewrite the comparison so that **bio text** is the planned difference.
+
+Name the image fields that must remain fixed.
+
+---
+
+## Handoff to the bio experiment
+
+Use **A-portrait-v1** for both bio variants: same bytes, crop, alt text and display treatment.
+
+Keep the two rejected records and their reasons.
+
+Changing both bio and photo cannot isolate a bio effect.
+
+Week 4 adds the allocation and outcome rules. The photo manifest supplies its controlled image input.
+
+---
+
+## Exit check · 3 min
+
+**1.** Key 200, fill 50: what is our ratio?
+
+**2.** Does the mock score 0.98 establish which figure is Alex?
+
+**3.** Why keep the same crop when comparing two bios?
+
+Answer using a formula, a boundary and an experimental control.
+
+---
+
+## The image now has a record
+
+**Answers:** 4:1; no; a changed crop introduces another changed input.
+
+Take your **Photo asset manifest** into Week 4.
+
+The engineering deliverable is an inspectable choice, not a promise of more matches.
+
+[Photo kit and calculations](/data/week-03-photo-kit.zip) · [Tutorial](/sessions/03-photo-assets/) · [Worked notes and sources](/lectures/week-03/)

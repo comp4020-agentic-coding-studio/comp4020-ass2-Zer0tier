@@ -1,0 +1,128 @@
+---
+import manifest from '../../public/data/week-03/manifest.json';
+interface Props {
+  kind: 'pipeline' | 'contact' | 'lighting' | 'contrast' | 'crop-a' | 'crop-b' | 'detection' | 'agreement' | 'freeze';
+}
+const { kind } = Astro.props;
+const url = (file: string) => `${import.meta.env.BASE_URL}data/week-03/${file}`;
+const asset = manifest.assets[kind === 'crop-b' || kind === 'detection' ? 1 : 0];
+const crops = kind === 'crop-a' || kind === 'crop-b';
+const stages = [['Source', 'Origin + permission'], ['Derive', 'Crop + revision'], ['Review', 'Identity + context'], ['Freeze', 'File + annotation']];
+const labels = ['A · supplied identity', 'B · partial second figure', 'C · permission unknown'];
+---
+<figure class:list={['photo-figure', kind]}>
+  {kind === 'pipeline' && <>
+    <div class="pipeline-steps">{stages.map(([name, detail], index) => <div><strong>{index + 1} · {name}</strong><span>{detail}</span></div>)}</div>
+    <figcaption>Each derivative keeps a link to its source. Selection produces a reviewable record.</figcaption>
+  </>}
+  {kind === 'contact' && <>
+    <div class="contact-grid">{manifest.assets.map((item, index) => <div class="asset-card">
+      <img src={url(item.file)} alt={item.alt} width={item.crop.width} height={item.crop.height} />
+      <strong>{labels[index]}</strong>
+    </div>)}</div>
+    <figcaption>Three course-drawn fictional assets. Permission states and confidence scores are exercise inputs.</figcaption>
+  </>}
+  {kind === 'lighting' && <>
+    <div class="lighting-labels"><strong>Key · 200</strong><strong>Subject</strong><strong>Fill · 100</strong></div>
+    <svg class="lighting-map" viewBox="0 0 600 230" role="img" aria-label="Top view: a key light on the left and fill light on the right point toward a subject. A camera faces the subject from below.">
+      <path d="m96 60 175 50M504 60l-175 50M300 195v-63" stroke="var(--course-blue-ink)" stroke-width="5" stroke-dasharray="10 7"/>
+      <path d="m260 99 14 13-19 4M340 99l-14 13 19 4" fill="none" stroke="var(--course-blue-ink)" stroke-width="5"/>
+      <rect x="35" y="15" width="95" height="80" rx="15" fill="var(--course-blue-ink)"/>
+      <rect x="470" y="15" width="95" height="80" rx="15" fill="var(--course-pink-ink)"/>
+      <circle cx="300" cy="100" r="32" fill="var(--course-paper)" stroke="var(--course-ink)" stroke-width="5"/>
+      <path d="M265 132q35 20 70 0" fill="none" stroke="var(--course-ink)" stroke-width="5"/>
+      <rect x="265" y="175" width="70" height="45" rx="8" fill="var(--course-ink)"/><circle cx="300" cy="195" r="13" fill="var(--course-paper)"/>
+    </svg>
+    <figcaption>Camera below · schematic placement only. Invented readings use the same arbitrary unit and measurement convention.</figcaption>
+  </>}
+  {kind === 'contrast' && <>
+    <div class="comparison-grid">{['Similar tones', 'Separated tones'].map((label, index) => <div class="asset-card">
+      <svg class="contrast-map" viewBox="0 0 240 150" role="img" aria-label={index === 0 ? 'A pale figure against a similar pale background has a weak outline.' : 'A dark figure against the same pale background has a clearer outline.'}>
+        <rect width="240" height="150" rx="8" fill="var(--course-blue)"/>
+        <g fill={index === 0 ? '#c9d7ec' : 'var(--course-blue-ink)'}><circle cx="120" cy="53" r="25"/><path d="M77 145v-29q0-39 43-39t43 39v29z"/></g>
+      </svg><strong>{label}</strong>
+    </div>)}</div>
+    <figcaption>An illustration of background separation, not a simulated photograph or a measured lighting-ratio result.</figcaption>
+  </>}
+  {crops && <>
+    <div class="comparison-grid">
+      <div class="asset-card"><svg class="source-map" viewBox="0 0 600 400" role="img" aria-label={`Full source ${asset.id} with a dashed rectangle showing the proposed crop.`}>
+        <image href={url(asset.source_file)} width="600" height="400"/>
+        <rect {...asset.crop} fill="none" stroke="var(--course-ink)" stroke-width="7" stroke-dasharray="14 9"/>
+      </svg><strong>Source · 600 × 400</strong></div>
+      <div class="asset-card"><img src={url(asset.file)} alt={asset.alt} width={asset.crop.width} height={asset.crop.height}/><strong>Crop · {asset.crop.width} × {asset.crop.height}</strong></div>
+    </div>
+    <figcaption>{kind === 'crop-a' ? 'A: the identity label and game tiles remain visible in the portrait crop.' : 'B: a second figure remains at the edge. The crop supplies no relationship or identity evidence.'}</figcaption>
+  </>}
+  {kind === 'detection' && <>
+    <svg class="detection-map" viewBox="0 0 600 400" role="img" aria-label="Two fictional faces with dashed mock detection boxes. Neither box identifies which person is the intended profile subject.">
+      <image href={url('photo-b.svg')} width="600" height="400"/>
+      <g fill="none" stroke="var(--course-ink)" stroke-width="5" stroke-dasharray="12 7"><rect x="123" y="60" width="114" height="115"/><rect x="363" y="60" width="114" height="115"/></g>
+    </svg>
+    <figcaption>Mock face-presence confidence: 0.98. Boxes and score are authored annotations; no detector was run.</figcaption>
+  </>}
+  {kind === 'agreement' && <>
+    <div class="agreement-table" role="table" aria-label="Synthetic group trials: two reviewers agree on eight of ten labels">
+      <div class="agreement-row" role="row"><strong role="columnheader">Trial</strong>{Array.from({ length: 10 }, (_, i) => <span role="columnheader">{i + 1}</span>)}</div>
+      {[['R1', [1,1,1,1,1,1,0,0,0,0]], ['R2', [1,1,1,1,1,0,1,0,0,0]]].map(([name, values]) => <div class="agreement-row" role="row">
+        <strong role="rowheader">{name}</strong>{(values as number[]).map((value, index) => <span role="cell" class:list={[value ? 'failed' : 'passed', { disagreement: index === 5 || index === 6 }]}>{value ? 'F' : 'P'}</span>)}
+      </div>)}
+    </div>
+    <figcaption>G01–G10 · F = failed identification; P = passed. Dashed cells mark G06 and G07, where the invented reviewers disagree.</figcaption>
+  </>}
+  {kind === 'freeze' && <>
+    <div class="comparison-grid">{['Bio A', 'Bio B'].map(label => <div class="asset-card">
+      <img src={url(manifest.frozen.file)} alt={manifest.frozen.alt} width="300" height="400"/>
+      <strong>{label} · same A-portrait-v1</strong>
+    </div>)}</div>
+    <figcaption>Both variants retain the same file bytes, crop, alt text and display treatment. The planned change is the bio text.</figcaption>
+  </>}
+</figure>
+<style>
+  .photo-figure { width: min(100%, 1120px); margin: .4rem auto .8rem; }
+  figcaption { font-size: clamp(16px, 1.3vw, 24px); line-height: 1.35; margin-top: .7rem; text-align: left; }
+  strong { font-size: clamp(18px, 1.5vw, 28px); line-height: 1.35; }
+  .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .asset-card { display: grid; gap: .5rem; padding: .65rem; border: 2px solid var(--course-blue-ink); border-radius: 10px; background: var(--course-paper); align-content: center; }
+  .asset-card :is(img, svg) { display: block; width: 100%; height: clamp(160px, 28vh, 320px); object-fit: contain; margin: 0; border: 0; background: none; box-shadow: none; }
+  .pipeline-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8rem; }
+  .pipeline-steps > div { padding: 1rem; border: 2px solid var(--course-blue-ink); border-radius: 8px; background: var(--course-paper); }
+  .pipeline-steps span { display: block; margin-top: .5rem; font-size: clamp(16px, 1.2vw, 23px); line-height: 1.35; }
+  .lighting-labels { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; }
+  .lighting-map { display: block; height: min(28vh, 300px); width: 100%; }
+  .detection-map { display: block; width: 100%; height: clamp(160px, 32vh, 370px); }
+  .agreement-table { display: grid; gap: .7rem; }
+  .agreement-row { display: grid; grid-template-columns: 2fr repeat(10, 1fr); gap: .4rem; text-align: center; align-items: center; }
+  .agreement-row span { font-size: clamp(16px, 1.5vw, 28px); line-height: 1.4; padding: .5rem 0; }
+  .failed, .passed { border: 2px solid var(--course-blue-ink); border-radius: 3px; }
+  .failed { background: var(--course-pink); }
+  .passed { background: var(--course-paper); }
+  .disagreement { border-style: dashed; border-color: var(--course-ink); }
+  @media (width < 650px) {
+    .contact-grid { grid-template-columns: 1fr; gap: .4rem; }
+    .contact-grid .asset-card { grid-template-columns: 90px 1fr; align-items: center; }
+    .contact-grid img { height: 90px; }
+    .comparison-grid { gap: .5rem; }
+    .asset-card { padding: .4rem; }
+    .comparison-grid :is(img, svg) { height: 180px; }
+    .pipeline-steps { grid-template-columns: 1fr 1fr; gap: .5rem; }
+    .pipeline-steps > div { padding: .6rem; }
+    .agreement-row { grid-template-columns: 40px repeat(10, 1fr); gap: 2px; }
+    .agreement-row strong { font-size: 16px; }
+    .agreement-row span { padding: .35rem 0; }
+    .lighting-map { height: 145px; }
+  }
+  @media (height < 540px) {
+    .photo-figure { margin-block: .2rem .4rem; }
+    .asset-card :is(img, svg) { height: 125px; }
+    .asset-card { padding: .4rem; }
+    strong { font-size: 18px; }
+    figcaption { font-size: 16px; margin-top: .4rem; }
+    .pipeline-steps > div { padding: .5rem; }
+    .pipeline-steps span { font-size: 16px; }
+    .lighting-map { height: 110px; }
+    .detection-map { height: 170px; }
+    .agreement-row span { padding: .2rem 0; }
+  }
+</style>

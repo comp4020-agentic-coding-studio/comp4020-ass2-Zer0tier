@@ -48,6 +48,8 @@ button, summary { cursor: pointer; }
   font-optical-sizing: auto;
 }
 .at-main p { text-wrap: pretty; }
+/* Teaching images follow the reading column, including on phones. */
+.at-main :is(p, figure) > img { margin-inline: 0; width: auto; max-width: 100%; }
 .at-main :is(h1,h2,h3,h4) { font-family: var(--course-font-heading); font-weight: 600; line-height: 1.25; }
 .at-main > h1 { color: var(--course-ink); font-size: clamp(2rem, 4.5vw, 3.3rem); line-height: 1.15; letter-spacing: -.03em; }
 .at-main > :is(p, ul, ol, h2, h3, blockquote, table, .at-table-wrapper, section) { max-width: var(--course-reading-width); }
