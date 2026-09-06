@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Algorithmic Romance"
-description: "Meet the syllabus, the No Feelings data policy and the Romantic Turing Test. Draw the boundary of the system before trying to optimise it."
+description: "Meet Alex, check two invitations and distinguish observations from hidden state. Use supplied facts to test each claim in a fictional bio."
 week: 1
 date: 2027-02-22
 teachers: [mira-chen]
@@ -11,9 +11,60 @@ related: [sessions/02-platforms]
 
 ## The syllabus drop
 
-The opening provocation: **love is not a mystery; it is an inefficient market problem solvable through data structures.** We will spend twelve weeks implementing that claim—and finding where its types stop making sense. A recommendation, a reply and a relationship are three different outputs. Returning HTTP 200 is not evidence of affection.
+The opening provocation is a **claim to test**: “Love is an inefficient market problem solvable through data structures.” A system can store availability and reject an invitation that conflicts with it. Whether a recipient feels interested is a different question. This week we work through what a small model can establish and where its evidence runs out.
+
+A recommendation, a reply and a relationship are three different outputs. HTTP 200 means the request succeeded; it is not evidence of affection.
 
 This course is for students comfortable with probability and pseudocode. Work on **Null Island**, our fictional market, using [supplied synthetic data](/toolkit/). No dating account, partner or disclosure of your own life is required.
+
+## By the end of today
+
+- Identify supplied inputs and constraints.
+- Separate an observation from an inference about hidden state.
+- Justify a profile claim using a case fact.
+
+The examples below practise those three tasks during the lecture. They are not a separate tutorial or assessed submission.
+
+## Meet Alex
+
+The [toolkit's fixed case](/toolkit/#benchmark) describes Alex as an adult CS student who likes board games and terrible puns. Alex is free **Friday 5–7 pm**, has a **$20 outing budget**, travels by **bus**, and wants to meet someone with the possibility of a relationship. These facts are supplied inputs. Do not invent an extra interest, skill or possession to make a profile sound better.
+
+## Test two invitations
+
+For this exercise, assume that each proposed outing costs **$12 in total**. These are invented options, not real venue recommendations; bus times are unknown.
+
+| Option | Proposed time | Time and budget checks |
+| --- | --- | --- |
+| A | Friday 6–6.30 pm | Passes: inside 5–7 pm and $12 ≤ $20 |
+| B | Friday 8–8.30 pm | Fails: outside 5–7 pm |
+
+The rule keeps an option only if its proposed time falls entirely inside Alex's availability and its total cost is at most $20. Option A passes both checks. Option B fails even though its assumed cost is within budget.
+
+**What is still missing?** Option A remains provisional because travel to and from the outing must also fit the available time. Knowing that Alex uses the bus does not supply a route or timetable. Passing the two checks also gives no evidence about whether a recipient will reply or want a relationship.
+
+## A boundary example from the lecture
+
+Classify these statements before reading the explanation:
+
+1. Alex is free Friday 5–7 pm.
+2. A reply is recorded in a synthetic message log.
+3. “The recipient wants a relationship with Alex.”
+
+**Worked answer:** the first is a supplied **input**. The second is an **observation** within the fictional exercise. The third is an **inference about hidden state**: the recipient's actual motivation. The log records that a reply occurred, but does not distinguish a polite reply from an interested one. Keep the recorded event and the explanation you might assign to it separate.
+
+Week 2 develops this distinction into a platform audit: add retrieval, ranking and exposure to the map, and identify which parts are supplied, observed or unknown.
+
+## Key concept: the Romantic Turing Test
+
+This course exercise asks whether a fictional bio describes Alex in natural language while remaining faithful to the supplied case. It does not measure romantic appeal or predict replies.
+
+**A:** “Seeking synergistic engagement.”
+
+**B:** “Board games, bad puns. Free Friday 5–7 pm to meet someone.”
+
+**Your check:** quote two phrases in B and match each to a case fact. Then identify what a concrete invitation would still need.
+
+**Worked answer:** “board games” and “bad puns” match Alex's supplied interests; “Friday 5–7 pm” matches the availability; “meet someone” matches the stated aim. A supplies no concrete case detail to check. B gives a reader specific information, but an actual invitation would still need a place, total cost and workable bus travel. Natural wording earns no exemption from evidence.
 
 ## One system, twelve weeks
 
@@ -29,12 +80,4 @@ A dataset may contain “reply observed.” It may not silently convert that int
 
 Our scraping ethics begin with provenance, permission, purpose and minimisation. Public visibility is not permission to harvest a neighbourhood. Parse the course's synthetic CSVs; do not scrape apps, private messages or classmates. The [policies](/policies/) define the boundary.
 
-## Key concept: the Romantic Turing Test
-
-Can a fictional bio convince a reader that it describes a person rather than a collection of optimization scripts? Compare “high-availability companion seeking synergistic engagement” with “Board games, bad puns, and coffee on Friday before seven.” The second can be checked against Alex's case facts. Neither is permission to impersonate someone.
-
-## A boundary example from the lecture
-
-Put Alex's supplied availability under inputs, “reply received” under observable events, and the recipient's motivation under hidden state. The first two can support a factual statement; the third cannot be recovered from a reply alone. Week 2 develops this example into a platform audit. There is no separate week 1 tutorial deliverable.
-
-The [lecture deck](/decks/week-01/) supplies the semester map. Continue to [week 2's lecture](/lectures/week-02/) and the [first tutorial](/sessions/02-platforms/).
+The [lecture deck](/decks/week-01/) presents the case, questions, worked answers and semester map. Continue to [week 2's lecture](/lectures/week-02/) and the [first tutorial](/sessions/02-platforms/). Bring the worked example; build the boundary map during that tutorial.
