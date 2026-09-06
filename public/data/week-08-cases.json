@@ -1,0 +1,17 @@
+{
+  "version": "week-08-v1",
+  "scope": "All case observations, detector scores, ground-truth labels and costs are authored. Numeric detector rows are separate from the triage case cards and do not fit or validate that rule. No real identity, image search, payment or message is involved.",
+  "detector": { "file": "week-08-detector.csv", "thresholds": [25,50,75], "positiveLabel": "Authored malicious case", "flagRule": "score >= threshold", "scoreMeaning": "Uncalibrated authored points in [0,100], not a probability", "falseNegativeCosts": [5,10,20], "falsePositiveCost": 1 },
+  "handoff": { "candidateVersion": "week-04:A-portrait-v1+supported-bio", "invitationVersion": "week-05-v1:library", "snapshot": { "closed": false, "boundary": "clear", "sent": false, "inbound": "none", "recipient": { "id": "G1", "topics": [{"topic":"board-games","quote":"I like board games."}] } } },
+  "priorEvents": [{"id":"s","type":"send","at":0},{"id":"w","type":"wait","at":0.1}],
+  "cards": [
+    { "id": "typo", "observations": [{"id":"o1","kind":"syntax-only","quote":"I lkie co-op games."}] },
+    { "id": "transfer", "observations": [{"id":"o1","kind":"money-request","quote":"Please transfer the deposit before we meet."},{"id":"o2","kind":"identity-conflict","quote":"Profile card: 'My only name is Rowan.' Later message: 'My only name is Ellis.'"}] },
+    { "id": "template", "observations": [{"id":"o1","kind":"repeated-template","quote":"Q1: Which board game? A1: Use my link. Q2: Friday or Saturday? A2: Use my link. Q3: Which bus stop? A3: Use my link. Q4: Library or cafe? A4: Use my link."}] },
+    { "id": "image-conflict", "observations": [{"id":"o1","kind":"image-match","quote":"Fictional index result: image reference IMG-1 is labelled Ellis. The profile card labels IMG-1 Rowan. Only this written result is supplied."}] },
+    { "id": "image-absent", "observations": [{"id":"o1","kind":"image-no-match","quote":"No matching item appears in the supplied fictional index."}] },
+    { "id": "latency", "observations": [{"id":"o1","kind":"timeout","quote":"No reply was recorded before the two-hour window ended."},{"id":"o2","kind":"read-receipt","quote":"A read receipt was observed at 0.5 hours."}] },
+    { "id": "declared-helper", "observations": [{"id":"o1","kind":"disclosed-automation","quote":"The fictional helper explicitly identifies itself as automated."}] }
+  ],
+  "releasePlan": { "fictional": true, "collectsRealContact": false, "acceptsPayments": false, "uploadsThirdPartyImages": false, "appIntegration": false, "publishesAccusations": false }
+}

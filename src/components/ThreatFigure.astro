@@ -1,0 +1,128 @@
+---
+interface Props { kind: 'assets' | 'evidence' | 'images' | 'matrix' | 'thresholds' | 'costs' | 'wrapper' | 'trace' | 'closed' | 'release' | 'handoff'; }
+const { kind } = Astro.props;
+---
+<figure class="threat-figure">
+  {kind === 'assets' && <>
+    <figcaption>Authored request · label what crosses each boundary</figcaption>
+    <ol class="flow">
+      <li><strong>Local prototype</strong><span>Fictional profile and event record</span></li>
+      <li><strong>← Incoming request</strong><span>“Use this external form.”</span></li>
+      <li><strong>→ Proposed destination</strong><span>Address disclosure + deposit</span></li>
+    </ol>
+    <div class="note">Control the crossing: hold the workflow; omit real-contact and payment collection.</div>
+  </>}
+  {kind === 'evidence' && <>
+    <figcaption>Keep three different claims in three labelled records</figcaption>
+    <div class="columns three">
+      <div class="card"><strong>Observation</strong><span>The supplied card requests a transfer before meeting.</span></div>
+      <div class="card"><strong>Interpretation</strong><span>A financial-scam scenario needs review; intent is unresolved.</span></div>
+      <div class="card"><strong>Action</strong><span>Hold locally, retain the quote, collect no payment.</span></div>
+    </div>
+  </>}
+  {kind === 'images' && <>
+    <figcaption>Written fictional search-result cards · no image search is run</figcaption>
+    <div class="columns">
+      <div class="card"><strong>Image associated with another name</strong><b>Review the inconsistency</b><span>Reuse can have another explanation. A match is not proof of malice.</span></div>
+      <div class="card"><strong>No item in the supplied index</strong><b>No additional flag</b><span>The index may be incomplete. A non-match is not authentication.</span></div>
+    </div>
+  </>}
+  {kind === 'matrix' && <>
+    <figcaption>100 authored labels · flag when score ≥ 50</figcaption>
+    <table class="figure-table matrix">
+      <thead><tr><th scope="col">Label ↓</th><th scope="col">Flag</th><th scope="col">No flag</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Malicious · 10</th><td><strong>TP 8</strong></td><td><strong>FN 2</strong></td></tr>
+        <tr><th scope="row">Benign · 90</th><td><strong>FP 18</strong></td><td><strong>TN 72</strong></td></tr>
+      </tbody>
+    </table>
+    <div class="note">Precision uses the flag column: 8 / (8 + 18). Recall uses the malicious row: 8 / (8 + 2).</div>
+  </>}
+  {kind === 'thresholds' && <>
+    <figcaption>Same 100 rows · equality is included at each cutoff</figcaption>
+    <table class="figure-table">
+      <thead><tr><th scope="col">Cutoff</th><th scope="col">TP / FN</th><th scope="col">FP / TN</th><th scope="col">Flags</th></tr></thead>
+      <tbody>{[[25,'9 / 1','36 / 54',45],[50,'8 / 2','18 / 72',26],[75,'6 / 4','5 / 85',11]].map(([cutoff,positive,negative,flags]) => <tr><th scope="row">{cutoff}</th><td>{positive}</td><td>{negative}</td><td>{flags}</td></tr>)}</tbody>
+    </table>
+    <div class="note">At 75 versus 50: two more misses, thirteen fewer false alarms. Choose an objective before a winner.</div>
+  </>}
+  {kind === 'costs' && <>
+    <figcaption>L = cFN × FN + FP · arbitrary error units; lower is better</figcaption>
+    <table class="figure-table">
+      <thead><tr><th scope="col">cFN</th><th scope="col">At 25</th><th scope="col">At 50</th><th scope="col">At 75</th></tr></thead>
+      <tbody><tr><th scope="row">5</th><td>41</td><td>28</td><td><strong>25 · best</strong></td></tr>
+        <tr><th scope="row">10</th><td>46</td><td><strong>38 · best</strong></td><td>45</td></tr>
+        <tr><th scope="row">20</th><td><strong>56 · best</strong></td><td>58</td><td>85</td></tr></tbody>
+    </table>
+    <div class="note">Best among these three tested thresholds. Ordinary review overhead is omitted from this loss.</div>
+  </>}
+  {kind === 'wrapper' && <>
+    <figcaption>Review wraps the actual Week 7 snapshot</figcaption>
+    <div class="columns">
+      <div class="card"><strong>Visible phase: review</strong><span>Open finding IDs + quoted observations. All findings need a resolution note.</span></div>
+      <div class="card"><strong>Underlying phase: pending → replied</strong><span>Incoming events still update the conversation and its original clock.</span></div>
+    </div>
+    <div class="note">Clearance reveals the latest underlying phase. Closed takes precedence over both.</div>
+  </>}
+  {kind === 'trace' && <>
+    <figcaption>Authored replay · starts pending after send 0 h and wait 0.1 h</figcaption>
+    <table class="figure-table">
+      <thead><tr><th scope="col">Hour</th><th scope="col">Event</th><th scope="col">Visible</th><th scope="col">Base</th></tr></thead>
+      <tbody>{[['0.3','assess','review','pending'],['1','reply','review','replied'],['1.5','resolve','replied','replied']].map(([at,event,visible,base]) => <tr><th scope="row">{at}</th><td>{event}</td><td>{visible}</td><td>{base}</td></tr>)}</tbody>
+    </table>
+    <div class="note">The reply does not resolve evidence. The later resolution does not send a message.</div>
+  </>}
+  {kind === 'closed' && <>
+    <figcaption>Competing events · refusal has terminal priority</figcaption>
+    <div class="columns">
+      <div class="card"><strong>Review → reply → clear</strong><b>replied</b><span>Reveal the latest recorded communication phase.</span></div>
+      <div class="card"><strong>Review → decline → clear</strong><b>closed → closed</b><span>Keep the entire refused snapshot unchanged.</span></div>
+    </div>
+    <div class="note">A review note is not permission to restart a closed exchange.</div>
+  </>}
+  {kind === 'release' && <>
+    <figcaption>Inspect the release as well as its declared capability flags</figcaption>
+    <div class="columns">
+      <div class="card"><strong>Keep</strong><span>Fictional profiles, local evidence records, calculations and authored event traces.</span></div>
+      <div class="card"><strong>Exclude</strong><span>Real contacts, payments, third-party image uploads, app integration and public accusations.</span></div>
+    </div>
+    <div class="note">The Boolean guard checks a declaration; it cannot inspect an unrelated form or network call.</div>
+  </>}
+  {kind === 'handoff' && <>
+    <figcaption>Week 8 Threat model → Week 9 offline proposal</figcaption>
+    <div class="columns">
+      <div class="card"><strong>Carry forward</strong><span>Versioned invitation, unresolved findings, closure reason and Alex's fixed constraints.</span></div>
+      <div class="card"><strong>Minimise new fields</strong><span>Proposed public place, time, cost assumption and an easy decline or cancellation path.</span></div>
+    </div>
+    <div class="note">A feasible proposal and a cleared review do not establish recipient availability or acceptance.</div>
+  </>}
+</figure>
+<style>
+  .threat-figure { width: min(100%,1100px); margin: .5rem auto 1rem; text-align: left; }
+  figcaption, .note { font-size: clamp(16px,1.3vw,24px); line-height: 1.35; }
+  figcaption { margin-bottom: .7rem; }
+  .note { margin-top: .7rem; }
+  .columns { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .8rem; }
+  .columns.three, ol.flow { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .8rem; }
+  .card, ol.flow li { display: grid; align-content: start; gap: .5rem; padding: .8rem; border: 2px solid var(--course-blue-ink); border-radius: 8px; background: var(--course-paper); color: var(--course-ink); font-size: clamp(18px,1.6vw,30px) !important; line-height: 1.3; }
+  .card strong, .flow strong { color: var(--course-blue-ink); }
+  .card b, td strong { color: var(--course-pink-ink); }
+  ol.flow { list-style: none; margin: 0; padding: 0; }
+  ol.flow li { margin: 0; }
+  .figure-table { border-collapse: collapse; width: 100%; font-size: clamp(16px,1.6vw,30px); line-height: 1.35; }
+  .figure-table :is(th,td) { text-align: left; padding: .6rem; color: var(--course-ink); background: var(--course-paper); border-bottom: 1px solid var(--course-blue-ink); }
+  .matrix :is(th,td) { padding: 1rem; }
+  @media (width < 650px) {
+    .columns, .columns.three, ol.flow { grid-template-columns: 1fr; gap: .5rem; }
+    .card, ol.flow li { padding: .6rem; gap: .35rem; }
+    .figure-table :is(th,td) { padding: .5rem .3rem; }
+  }
+  @media (height < 540px) {
+    .threat-figure { margin: .2rem auto; }
+    figcaption { margin-bottom: .3rem; }
+    .note { margin-top: .3rem; }
+    .card, ol.flow li { padding: .5rem; gap: .3rem; font-size: 18px !important; line-height: 1.25; }
+    .figure-table { font-size: 18px; }
+    .figure-table :is(th,td) { padding: .3rem; }
+  }
+</style>

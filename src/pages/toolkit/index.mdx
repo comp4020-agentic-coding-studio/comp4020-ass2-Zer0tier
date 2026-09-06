@@ -149,6 +149,24 @@ counts, cost thresholds, best responses and changed equilibria. No rate or
 utility is fitted to a person, no event sends a message, and no real timer or
 durable queue runs. The completed record becomes Week 8's threat-review input.
 
+## Week 8 threat cases · version 1
+
+The [six-file Week 8 workbook](/lectures/week-08/#run-the-worked-calculations)
+contains a [100-case scored CSV](/data/week-08-detector.csv),
+[seven authored triage cards and a handoff](/data/week-08-cases.json),
+[detector and review functions](/data/week-08-models.mjs), and a
+[worked report](/data/week-08-worked-examples.mjs). Save them beside the unchanged
+[Week 7 reducer](/data/week-07-models.mjs) and [Week 6 classifier](/data/week-06-models.mjs).
+Run `node week-08-worked-examples.mjs` offline.
+
+The CSV reproduces TP 8, FN 2, FP 18 and TN 72 at score ≥ 50. Scores, labels
+and costs are authored; the IDs reveal the answer class and are not predictor
+features. Numeric rows are separate from the coded triage cards. Compare
+thresholds and base-rate assumptions, then replay review, refusal and clearance
+around the actual Week 7 state. No new flag means neither safety nor clearance
+of old evidence. The release declaration rejects real contacts and payments;
+inspect the actual release as well as its declared flags.
+
 <h2 id="benchmark">Null Island v1 · the top-1% contract</h2>
 
 [Download the 99 synthetic controls](/data/null-island-controls.csv) and

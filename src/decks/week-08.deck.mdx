@@ -1,0 +1,538 @@
+---
+title: "Threat Modeling and Anomaly Detection · Week 8"
+description: "A three-hour teaching pack: asset boundaries, detector errors, threshold costs, base rates and review-state replay."
+---
+
+import DeckTools from "../components/DeckTools.astro";
+import DeckBars from "../components/DeckBars.astro";
+import ThreatFigure from "../components/ThreatFigure.astro";
+
+<DeckTools />
+
+# Your flag is not a verdict
+
+Threat Modeling and Anomaly Detection
+
+SLOP1276 · Week 08
+
+A detector that flags everything has excellent recall and a very long queue.
+
+---
+
+## The engineering output
+
+Build a **Threat model** from the boundary map and communication machine.
+
+Calculate detector errors and compare thresholds under declared costs.
+
+Separate evidence, uncertainty and local action.
+
+Replay review, clearance and refusal without publishing an accusation.
+
+---
+
+## A three-hour review
+
+Assets **30 min** · signals **30 min** · metrics **25 min**.
+
+Break **10 min** · thresholds, costs and prevalence **40 min**.
+
+State implementation, checks and handoff **45 min**.
+
+Use worked debriefs around the existing 90-minute tutorial.
+
+---
+
+## Bring the earlier artefacts
+
+Week 2: **Platform audit boundary map**.
+
+Week 7: **Communication state machine**, versioned invitation and evidence.
+
+Alex: board games, terrible puns, possible relationship. **Friday 5–7 pm · bus · $20 total.**
+
+The Library proposal fits Alex's constraints. Recipient availability and acceptance remain unknown.
+
+---
+
+## Follow the asset across the boundary
+
+<ThreatFigure kind="assets" />
+
+---
+
+## Name a testable control
+
+Contact details → external form → unintended disclosure → **no real-contact collection**.
+
+Money → requested destination → fabricated payment story → **no payment facility**.
+
+Refusal → later workflow → unwanted restart → **closed stays terminal**.
+
+[OWASP: flows, threats and mitigations](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html)
+
+---
+
+## Exercise · draw the crossing
+
+**5 minutes.** A fictional message requests a home address and a reservation deposit through a new form.
+
+Label two assets, their destinations and the trust boundary.
+
+Choose a protective control that collects no further private information.
+
+What conclusion would exceed the supplied evidence?
+
+---
+
+## Answer · control the proposed action
+
+Address → external form. Money → payment destination.
+
+Retain the request as evidence and hold the workflow.
+
+Exclude real-contact and payment collection from the course release.
+
+“The person is malicious” exceeds this observation. A protective hold need not be a public allegation.
+
+---
+
+## Three mechanisms can overlap
+
+**Bot:** automated interaction. Disclosure and purpose matter.
+
+**Financial scam:** deceptive attempt to obtain money.
+
+**Identity misrepresentation:** conflicting or fabricated identity claims.
+
+Disclosed automation is not itself malice. A human can still run a scam.
+
+---
+
+## Evidence, interpretation, action
+
+<ThreatFigure kind="evidence" />
+
+---
+
+## A typo is not a threat model
+
+“I lkie co-op games.” supplies a syntax observation.
+
+It does not establish deception. Multilingual wording is not proof either.
+
+The typo-only card adds **no flag** under our authored triage rule.
+
+Timeouts and read receipts keep their Week 7 meanings; neither supplies a malicious label.
+
+---
+
+## An image result has limited scope
+
+<ThreatFigure kind="images" />
+
+---
+
+## Exercise · triage seven authored cards
+
+**8 minutes.** Typo · transfer plus identity conflict · repeated template · image conflict · image non-match · latency · disclosed helper.
+
+Which supplied observations activate review? Quote their evidence IDs.
+
+Give one possible benign explanation without claiming it is true.
+
+These are written case cards. Do not investigate actual people.
+
+---
+
+## Answer · review is an action
+
+Transfer, repeated-template and image-conflict cards trigger review.
+
+The other four add no flag. That does not mean “safe” or “verified.”
+
+The rule consumes authored observation codes, not free text. The numeric dataset is separate.
+
+[FTC: romance-scam scenarios](https://consumer.ftc.gov/articles/what-know-about-romance-scams)
+
+---
+
+## Inspect the answer key before the score
+
+**100 authored rows: 10 malicious labels, 90 benign labels.**
+
+Scores use arbitrary **0–100 points**, not probabilities.
+
+M/B row IDs reveal the class. Exclude **IDs and labels** from predictor features.
+
+Scores are supplied directly. No model is trained or validated on real people.
+
+---
+
+## Declare the equality convention
+
+Flag when **score ≥ threshold**.
+
+At threshold 50, a score of 50 is flagged.
+
+A prediction is compared with the authored label to count an error. It does not create that label.
+
+[Google: classification thresholds](https://developers.google.com/machine-learning/crash-course/classification/thresholding)
+
+---
+
+## Keep the original confusion matrix
+
+<ThreatFigure kind="matrix" />
+
+---
+
+## Four questions, four denominators
+
+Precision: **TP / (TP + FP)** — how many flags are correct?
+
+Recall: **TP / (TP + FN)** — how many malicious cases are found?
+
+False-positive rate: **FP / (FP + TN)** — how many benign cases are flagged?
+
+Accuracy: **(TP + TN) / total** — how many labels agree?
+
+---
+
+## Exercise · calculate and challenge
+
+**6 minutes.** Use TP 8, FN 2, FP 18 and TN 72.
+
+Calculate all four metrics. Name each denominator's population.
+
+Now consider a detector that never flags a case.
+
+Which metric makes that detector look better? Which quantity is undefined?
+
+---
+
+## Answer · accuracy can hide every miss
+
+Precision **30.8%** · recall **80%** · false-positive rate **20%** · accuracy **80%**.
+
+Never flag: accuracy **90%**, recall **0%**, precision **undefined**.
+
+No flags means a zero precision denominator. The workbook returns `null`.
+
+[Google: metrics and class imbalance](https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall)
+
+---
+
+## Break · ten minutes
+
+Leave the denominators beside the metrics.
+
+Next: how much does a missed threat cost in your model?
+
+The spreadsheet will accept almost any answer. Your explanation must do more work.
+
+---
+
+## Compare three review thresholds
+
+<ThreatFigure kind="thresholds" />
+
+---
+
+## Exercise · recount at 75
+
+**5 minutes.** Flag every CSV row with score ≥ 75.
+
+Count TP, FN, FP and TN. Calculate precision and recall.
+
+Compare both errors with threshold 50.
+
+Name the missing objective before declaring a better detector.
+
+---
+
+## Answer · fewer flags, more misses
+
+At 75: **TP 6 · FN 4 · FP 5 · TN 85**.
+
+Precision **6/11 ≈ 54.5%**. Recall **6/10 = 60%**.
+
+Relative to 50: **two more misses, thirteen fewer false alarms**.
+
+Review load falls from 26 to 11. The value of that trade depends on stated costs and capacity.
+
+---
+
+## Raising a cutoff removes cases
+
+For fixed rows, raising the threshold cannot increase TP or FP.
+
+It can increase false negatives and reduce recall.
+
+Precision need not rise at every cutoff: its numerator and denominator both change.
+
+Our three rows demonstrate one fixture, not a universal monotonic precision rule.
+
+---
+
+## Write the loss function
+
+**L = cFN × FN + cFP × FP.** Lower is better.
+
+Use cFP = 1 and vary cFN. These are arbitrary error-cost assumptions.
+
+The model omits ordinary review overhead, staffing and severity differences.
+
+Retain total flags beside loss if review capacity matters.
+
+---
+
+## A cost assumption changes the winner
+
+<ThreatFigure kind="costs" />
+
+---
+
+## Exercise · solve the crossover
+
+**6 minutes.** Keep cFP = 1.
+
+At what cFN do thresholds 50 and 75 tie?
+
+Now compare all three tested thresholds at cFN = 20.
+
+State the scope of “best” in your answer.
+
+---
+
+## Answer · name the alternatives
+
+**2cFN + 18 = 4cFN + 5**, so **cFN = 6.5**.
+
+Both thresholds cost **31** at that tie.
+
+At cFN = 20, losses are **56, 58, 85**: threshold **25** wins among the three tested choices.
+
+That does not establish the best cutoff among every possible value.
+
+---
+
+## Precision depends on prevalence
+
+Let p = prevalence, r = recall and f = false-positive rate.
+
+Projected precision = **pr / [pr + (1 − p)f]**.
+
+True flags contribute pr. False flags contribute (1 − p)f.
+
+Transporting r and f into another population is an assumption to examine.
+
+---
+
+## Same assumed rates, different precision
+
+<DeckBars caption="Hypothetical prevalence · hold recall at 80% and false-positive rate at 20%" maximum={1} scale="Projected precision, 0–100%. These are not measured dating-service rates." rows={[
+  { label: '1% prevalence', value: 0.038834951, display: '3.88%' },
+  { label: '10% prevalence', value: 0.307692308, display: '30.77%' },
+  { label: '50% prevalence', value: 0.8, display: '80.00%' }
+]} />
+
+---
+
+## Exercise · count a thousand cases
+
+**5 minutes.** Hypothetical prevalence is **1%** in 1,000 cases.
+
+Keep recall **80%** and false-positive rate **20%**.
+
+Fill all four cells and calculate precision.
+
+Explain why this is a projection rather than deployment evidence.
+
+---
+
+## Answer · the benign pool is much larger
+
+Ten malicious cases: **TP 8, FN 2**.
+
+990 benign cases: **FP 198, TN 792**.
+
+Precision = **8/206 ≈ 3.88%**.
+
+A changed population may also change recall and false-positive rate. Neither transported rate is measured here.
+
+---
+
+## Do not rename exploration “validation”
+
+These scores are not calibrated probabilities.
+
+Trying thresholds on the same authored rows is sensitivity analysis.
+
+For an actual detector: develop a procedure, freeze it and evaluate on independent unseen labelled cases.
+
+Missing or disputed labels need an explicit policy. This teaching parser rejects missing labels.
+
+---
+
+## Review holds the workflow
+
+<ThreatFigure kind="wrapper" />
+
+---
+
+## A reply can arrive during review
+
+<ThreatFigure kind="trace" />
+
+---
+
+## No new flag does not clear old evidence
+
+Assess transfer → **review**.
+
+Timeout at 2 h → still **review**, underlying pending/no-reply.
+
+Image non-match at 2.1 h → still **review**.
+
+Assessments advance the original observation checkpoint. They never reset the send time or infer a motive.
+
+---
+
+## Make clearance an explicit record
+
+Require **every open finding ID** and a **non-empty review note**.
+
+Retain the resolved evidence for the authored trace.
+
+Clearance reveals the latest underlying phase, which may now be replied.
+
+The program checks the note exists; it cannot certify the reviewer's judgement or establish consent.
+
+---
+
+## Refusal wins the competing transition
+
+<ThreatFigure kind="closed" />
+
+---
+
+## Exercise · predict three histories
+
+**8 minutes.** Start pending; assess transfer at 0.3 h.
+
+A: reply at 1 → clear at 1.5.
+
+B: decline at 1 → clear at 1.5.
+
+C: timeout at 2 → image non-match at 2.1.
+
+Predict visible phase, base phase and observation result.
+
+---
+
+## Answer · preserve the two records
+
+A: **replied / replied / reply** after clearance.
+
+B: **closed / closed / reply**. The complete refused snapshot stays fixed.
+
+C: **review / pending / no-reply**. Earlier evidence remains open.
+
+All three emit no messages and publish no accusations.
+
+---
+
+## Break the rule to test the test
+
+Change ≥ to >: the score-50 and original matrix assertions must fail.
+
+Remove the closed guard: refusal followed by clearance must change the snapshot and fail its literal check.
+
+Assert the edit matched. Restore it and rerun.
+
+Also reject a first send from ready while review is holding it.
+
+---
+
+## State the small ledger's limits
+
+Retain snapshots, event IDs and chronological observation times.
+
+Exact serialized duplicates are no-ops; conflicting IDs are errors. Property order matters in this simple rule.
+
+Reserve `review-clock/` for derived checkpoints. Never reuse earlier Week 7 IDs.
+
+No background timer, durable queue or real-message delivery is implemented.
+
+---
+
+## Review the actual release too
+
+<ThreatFigure kind="release" />
+
+---
+
+## Exercise · minimise the handshake
+
+**4 minutes.** A proposed meeting form asks for public venue, time, expected cost, home address, bank details and an ID-image upload.
+
+Which fields support the proposal?
+
+Which violate the course boundary?
+
+Does a cleared review establish that the recipient accepted?
+
+---
+
+## Answer · a proposal remains a proposal
+
+Keep proposed public place, time and cost assumptions, with an easy decline or cancellation path.
+
+Omit home address, bank details and identity-document uploads.
+
+Alex's budget and availability remain fixed. The other person's availability is still unknown.
+
+Review clearance establishes neither acceptance nor safety.
+
+---
+
+## Run six files offline
+
+Save the six downloads in the [lecture notes](/lectures/week-08/#run-the-worked-calculations) together.
+
+Run `node week-08-worked-examples.mjs`.
+
+Inspect three matrices, cost and prevalence comparisons, seven card results, three traces and release checks.
+
+The download reuses the unchanged Week 7 and Week 6 modules.
+
+---
+
+## Carry the boundaries into Week 9
+
+<ThreatFigure kind="handoff" />
+
+---
+
+## Keep evidence for the final release
+
+Save the asset flow, original matrix, threshold comparison, assumptions and literal review traces.
+
+These support the final project's existing **validation appendix**.
+
+Final project: **50% · 28 May 2027, 5 pm**.
+
+Week 8 follows the midterm. This adds no assessment or new essay.
+
+---
+
+## Exit ticket · repair three conclusions
+
+“80% recall means 80% of flags are right.” → **Precision is 8/26 here.**
+
+“No image match proves authenticity.” → **Only no item in that index.**
+
+“Cleared review restarts refusal.” → **Closed stays closed.**
+
+Save the Threat model and its boundaries for Week 9.
