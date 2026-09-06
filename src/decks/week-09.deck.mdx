@@ -1,0 +1,529 @@
+---
+title: "Transitioning to Offline Environments · Week 9"
+description: "A three-hour teaching pack: venue constraints, cost agreements, versioned confirmations and exact contingency risk."
+---
+
+import DeckTools from "../components/DeckTools.astro";
+import DeckBars from "../components/DeckBars.astro";
+import HandoverFigure from "../components/HandoverFigure.astro";
+
+<DeckTools />
+
+# Migrating to the physical server
+
+Transitioning to Offline Environments
+
+SLOP1276 · Week 09
+
+Your weighted score cannot reopen a café or extend somebody's availability.
+
+---
+
+## The engineering output
+
+Build an **Offline handover plan** from the earlier venue and threat records.
+
+Filter hard constraints before ranking preferences.
+
+Record a cost proposal, exact-version confirmations and cancellation.
+
+Enumerate contingencies and challenge the independence assumption.
+
+---
+
+## A three-hour planning review
+
+Venues and routes **35 min** · costs and agreement **30 min**.
+
+Break **10 min** · independent outcomes **35 min**.
+
+Dependence and sensitivity **35 min** · implementation and handoff **35 min**.
+
+Debrief completed work around the existing 90-minute tutorial.
+
+---
+
+## Carry the versions forward
+
+<HandoverFigure kind="bridge" />
+
+---
+
+## Filter before ranking
+
+Alex: board games, terrible puns, possible relationship.
+
+**Friday 5–7 pm · bus · $20 total.**
+
+First check public setting, route access, exit, opening interval, transport, total time and budget.
+
+Then compare eligible venues. Unknown required observations fail the hard check.
+
+---
+
+## Include the return journey
+
+<HandoverFigure kind="route" />
+
+---
+
+## Report every rejection
+
+<HandoverFigure kind="filter" />
+
+---
+
+## Exercise · repair the Gallery proposal
+
+**6 minutes.** Arrive 17:30; venue opens 17:40. Meet for 70 minutes; return takes 30.
+
+Alex's cost is $22. The available window ends at 19:00.
+
+What fails? Would leaving ten minutes later fix the complete plan?
+
+Also explain why Loft's perfect preference scores cannot make it eligible.
+
+---
+
+## Answer · one repair leaves two failures
+
+Gallery initially arrives before opening and returns at **19:10**. Cost exceeds $20.
+
+Leaving ten minutes later fixes opening but returns at **19:20**; the budget still fails.
+
+Loft fails public setting and exit. It remains excluded.
+
+Annex passes at **$20 exactly**. Equality is allowed at the hard budget limit.
+
+---
+
+## Access is a supplied requirement
+
+Check the relevant route and exit; do not infer a diagnosis from a profile.
+
+An unknown access observation remains unresolved.
+
+Our public-place and exit checks are course constraints, not safety guarantees.
+
+[eSafety: preparing before meeting](https://www.esafety.gov.au/key-topics/staying-safe/online-dating)
+
+---
+
+## Change a preference weight
+
+<HandoverFigure kind="weights" />
+
+---
+
+## Cost arithmetic comes before agreement
+
+<HandoverFigure kind="costs" />
+
+---
+
+## Exercise · state both contributions
+
+**4 minutes.** Two drinks cost $6 each; Alex's transport costs $2.
+
+Write each party's drink contribution under cover-both and split-drinks.
+
+Which total belongs to Alex's $20 constraint?
+
+Does calculating a split establish that the counterpart accepted it?
+
+---
+
+## Answer · the budget is personal to the case
+
+Cover both: Alex **$12 + $2 = $14**; counterpart drinks **$0**.
+
+Split: Alex **$6 + $2 = $8**; counterpart drink **$6**.
+
+Counterpart transport remains unknown. The drinks still sum to $12.
+
+Both arrangements are proposals. Paying for a drink creates no obligation to stay or reciprocate.
+
+---
+
+## Specify the minimum useful handover
+
+<HandoverFigure kind="proposal" />
+
+---
+
+## Confirm a version, not just “yes”
+
+An authored draft proposes Atrium on **Friday 7 May, 17:20–18:10**, with confirmation by **16:30**.
+
+Each confirmation records **actor + current plan version**.
+
+Changing place, time or cost clears both confirmations.
+
+The checked alternative is a candidate, not an automatic venue switch.
+
+---
+
+## One actor's confirmation is insufficient
+
+<HandoverFigure kind="states" />
+
+---
+
+## Exercise · revise the bill
+
+**6 minutes.** Record cover-both at 16:00. Alex confirms 16:10; counterpart confirms 16:20.
+
+At 16:22 revise to split-drinks under a new version.
+
+At 16:24 a confirmation arrives for the old version.
+
+Trace the state, confirmation count and Alex's proposed total.
+
+---
+
+## Answer · old agreement does not migrate
+
+Initial path: **proposed → proposed → confirmed**.
+
+Revision: **proposed**, zero confirmations, Alex's proposed total **$8**.
+
+The old-version confirmation fails. Both actors must confirm the new terms.
+
+The report records events locally. It sends no invitation, books no table and collects no payment.
+
+---
+
+## Keep cancellation and expiry explicit
+
+Cancel or decline → **cancelled**. Every later event leaves that snapshot unchanged.
+
+An unfinished plan observed at **time ≥ 16:30** → **expired**.
+
+Final confirmation at 16:29 is within the window; 16:30 is late.
+
+Confirmation remains withdrawable. Expiry does not schedule a reminder.
+
+---
+
+## Break · ten minutes
+
+Keep the proposal version beside the agreement.
+
+Next: your mean journey is fine, and your tail is doing something else.
+
+The average bus is unusually punctual because it is not a bus.
+
+---
+
+## Define two assumed events
+
+Base: **$14 and 90 minutes** for the new Atrium fixture.
+
+L = late bus: **+20 minutes**, P(L) = **0.25**.
+
+C = closed venue: **+$6 and +10 minutes**, P(C) = **0.10**.
+
+First assume independence. These are invented probabilities and additive consequences.
+
+---
+
+## Multiply along the branch
+
+<HandoverFigure kind="tree" />
+
+---
+
+## Enumerate the complete outcomes
+
+<HandoverFigure kind="outcomes" />
+
+---
+
+## Exercise · compute means and exceedance
+
+**7 minutes.** Check probability mass sums to one.
+
+Multiply each complete cost and duration by its probability, then add.
+
+Which rows exceed **110 minutes**?
+
+Which exceed Alex's **120-minute window** or **$20 budget**?
+
+---
+
+## Answer · the original numerical contract
+
+Expected cost: **$14.60**. Expected duration: **96 minutes**.
+
+Only late-and-closed exceeds 110 minutes: **2.5%**.
+
+No supplied row exceeds 120 minutes or $20. Equality passes.
+
+The four-state table is an exact model calculation, not an estimate from actual journeys.
+
+---
+
+## Additive means use the marginals
+
+K = **14 + 6I(C)**. T = **90 + 20I(L) + 10I(C)**.
+
+E(K) = **14 + 6P(C) = 14.60**.
+
+E(T) = **90 + 20P(L) + 10P(C) = 96**.
+
+I is a 0/1 event indicator. These expectation equations do not require independence between L and C.
+
+---
+
+## A working target is a separate threshold
+
+<HandoverFigure kind="limits" />
+
+---
+
+## A mean does not specify a tail
+
+Expected 96 minutes is not a promise that every outcome finishes in 96.
+
+It is also not a 96% probability.
+
+Here **T > 110** occurs only when **L and C** both occur.
+
+That event depends on their joint distribution, which the two marginals do not uniquely determine.
+
+---
+
+## Exercise · test the exact boundary
+
+**4 minutes.** Under independence, compare strict time targets **109, 110 and 120** minutes.
+
+Add the probabilities of the rows exceeding each target.
+
+What does an erroneous ≥ comparison report at 110?
+
+State why a $20 outcome passes the budget check.
+
+---
+
+## Answer · equality changes the event
+
+Strict tails: **25% at 109**, **2.5% at 110**, **0% at 120**.
+
+At 110, ≥ wrongly includes the late/open row and reports **25%**.
+
+Cost exactly $20 is permitted; cost > $20 is not.
+
+The reference function combines time or budget exceedance. Here no row exceeds the budget.
+
+---
+
+## Replace independence with conditionals
+
+Assume **P(C | L) = 0.4**, **P(C | not L) = 0**.
+
+Keep **P(L) = 0.25**.
+
+P(C) = **0.25 × 0.4 + 0.75 × 0 = 0.10**.
+
+[MacEwan: conditional probability and independence](https://openbooks.macewan.ca/introstats/chapter/3-5-conditional-probability-and-independence/)
+
+---
+
+## Move probability between joint cells
+
+<HandoverFigure kind="dependent" />
+
+---
+
+## Exercise · preserve means, recompute the tail
+
+**6 minutes.** Use the dependent joint cells **0.75, 0, 0.15, 0.10**.
+
+Check the closure marginal and both expected values.
+
+Recalculate the >110-minute tail.
+
+Does dependence here establish that lateness causes a venue to close?
+
+---
+
+## Answer · the joint event changes
+
+Closure marginal: **10%**. Means: **$14.60 and 96 minutes**.
+
+The >110-minute tail becomes **10%**.
+
+That is **four times** the earlier tail and **7.5 percentage points** larger.
+
+This is an authored joint model. It establishes no causal mechanism.
+
+---
+
+## Same means, different risk of missing the target
+
+<DeckBars caption="P(duration > 110 min) · both models average $14.60 and 96 minutes" maximum={1} scale="Probability scale: 0–100%. Assumed scenarios, not observed journey rates." rows={[
+  {label:'Independent',value:0.025,display:'2.5%'},
+  {label:'Dependent',value:0.1,display:'10.0%'}
+]} />
+
+---
+
+## Let the unknown joint probability be q
+
+q = **P(L and C)**, with marginals 0.25 and 0.10.
+
+On/open: **0.65 + q**. On/closed: **0.10 − q**.
+
+Late/open: **0.25 − q**. Late/closed: **q**.
+
+Every cell must be non-negative. Hence **0 ≤ q ≤ 0.10**.
+
+---
+
+## Exercise · reach both endpoints
+
+**5 minutes.** Find P(C | L) and P(C | not L) when q is **0** and **0.10**.
+
+Check both marginals remain unchanged.
+
+Where is independence in this interval?
+
+What range of >110-minute tails can these marginals support?
+
+---
+
+## Answer · marginals leave a range
+
+Conditionals: **q/0.25** and **(0.10 − q)/0.75**.
+
+At q = 0: **0 and 2/15**. At q = 0.10: **0.4 and 0**.
+
+Independence: q = **0.025**, both conditionals **0.10**.
+
+The tail can range from **0% to 10%** within this binary consequence model.
+
+---
+
+## Change the baseline explicitly
+
+Substitute **100 minutes** while retaining the assumed increments.
+
+Durations become **100, 110, 120, 130**. Mean: **106 minutes**.
+
+Every late case now exceeds 110: **25%**, in either dependence scenario.
+
+This is sensitivity using the earlier Library duration, not measured disruption risk for that proposal.
+
+---
+
+## A drink split changes one assumption
+
+Alex's new base cost is **$8**.
+
+If the same **$6 closure surcharge** remains Alex's responsibility, expected cost is **$8.60**.
+
+Time and its tail stay unchanged under that assumption.
+
+The surcharge allocation also needs agreement. A cheaper calculation does not confirm revised terms.
+
+---
+
+## A fallback is a conditional plan
+
+The closure branch assumes an available alternative, **+$6**, **+10 minutes**, and the same meeting duration.
+
+A second closure, further delays or changed access are omitted.
+
+Annex is prechecked, but changing venue requires a revised proposal and fresh agreement.
+
+The numerical branch does not automatically switch the workflow.
+
+---
+
+## Exercise · challenge the fallback
+
+**5 minutes.** The alternative adds **25 minutes**, or its required public entrance is unavailable.
+
+Recalculate the late-and-closed duration from the 90-minute base.
+
+Which hard check fails in each scenario?
+
+What happens if a suitable revised plan cannot be agreed?
+
+---
+
+## Answer · keep the cancel branch
+
+90 + 20 + 25 = **135 minutes**, exceeding Alex's 120-minute window.
+
+An unavailable required entrance fails access regardless of preference score.
+
+Recheck route, opening interval, budget and exit. Revise and reconfirm if feasible.
+
+Otherwise cancel. “Backup” does not exempt a venue from the constraints.
+
+---
+
+## A fresh review invalidates the agreement
+
+The constructor uses an actual unheld replied Week 8 record.
+
+A new review update clears confirmations; an open finding holds the plan.
+
+Before the confirmation deadline, clearance returns to **draft**, requiring proposal and confirmation again.
+
+A closed upstream conversation cancels the plan. No later event revives it.
+
+---
+
+## Make the literal tests fail on purpose
+
+Change the target comparison **> to ≥**: the 110-minute tail test must fail.
+
+Change **two confirmations to one**: proposed/proposed/confirmed must fail.
+
+Assert each edit matched. Restore and rerun.
+
+Also test complete cancellation snapshots, stale versions, conflicting IDs and exact deadlines.
+
+---
+
+## Run ten local files
+
+Save the ten downloads from the [lecture notes](/lectures/week-09/#run-and-challenge-the-workbook) together.
+
+Run `node week-09-worked-examples.mjs`.
+
+The report reuses Week 5 feasibility, Week 6–8 event logic and the existing logistics reference.
+
+It checks two distributions and five handover histories with no external service.
+
+---
+
+## Hand over the current agreement
+
+<HandoverFigure kind="handoff" />
+
+---
+
+## Keep the evidence for the final release
+
+Save venue rejections, itinerary, cost agreement, version history, cancel traces and both contingency tables.
+
+These support the final project's existing **validation appendix**.
+
+Final project: **50% · 28 May 2027, 5 pm**.
+
+Week 10 uses the cost agreement when examining the “Who pays?” deadlock.
+
+---
+
+## Exit ticket · repair three conclusions
+
+“Lighting compensates for a failed exit.” → **Hard constraints come first.**
+
+“A 96-minute mean makes the tail small.” → **Check the joint event.**
+
+“Old confirmation covers a changed bill.” → **Confirm the new version.**
+
+Save the Offline handover plan for Week 10.

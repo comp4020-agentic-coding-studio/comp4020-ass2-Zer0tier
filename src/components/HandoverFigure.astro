@@ -1,0 +1,127 @@
+---
+import cases from '../../public/data/week-09-cases.json';
+import { filterVenue, enumerateLogistics } from '../../public/data/week-09-models.mjs';
+interface Props { kind: 'bridge' | 'route' | 'filter' | 'weights' | 'costs' | 'proposal' | 'states' | 'tree' | 'outcomes' | 'limits' | 'dependent' | 'handoff'; }
+const { kind } = Astro.props;
+const independent = enumerateLogistics(cases.logistics);
+const dependent = enumerateLogistics({...cases.logistics,closureGivenLate:0.4,closureGivenOnTime:0});
+const labels = ['On / open','On / closed','Late / open','Late / closed'];
+---
+<figure class="handover-figure">
+  {kind === 'bridge' && <>
+    <figcaption>Reuse earlier evidence without silently changing its fixture</figcaption>
+    <div class="columns">
+      <div class="card"><strong>Week 5 Library</strong><b>100 min · $14</b><span>Retain its invitation version through the Week 8 record.</span></div>
+      <div class="card"><strong>Week 9 Atrium</strong><b>90 min · $14</b><span>A new proposal version needs its own checks and agreement.</span></div>
+    </div>
+    <div class="note">Review clearance does not accept either proposal.</div>
+  </>}
+  {kind === 'route' && <>
+    <figcaption>Authored Atrium itinerary · all travel fits Friday 17:00–19:00</figcaption>
+    <ol class="track">{[['17:00','Depart'],['17:20','Arrive · 20 min out'],['18:10','End · 50 min meeting'],['18:30','Home · 20 min back']].map(([time,label])=><li><strong>{time}</strong><span>{label}</span></li>)}</ol>
+    <div class="note">90 minutes used; 30 minutes remain. Each travel leg includes bus, walking and waiting.</div>
+  </>}
+  {kind === 'filter' && <>
+    <figcaption>Authored cards · hard constraints precede all preference scores</figcaption>
+    <table class="figure-table"><thead><tr><th scope="col">Venue</th><th scope="col">Decision</th></tr></thead>
+      <tbody>{cases.venues.map(venue=><tr><th scope="row">{venue.name}</th><td>{filterVenue(venue).reasons.join(', ') || 'Pass'}</td></tr>)}</tbody>
+    </table>
+    <div class="note">Unknown required observations also fail. An attractive score cannot repair an exit.</div>
+  </>}
+  {kind === 'weights' && <>
+    <figcaption>Eligible venues only · score = w × quiet + lighting</figcaption>
+    <table class="figure-table"><thead><tr><th scope="col">w</th><th scope="col">Atrium</th><th scope="col">Annex</th><th scope="col">Best</th></tr></thead>
+      <tbody>{[[1,7,8,'Annex'],[2,11,11,'Tie'],[3,15,14,'Atrium']].map(([w,a,b,best])=><tr><th scope="row">{w}</th><td>{a}</td><td>{b}</td><td>{best}</td></tr>)}</tbody>
+    </table>
+    <div class="note">Weights are planning assumptions, not additional facts about Alex's preferences.</div>
+  </>}
+  {kind === 'costs' && <>
+    <figcaption>Two $6 drinks · Alex's round-trip transport is $2</figcaption>
+    <div class="columns">
+      <div class="card"><strong>Alex offers both drinks</strong><b>Alex: $14</b><span>$12 drinks + $2 transport. Counterpart drinks: $0.</span></div>
+      <div class="card"><strong>Each covers one drink</strong><b>Alex: $8</b><span>$6 drink + $2 transport. Counterpart drink: $6.</span></div>
+    </div>
+    <div class="note">Counterpart transport is unknown. Either arrangement requires explicit agreement.</div>
+  </>}
+  {kind === 'proposal' && <>
+    <figcaption>Minimal fictional proposal · reviewed fields, explicit uncertainty</figcaption>
+    <div class="columns">
+      <div class="card"><strong>Specify</strong><span>Venue, date, time, cost mode, confirmation point, alternative and cancellation.</span></div>
+      <div class="card"><strong>Retain locally</strong><span>Proposal version, earlier invitation reference and both actor/version confirmations.</span></div>
+    </div>
+    <div class="note">No home address, identity-image upload or payment collection is needed.</div>
+  </>}
+  {kind === 'states' && <>
+    <figcaption>Supplied event records · no message is sent</figcaption>
+    <ol class="track"><li><strong>draft</strong><span>Unconfirmed plan</span></li><li><strong>proposed</strong><span>← proposal record</span></li><li><strong>proposed</strong><span>← first actor confirms</span></li><li><strong>confirmed</strong><span>← second actor confirms</span></li></ol>
+    <div class="note">Both confirmations name the current version. Revision clears them; cancellation stays terminal.</div>
+  </>}
+  {kind === 'tree' && <>
+    <figcaption>Independent baseline · multiply along a branch, add disjoint leaves</figcaption>
+    <div class="columns">
+      <div class="card"><strong>On time · 0.75</strong><span>Open | on: 0.90 → joint 0.675</span><span>Closed | on: 0.10 → joint 0.075</span></div>
+      <div class="card"><strong>Late · 0.25</strong><span>Open | late: 0.90 → joint 0.225</span><span>Closed | late: 0.10 → joint 0.025</span></div>
+    </div>
+    <div class="note">The conditional closure probability is 0.10 in both branches under independence.</div>
+  </>}
+  {kind === 'outcomes' && <>
+    <figcaption>Four authored outcomes · each probability multiplies a complete plan</figcaption>
+    <table class="figure-table"><thead><tr><th scope="col">Outcome</th><th scope="col">P</th><th scope="col">Cost</th><th scope="col">Min</th></tr></thead>
+      <tbody>{independent.states.map((row,i)=><tr><th scope="row">{labels[i]}</th><td>{row.probability.toFixed(3)}</td><td>${row.costCents/100}</td><td>{row.minutes}</td></tr>)}</tbody>
+    </table>
+    <div class="note">Probabilities sum to 1. Costs belong to Alex; the inputs are assumptions.</div>
+  </>}
+  {kind === 'limits' && <>
+    <figcaption>Keep the event definition beside its threshold</figcaption>
+    <div class="columns">
+      <div class="card"><strong>Working target</strong><b>110 minutes</b><span>Reserves ten minutes. A 120-minute outcome misses it.</span></div>
+      <div class="card"><strong>Hard availability</strong><b>120 minutes</b><span>Friday 17:00–19:00. Exactly 120 still fits this model.</span></div>
+    </div>
+    <div class="note">Likewise, $20 exactly passes the $20 budget. “Exceeds” uses >, not ≥.</div>
+  </>}
+  {kind === 'dependent' && <>
+    <figcaption>Same marginals: late 25%, closed 10% · different joint cells</figcaption>
+    <table class="figure-table"><thead><tr><th scope="col">Outcome</th><th scope="col">Independent</th><th scope="col">Dependent</th></tr></thead>
+      <tbody>{independent.states.map((row,i)=><tr><th scope="row">{labels[i]}</th><td>{row.probability.toFixed(3)}</td><td>{dependent.states[i].probability.toFixed(3)}</td></tr>)}</tbody>
+    </table>
+    <div class="note">Dependent case: P(closed | late) = 0.4; P(closed | on time) = 0.</div>
+  </>}
+  {kind === 'handoff' && <>
+    <figcaption>Week 9 plan → Week 10 conversation and bill model</figcaption>
+    <div class="columns">
+      <div class="card"><strong>Carry the agreement</strong><span>Current version, both confirmations, cost arrangement and earlier evidence references.</span></div>
+      <div class="card"><strong>Keep the limits</strong><span>Arrival is not inferred. A cancelled, expired or held plan cannot be exported as accepted.</span></div>
+    </div>
+    <div class="note">An agreement to meet does not remove the ability to end the interaction.</div>
+  </>}
+</figure>
+<style>
+  .handover-figure { width: min(100%,1100px); margin: .5rem auto 1rem; text-align: left; }
+  figcaption, .note { font-size: clamp(16px,1.3vw,24px); line-height: 1.35; }
+  figcaption { margin-bottom: .7rem; }
+  .note { margin-top: .7rem; }
+  .columns { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .8rem; }
+  .card, ol.track li { display: grid; align-content: start; gap: .5rem; padding: .8rem; border: 2px solid var(--course-blue-ink); border-radius: 8px; background: var(--course-paper); color: var(--course-ink); font-size: clamp(18px,1.6vw,30px) !important; line-height: 1.3; }
+  .card strong, .track strong { color: var(--course-blue-ink); }
+  .card b { color: var(--course-pink-ink); }
+  ol.track { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: .6rem; list-style: none; margin: 0; padding: 0; }
+  ol.track li { margin: 0; }
+  .figure-table { border-collapse: collapse; width: 100%; font-size: clamp(16px,1.6vw,30px); line-height: 1.35; }
+  .figure-table :is(th,td) { text-align: left; padding: .6rem; color: var(--course-ink); background: var(--course-paper); border-bottom: 1px solid var(--course-blue-ink); }
+  @media (width < 650px) {
+    .columns { grid-template-columns: 1fr; gap: .5rem; }
+    .card { padding: .6rem; gap: .35rem; }
+    ol.track { grid-template-columns: 1fr; gap: .5rem; }
+    ol.track li { grid-template-columns: 1fr 1.7fr; padding: .5rem .6rem; }
+    .track span { text-align: right; }
+    .figure-table :is(th,td) { padding: .5rem .3rem; overflow-wrap: anywhere; }
+  }
+  @media (height < 540px) {
+    .handover-figure { margin: .2rem auto; }
+    figcaption { margin-bottom: .3rem; }
+    .note { margin-top: .3rem; }
+    .card, ol.track li { padding: .5rem; gap: .3rem; font-size: 18px !important; line-height: 1.25; }
+    .figure-table { font-size: 18px; }
+    .figure-table :is(th,td) { padding: .3rem; }
+  }
+</style>

@@ -1,0 +1,15 @@
+{
+  "version": "week-09-v1",
+  "scope": "Authored venue observations, prices, travel times, probabilities and confirmation records. No real venue, booking, payment or recipient is involved. Week 5 Library and Week 9 Atrium are different versioned proposals.",
+  "venues": [
+    {"id":"atrium","name":"Atrium cafe","public":true,"access":true,"exit":true,"bus":true,"openMinute":960,"closeMinute":1140,"outboundMinutes":20,"meetingMinutes":50,"returnMinutes":20,"transportCents":200,"activityCents":1200,"quiet":4,"lighting":3},
+    {"id":"loft","name":"Private loft","public":false,"access":true,"exit":false,"bus":true,"openMinute":960,"closeMinute":1200,"outboundMinutes":20,"meetingMinutes":50,"returnMinutes":20,"transportCents":200,"activityCents":1200,"quiet":5,"lighting":5},
+    {"id":"gallery","name":"Gallery cafe","public":true,"access":true,"exit":true,"bus":true,"openMinute":1060,"closeMinute":1200,"outboundMinutes":30,"meetingMinutes":70,"returnMinutes":30,"transportCents":200,"activityCents":2000,"quiet":4,"lighting":5},
+    {"id":"annex","name":"Annex kiosk","public":true,"access":true,"exit":true,"bus":true,"openMinute":960,"closeMinute":1140,"outboundMinutes":30,"meetingMinutes":50,"returnMinutes":20,"transportCents":800,"activityCents":1200,"quiet":3,"lighting":5}
+  ],
+  "venueScope": "All travel includes walking, bus and waiting; transport cost covers Alex's round trip. Activity cost is two equal-priced drinks. This exercise requires a continuous step-free route from bus stop to table and exit. Exit means leaving without depending on the counterpart's transport or permission. These are authored scenario requirements, not a diagnosis. Unknown hard observations fail review. Quiet/light values are authored 0-5 preference scores.",
+  "weights": {"quiet":3,"lighting":1},
+  "plan": {"version":"week-09-v1:atrium-cover","priorInvitationVersion":"week-05-v1:library","venueId":"atrium","alternativeId":"annex","date":"2027-05-07","departMinute":1020,"confirmBy":990,"costMode":"cover-both","cancelText":"Either person can cancel without giving a reason."},
+  "logistics": {"baseCostCents":1400,"baseMinutes":90,"lateProbability":0.25,"lateMinutes":20,"closureCostCents":600,"closureMinutes":10,"closureGivenLate":0.1,"closureGivenOnTime":0.1,"timeLimit":110,"budgetCents":2000,"availableMinutes":120},
+  "proposalEvents": [{"id":"p","type":"propose","at":960},{"id":"a","type":"confirm","actor":"alex","planVersion":"week-09-v1:atrium-cover","at":970},{"id":"b","type":"confirm","actor":"counterpart","planVersion":"week-09-v1:atrium-cover","at":980}]
+}
