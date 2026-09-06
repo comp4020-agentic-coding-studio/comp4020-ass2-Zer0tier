@@ -1,0 +1,540 @@
+---
+title: "Platform Architecture and the Elo Hierarchy · Week 2"
+description: "A three-hour teaching pack: trace Alex's recommendations, audit platform claims, implement toy Elo and explain exposure feedback with synthetic data."
+---
+
+import DeckTools from "../components/DeckTools.astro";
+import DeckBars from "../components/DeckBars.astro";
+import PlatformDiagram from "../components/PlatformDiagram.astro";
+
+<DeckTools />
+
+# Who gets seen?
+
+Platform Architecture and the Elo Hierarchy
+
+SLOP1276 · Week 02
+
+Popularity is doing its own performance review.
+
+---
+
+## What you will be able to do
+
+Trace a profile through **retrieval, filtering, ordering and exposure**.
+
+Separate a **published claim** from an assumed model.
+
+Calculate an Elo update and a rate with a named denominator.
+
+Explain how an exposure rule can sustain a hierarchy.
+
+---
+
+## A three-hour investigation
+
+Architecture **30 min** · source audit **25 min**.
+
+Toy Elo **45 min** · break **10 min**.
+
+Exposure **25 min** · census **25 min** · synthesis **20 min**.
+
+Exercises and debriefs are included. The notes support splitting this pack across meetings and study.
+
+---
+
+## Alex returns from week 1
+
+Fictional adult CS student; board games and terrible puns.
+
+**Friday 5–7 pm · $20 total · bus travel.**
+
+Wants to meet someone, with the possibility of a relationship.
+
+Today: how could a candidate reach Alex's screen?
+
+---
+
+## A profile has a route
+
+<PlatformDiagram kind="pipeline" />
+
+An ordered candidate can remain unseen if the viewer stops scrolling.
+
+---
+
+## Three candidates, one screen
+
+<PlatformDiagram kind="candidates" />
+
+Which proposed outings pass Alex's supplied time and budget checks?
+
+---
+
+## Filtering changes the winner
+
+**Retrieve:** P1, P2, P3.
+
+**Filter:** remove P2; 8 pm is outside Alex's window.
+
+**Order by our invented score:** P1 (8), then P3 (6).
+
+If only one profile is shown, P1 gets exposure. Bus feasibility and mutual interest remain unknown.
+
+---
+
+## Draw the boundary · 8 min
+
+Sketch the five stages for Alex and the three candidates.
+
+Place **availability**, **ordering score**, **shown on screen** and **interest in Alex**.
+
+Label each as supplied, assumed, observed or hidden.
+
+Pair discussion or solo annotation; record one uncertainty.
+
+---
+
+## Boundary debrief
+
+**Supplied:** Alex's time and budget.
+
+**Assumed:** the candidates, their scores and the one-profile display limit.
+
+**Observed in a log:** which profile was actually shown.
+
+**Hidden:** motivation and mutual interest. An eligible candidate is still a person who can decline.
+
+---
+
+## Instrument the right event
+
+A toy log needs **viewer ID, profile ID, time, exposure and explicit choice**.
+
+Count an exposure when the profile is shown, not merely retrieved.
+
+Deduplicate repeated event IDs; define the observation window.
+
+An absent reply is not a recorded dislike.
+
+---
+
+## Read a disclosure like an engineer
+
+Record **claim → primary source → scope → unknown**.
+
+Keep the page title, URL and date checked.
+
+“Uses recent activity” names an input. It does not reveal a weight.
+
+The next three slides report company descriptions checked on 6 September 2026.
+
+---
+
+## Tinder: retire the folklore
+
+[Tinder's matching explainer](https://www.tinderpressroom.com/powering-tinder-r-the-method-behind-our-matching) says it no longer relies on Elo.
+
+It describes activity, profile information and Likes/Nopes as signals.
+
+**Supported:** this is Tinder's published description.
+
+**Unknown here:** production weights and a numerical swipe penalty.
+
+---
+
+## Hinge: a recommendation feature
+
+[Most Compatible](https://help.hinge.co/hc/en-us/articles/360011233073-What-is-Most-Compatible) describes mutual preferences, recent activity and patterns of liking.
+
+**Scope:** one named recommendation feature.
+
+**Unknown here:** its scoring equation and individual connection probabilities.
+
+The feature name is not a probability estimate.
+
+---
+
+## Bumble: inputs, not coefficients
+
+[Discover documentation](https://support.bumble.com/hc/en-us/articles/28423668110621-Using-the-Discover-tab) says its highlighted recommendations use profile information and previous matches.
+
+**Scope:** the “Recommended for you” selection within Discover.
+
+**Unknown here:** relative weights or an Elo-style update.
+
+Do not extend a feature description to every screen in the app.
+
+---
+
+## Audit three claims · 6 min
+
+**A:** “Tinder's explainer says it no longer relies on Elo.”
+
+**B:** “Our simulator subtracts eight points after a chosen event.”
+
+**C:** “All three apps apply an eight-point mass-swipe penalty.”
+
+Classify: published disclosure, model assumption or unsupported claim. Add the evidence needed.
+
+---
+
+## Claim audit: worked answer
+
+**A · disclosure.** Cite Tinder's page and the date checked.
+
+**B · assumption.** Cite our rule and a reproducible trace.
+
+**C · unsupported.** These sources provide no such number.
+
+An unknown coefficient stays unknown. Plausibility is not a source.
+
+---
+
+## Why teach Elo here?
+
+A small rating model makes **expectation, surprise and feedback** inspectable.
+
+We can change one rule and reproduce every update.
+
+Our binary outcomes are simulated comparison results.
+
+They are not measurements of a person's attractiveness or an app's recovered algorithm.
+
+---
+
+## Five symbols, one update
+
+**R:** current rating · **Q:** comparison rating.
+
+**S:** simulated result, 0 or 1 · **K:** positive update size.
+
+**E:** model expectation, between 0 and 1.
+
+<div class="deck-formula">E = 1 / (1 + 10<sup>(Q − R) / 400</sup>)<br />R′ = R + K(S − E)</div>
+
+---
+
+## Expectation follows the rating gap
+
+<DeckBars caption="Toy model · expected result E at five rating gaps" maximum={100} scale="Bar scale: 0–100%. Gap = R − Q; these are model outputs." rows={[
+  { label: '−400', value: 100 / 11, display: '9.09%' },
+  { label: '−200', value: 100 / (1 + Math.sqrt(10)), display: '24.03%' },
+  { label: '0', value: 50, display: '50%' },
+  { label: '+200', value: 100 / (1 + 1 / Math.sqrt(10)), display: '75.97%' },
+  { label: '+400', value: 1000 / 11, display: '90.91%' }
+]} />
+
+Equal ratings mean E = 0.5, not “a 50% chance of romance.”
+
+---
+
+## Work an equal-rating win
+
+R = Q = **1200** · K = **32** · S = **1**.
+
+E = 1 / (1 + 10⁰) = **0.5**.
+
+Change = 32 × (1 − 0.5) = **+16**.
+
+New rating = **1216**. Keep the expectation in the trace.
+
+---
+
+## Change one input at a time
+
+Reset to R = Q = 1200 for each case.
+
+**Loss, K = 32:** 1200 + 32(0 − 0.5) = **1184**.
+
+**Win, K = 64:** 1200 + 64(1 − 0.5) = **1232**.
+
+K changes responsiveness. A larger movement does not make the model more accurate.
+
+---
+
+## Surprise gets a larger update
+
+R = **1200**, Q = **1600**, K = 32.
+
+E = 1 / (1 + 10¹) = **1/11 ≈ 0.0909**.
+
+Win: **1229.09**. Loss: **1197.09**.
+
+Explain why the unexpected win moves the rating much more than the expected loss.
+
+---
+
+## Updates have state
+
+Start at 1200. Win against 1200 → **1216**.
+
+Then lose against 1200: recompute E using **1216**, not 1200.
+
+E ≈ **0.5230** → final rating ≈ **1199.26**.
+
+A win then a loss need not cancel. Round for display, not between steps.
+
+---
+
+## Implement and trace · 12 min
+
+Write `update(R, Q, S, K)` using the two equations.
+
+Reject non-finite ratings, non-positive K and S outside **{0, 1}**.
+
+Run an equal win, an equal loss and the two-step sequence.
+
+Save inputs, E and output. Pseudocode plus a hand trace is a valid starting point.
+
+---
+
+## Test against known answers
+
+**Reset cases:** 1216 · 1184 · K = 64 win 1232.
+
+**Unequal ratings:** win against 1600 → 1229.09.
+
+**Sequential case:** win then loss against 1200 → 1199.26.
+
+K = 0 must fail. Compare unrounded calculations within a tolerance; the notes include runnable assertions.
+
+---
+
+## A penalty is a separate hypothesis
+
+Assume a simulator rule subtracts **8** after a chosen event.
+
+Equal-rating win: **1216 − 8 = 1208**.
+
+Keep `rating_after_elo` and `assumed_penalty` as separate fields.
+
+You changed your implementation. You have learned no platform's hidden penalty.
+
+---
+
+## What counts as a result?
+
+Here S is an explicit **simulated binary result**.
+
+An unseen profile supplies no result.
+
+An unanswered message is not automatically S = 0.
+
+Before adapting a model, define its event, missing-data rule and observation window.
+
+---
+
+## Break · 10 minutes
+
+Leave one question beside your trace.
+
+When we return: two profiles receive the same number of likes.
+
+Did they have the same opportunity to receive them?
+
+---
+
+## Same likes, unequal exposure
+
+<DeckBars caption="Synthetic scenario: equal_counts · each profile receives 20 likes" maximum={1000} scale="Bar scale: 0–1,000 exposures in the same exercise window." rows={[
+  { label: 'Profile A', value: 1000, display: '1,000 exposures · 20 likes' },
+  { label: 'Profile B', value: 100, display: '100 exposures · 20 likes' }
+]} />
+
+Calculate each like rate before drawing a conclusion.
+
+---
+
+## The denominator changes the story
+
+<DeckBars caption="Same synthetic observations · likes divided by exposures" maximum={100} scale="Bar scale: 0–100%. These are observed exercise rates." rows={[
+  { label: 'Profile A', value: 2, display: '20 / 1,000 = 2%' },
+  { label: 'Profile B', value: 20, display: '20 / 100 = 20%' }
+]} />
+
+Equal counts conceal a tenfold rate difference. Neither rate measures human worth.
+
+---
+
+## Even the ranking can reverse
+
+Synthetic scenario: **rank_reversal**.
+
+**A:** 80 likes / 1,000 exposures = **8%**.
+
+**B:** 20 likes / 100 exposures = **20%**.
+
+A leads on count; B leads on rate. Name the metric before announcing the winner.
+
+---
+
+## A rate still has assumptions
+
+Were the audiences, time windows and exposure definitions comparable?
+
+Could one viewer appear many times?
+
+If ordering selected the audience, these rates do not isolate a profile's effect.
+
+Today we audit measurement. Week 4 adds bio experiment design.
+
+---
+
+## The feedback hypothesis
+
+<PlatformDiagram kind="feedback" />
+
+The arrow from likes to allocation creates the loop. Without that rule, the story changes.
+
+---
+
+## A seed advantage can persist
+
+<DeckBars caption="Toy allocation: seed likes A = 6, B = 4; distribute 1,000 exposures proportionally" maximum={1000} scale="Bar scale: 0–1,000 exposures. Assume each profile has a 10% like probability." rows={[
+  { label: 'Profile A', value: 600, display: '600 exposures → 60 expected likes' },
+  { label: 'Profile B', value: 400, display: '400 exposures → 40 expected likes' }
+]} />
+
+Add the seeds: **66 vs 44** likes. The share stays **60:40** in this expected-value calculation.
+
+---
+
+## Change the allocator · 6 min
+
+Keep seeds **6 and 4**, a **1,000-exposure** budget and equal **10%** response probabilities.
+
+Allocate **500 exposures each**, regardless of previous likes.
+
+Compute expected new likes and cumulative totals.
+
+Which assumption changed? Does the result prove a real app should use it?
+
+---
+
+## Feedback debrief
+
+Equal exposure → **50 expected new likes each**.
+
+Cumulative likes become **56 and 54**: A's share ≈ **50.9%**.
+
+The response probabilities stayed equal; the allocation rule changed.
+
+Our proportional loop preserves a seed advantage. It does not prove that every feedback loop widens the share gap.
+
+---
+
+## Name the population
+
+<DeckBars caption="Null Island census · synthetic counts at one snapshot" maximum={300} scale="Bar scale: 0–300 profiles. Each group is nested inside the one above." rows={[
+  { label: 'Active', value: 300, display: '300 profiles' },
+  { label: 'Available', value: 150, display: '150 profiles' },
+  { label: 'Reciprocal', value: 40, display: '40 profiles' }
+]} />
+
+“Reciprocal” means mutual eligibility under supplied constraints, not observed attraction or a match.
+
+---
+
+## Two valid questions
+
+Among **available** profiles, what fraction is reciprocally eligible?
+
+**40 / 150 ≈ 26.7%**.
+
+Among **active** profiles, what fraction is reciprocally eligible?
+
+**40 / 300 ≈ 13.3%**. Neither is a measured probability that Alex will get a date.
+
+---
+
+## Audit the census · 8 min
+
+Open [the synthetic CSV](/data/null-island-market.csv).
+
+Sum North, South and East. Check **0 ≤ reciprocal ≤ available ≤ active** in every row.
+
+Add **50 active-only profiles to East**; hold other fields fixed.
+
+Recompute both fractions. Write which denominator changed and why.
+
+---
+
+## Missing active profiles matter
+
+<DeckBars caption="Sensitivity scenario · add 50 active-only profiles to East" maximum={100} scale="Bar scale: 0–100%. Numerator remains 40 reciprocally eligible profiles." rows={[
+  { label: 'Original', value: 40 / 300 * 100, display: '40 / 300 ≈ 13.3%' },
+  { label: 'Recount', value: 40 / 350 * 100, display: '40 / 350 ≈ 11.4%' }
+]} />
+
+Available remains 150, so **40 / 150 ≈ 26.7%** is unchanged. This is a scenario, not a discovered census error.
+
+---
+
+## Stop bad rows before bad claims
+
+Try a row: **12 active, 15 available, 4 reciprocal**.
+
+Reject it: available cannot exceed active in this nested dataset.
+
+Require whole, non-negative counts; detect duplicated zones.
+
+If the denominator is zero, report **undefined**, not 0%.
+
+---
+
+## Repair an audit paragraph · 8 min
+
+“Alex has an Elo of 1216, so Tinder considers Alex attractive. Profile A gets more likes, so its bio is better. There is a 13.3% chance of a date.”
+
+Rewrite all three claims using today's evidence.
+
+Keep the useful numbers. Replace each unsupported inference with its actual meaning.
+
+---
+
+## A defensible rewrite
+
+**1216** is the output of our equal-rating simulated win.
+
+In the reversal fixture, A has **80 likes**, but B has the higher observed rate: **20% vs 8%**.
+
+**13.3%** is reciprocal eligibility among 300 active synthetic profiles.
+
+No platform score, bio effect or date probability was measured.
+
+---
+
+## Assemble the platform audit
+
+**Boundary map** with observed and hidden state.
+
+**Claim/source/unknown table** with scoped citations.
+
+**Elo trace and tests**, with assumptions separated.
+
+**Exposure and census log**, with denominator definitions and sensitivity results.
+
+---
+
+## Exit check · 3 min
+
+**1.** Which pipeline stage is missing when a candidate is ranked but never seen?
+
+**2.** From equal ratings of 1200, what does K = 64 give for a simulated win?
+
+**3.** Is reciprocal eligibility evidence of mutual attraction?
+
+Answer before turning the page. Cite one assumption you will carry into week 3.
+
+---
+
+## Carry the boundary forward
+
+**Answers:** exposure; **1232**; **no**.
+
+Week 3 applies the audit's provenance rules to photographs: source, permission, purpose and missing information.
+
+Your census definitions support the data report. Keep the audit's unknowns visible when adding new inputs.
+
+[Tutorial and deliverable](/sessions/02-platforms/) · [Worked notes and sources](/lectures/week-02/)

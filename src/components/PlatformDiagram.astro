@@ -1,0 +1,73 @@
+---
+interface Props { kind: 'pipeline' | 'candidates' | 'feedback' }
+const { kind } = Astro.props;
+const pipeline = [
+  ['1 · Retrieve', 'Find a candidate set'], ['2 · Filter', 'Apply stated constraints'],
+  ['3 · Order', 'Sort surviving profiles'], ['4 · Expose', 'Actually show a profile'],
+  ['5 · Mutual selection', 'Record both choices'],
+];
+const feedback = [
+  ['Recorded likes', 'The starting signal'], ['Exposure allocation', 'Assume likes set the share'],
+  ['New observations', 'Exposure enables new likes'], ['Updated likes', 'Feed back into allocation ↺'],
+];
+const candidates = [
+  { id: 'P1', time: 'Fri 6–6.30 pm', cost: '$12 total', score: 'Score 8' },
+  { id: 'P2', time: 'Fri 8–8.30 pm', cost: '$12 total', score: 'Score 9' },
+  { id: 'P3', time: 'Fri 5.30–6 pm', cost: '$18 total', score: 'Score 6' },
+];
+---
+<figure class:list={['platform-picture', kind]}>
+  {kind === 'candidates' ? <>
+    <div class="candidate-grid">
+      {candidates.map(candidate => <div class="candidate">
+        <div class="identity">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="var(--course-blue)"/><circle cx="32" cy="23" r="10" fill="var(--course-blue-ink)"/><path d="M13 53v-4c0-12 9-17 19-17s19 5 19 17v4" fill="var(--course-blue-ink)"/></svg>
+          <strong>{candidate.id}</strong>
+        </div>
+        <div>{candidate.time}</div><div>{candidate.cost}</div><div>{candidate.score}</div>
+      </div>)}
+    </div>
+    <figcaption>Invented adult profiles, proposed outings and ordering scores. Bus times unknown.</figcaption>
+  </> : <>
+    <ol class="flow">
+      {(kind === 'pipeline' ? pipeline : feedback).map(([label, detail]) => <li>
+        <strong>{label}</strong><span>{detail}</span>
+      </li>)}
+    </ol>
+    <figcaption>{kind === 'pipeline'
+      ? 'A classroom decomposition. Arrows show stages, not a disclosed production architecture.'
+      : 'A hypothesised loop. The allocation rule is an assumption we can change.'}</figcaption>
+  </>}
+</figure>
+<style>
+  .platform-picture { width: min(100%, 1400px); margin: .5rem auto 1rem; }
+  .flow, .candidate-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2rem; margin: 0; padding: 0; }
+  .feedback .flow { grid-template-columns: repeat(4, 1fr); }
+  .flow li { position: relative; list-style: none; margin: 0; padding: 1rem .7rem; border: 2px solid var(--course-blue-ink); border-radius: 10px; background: var(--course-paper); }
+  .flow li:not(:last-child)::after { content: '→'; position: absolute; right: -1.2rem; top: 40%; color: var(--course-blue-ink); }
+  .flow strong, .identity strong { display: block; font-size: clamp(18px, 1.5vw, 28px); line-height: 1.25; }
+  .flow span { display: block; font-size: clamp(16px, 1.2vw, 23px); line-height: 1.3; margin-top: .6rem; }
+  figcaption { font-size: clamp(16px, 1.3vw, 24px); line-height: 1.35; margin-top: 1rem; }
+  .candidate-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .candidate { padding: 1rem; border: 2px solid var(--course-blue-ink); border-radius: 12px; background: var(--course-paper); font-size: clamp(18px, 1.5vw, 28px); line-height: 1.5; }
+  .identity { display: flex; gap: .7rem; align-items: center; justify-content: center; margin-bottom: .7rem; }
+  svg { width: clamp(36px, 4vw, 64px); height: auto; }
+  @media (width < 650px) {
+    .flow, .feedback .flow { grid-template-columns: 1fr; gap: .8rem; text-align: left; }
+    .flow li { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: .6rem; padding: .4rem .6rem; }
+    .flow span { margin: 0; }
+    .flow li:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -1rem; font-size: 18px; line-height: 1; }
+    .candidate-grid { grid-template-columns: 1fr; gap: .5rem; }
+    .candidate { display: grid; grid-template-columns: 70px 1fr; text-align: left; padding: .6rem; font-size: 18px; }
+    .identity { grid-row: span 3; flex-direction: column; gap: .2rem; margin: 0; }
+    figcaption { margin-top: .6rem; }
+  }
+  @media (height < 540px) and (width >= 650px) {
+    .flow li { padding: .5rem; }
+    .flow strong, .identity strong { font-size: 18px; }
+    .flow span, figcaption { font-size: 16px; }
+    .candidate { padding: .5rem; font-size: 18px; }
+    svg { width: 32px; }
+    .identity { margin-bottom: .3rem; }
+  }
+</style>

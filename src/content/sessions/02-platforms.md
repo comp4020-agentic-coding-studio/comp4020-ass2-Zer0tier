@@ -17,15 +17,17 @@ spec:
 
 This is the first tutorial; week 1 is lecture-only. Review the boundary example in [lecture 1](/lectures/week-01/), read the three primary platform descriptions linked in [week 2](/lectures/week-02/) and open the synthetic census. No completed week 1 lab work is required.
 
+The [46-slide Week 2 pack](/decks/week-02/) includes a 180-minute route across explanation, practice and discussion. This tutorial uses its exercises within the existing 90 minutes; carry forward any work already done in the lecture. The lecture notes provide worked answers and [runnable calculations](/data/week-02-worked-examples.mjs).
+
 ## 90-minute tutorial
 
-1. **20 minutes — draw the boundary and pipeline.** Use lecture 1's input/observable/hidden distinction, then mark retrieval, filters, ordering, exposure and mutual selection. Put proprietary weights in the unknown column.
-2. **25 minutes — implement toy Elo.** Test equal-rating win 1216, loss 1184 and K = 64 win 1232 from starting ratings of 1200. Add an assumed penalty separately; do not attribute it to a platform.
-3. **25 minutes — audit denominators.** Reproduce active/available/reciprocal totals 300/150/40. Validate row inequalities and recompute reciprocal-to-active after adding 50 missing active profiles to East.
-4. **20 minutes — test the hierarchy story.** Construct two exposure counts giving the same likes but different like rates. Say which rich-get-richer mechanism your example assumes.
+1. **20 minutes — draw the boundary and pipeline (slides 4–16).** Trace P1/P2/P3 through Alex's constraints, then mark retrieval, filters, ordering, exposure and mutual selection. Use lecture 1's input/observable/hidden distinction. Classify the three source claims and put proprietary weights in the unknown column.
+2. **25 minutes — implement toy Elo (slides 17–27).** Test equal-rating win 1216, loss 1184 and K = 64 win 1232 from starting ratings of 1200. Trace a win then loss against 1200 to approximately 1199.26, recomputing the expectation. Add an assumed penalty separately; do not attribute it to a platform.
+3. **25 minutes — audit denominators (slides 37–41).** Reproduce active/available/reciprocal totals 300/150/40. Validate row inequalities and recompute reciprocal-to-active after adding 50 missing active profiles to East. State why reciprocal-to-available stays unchanged. Handle a zero denominator explicitly.
+4. **20 minutes — test the hierarchy story (slides 29–36 and 42–43).** Use the [synthetic exposure cases](/data/week-02-exposures.csv) to compare counts with rates. Change the 600/400 allocation to 500/500 while holding response probabilities fixed. Explain why the first rule preserves a seed advantage, then repair one unsupported claim from the synthesis paragraph.
 
 ## Deliverable: Platform audit
 
-Save the boundary map made in this tutorial, a source/claim/unknown table, tested updater and census calculation log. Annotate changes to the map rather than replacing its uncertainty with confidence.
+Save the boundary map made in this tutorial, a source/claim/unknown table, tested updater and exposure/census calculation log. Annotate changes to the map rather than replacing its uncertainty with confidence. Label the data synthetic and record event definitions, denominator, observation window and allocation assumptions. Use the lecture's worked answers to review the artefact individually or with a partner.
 
 This audit supplies the report's population definitions. Week 3 extends its input-provenance rules to photographs.

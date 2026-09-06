@@ -1,12 +1,24 @@
 // Literal arithmetic oracles protect the teaching examples. They do not prove
 // external validity, random assignment, good prose or browser layout.
 import { readFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { describe, expect, it } from 'vitest';
 import { compareBios, conservativeRank, dateLogistics, dateTransitions, eloUpdate, poissonSilence, qualityScore } from '../src/lib/romance-models';
 
 const csv = (path: string) => readFileSync(path, 'utf8').trim().split('\n').slice(1).map(line => line.split(','));
 
 describe('reproducible course calculations', () => {
+  it('runs the downloadable Week 2 workbook against the built model and CSVs', () => {
+    const report = JSON.parse(execFileSync(process.execPath, ['dist/data/week-02-worked-examples.mjs'], { encoding: 'utf8' }));
+    expect(report.elo.sequential).toBeCloseTo(1199.263693206478, 8);
+    expect(report.exposureRates).toEqual({ equal_counts: { A: 0.02, B: 0.2 }, rank_reversal: { A: 0.08, B: 0.2 } });
+    expect(report.census.recountTotals).toEqual([350, 150, 40]);
+    expect(report.census.reciprocalAmongAvailableAfterRecount).toBeCloseTo(0.2666666667, 9);
+    expect(report.feedback.proportional.cumulative).toEqual([66, 44]);
+    expect(report.feedback.equal.cumulative).toEqual([56, 54]);
+    expect(report.feedback.proportional.shareA).toBe(0.6);
+    expect(report.feedback.equal.shareA).toBeCloseTo(0.5090909091, 9);
+  });
   it('calculates the stated Poisson zero-count example without prescribing a reply delay', () => {
     expect(poissonSilence(0.4, 2)).toBeCloseTo(0.4493289641, 9);
     expect(poissonSilence(0, 2)).toBe(1);

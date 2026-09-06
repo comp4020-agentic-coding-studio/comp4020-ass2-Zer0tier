@@ -17,6 +17,7 @@
 .reveal .slides section:nth-child(odd) { background: var(--course-pink); }
 .reveal .slides section :is(h1,h2) { color: var(--course-pink-ink); background: none; text-transform: none; padding: 0; }
 .reveal .slides section :is(h1,h2,p) { text-wrap: balance; overflow-wrap: anywhere; }
+.reveal .deck-formula { font-size: clamp(20px, 2.4vw, 46px); line-height: 1.8; font-variant-numeric: tabular-nums; }
 /* Lecture slides open with content alone, including a viewer's first visit. */
 .astromotion-help-hint,
 .reveal :is(.controls, .progress, .slide-number) { display: none !important; }
@@ -48,4 +49,5 @@
   html:not(.reveal-print) .reveal:not(.overview) .slides section h1 { font-size: 36px; }
   html:not(.reveal-print) .reveal:not(.overview) .slides section h2 { font-size: 28px; margin-bottom: 1rem; }
   html:not(.reveal-print) .reveal:not(.overview) .slides section :is(p, li) { font-size: 20px; margin-bottom: .5rem; }
+  .reveal .deck-formula { font-size: 22px; line-height: 1.5; }
 }

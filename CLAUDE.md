@@ -96,6 +96,11 @@ build.
 - Run `pnpm check` before you push.
 - After each requested change is complete and verified, commit the work before
   ending the task. The student explicitly requires commits after changes.
+- For lecture-content reviews, first assess whether the material supports roughly
+  three hours and ideally more than 30 slides. Fill gaps with useful diagrams,
+  sourced evidence, labelled synthetic data and worked exercises, then review
+  coherence with the week's topic and the weeks on either side. Give a timed
+  teaching route; slide count alone is not evidence of duration.
 - Push when requested; include all completed local commits when the student
   asks to push everything so far.
 - Open the page in a browser and look at it. The rendered page is the truth;

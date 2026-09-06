@@ -1,0 +1,44 @@
+---
+interface Props {
+  caption: string;
+  maximum: number;
+  scale: string;
+  rows: { label: string; value: number; display: string }[];
+}
+const { caption, maximum, scale, rows } = Astro.props;
+---
+<figure class="deck-bars">
+  <figcaption>{caption}</figcaption>
+  <dl>
+    {rows.map(row => <div class="bar-row">
+      <dt>{row.label}</dt>
+      <dd>
+        <strong>{row.display}</strong>
+        <span class="bar-track" aria-hidden="true"><span style={{ width: `${row.value / maximum * 100}%` }} /></span>
+      </dd>
+    </div>)}
+  </dl>
+  <div class="bar-scale">{scale}</div>
+</figure>
+<style>
+  .deck-bars { width: min(100%, 1100px); margin: .5rem auto 1rem; text-align: left; }
+  figcaption, .bar-scale { font-size: clamp(16px, 1.3vw, 24px); line-height: 1.35; }
+  figcaption { margin-bottom: .8rem; }
+  .bar-scale { margin-top: .6rem; }
+  dl { margin: 0; display: grid; gap: clamp(.5rem, 1.2vh, 1rem); }
+  .bar-row { display: grid; grid-template-columns: minmax(95px, 1fr) 3fr; gap: .8rem; align-items: center; }
+  dt, dd { margin: 0; font-size: clamp(18px, 1.7vw, 32px); line-height: 1.3; }
+  dt { font-weight: 600; }
+  dd { display: grid; gap: .2rem; }
+  strong { font-weight: 500; }
+  .bar-track { display: block; height: clamp(10px, 1.5vh, 18px); background: var(--course-paper); border: 1px solid var(--course-blue-ink); border-radius: 3px; overflow: hidden; }
+  .bar-track > span { display: block; height: 100%; background: var(--course-blue-ink); }
+  .bar-row:nth-child(even) .bar-track > span { background: var(--course-pink-ink); }
+  @media (height < 540px) {
+    .deck-bars { margin: .2rem auto; }
+    figcaption { margin-bottom: .3rem; }
+    dl { gap: .2rem; }
+    dt, dd { font-size: 18px; line-height: 1.2; }
+    figcaption, .bar-scale { font-size: 16px; }
+  }
+</style>

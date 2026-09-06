@@ -10,7 +10,9 @@ protects the student's CS title, unchanged SLOP1276 code and matching level-1
 metadata, four weekly anchors, assessment types
 and synthetic benchmark scope. `quantitative-models.test.ts` uses literal
 arithmetic oracles for Elo, the bio experiment, census, control count, conservative
-ties and shifted scoring. None judges prose quality, feature-rating honesty or
+ties and shifted scoring. It also runs the downloadable Week 2 workbook against
+the built model and CSV files, checking stateful Elo and exposure allocation.
+None judges prose quality, feature-rating honesty or
 whether a declared dependency is educationally useful.
 
 After `pnpm check`, start `pnpm preview --port 4322` and run
@@ -19,6 +21,7 @@ After `pnpm check`, start `pnpm preview --port 4322` and run
 filters, search, mobile navigation, resizing and the deck. It also checks that
 all twelve weeks remain available without JavaScript, and drives the A/B
 calculator's valid/invalid/reset states and imports the downloadable scorer.
+It focuses and scrolls a wide Week 2 teaching table using the keyboard.
 The deck checks cover slides without controls or first-visit hints, A/D and
 wheel navigation, Esc returning to the lecture, keyboard/input conflicts,
 and all slides fitting at five viewport sizes. Run just those checks

@@ -144,6 +144,14 @@ try {
         assert.equal(prose.size,18,'Main reading text should be 18px');
         assert(prose.leading >= 29.5 && prose.width <= prose.max + 1,'Comfortable leading and bounded reading width');
       }
+      if (route === 'lectures/week-02/' && viewport.width === 390) {
+        const table = page.locator('.at-table-wrap').first();
+        await table.focus();
+        await page.keyboard.press('ArrowRight');
+        await page.waitForFunction(() => document.querySelector('.at-table-wrap').scrollLeft > 0);
+        assert(await table.evaluate(el => el === document.activeElement), 'A wide teaching table is keyboard reachable and scrolls');
+        await table.evaluate(el => { el.scrollLeft = 0; el.blur(); });
+      }
       if (deck) {
         await page.waitForSelector('.reveal.ready');
       }
@@ -169,7 +177,7 @@ try {
       });
       if (violations.length || geometry.width !== geometry.scrollWidth || geometry.small.length) findings.push({route,viewport,violations,geometry});
       await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
-      if (['','weeks/','readings/','help/','faq/','lectures/week-03/','lectures/week-07/','lectures/week-10/','sessions/12-maintenance/','assessments/profile-deployment/','toolkit/','policies/','decks/week-01/'].includes(route)) {
+      if (['','weeks/','readings/','help/','faq/','lectures/week-02/','lectures/week-03/','lectures/week-07/','lectures/week-10/','sessions/12-maintenance/','assessments/profile-deployment/','toolkit/','policies/','decks/week-01/','decks/week-02/'].includes(route)) {
         await page.screenshot({path:`${screenshots}/${route.replaceAll('/','-') || 'home'}-${viewport.width}.png`,fullPage:!deck});
         if (route === '') {
           await page.screenshot({path:`${screenshots}/home-${viewport.width}-viewport.png`});

@@ -1,11 +1,11 @@
 # Fullscreen lecture slides
 
-The week 1 deck has sixteen slides. Its shared theme fills the browser
+Week 1 has sixteen slides and Week 2 has 46. Their shared theme fills the browser
 viewport with slide content alone. There is no navigation bar, fullscreen
 button, page counter, progress bar or first-visit hint, and no reserved footer
 space. The lecture page explains the navigation before the slides are opened.
 
-Following the content review, the deck now states three learning outcomes,
+Following its content review, the Week 1 deck states three learning outcomes,
 introduces Alex using the toolkit's fixed case, and works through two invented
 invitations against time and budget constraints. Separate question and answer
 slides classify an input, a recorded reply and an inference about hidden state.
@@ -20,8 +20,8 @@ are labelled exercise assumptions. The HTTP 200 explanation was checked against
 `DeckTools.astro` adds A for previous, D for next, and vertical wheel navigation.
 One wheel gesture advances one page; a quiet interval allows another turn.
 Editable fields, browser zoom and scrollable content keep their normal input
-handling. Arrow keys remain available. Esc returns directly to the week 1
-lecture, even from an overlay or a slide opened through a direct link. It runs
+handling. Arrow keys remain available. Esc returns directly to the lecture
+with the same week slug, even from an overlay or a direct slide link. It runs
 before the slide library's own Escape handler, which would otherwise open an
 overview. Reveal's built-in announcements remain available to screen readers.
 
@@ -33,10 +33,13 @@ cannot hide an unwanted startup hint.
 
 The browser check covers A/D (including uppercase), arrows, wheel bursts and
 direction, browser shortcuts, editable input, reload, and Esc returning to the
-lecture from both normal navigation and direct slide links. It checks all sixteen
+lecture from both normal navigation and direct slide links. It checks all 62
 slides at 1920×1080, 390×844, 375×667, 844×390 and 1024×768. This check is also
 included in `pnpm check:browser` and discovers each built deck.
 
-Validation passed: `pnpm check` (28 tests) and the complete browser audit of
-41 pages at both marking viewports, plus all sixteen slides at five screen sizes.
+Week 2's [content review](week-02-content-review.md) records its three-hour
+teaching route, nine visual explanations, worked exercises and source checks.
+
+Validation passed: `pnpm check` (29 tests) and the complete browser audit of
+42 pages at both marking viewports, plus all 62 slides at five screen sizes.
 There were no accessibility findings or browser JavaScript errors.

@@ -21,6 +21,32 @@ const { title, description, home = false } = Astro.props;
 </BaseLayout>
 
 <script>
+  // Markdown tables can exceed a phone's reading column. Make only the
+  // overflowing wrappers keyboard stops, and update them after resizing.
+  const tableWrappers = [...document.querySelectorAll<HTMLElement>('.at-table-wrap')];
+  const headings = [...document.querySelectorAll<HTMLElement>('.at-main :is(h2, h3)')];
+  const updateTableFocus = () => {
+    for (const wrapper of tableWrappers) {
+      const overflowing = wrapper.scrollWidth > wrapper.clientWidth + 1;
+      if (overflowing) {
+        wrapper.tabIndex = 0;
+        wrapper.setAttribute('role', 'region');
+        const heading = headings.filter(item => item.compareDocumentPosition(wrapper) & Node.DOCUMENT_POSITION_FOLLOWING).at(-1);
+        if (heading?.id) wrapper.setAttribute('aria-labelledby', heading.id);
+        else wrapper.setAttribute('aria-label', 'Scrollable data table');
+      } else {
+        for (const attribute of ['tabindex', 'role', 'aria-labelledby', 'aria-label']) wrapper.removeAttribute(attribute);
+      }
+    }
+  };
+  const tableResizeObserver = new ResizeObserver(updateTableFocus);
+  for (const wrapper of tableWrappers) {
+    tableResizeObserver.observe(wrapper);
+    const table = wrapper.querySelector('table');
+    if (table) tableResizeObserver.observe(table);
+  }
+  updateTableFocus();
+
   // A home link is current only on home; a section stays current on its pages.
   for (const link of document.querySelectorAll<HTMLAnchorElement>('.at-nav-links a')) {
     const path = new URL(link.href).pathname;

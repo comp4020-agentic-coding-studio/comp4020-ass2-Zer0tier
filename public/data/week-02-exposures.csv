@@ -1,0 +1,5 @@
+scenario,profile,exposures,likes
+equal_counts,A,1000,20
+equal_counts,B,100,20
+rank_reversal,A,1000,80
+rank_reversal,B,100,20

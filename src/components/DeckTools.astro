@@ -6,6 +6,9 @@
     const count = slides.length;
     if (!reveal || !count || reveal.dataset.deckNavigationReady) return;
     reveal.dataset.deckNavigationReady = 'true';
+    // Lecture decks use the same week slug as their owning lecture. Preserve
+    // the deployment base, and ignore the slide hash when returning.
+    const lecturePath = location.pathname.replace(/\/decks\/([^/]+)\/?$/, '/lectures/$1/');
     const current = () => {
       const index = slides.findIndex(slide => slide.classList.contains('present'));
       return index >= 0 ? index + 1 : 1;
@@ -32,7 +35,7 @@
       if (event.key === 'Escape') {
         event.preventDefault();
         event.stopImmediatePropagation();
-        if (!event.repeat) location.assign(`${import.meta.env.BASE_URL}lectures/week-01/`);
+        if (!event.repeat) location.assign(lecturePath);
         return;
       }
       if (event.defaultPrevented || event.isComposing || event.altKey || event.ctrlKey || event.metaKey ||

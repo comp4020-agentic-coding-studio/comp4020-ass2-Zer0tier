@@ -117,7 +117,8 @@ export async function inspectDeck(page, url, screenshots) {
       assert(geometry.fits && !geometry.overflow && !geometry.obscured,
         `Slide ${slide} content must fit the screen at ${viewport.width}×${viewport.height}`);
       if (slide === 1 && screenshots) {
-        await page.screenshot({ path: `${screenshots}/fullscreen-deck-${viewport.width}.png` });
+        const deck = new URL(url).pathname.split('/').filter(Boolean).at(-1);
+        await page.screenshot({ path: `${screenshots}/fullscreen-${deck}-${viewport.width}.png` });
       }
     }
   }
