@@ -1,6 +1,6 @@
 # Fullscreen lecture slides
 
-Weeks 1, 2 and 3 have 16, 46 and 47 slides respectively. Their shared theme fills the browser
+Weeks 1, 2, 3 and 4 have 16, 46, 47 and 50 slides respectively. Their shared theme fills the browser
 viewport with slide content alone. There is no navigation bar, fullscreen
 button, page counter, progress bar or first-visit hint, and no reserved footer
 space. The lecture page explains the navigation before the slides are opened.
@@ -33,7 +33,7 @@ cannot hide an unwanted startup hint.
 
 The browser check covers A/D (including uppercase), arrows, wheel bursts and
 direction, browser shortcuts, editable input, reload, and Esc returning to the
-lecture from both normal navigation and direct slide links. It checks all 109
+lecture from both normal navigation and direct slide links. It checks all 159
 slides at 1920×1080, 390×844, 375×667, 844×390 and 1024×768. This check is also
 included in `pnpm check:browser` and discovers each built deck.
 
@@ -46,7 +46,8 @@ teaching route, nine visual explanations, worked exercises and source checks.
 Week 3's [content review](week-03-content-review.md) records its three-hour
 route, eleven visual teaching slides, fictional photo kit and frozen-image
 handoff to the bio experiment.
+Week 4's [content review](week-04-content-review.md) records its three-hour
+route, eleven visual teaching slides, reproducible text and A/B exercises,
+and a protocol that keeps observational and synthetic experimental fixtures separate.
 
-Validation passed: `pnpm check` (32 tests) and the complete browser audit of
-43 pages at both marking viewports, plus all 109 slides at five screen sizes.
-There were no accessibility findings or browser JavaScript errors.
+The latest validation results are recorded in the Week 4 content review.

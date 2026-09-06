@@ -20,6 +20,13 @@ individual downloads, runs its workbook and verifies literal numeric answers.
 It changes image bytes and frozen crop metadata in temporary copies to prove
 that those changes are rejected. The drawings and labels still need human review.
 
+`bio-workbook.test.ts` protects Week 4's literal code-point boundaries, token
+spans, overlap handling and empty denominators. It runs the built five-file
+download offline and checks the exposure reversal, reweighting and separate
+uncertainty fixtures. Corrupt, duplicate and missing exposure cells must fail.
+The original-string boundary oracle was verified with a temporary UTF-16-length
+mutation; it rejected the wrong count before the correct implementation passed.
+
 After `pnpm check`, start `pnpm preview --port 4322` and run
 `pnpm check:browser`. The browser audit checks every built page at 1920×1080 and
 390×844, including rendered contrast and pointer targets, then drives syllabus

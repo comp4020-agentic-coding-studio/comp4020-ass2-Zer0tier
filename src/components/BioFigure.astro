@@ -1,0 +1,94 @@
+---
+import bios from '../../public/data/week-04-bios.json';
+import manifest from '../../public/data/week-03/manifest.json';
+import { analyseBio } from '../../public/data/week-04-text.mjs';
+interface Props { kind: 'pipeline' | 'tokens' | 'pair' | 'allocation'; }
+const { kind } = Astro.props;
+const trace = analyseBio('Looking for a partner in crime');
+---
+<figure class:list={['bio-figure', `bio-${kind}`]}>
+  {kind === 'pipeline' && <>
+    <figcaption>A declared text pipeline · each stage has a different output</figcaption>
+    <div class="stages">
+      <div><strong>1 · Preserve</strong><span>Original text → code-point count</span></div>
+      <div><strong>2 · Tokenise</strong><span>Lowercase → ASCII word runs</span></div>
+      <div><strong>3 · Match</strong><span>Exact phrases → token coverage</span></div>
+    </div>
+    <div class="figure-note">Case evidence and meaning require a separate review.</div>
+  </>}
+  {kind === 'tokens' && <>
+    <figcaption>“Looking for a partner in crime” · zero-based token positions</figcaption>
+    <ol class="tokens" start="0">
+      {trace.tokens.map((token: string, index: number) => <li class:list={[trace.matchedIndices.includes(index) && 'matched']}>
+        <span>{index}</span><strong>{token}</strong><small>{trace.matchedIndices.includes(index) ? 'matched' : 'unmatched'}</small>
+      </li>)}
+    </ol>
+    <div class="figure-note">Positions 3, 4, 5 match. Coverage = 3 / 6 = 50%.</div>
+  </>}
+  {kind === 'pair' && <>
+    <figcaption>Fictional text candidates · no measured response outcomes</figcaption>
+    <div class="bio-candidates">
+      <div class="frozen-photo">
+        <img src={`${import.meta.env.BASE_URL}data/week-03/${manifest.frozen.file}`} alt={manifest.frozen.alt} width="300" height="400" />
+        <div>Shared image<br /><strong>{manifest.frozen.revision}</strong></div>
+      </div>
+      {bios.candidates.map(bio => <div class="candidate">
+        <strong>Bio {bio.id} · {analyseBio(bio.text).codePoints} / 150</strong>
+        <div>{bio.text}</div>
+      </div>)}
+    </div>
+    <div class="figure-note">Same image bytes, crop, alt text and display treatment for both variants.</div>
+  </>}
+  {kind === 'allocation' && <>
+    <figcaption>Proposed synthetic design · 2,000 unique simulated viewers</figcaption>
+    <div class="allocation">
+      {['North', 'South'].map(zone => <div class="zone">
+        <strong>{zone} · 1,000 viewers</strong>
+        <div>Randomly shuffle a list containing 500 A and 500 B labels.</div>
+        <div class="arms"><span>A · 500</span><span>B · 500</span></div>
+      </div>)}
+    </div>
+    <div class="figure-note">One fixed assignment per viewer. This is a protocol, not an experiment already run.</div>
+  </>}
+</figure>
+<style>
+  .bio-figure { width: min(100%, 1160px); margin: .5rem auto 1rem; text-align: left; }
+  figcaption, .figure-note { font-size: clamp(16px, 1.3vw, 24px); line-height: 1.35; }
+  figcaption { margin-bottom: .7rem; }
+  .figure-note { margin-top: .7rem; }
+  .stages, .allocation { display: grid; gap: .8rem; }
+  .stages { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .stages > div, .candidate, .zone { padding: clamp(.7rem, 1.5vw, 1.5rem); border: 2px solid var(--course-blue-ink); border-radius: 8px; background: var(--course-paper); color: var(--course-ink); }
+  .stages strong, .candidate > strong, .zone > strong { display: block; margin-bottom: .5rem; color: var(--course-blue-ink); }
+  .stages, .candidate, .zone { font-size: clamp(18px, 1.6vw, 30px); line-height: 1.4; }
+  .stages span { display: block; }
+  ol.tokens { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); padding: 0; margin: 0; gap: .7rem; list-style: none; }
+  ol.tokens li { display: grid; gap: .25rem; padding: .7rem .3rem; text-align: center; border: 2px solid var(--course-blue-ink); border-radius: 8px; background: var(--course-paper); color: var(--course-ink); }
+  ol.tokens li.matched { background: var(--course-blue-ink); color: var(--course-paper); }
+  .tokens strong { font-size: clamp(18px, 1.8vw, 32px); }
+  .tokens span, .tokens small { font-size: clamp(16px, 1.2vw, 22px); }
+  .bio-candidates { display: grid; grid-template-columns: 180px 1fr 1fr; gap: .8rem; align-items: stretch; }
+  .frozen-photo { text-align: center; align-self: center; font-size: 16px; line-height: 1.4; }
+  .frozen-photo img { display: block; margin: 0 auto .4rem; width: 120px; height: 160px; object-fit: contain; }
+  .allocation { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .arms { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-top: .7rem; }
+  .arms span { padding: .3rem; text-align: center; border: 1px solid var(--course-blue-ink); background: var(--course-blue); }
+  .arms span + span { background: var(--course-pink); }
+  @media (width < 650px) {
+    .stages, .allocation { grid-template-columns: 1fr; }
+    ol.tokens { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem; }
+    .bio-candidates { grid-template-columns: 1fr 1fr; gap: .5rem; }
+    .frozen-photo { grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 1rem; }
+    .frozen-photo img { width: 60px; height: 80px; margin: 0; }
+    .candidate { padding: .6rem; font-size: 18px; line-height: 1.3; }
+  }
+  @media (height < 540px) {
+    .bio-figure { margin: .2rem auto; }
+    figcaption { margin-bottom: .3rem; }
+    .figure-note { margin-top: .3rem; }
+    .stages, .candidate, .zone { font-size: 18px; line-height: 1.25; padding: .6rem; }
+    .bio-candidates { grid-template-columns: 135px 1fr 1fr; }
+    .frozen-photo img { width: 60px; height: 80px; }
+    ol.tokens li { padding: .4rem; }
+  }
+</style>

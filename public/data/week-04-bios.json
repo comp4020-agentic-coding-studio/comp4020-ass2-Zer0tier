@@ -1,0 +1,11 @@
+{
+  "dataset": "SLOP1276 Week 4 fictional bio texts v1",
+  "scope": "Authored text exercises for Alex. A/B labels do not identify the unknown texts behind bio-exposures.csv or the separate balanced fixture. No response outcomes were measured for these wordings.",
+  "budget_code_points": 150,
+  "phrases": ["must love dogs", "partner in crime"],
+  "candidates": [
+    { "id": "A", "text": "Looking for a partner in crime. Board games, bad puns, and maybe a relationship." },
+    { "id": "B", "text": "Board games or bad puns? Friday 5-7 pm works. Let's meet, with a relationship possible. Fine to pass." }
+  ],
+  "repair": "Board games, bad puns, maybe a relationship? Meet Friday 5-7 pm: bus-friendly, $20 total. Fine to pass."
+}

@@ -1,0 +1,573 @@
+---
+title: "Natural Language Processing in Profile Bios · Week 4"
+description: "A three-hour teaching pack: trace tokens, audit fictional bios, explain an exposure reversal and specify an A/B experiment."
+---
+
+import DeckTools from "../components/DeckTools.astro";
+import DeckBars from "../components/DeckBars.astro";
+import BioFigure from "../components/BioFigure.astro";
+
+<DeckTools />
+
+# Your bio passed the parser. Did the claim?
+
+Natural Language Processing in Profile Bios
+
+SLOP1276 · Week 04
+
+A lower cliché count is not a measured treatment effect.
+
+---
+
+## What you will be able to do
+
+Implement a declared **text budget and phrase matcher**.
+
+Support a bio revision with evidence from Alex's case.
+
+Reproduce a pooled ranking reversal and explain its denominator.
+
+Write a synthetic experiment protocol with a defensible conclusion.
+
+---
+
+## A three-hour text experiment
+
+Budget **30 min** · tokens and evidence **45 min** · break **10 min**.
+
+Exposure reversal **35 min** · protocol **25 min**.
+
+Uncertainty **25 min** · report and handoff **10 min**.
+
+Includes exercises and debriefs. Use the notes to split teaching and study without repeating tasks.
+
+---
+
+## Alex is a fixed input
+
+Fictional adult CS student; board games and terrible puns.
+
+**Friday 5–7 pm · $20 total · bus travel.**
+
+Wants to meet someone, with the possibility of a relationship.
+
+Adding a dog, car or mountain-climbing hobby would change the case.
+
+---
+
+## Reuse the previous two artefacts
+
+**Week 2:** your platform audit separates counts, denominators and unknown allocation rules.
+
+**Week 3:** your photo manifest freezes **A-portrait-v1**.
+
+Keep the same image bytes, crop, alt text and display treatment. The planned change is the bio text.
+
+---
+
+## Two texts, one image input
+
+<BioFigure kind="pair" />
+
+---
+
+## A bio becomes inspectable data
+
+<BioFigure kind="pipeline" />
+
+This small NLP baseline exposes its rules. It does not understand a person.
+
+---
+
+## Define the budget's unit
+
+Lab limit: **150 Unicode code points in the original text**, including spaces and punctuation.
+
+JavaScript `text.length` counts UTF-16 code units; `[...text].length` counts code points.
+
+We do not trim or normalise before counting. Visible characters can contain several code points.
+
+[MDN: string length and iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length)
+
+---
+
+## The budget is a constraint
+
+<DeckBars caption="Authored fictional texts · original code-point counts" maximum={150} scale="Bar scale: 0–150 code points. This is a course limit, not a live app specification." rows={[
+  { label: 'Bio A', value: 80, display: '80 / 150' },
+  { label: 'Bio B', value: 101, display: '101 / 150' }
+]} />
+
+Filling the remaining space earns no automatic quality points.
+
+---
+
+## Test the boundary · 6 min
+
+Count **150 ASCII letters**, then append one space.
+
+In JavaScript, compare the length of `"\u{1F600}"` with its code-point count.
+
+Compare `"\u00E9"` with `"e\u0301"` under our no-normalisation rule.
+
+Does an empty string pass the budget? Does that make it a useful bio?
+
+---
+
+## Budget answers
+
+150 letters pass; an added space gives **151**, so reject the budget check.
+
+U+1F600 occupies **two UTF-16 units, one code point**.
+
+The two accented forms count as **one and two code points** here.
+
+Empty text passes the length ceiling but provides no clarity evidence.
+
+---
+
+## Declare the tokenizer
+
+Lowercase; take maximal runs of **ASCII a–z and 0–9**.
+
+Spaces, punctuation, apostrophes and hyphens separate tokens.
+
+Keep all words and numbers. No stemming or stop-word removal.
+
+This deliberately narrow English exercise needs a different tokenizer for broader language coverage.
+
+---
+
+## Trace a phrase match
+
+<BioFigure kind="tokens" />
+
+Matched-token share measures this dictionary's coverage, not originality or compatibility.
+
+---
+
+## Trace the matcher · 6 min
+
+Dictionary: **“must love dogs”** and **“partner in crime.”**
+
+Tokenise “Must love dogs; partner-in-crime.” Count the matched share.
+
+Then match “partner in crime” against both **“partner in crime”** and **“in crime.”**
+
+Count each covered token once, even when phrase spans overlap.
+
+---
+
+## Matching answers
+
+First input: **six tokens, six covered → 100%**.
+
+Overlapping phrases: **three distinct covered tokens / three → 100%**, not 5/3.
+
+Full bio A: **3/14 ≈ 21.4%**. Full bio B: **0/20 = 0%**.
+
+No tokens means an undefined share. Report it explicitly; do not call it 0% repetition.
+
+---
+
+## Break the metric · 4 min
+
+“No partner in crime; I prefer board games.”
+
+“Looking for partners in crime.”
+
+“I own three dogs and a sports car.”
+
+Which strings expose missed meaning, a missed phrase or invented biography?
+
+---
+
+## A dictionary is not a fact checker
+
+The first still matches **partner in crime**, despite the negation.
+
+The second misses: **partners ≠ partner** under exact matching.
+
+The third matches neither phrase, yet invents Alex's possessions.
+
+A zero cliché score cannot certify truth, intent or a good invitation.
+
+---
+
+## Review the evidence · 5 min
+
+For each candidate, quote evidence for **clarity, specificity, feasibility and exit**.
+
+Apply the [toolkit's 0–4 anchors](/toolkit/#benchmark) consistently.
+
+Does bio B specify Friday's window? Does it account for the budget and bus?
+
+A higher rubric score and a higher response rate are separate claims.
+
+---
+
+## An evidence-backed reading
+
+**Both:** relationship possibility gives clarity; board games and puns give specificity. Suggested anchors: **4, 4**.
+
+**A:** no concrete invitation or permission to pass → feasibility **0**, exit **0**.
+
+**B:** time stated, budget/travel missing → feasibility **3**; “Fine to pass” → exit **4**.
+
+Ratings need reasons. A proposed meeting still needs a feasible venue.
+
+---
+
+## Revise under constraints · 6 min
+
+Repair bio B's missing logistics within **150 code points**.
+
+Keep the relationship possibility, at least one supported detail and an explicit way to pass.
+
+Do not invent a venue, price quote, hobby or transport option.
+
+Save the original and revision. Explain what information each change adds.
+
+---
+
+## One possible revision
+
+“Board games, bad puns, maybe a relationship? Meet Friday 5-7 pm: bus-friendly, $20 total. Fine to pass.”
+
+**103 code points**, including punctuation and spaces.
+
+This states constraints; it does not prove a venue is reachable or affordable.
+
+The text bundle changed. An eventual A/B result could not isolate the effect of one word.
+
+---
+
+## Break · 10 minutes
+
+Keep your token trace and evidence quotes.
+
+Next: a manager has found a winning bio by deleting the zone column.
+
+Bring the denominator back.
+
+---
+
+## Three separate teaching fixtures
+
+**Texts:** our newly authored candidates have no measured response outcomes.
+
+**Exposure CSV:** invented counts with A/B labels; it supplies no actual wording or assignment log.
+
+**Balanced example:** separate invented 120/1000 and 140/1000 counts.
+
+Matching A/B labels do not join these datasets. Do not claim the CSV tested our sentences.
+
+---
+
+## Read the exposure rows
+
+Synthetic CSV: **zone, variant, exposures, positive responses**.
+
+North: **A 24/80 · B 7/20**.
+
+South: **A 2/20 · B 12/80**.
+
+One invented binary positive at most per exposure. These labels do not establish mutual selection or consent.
+
+---
+
+## The pooled dashboard favours A
+
+<DeckBars caption="Synthetic exposure CSV · pooled positive-response rates" maximum={100} scale="Bar scale: 0–100%. Sum positives and exposures before dividing." rows={[
+  { label: 'A', value: 26, display: '26 / 100 = 26%' },
+  { label: 'B', value: 19, display: '19 / 100 = 19%' }
+]} />
+
+Is “deploy A because of its text” supported?
+
+---
+
+## Both zones favour B
+
+<DeckBars caption="Same synthetic CSV · within-zone positive-response rates" maximum={100} scale="Bar scale: 0–100%. B leads by 5 percentage points in each zone." rows={[
+  { label: 'North A', value: 30, display: '24 / 80 = 30%' },
+  { label: 'North B', value: 35, display: '7 / 20 = 35%' },
+  { label: 'South A', value: 10, display: '2 / 20 = 10%' },
+  { label: 'South B', value: 15, display: '12 / 80 = 15%' }
+]} />
+
+---
+
+## Reproduce the reversal · 7 min
+
+Open [bio-exposures.csv](/data/bio-exposures.csv).
+
+Check positive counts do not exceed exposures and all four zone/variant cells exist.
+
+Calculate zone rates, pooled rates and **B minus A** for each comparison.
+
+Identify the aggregation step that changes the ranking.
+
+---
+
+## Reversal answers
+
+Within North: **35% − 30% = +5 percentage points**.
+
+Within South: **15% − 10% = +5 points**.
+
+Pooled: **19% − 26% = −7 points**.
+
+Both arms have 100 total exposures, but their zone compositions differ. Equal totals do not imply comparable audiences.
+
+---
+
+## Who contributed to each arm?
+
+<DeckBars caption="Synthetic exposure CSV · North's share of each variant's exposures" maximum={100} scale="Bar scale: 0–100% of that variant's exposures. South supplies the remainder." rows={[
+  { label: 'A', value: 80, display: '80 / 100 = 80% North' },
+  { label: 'B', value: 20, display: '20 / 100 = 20% North' }
+]} />
+
+A gets more exposure in the higher-response zone.
+
+---
+
+## The hidden weights are arithmetic
+
+<div className="deck-formula">A: 0.8 × 30% + 0.2 × 10% = 26%</div>
+
+<div className="deck-formula">B: 0.2 × 35% + 0.8 × 15% = 19%</div>
+
+The weighted averages describe different mixtures.
+
+This constructed reversal is often called Simpson's paradox.
+
+---
+
+## Give both the same mix · 5 min
+
+Declare a hypothetical target: **50% North, 50% South**.
+
+Reweight each bio's two observed zone rates to that target.
+
+Compare the results with the pooled dashboard.
+
+Does reweighting reconstruct an unrecorded random assignment?
+
+---
+
+## Standardised descriptive rates
+
+<DeckBars caption="Synthetic CSV reweighted to a declared 50/50 target" maximum={100} scale="Bar scale: 0–100%. These are weighted summaries, not new observations." rows={[
+  { label: 'A', value: 20, display: '0.5 × 30% + 0.5 × 10% = 20%' },
+  { label: 'B', value: 25, display: '0.5 × 35% + 0.5 × 15% = 25%' }
+]} />
+
+The difference is **+5 points**. Unmeasured selection could remain within zones; this is not a causal estimate.
+
+---
+
+## Design the comparison you wanted
+
+Hold the photo and case facts fixed. Freeze both candidate texts before allocation.
+
+Assign variants **randomly within each zone**, retaining one assignment per simulated viewer.
+
+Record the zone in the analysis, not just in the raw file.
+
+[NIST: randomized block designs](https://www.itl.nist.gov/div898/handbook/pri/section3/pri332.htm)
+
+---
+
+## A proposed allocation plan
+
+<BioFigure kind="allocation" />
+
+---
+
+## Define one primary outcome
+
+Example protocol: **a binary positive response within 24 simulated hours of first exposure**.
+
+Denominator: every assigned simulated viewer, counted once.
+
+A complete window with no positive is 0. Missing observation is not automatically 0.
+
+Missing records or duplicate assignments fail this classroom run's data check; repair before analysing.
+
+---
+
+## Freeze the stopping rule too
+
+Stop allocation at **500 viewers per variant per zone**. Then complete every observation window.
+
+Primary estimate: mean of the two zone differences, with **50/50 weights**.
+
+Declare **+3 percentage points** as an illustrative minimum worthwhile effect.
+
+The 2,000-viewer cap is a teaching choice, with no power guarantee. The protocol has no outcomes yet.
+
+---
+
+## Repair this protocol · 7 min
+
+“Show A on Monday with one photo. Show B on Sunday with another. Keep checking until B wins.”
+
+Find changed inputs, allocation bias and the moving stopping rule.
+
+Rewrite the unit, controls, outcome, allocation, analysis weights and stopping rule.
+
+Use a simulation proposal; no real profiles or app users are required or permitted.
+
+---
+
+## Protocol debrief
+
+Use one image and fixed texts; assign each unique simulated viewer once within zone.
+
+Complete 24-hour windows; validate records; analyse once at the fixed cap.
+
+Report each zone and the prespecified **50/50 difference**.
+
+Plan uncertainty for that stratified estimate. The next pooled-z exercise uses a separate, simpler model.
+
+---
+
+## A separate balanced fixture
+
+<DeckBars caption="Invented independent-binomial arithmetic fixture · unrelated to the CSV totals" maximum={100} scale="Bar scale: 0–100% positive responses. These are not outcomes of our proposed trial." rows={[
+  { label: 'A', value: 12, display: '120 / 1,000 = 12%' },
+  { label: 'B', value: 14, display: '140 / 1,000 = 14%' }
+]} />
+
+Observed difference: **+2 percentage points**.
+
+---
+
+## Points and percent are different units
+
+Absolute change: **14% − 12% = 2 percentage points**.
+
+Relative change: **(0.14 − 0.12) / 0.12 ≈ 16.7%**.
+
+“B is 16.7 points better” is an arithmetic error.
+
+Neither expression tells you whether the difference is distinguishable from sampling variation.
+
+---
+
+## Build the equal-rate null model
+
+Assume independent binary observations with a stable probability in each arm.
+
+Under **H₀: pA = pB**, estimate their shared rate:
+
+<div className="deck-formula">p̂ = (120 + 140) / 2,000 = 0.13</div>
+
+[NIST's two-proportion method](https://itl.nist.gov/div898/handbook/prc/section3/prc33.htm) gives the pooled standard error for this test.
+
+---
+
+## Scale the difference by its uncertainty
+
+<div className="deck-formula">SE₀ = √[0.13 × 0.87 × (1/1000 + 1/1000)]</div>
+
+<div className="deck-formula">SE₀ ≈ 0.01504; z = 0.02 / 0.01504 ≈ 1.33</div>
+
+A two-sided 5% normal test compares **|z| with about 1.96**.
+
+Our sign convention is always B minus A.
+
+---
+
+## Audit the calculation · 6 min
+
+Reproduce 120/1000 versus 140/1000 in the [calculator](/toolkit/#experiment) or workbook.
+
+Explain the **0.13**, **0.01504** and **1.33**, with their units.
+
+Reverse the arms. Which values should change sign?
+
+Write a result sentence that does not announce equivalence or a causal winner.
+
+---
+
+## What the result permits
+
+**1.33 < 1.96:** no clear difference under this model and threshold.
+
+Swapping the arms changes the signs of the difference and z; the pooled rate and SE stay fixed.
+
+Non-rejection does not establish equivalence.
+
+The +2-point estimate is below our example +3-point worthwhile effect, but that comparison alone does not rule out worthwhile effects.
+
+---
+
+## Same rates, ten times the counts
+
+<DeckBars caption="Two separate synthetic fixtures · normal-test statistic magnitudes" maximum={5} scale="Bar scale: |z| from 0 to 5. The two-sided 5% comparison value is about 1.96." rows={[
+  { label: '1,000 / arm', value: 1.3297919371, display: '120 vs 140 positives · |z| ≈ 1.33' },
+  { label: '10,000 / arm', value: 4.2051713353, display: '1,200 vs 1,400 positives · |z| ≈ 4.21' }
+]} />
+
+Both differences are **2 points**. Statistical detection does not make an effect larger or a confounded comparison causal.
+
+---
+
+## Sparse counts need a different route
+
+Try **2/8 versus 4/8**. The course calculator withholds its normal approximation.
+
+Its guard requires at least **10 in every positive/negative cell**; this is a conservative course choice.
+
+It implements no exact test, power calculation or equivalence test.
+
+Increasing synthetic counts does not create real-world evidence.
+
+---
+
+## Audit the report claims · 5 min
+
+“Half the local singles are available, one in four is a match, and bio A is the winner.”
+
+Use Week 2's **300 active, 150 available, 40 reciprocal** fictional profiles.
+
+Use this week's **zone and pooled exposure comparisons**.
+
+For each claim: give the numerator, denominator, scope and an evidence-based correction.
+
+---
+
+## Report debrief
+
+**150/300 = 50%** of invented active profiles are available.
+
+**40/150 ≈ 26.7%** of available profiles meet the reciprocal criteria; **40/300 ≈ 13.3%** of active profiles do.
+
+A leads only in the pooled exposure summary. B leads within both zones; neither establishes a text effect.
+
+Report sampling uncertainty, model assumptions and the fixture's lack of external validity separately.
+
+---
+
+## Week 5 needs a supported candidate
+
+Carry the bio revision, evidence quotes, frozen photo and denominator definitions forward.
+
+A response label is not automatically a **mutual-selection event**. Week 5 defines the joint probability.
+
+Exit check: can **zero clichés**, **26% pooled** or **z = 1.33** justify “this bio causes more matches”?
+
+Name the missing evidence in each case.
+
+---
+
+## The experiment now has a specification
+
+**Answers:** zero clichés says nothing about truth; 26% hides the exposure mix; z = 1.33 neither detects a clear difference nor establishes causation.
+
+Save your **Bio experiment protocol**. The report is due **19 March, 5 pm**.
+
+[Worked notes and five-file download](/lectures/week-04/#reproduce-the-examples) · [Tutorial](/sessions/04-bio-experiment/) · [Report brief](/assessments/market-report/)
