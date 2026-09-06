@@ -1,0 +1,140 @@
+---
+import cases from '../../public/data/week-10-cases.json';
+import { propagate, simulate } from '../../public/data/week-10-models.mjs';
+interface Props { kind: 'bridge' | 'states' | 'matrix' | 'paths' | 'mass' | 'intervals' | 'counts' | 'errors' | 'changed' | 'history' | 'wait' | 'costs' | 'bill' | 'observations'; }
+const { kind } = Astro.props;
+const baseline = cases.simulation.runs.map(runs=>simulate(cases.matrix,{...cases.simulation,runs}));
+const changed = propagate(cases.changedMatrix,2);
+---
+<figure class="date-figure">
+  {kind === 'bridge' && <>
+    <figcaption>Actual Week 9 export → separate authored arrival</figcaption>
+    <div class="columns">
+      <div class="card"><strong>Confirmed proposal</strong><b>Atrium · cover both</b><span>Keep cost version, two actors and prior handoff.</span></div>
+      <div class="card"><strong>Observe arrival</strong><b>7 May · 17:20</b><span>Both actors recorded. A plan alone leaves arrival unknown.</span></div>
+    </div>
+    <div class="note">Meeting clock: minutes since midnight. Markov steps: no minute duration.</div>
+  </>}
+  {kind === 'states' && <>
+    <figcaption>Four authored states · C/A/N/E order everywhere</figcaption>
+    <table><thead><tr><th scope="col">State</th><th scope="col">Meaning</th><th scope="col">Role</th></tr></thead><tbody>
+      {[['C','Conversation','Transient'],['A','Awkward silence','Transient'],['N','Agreed next date','Absorbing'],['E','Ended before N','Absorbing']].map(row=><tr><th scope="row">{row[0]}</th><td>{row[1]}</td><td>{row[2]}</td></tr>)}
+    </tbody></table>
+    <div class="note">A is a toy label, not an inferred emotion. E is a legitimate ending.</div>
+  </>}
+  {kind === 'matrix' && <>
+    <figcaption>P[i,j] · source row i to destination column j</figcaption>
+    <table><thead><tr><th scope="col">From / to</th>{cases.states.map(s=><th scope="col">{s}</th>)}</tr></thead><tbody>
+      {cases.matrix.map((row,i)=><tr><th scope="row">{cases.states[i]}</th>{row.map(p=><td>{p.toFixed(2)}</td>)}</tr>)}
+    </tbody></table>
+    <div class="note">Rows sum to 1. N and E have a single self-loop of probability 1.</div>
+  </>}
+  {kind === 'paths' && <>
+    <figcaption>Every intermediate state contributes to two-step N</figcaption>
+    <table><thead><tr><th scope="col">Path</th><th scope="col">Product</th><th scope="col">Mass</th></tr></thead><tbody>
+      {[['C → C → N','0.50 × 0.20','0.10'],['C → A → N','0.20 × 0.10','0.02'],['C → N → N','0.20 × 1','0.20'],['C → E → N','0.10 × 0','0']].map(row=><tr><th scope="row">{row[0]}</th><td>{row[1]}</td><td>{row[2]}</td></tr>)}
+    </tbody></table>
+    <div class="note">Total = 0.32. Already-absorbed mass remains in the count.</div>
+  </>}
+  {kind === 'mass' && <>
+    <figcaption>Two steps leave almost half the model paths transient</figcaption>
+    <div class="columns">
+      <div class="card"><strong>C + A</strong><b>0.47</b><span>Still transient at the chosen horizon.</span></div>
+      <div class="card"><strong>N + E</strong><b>0.53</b><span>First endpoint reached by step two.</span></div>
+    </div>
+    <div class="note">Among endpoints: 0.32 / 0.53 ≈ 60.38%. Among all paths: 32% in N.</div>
+  </>}
+  {kind === 'intervals' && <>
+    <figcaption>Sample the C row with u in [0,1)</figcaption>
+    <ol class="track">{[['C','[0, 0.50)'],['A','[0.50, 0.70)'],['N','[0.70, 0.90)'],['E','[0.90, 1)']].map(([s,range])=><li><strong>{s}</strong><span>{range}</span></li>)}</ol>
+    <div class="note">Choose the first cumulative total greater than u. Left endpoint included; right excluded.</div>
+  </>}
+  {kind === 'counts' && <>
+    <figcaption>Seed 402010 · two steps · counts before proportions</figcaption>
+    <table><thead><tr><th scope="col">State</th><th scope="col">1,000 paths</th><th scope="col">10,000 paths</th></tr></thead><tbody>
+      {cases.states.map((s,i)=><tr><th scope="row">{s}</th><td>{baseline[0].counts[i].toLocaleString('en')}</td><td>{baseline[1].counts[i].toLocaleString('en')}</td></tr>)}
+    </tbody></table>
+    <div class="note">Reset to C for each path. The smaller run is a prefix of the larger run.</div>
+  </>}
+  {kind === 'errors' && <>
+    <figcaption>Absolute errors · probability units, not relative percentages</figcaption>
+    <table><thead><tr><th scope="col">State</th><th scope="col">1,000 paths</th><th scope="col">10,000 paths</th></tr></thead><tbody>
+      {cases.states.map((s,i)=><tr><th scope="row">{s}</th><td>{baseline[0].absoluteErrors[i].toFixed(4)}</td><td>{baseline[1].absoluteErrors[i].toFixed(4)}</td></tr>)}
+    </tbody></table>
+    <div class="note">C's error grows from 0 to 0.0008. Correct sampling need not improve every cell.</div>
+  </>}
+  {kind === 'changed' && <>
+    <figcaption>Exact two-step sensitivity · change only the C row</figcaption>
+    <table><thead><tr><th scope="col">State</th><th scope="col">Baseline</th><th scope="col">Changed</th></tr></thead><tbody>
+      {cases.states.map((s,i)=><tr><th scope="row">{s}</th><td>{baseline[0].exact[i].toFixed(2)}</td><td>{changed[i].toFixed(2)}</td></tr>)}
+    </tbody></table>
+    <div class="note">N loses 0.15; E gains 0.15. C/A mass and row sums stay unchanged.</div>
+  </>}
+  {kind === 'history' && <>
+    <figcaption>Two histories collapse into the same current label C</figcaption>
+    <div class="columns">
+      <div class="card"><strong>History 1</strong><span>A first board-game question → C.</span></div>
+      <div class="card"><strong>History 2</strong><span>A topic already declined → C.</span></div>
+    </div>
+    <div class="note">The matrix gives both the same next row. An actual protocol must retain the boundary.</div>
+  </>}
+  {kind === 'wait' && <>
+    <figcaption>“Who pays?” · a waiting protocol with no progress</figcaption>
+    <div class="columns">
+      <div class="card"><strong>Alex waits</strong><span>Expect the counterpart to raise the bill.</span></div>
+      <div class="card"><strong>Counterpart waits</strong><span>Expect Alex to raise the bill.</span></div>
+    </div>
+    <div class="note">wait → waiting → wait → waiting. Explicitly revisit the agreed terms; either actor can leave.</div>
+  </>}
+  {kind === 'costs' && <>
+    <figcaption>Week 9 Atrium cover-both agreement · authored dollars</figcaption>
+    <table><thead><tr><th scope="col">Contribution</th><th scope="col">Alex</th><th scope="col">Counterpart</th></tr></thead><tbody>
+      <tr><th scope="row">Two drinks</th><td>$12</td><td>$0</td></tr>
+      <tr><th scope="row">Transport</th><td>$2</td><td>Unknown</td></tr>
+      <tr><th scope="row">Outing total</th><td>$14</td><td>Unknown</td></tr>
+    </tbody></table>
+    <div class="note">Compare the café bill with $12 in drinks, not Alex's $14 outing total.</div>
+  </>}
+  {kind === 'bill' && <>
+    <figcaption>Current version + $12 bill + two coded acknowledgements</figcaption>
+    <ol class="track">{[['Wait twice','waiting'],['Ask about $12','asked'],['Alex agrees','asked'],['Other actor agrees','acknowledged']].map(([event,result])=><li><strong>{event}</strong><span>{result}</span></li>)}</ol>
+    <div class="note">No money moves. Changed or unknown bill → review. Leaving remains available.</div>
+  </>}
+  {kind === 'observations' && <>
+    <figcaption>Observation fields survive a meeting ending</figcaption>
+    <table><thead><tr><th scope="col">Explicit next-date record</th><th scope="col">Label</th></tr></thead><tbody>
+      {[['No relevant observation','unobserved'],['One actor agrees','pending'],['Both actors agree','agreed'],['Either actor declines / withdraws','declined']].map(row=><tr><th scope="row">{row[0]}</th><td>{row[1]}</td></tr>)}
+    </tbody></table>
+    <div class="note">Meeting ended and next date agreed can coexist. A simulation draw supplies neither observation.</div>
+  </>}
+</figure>
+<style>
+  .date-figure { width: min(100%,1100px); margin: .5rem auto 1rem; text-align: left; }
+  figcaption, .note { font-size: clamp(16px,1.3vw,24px); line-height: 1.35; }
+  figcaption { margin-bottom: .7rem; }
+  .note { margin-top: .7rem; }
+  .columns { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .8rem; }
+  .card, ol.track li { display: grid; align-content: start; gap: .5rem; padding: .8rem; border: 2px solid var(--course-blue-ink); border-radius: 8px; background: var(--course-paper); color: var(--course-ink); font-size: clamp(18px,1.6vw,30px) !important; line-height: 1.3; }
+  .card strong, .track strong { color: var(--course-blue-ink); }
+  .card b { color: var(--course-pink-ink); }
+  ol.track { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: .6rem; list-style: none; margin: 0; padding: 0; }
+  ol.track li { margin: 0; }
+  table { border-collapse: collapse; width: 100%; font-size: clamp(16px,1.6vw,30px); line-height: 1.35; }
+  :is(th,td) { text-align: left; padding: .6rem; color: var(--course-ink); background: var(--course-paper); border-bottom: 1px solid var(--course-blue-ink); }
+  @media (width < 650px) {
+    .columns { grid-template-columns: 1fr; gap: .5rem; }
+    .card { padding: .6rem; gap: .35rem; }
+    ol.track { grid-template-columns: 1fr; gap: .5rem; }
+    ol.track li { grid-template-columns: 1fr 1.2fr; padding: .5rem .6rem; }
+    .track span { text-align: right; }
+    :is(th,td) { padding: .5rem .3rem; overflow-wrap: anywhere; }
+  }
+  @media (height < 540px) {
+    .date-figure { margin: .2rem auto; }
+    figcaption { margin-bottom: .3rem; }
+    .note { margin-top: .3rem; }
+    .card, ol.track li { padding: .5rem; gap: .3rem; font-size: 18px !important; line-height: 1.25; }
+    table { font-size: 18px; }
+    :is(th,td) { padding: .3rem; }
+  }
+</style>

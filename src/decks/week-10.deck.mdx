@@ -1,0 +1,516 @@
+---
+title: "Stochastic Modeling of the First Date · Week 10"
+description: "A three-hour teaching pack: exact Markov propagation, seeded sampling, sensitivity and the Who pays deadlock."
+---
+
+import DeckTools from "../components/DeckTools.astro";
+import DeckBars from "../components/DeckBars.astro";
+import DateFigure from "../components/DateFigure.astro";
+
+<DeckTools />
+
+# Four states. Rather more context.
+
+Stochastic Modeling of the First Date
+
+SLOP1276 · Week 10
+
+The simulator can supply a number. It cannot supply somebody else's answer.
+
+---
+
+## The engineering output
+
+Build a **Date transition model**: matrix, exact calculation, seeded comparison, sensitivity and tests.
+
+Keep a separate observation record for arrival, the bill and next-date agreement.
+
+All probabilities and events are **authored fictional teaching data**.
+
+---
+
+## A three-hour route
+
+**30 min** · define states and read the matrix.
+
+**35 min** · derive exact answers. **10 min** · break.
+
+**35 min** · simulate and compare errors.
+
+**35 min** · change assumptions and test boundaries.
+
+**35 min** · resolve the bill exercise and prepare Week 11.
+
+---
+
+## Confirmation is the input
+
+<DateFigure kind="bridge" />
+
+---
+
+## Define what gets counted
+
+<DateFigure kind="states" />
+
+---
+
+## Absorbing is a counting convention
+
+N and E freeze the **first endpoint reached** by a simulated path.
+
+A real meeting can end after agreement. A person can later withdraw.
+
+The observation record must retain those distinctions.
+
+N is a narrow model endpoint; E is a legitimate ending. Neither grades a person.
+
+---
+
+## Read the whole matrix
+
+<DateFigure kind="matrix" />
+
+---
+
+## Source rows, destination columns
+
+Use row vectors: **v(next) = vP**.
+
+Component j = sum over i of **v[i] × P[i,j]**.
+
+Read the old vector completely before replacing it.
+
+[MIT's matrix lecture, slides 3–4](https://ocw.mit.edu/courses/6-262-discrete-stochastic-processes-spring-2011/2fdbd4633466ba1429e7cc24bce37514_MIT6_262S11_lec07.pdf) supplies the method. The course supplies every probability.
+
+---
+
+## Exercise · audit a proposed repair
+
+**5 minutes.** Someone writes C = **(0.50, 0.20, 0.30, 0.10)**.
+
+What fails? Make one labelled repair.
+
+Then substitute **P[j,i]** in the row-vector update.
+
+Starting from C, does that change only the notation?
+
+---
+
+## Answer · two different bugs
+
+The proposed row sums to **1.10**. Returning N to 0.20 restores the baseline.
+
+With the transposed update, initial C gives **(0.50, 0.30, 0, 0)**. Mass is lost.
+
+This matrix's columns need not sum to one.
+
+A consistent column-vector reformulation is possible; mixing conventions is a bug.
+
+---
+
+## One step from C
+
+<DeckBars caption="Authored distribution · v₀ = (1, 0, 0, 0)" maximum={1} scale="Each track spans probability 0 to 1; total mass is 1." rows={[
+  {label:'C',value:0.5,display:'0.50'}, {label:'A',value:0.2,display:'0.20'},
+  {label:'N',value:0.2,display:'0.20'}, {label:'E',value:0.1,display:'0.10'}
+]} />
+
+---
+
+## Reach N in two steps
+
+<DateFigure kind="paths" />
+
+---
+
+## Exercise · fill the other columns
+
+**7 minutes.** Starting from C, derive the two-step probabilities of C, A and E.
+
+Partition by all four intermediate states.
+
+Show zero terms and the already-absorbed contribution.
+
+Check the final distribution sums to one before opening the reference answer.
+
+---
+
+## Answer · the exact oracle
+
+<DeckBars caption="Two steps from C · v₂ = v₀P²" maximum={1} scale="C = 0.25 + 0.06; A = 0.10 + 0.06; N = 0.10 + 0.02 + 0.20; E = 0.05 + 0.06 + 0.10." rows={[
+  {label:'C',value:0.31,display:'0.31'}, {label:'A',value:0.16,display:'0.16'},
+  {label:'N',value:0.32,display:'0.32'}, {label:'E',value:0.21,display:'0.21'}
+]} />
+
+---
+
+## A denominator can change the story
+
+Unconditional N probability at step two: **0.32**.
+
+Conditional on reaching N or E: **0.32 / 0.53 ≈ 0.6038**.
+
+The second number excludes every transient path.
+
+Neither is an observed dating rate. Label the horizon and denominator.
+
+---
+
+## Account for the remaining paths
+
+<DateFigure kind="mass" />
+
+---
+
+## Eventual absorption asks another question
+
+From C/A, one-step transient retention is at most **0.70**.
+
+After k steps, transient probability is at most **0.70ᵏ → 0**.
+
+Let x and y be eventual N probabilities from C and A:
+
+**x = 0.50x + 0.20y + 0.20**
+
+**y = 0.30x + 0.30y + 0.10**
+
+---
+
+## Exercise · solve the endpoint probability
+
+**6 minutes.** Rearrange the two first-step equations and solve for x and y.
+
+Why can x exceed the two-step value 0.32?
+
+What would fail if C and A each had only a probability-1 self-loop?
+
+[MIT's absorption explanation](https://ocw.mit.edu/courses/res-6-012-introduction-to-probability-spring-2018/0b73394616a1df985f43adfe64810bed_vEsUsaK1HBk.pdf) gives the boundary-value method.
+
+---
+
+## Answer · more horizons, more assumptions
+
+Determinant **0.29**. x = **16/29 ≈ 0.551724**; y = **11/29 ≈ 0.379310**.
+
+Extra N mass arrives after step two. This does not recommend waiting for agreement.
+
+A closed C/A class makes this solve singular.
+
+Extension: expected absorption from C is **90/29 steps**. Steps are not minutes.
+
+---
+
+## Break · 10 minutes
+
+Keep the matrix and exact vector visible in your notes.
+
+Next: make a sampler reproduce the same mathematical model.
+
+A repeatable result can still be repeatably wrong.
+
+---
+
+## One draw selects one destination
+
+<DateFigure kind="intervals" />
+
+---
+
+## Exercise · test the boundaries
+
+**4 minutes.** Map C-row draws **0, 0.50, 0.70 and 0.90**.
+
+Then draw **0** from the N row **(0, 0, 1, 0)**.
+
+What breaks if “less than cumulative” becomes “less than or equal”?
+
+---
+
+## Answer · zero mass stays impossible
+
+The C-row destinations are **C, A, N, E**.
+
+The N-row destination must be **N**, even at u = 0.
+
+Using ≤ can choose the first zero-probability cell and escape an absorbing state.
+
+Reject u = 1. The draw contract is **[0,1)**.
+
+---
+
+## Specify the random stream
+
+Teaching generator: unsigned 32-bit linear congruential generator.
+
+Advance: **(1664525 × state + 1013904223) mod 2³²**.
+
+Divide the new word by 2³². Seed **402010** gives first word **154701297**.
+
+Use one draw per step, including after absorption. This generator is not cryptographic.
+
+---
+
+## Reset paths, keep the stream running
+
+For each run: reset to **C**, take **two steps**, count the final state.
+
+Do not reseed each path or carry the previous endpoint into the next path.
+
+The ideal sampling model has independent paths. A pseudorandom stream approximates it.
+
+Restarting the same seed for 1,000 and 10,000 runs creates nested samples.
+
+---
+
+## Count before estimating
+
+<DateFigure kind="counts" />
+
+---
+
+## Compare with the exact oracle
+
+<DateFigure kind="errors" />
+
+---
+
+## Exercise · reject a flaky test
+
+**5 minutes.** A test requires every error to shrink at 10,000 paths.
+
+Which cell disproves it in this fixture?
+
+Convert N's larger-run error to percentage points.
+
+What would reseeding every path do to the result?
+
+---
+
+## Answer · repeatability is not convergence
+
+C's error rises to **0.0008**. N's error is **0.18 percentage points**.
+
+Reseeding every path repeats one outcome.
+
+Under ideal independent indicators, standard deviation is **√(p(1−p)/n)**.
+
+For N: about **0.01475 → 0.004665**. This scaling does not bound every seeded error.
+
+---
+
+## Change one assumption explicitly
+
+Move **0.10 from C→N to C→E**.
+
+New C row: **(0.50, 0.20, 0.10, 0.20)**.
+
+Every other row stays fixed; N and E remain absorbing.
+
+This is a mathematical scenario, not an established effect of a conversational tactic.
+
+---
+
+## Exercise · predict before simulating
+
+**7 minutes.** Calculate the changed two-step vector from C.
+
+Which coordinates stay the same?
+
+Why might N change by more than 0.10?
+
+Keep all path contributions and verify conservation.
+
+---
+
+## Answer · exact changed distribution
+
+<DateFigure kind="changed" />
+
+---
+
+## Find the missing 0.15
+
+C → C → N changes from **0.10 to 0.05**: −0.05.
+
+C → N → N changes from **0.20 to 0.10**: −0.10.
+
+C → A → N remains **0.02**.
+
+Two affected paths give **−0.15** in total. A one-row change can accumulate over steps.
+
+---
+
+## Reuse the seed with its caveat
+
+Changed 10,000-path counts: **(3108, 1606, 1711, 3575)**.
+
+The same draws couple baseline and changed runs; they are not independent samples.
+
+The exact vector establishes the model difference. No causal effect on people is measured.
+
+Extension: eventual N from C becomes **9/29**. Expected absorption steps stay fixed.
+
+---
+
+## What memorylessness forgets
+
+<DateFigure kind="history" />
+
+---
+
+## Topics and eye contact are not consent flags
+
+A topic transition can omit history, time remaining or a changed plan.
+
+Adding states does not provide calibrated transition probabilities.
+
+Do not infer attraction or discomfort from silence or eye-contact duration.
+
+Disability and cultural difference are not anomaly scores. The A label is authored.
+
+---
+
+## Exercise · supply a counterexample
+
+**5 minutes.** Give two histories that end in C or A but should permit different next actions.
+
+Name the omitted information.
+
+Would the exercise need to collect it from real people?
+
+What test would protect an explicit boundary?
+
+---
+
+## Answer · retain the useful history
+
+“Time remains” and “either actor has asked to leave” cannot use the same action rule.
+
+An authored event record can preserve that distinction without observing real people.
+
+Test that leaving keeps the complete meeting snapshot terminal.
+
+The four-state probability model is a deliberately limited abstraction.
+
+---
+
+## Make the checks fail on purpose
+
+Transpose **P[i,j] to P[j,i]**: the literal one-step test must fail.
+
+Change categorical **< to ≤**: the zero-mass boundary test must fail.
+
+Assert each edit matched once. Restore and rerun.
+
+Also test zero steps, initial A, invalid rows, N/E starts and literal seeded counts.
+
+---
+
+## The “Who pays?” deadlock
+
+<DateFigure kind="wait" />
+
+---
+
+## Reuse the actual cost object
+
+<DateFigure kind="costs" />
+
+---
+
+## Ask about the agreed terms
+
+<DateFigure kind="bill" />
+
+---
+
+## Exercise · the bill has changed
+
+**5 minutes.** The drink bill is **$14**, or its amount is unknown.
+
+Can the existing $12 cost agreement allocate it?
+
+Can the unresolved bill prevent either actor from leaving?
+
+Is this stalemate a proven operating-system resource deadlock?
+
+---
+
+## Answer · review costs, retain the exit
+
+Changed or unknown bill → **review**. Clarify terms and obtain a separate renewed agreement.
+
+No automatic split, charge or obligation to stay follows.
+
+[OSTEP §32.3](https://pages.cs.wisc.edu/~remzi/OSTEP/threads-bugs.pdf) requires four resource-deadlock conditions. Our waiting exercise is a limited analogy.
+
+A person is not a lock to acquire.
+
+---
+
+## Record what was explicitly observed
+
+<DateFigure kind="observations" />
+
+---
+
+## A later withdrawal remains possible
+
+Two explicit agreements → **agreed**.
+
+A later explicit withdrawal → **declined**, retaining the event history.
+
+Do not retry a declined invitation. Leaving ends this meeting record even with an unresolved bill.
+
+Simulated N remains absorbing because it freezes a first endpoint, not a person's future wishes.
+
+---
+
+## Run eleven files offline
+
+Save the eleven downloads from the [lecture notes](/lectures/week-10/#run-and-challenge-the-workbook) together.
+
+Run `node week-10-worked-examples.mjs`.
+
+The report reuses the actual Week 6–9 workflow and existing transition reference.
+
+It prints exact/seeded results and six authored event histories. No message or payment is sent.
+
+---
+
+## The tutorial's 90 minutes
+
+**20 min** · exact propagation and handwritten contributions.
+
+**30 min** · categorical sampler, seed contract, counts and errors.
+
+**20 min** · changed row and literal tests.
+
+**20 min** · memorylessness, bill trace and observation labels.
+
+Solo work and review are accepted. Save one reproducible Date transition model.
+
+---
+
+## Hand over evidence to Week 11
+
+Carry the exact/seeded comparison, sensitivity result and current cost version.
+
+Keep agreed, declined, pending and unobserved distinct. Simulation endpoints are not observations.
+
+Week 11's **115-minute** fixture is separate from model steps and the earlier itinerary.
+
+Final validation appendix: **50% project · 28 May 2027, 5 pm**.
+
+---
+
+## Exit ticket · repair three claims
+
+“Absorbing N prevents withdrawal.” → **It freezes a model endpoint.**
+
+“More paths improve every error.” → **Check the actual errors.**
+
+“Acknowledging the bill buys another date.” → **Costs establish no such obligation.**
+
+Save the Date transition model for Week 11.

@@ -1,0 +1,21 @@
+{
+  "version": "week-10-v1",
+  "scope": "All probabilities, arrivals, bills and responses are authored teaching fixtures. Simulation states never supply evidence about a person. The event exercise continues the fictional 7 May Week 9 proposal; it is not an observed date.",
+  "states": ["C", "A", "N", "E"],
+  "matrix": [[0.5,0.2,0.2,0.1],[0.3,0.3,0.1,0.3],[0,0,1,0],[0,0,0,1]],
+  "changedMatrix": [[0.5,0.2,0.1,0.2],[0.3,0.3,0.1,0.3],[0,0,1,0],[0,0,0,1]],
+  "simulation": {"seed":402010,"runs":[1000,10000],"steps":2},
+  "arrival": {"id":"arrival","type":"arrive","at":1040,"actors":["alex","counterpart"]},
+  "billEvents": [
+    {"id":"wait-a","type":"wait","at":1080},
+    {"id":"wait-b","type":"wait","at":1081},
+    {"id":"ask","type":"ask-bill","at":1082,"planVersion":"week-09-v1:atrium-cover","billCents":1200},
+    {"id":"ack-a","type":"ack-bill","at":1083,"actor":"alex","planVersion":"week-09-v1:atrium-cover"},
+    {"id":"ack-b","type":"ack-bill","at":1084,"actor":"counterpart","planVersion":"week-09-v1:atrium-cover"}
+  ],
+  "nextDateEvents": [
+    {"id":"next-a","type":"next-date","at":1085,"actor":"alex","response":"agree"},
+    {"id":"next-b","type":"next-date","at":1086,"actor":"counterpart","response":"agree"}
+  ],
+  "leave": {"id":"leave","type":"leave","at":1090,"actor":"alex"}
+}
