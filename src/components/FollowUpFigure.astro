@@ -1,0 +1,62 @@
+---
+interface Props { kind: 'bridge' | 'labels' | 'cutoff' | 'denominators' | 'units' | 'decisions' | 'freeze' | 'evidence' | 'rank' | 'weights' | 'probe' | 'shift' | 'leakage' | 'release'; }
+const {kind}=Astro.props;
+const figures={
+  bridge:{caption:'Three inputs, three different questions',headers:['Input','What it establishes'],rows:[['Week 5 freeze','Which text and ratings were evaluated'],['Week 9 agreement','Which plan and costs were confirmed'],['Week 10 export','Which coded events were recorded']],note:'A Markov distribution supplies none of the missing observations.'},
+  labels:{caption:'One next-date label at a declared cutoff',headers:['Evidence','Label'],rows:[['Both explicitly agree','agreed'],['Either declines or withdraws','declined'],['One agreement only','pending'],['No relevant coded observation','unobserved']],note:'“Nice time” supplies text, not the second agreement.'},
+  cutoff:{caption:'Week 10 event clock · minutes since midnight',headers:['Minute','Record','Before 1086?'],rows:[['1085','Alex agrees','Yes'],['1086','Counterpart agrees','No'],['1090','Meeting ends','No']],note:'At cutoff: pending. Latest export: agreed + meeting ended. Retain both views.'},
+  denominators:{caption:'Separate eight-record dashboard · same 48-hour observation rule',headers:['Label','Count'],rows:[['agreed','2'],['declined','2'],['pending','3'],['unobserved','1']],note:'2/8 = 25% of all records. 2/4 = 50% of resolved records. Name the denominator.'},
+  units:{caption:'Write the units before naming the metric',headers:['Calculation','Meaning'],rows:[['10 units / 115 min','0.087 units per minute'],['10 / (115/60)','5.217 units per hour'],['(benefit − cost) / cost','Needs commensurable units']],note:'This course’s “ROI” is a benefit/time proxy. Minutes cannot be subtracted from benefit units.'},
+  decisions:{caption:'Week 7 utilities · independently reviewed clarification admissible',headers:['Assumed q','Stop','Wait','Clarify'],rows:[['0.3','0','−0.4','−2.9'],['0.5','0','0','−1.5'],['0.8','0','0.6','0.6'],['0.9','0','0.8','1.3']],note:'U(wait)=2q−1; U(clarify)=7q−5. A refusal excludes continuation regardless of q.'},
+  evidence:{caption:'Authored ratings for the existing supported bio',headers:['Feature','Rating','Evidence'],rows:[['Clarity','4','Possible relationship'],['Specificity','4','Games + bad puns'],['Feasibility','3','Time, bus, $20; no venue'],['Exit','4','Fine to pass']],note:'A notebook route does not add missing venue detail to the public bio.'},
+  rank:{caption:'Primary worked candidate · (4,4,3,4)',headers:['Comparator relation','Controls'],rows:[['Greater than 93.75','0'],['Equal to 93.75','1'],['Less than 93.75','98']],note:'Rank = 1 + 0 + 1 = 2/100. The target fails; the evaluation is still useful.'},
+  weights:{caption:'One weight rule for all 100 entries',headers:['Rule','Numerator','Maximum'],rows:[['Primary','c + s + f + e','16'],['Double feasibility','c + s + 2f + e','20']],note:'Multiply the ratio by 100. Recompute the candidate and all 99 controls.'},
+  probe:{caption:'Separate weak-feasibility probe · (4,4,1,4)',headers:['Rule','Score','Above / ties','Rank'],rows:[['Primary','81.25','1 / 3','5/100'],['Double f','70','12 / 9','22/100']],note:'The worked release is a different vector: 93.75 → 90, rank 2 → 2.'},
+  shift:{caption:'Change the case, keep the original result',headers:['Library plan','Original','Changed'],rows:[['Available minutes','120','90'],['Needed minutes','100','100'],['Time slack','+20','−10'],['Case fidelity','Pass','Fail']],note:'Unchanged text still says Friday 5–7 pm. Rank 2 cannot repair a failed time constraint.'},
+};
+const sequences={
+  freeze:{caption:'Freeze → evaluate → preserve → explore',steps:[['Freeze','Exact text, evidence, ratings, version'],['Evaluate','Primary rule + unchanged controls'],['Preserve','Save score, ties and failed target'],['Explore','Separate weight and case changes']],note:'A digest identifies the retained bytes. It does not prove who wrote or approved them.'},
+  leakage:{caption:'Two paths through the same benchmark',steps:[['Declared evaluation','Freeze → score → keep result'],['Exploration','Inspect → edit → new version']],note:'Exploration is allowed. Its new score is not an untouched evaluation of the old candidate.'},
+  release:{caption:'A concrete handoff to Week 12',steps:[['Source','Sixteen files + exact frozen candidate'],['Output','Static HTML + evaluation JSON'],['Evidence','Hashes + actual keyboard/viewport log'],['Maintenance','Clean reproduction + software rollback']],note:'Restoring a software version cannot restore another person’s agreement.'},
+};
+const table=kind in figures ? figures[kind as keyof typeof figures] : null;
+const sequence=kind in sequences ? sequences[kind as keyof typeof sequences] : null;
+---
+<figure class="follow-up-figure">
+  {table && <>
+    <figcaption>{table.caption}</figcaption>
+    <table><thead><tr>{table.headers.map(header=><th scope="col">{header}</th>)}</tr></thead><tbody>
+      {table.rows.map(row=><tr><th scope="row">{row[0]}</th>{row.slice(1).map(cell=><td>{cell}</td>)}</tr>)}
+    </tbody></table><p class="note">{table.note}</p>
+  </>}
+  {sequence && <>
+    <figcaption>{sequence.caption}</figcaption>
+    <ol>{sequence.steps.map(([title,body])=><li><strong>{title}</strong><span>{body}</span></li>)}</ol>
+    <p class="note">{sequence.note}</p>
+  </>}
+</figure>
+<style>
+  .follow-up-figure { width:min(100%,1100px); margin:.5rem auto 1rem; text-align:left; }
+  figcaption,.note { font-size:clamp(16px,1.3vw,24px) !important; line-height:1.35; }
+  figcaption { margin-bottom:.7rem; }
+  .note { margin:.7rem 0 0; }
+  table { width:100%; border-collapse:collapse; font-size:clamp(16px,1.6vw,30px); line-height:1.35; }
+  :is(th,td) { text-align:left; padding:.6rem; background:var(--course-paper); color:var(--course-ink); border-bottom:1px solid var(--course-blue-ink); }
+  ol { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.7rem; margin:0; padding:0; list-style:none; counter-reset:stage; }
+  li { display:grid; gap:.4rem; margin:0; padding:.8rem; border:2px solid var(--course-blue-ink); border-radius:8px; background:var(--course-paper); color:var(--course-ink); font-size:clamp(18px,1.6vw,30px) !important; line-height:1.3; counter-increment:stage; }
+  strong { color:var(--course-blue-ink); }
+  strong::before { content:counter(stage) '. '; }
+  @media (width < 650px) {
+    ol { grid-template-columns:1fr; gap:.5rem; }
+    li { padding:.6rem; gap:.25rem; }
+    :is(th,td) { padding:.5rem .3rem; overflow-wrap:anywhere; }
+  }
+  @media (height < 540px) {
+    .follow-up-figure { margin:.2rem auto; }
+    figcaption { margin-bottom:.3rem; }
+    .note { margin-top:.3rem; }
+    table,li { font-size:18px !important; }
+    :is(th,td) { padding:.3rem; }
+    li { padding:.5rem; gap:.2rem; }
+  }
+</style>

@@ -1,0 +1,36 @@
+{
+  "version": "week-11-v1",
+  "scope": "Authored teaching fixtures only. The Week 10 replay branches, eight-record dashboard, 115-minute log and benchmark are separate exercises, not a joined dataset or observed romantic outcomes.",
+  "timeLog": [
+    {"id":"travel-out","activity":"Outbound travel","start":0,"end":10},
+    {"id":"meeting","activity":"Time together","start":10,"end":100},
+    {"id":"travel-back","activity":"Return travel","start":100,"end":110},
+    {"id":"follow-up","activity":"Compose follow-up","start":110,"end":115}
+  ],
+  "timeScope": "Elapsed minutes from this separate fictional log's start. Travel includes walking and waiting. Composition records time, not delivery. No real meeting is asserted.",
+  "benefits": [0,5,10,20],
+  "dashboard": [
+    {"id":"D1","label":"agreed"},{"id":"D2","label":"agreed"},
+    {"id":"D3","label":"declined"},{"id":"D4","label":"declined"},
+    {"id":"D5","label":"pending"},{"id":"D6","label":"pending"},
+    {"id":"D7","label":"pending"},{"id":"D8","label":"unobserved"}
+  ],
+  "dashboardScope": "Eight distinct invented meeting records at one declared 48-hour cutoff after each meeting. Pending means only one agreement recorded; unobserved means no relevant coded observation. These are not Week 10's alternative replay branches.",
+  "candidate": {
+    "version":"week-11-example-rc1",
+    "sourceVersion":"week-04:A-portrait-v1+supported-bio",
+    "textSource":"week-04-bios.json:repair",
+    "invitationVersion":"week-05-v1:library",
+    "features":[4,4,3,4],
+    "evidence":[
+      {"quote":"maybe a relationship?","reason":"Explicit possible relationship intent, supported by Alex's fixed case."},
+      {"quote":"Board games, bad puns","reason":"Two concrete interests from the supplied case."},
+      {"quote":"Meet Friday 5-7 pm: bus-friendly, $20 total.","reason":"Usable time, transport and cost limits; the public text omits a venue and route detail. The separate Week 5 library plan fits, but does not make those details appear in the bio."},
+      {"quote":"Fine to pass.","reason":"Explicit permission not to engage; a wording rating, not a measured feeling."}
+    ]
+  },
+  "candidateScope":"A worked teaching snapshot assembled now from the existing supported repair and Week 5 library plan, using Week 5's (4,4,3,4) example. This is not a recovered student freeze or proof of a prior release. Students evaluate their own earlier frozen candidate first.",
+  "weightProbe":[4,4,1,4],
+  "changedAvailability":{"id":"friday-90-minutes","availableMinutes":90,"window":"Friday 5-6:30 pm","features":[4,4,2,4],"reason":"The unchanged Friday 5-7 pm claim conflicts with the separately changed window; the 100-minute library itinerary also exceeds 90 minutes. Case fidelity fails regardless of rank."},
+  "decision":{"qValues":[0.3,0.5,0.8,0.9],"clarificationCost":5,"scope":"Reuse Week 7's arbitrary utility scale. q is assumed, not estimated from the dashboard or Markov output. Admissibility is a separate reviewed input; never inferred from q."}
+}
