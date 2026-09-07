@@ -24,13 +24,15 @@ third tutorial's Unicode budget, overlapping token matches, candidate length
 checks, new exposure reversal and gated grading/publication. `match-quiz.test.ts`
 covers the fourth tutorial's conditional probabilities, repeated models,
 travel boundaries, time-window rates and a new rating vector against the
-unchanged 99 controls, plus gated grading/publication. The first four quizzes
-are on Weeks 2–5 respectively; Week 1 remains lecture-only.
+unchanged 99 controls, plus gated grading/publication. `message-quiz.test.ts`
+covers the fifth tutorial's guard priorities, evidence branch, utility tie,
+recoded reply rates, pressure exclusion and gated grading/publication. The
+first five quizzes are on Weeks 2–6 respectively; Week 1 remains lecture-only.
 `scripts/audit-tutorial-quiz.mjs`, also called by `pnpm check:browser`,
 checks that no answer request or reveal occurs before all six responses and
 submission. It covers keyboard navigation, partial/mixed/full attempts,
 invalid numeric input, a failed request and retry, reset, no-JS fallback,
-contrast and mobile layout for all four quizzes, with all six cases at four
+contrast and mobile layout for all five quizzes, with all six cases at four
 viewport sizes and image loading/containment checks for the teaching diagrams.
 These are practice checks, not course grades.
 

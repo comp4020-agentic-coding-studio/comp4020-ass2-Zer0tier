@@ -35,6 +35,13 @@ const fixtures = [
     withheld: 'P(A and B) = 0.40 × 0.30 = 0.12', feedback: ['20/100 = 20%', '0.40 × 0.30 = 0.12', 'rank = 1 + 4 = 5/100'],
     captureCases: [2, 3, 4],
   },
+  {
+    id: 'message-audit', route: 'sessions/06-message-tree/', firstQuestion: 'terminal', numberQuestion: 'crossover',
+    allCorrect: ['stop', 'grounded', '0.15', 'priorities', 'recoded', 'filter'],
+    mixed: ['review-topic', 'grounded', '0.10', 'restart', 'drop-row', 'filter'],
+    withheld: 'Equating them gives 10λ = 1.5', feedback: ['λ = 0.15 utility units per second', '9/40 = 22.5%', '14/20 = 70%'],
+    captureCases: [1, 2, 3, 5],
+  },
 ];
 
 export async function inspectTutorialQuiz(browser, root, screenshots) {
