@@ -40,6 +40,6 @@ describe('the second tutorial photo quiz', () => {
     for (const entry of Object.values(key)) expect(html).not.toContain(entry.explanation);
     expect(JSON.parse(readFileSync('dist/data/quizzes/photo-audit.json', 'utf8'))).toEqual(key);
     expect(readFileSync('dist/sessions/02-platforms/index.html', 'utf8')).not.toContain('id="photo-audit-quiz"');
-    expect(readFileSync('dist/sessions/04-bio-experiment/index.html', 'utf8')).not.toContain('data-tutorial-quiz');
+    expect(readFileSync('dist/sessions/04-bio-experiment/index.html', 'utf8')).not.toContain('id="photo-audit-quiz"');
   });
 });

@@ -19,6 +19,14 @@ const fixtures = [
     allCorrect: ['blocked', 'isolated', '25', 'unresolved', 'rowwise', 'freeze'],
     mixed: ['looks', 'isolated', '50', 'recognised', 'totals', 'freeze'],
     withheld: '400 × 300 = 120,000', feedback: ['120,000/480,000 = 25%', 'T1, T4, T7 and T8'],
+    captureCases: [2, 4],
+  },
+  {
+    id: 'bio-audit', route: 'sessions/04-bio-experiment/', firstQuestion: 'budget', numberQuestion: 'coverage',
+    allCorrect: ['codepoints', 'supported', '75', 'weighted', 'units', 'prespecified'],
+    mixed: ['utf16', 'supported', '125', 'pooled-cause', 'relative-six', 'prespecified'],
+    withheld: 'their union is {0, 1, 2}', feedback: ['100 × 3/4 = 75%', 'A = 38/80 = 47.5%', '0.06/0.12 = 50%'],
+    captureCases: [1, 2, 3],
   },
 ];
 
@@ -87,7 +95,7 @@ async function inspectQuiz(browser, root, screenshots, fixture) {
       for (let index = 1; index < 6; index++) {
         await quiz.locator(`[data-quiz-step="${index}"]`).click();
         await geometryAndAxe(`${id} case ${index + 1} at ${viewport.width}`);
-        if (screenshots && id === 'photo-audit' && (index === 2 || index === 4)) {
+        if (screenshots && fixture.captureCases?.includes(index)) {
           await quiz.screenshot({ path: `${screenshots}/${id}-case-${index + 1}-${viewport.width}.png` });
         }
       }

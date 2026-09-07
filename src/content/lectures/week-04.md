@@ -33,7 +33,7 @@ Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/d
 
 ### 90-minute tutorial
 
-Thursday, **2–3.30 pm**. Follow the [Week 4 tutorial](/sessions/04-bio-experiment/): **20 minutes text pipeline and revision; 25 minutes reversal; 20 minutes uncertainty; 25 minutes protocol and report**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+Thursday, **2–3.30 pm**. Follow the [Week 4 tutorial](/sessions/04-bio-experiment/): **20 minutes text pipeline and revision; 25 minutes reversal; 20 minutes uncertainty; 25 minutes protocol, report and quiz**. The last block includes ten minutes for the interactive quiz and its debrief. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
 
 ### Independent work · about 210 minutes
 

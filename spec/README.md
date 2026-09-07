@@ -19,14 +19,16 @@ whether a declared dependency is educationally useful.
 complete-attempt grading and absence of solution explanations in the initial
 HTML. `photo-quiz.test.ts` covers the second tutorial's distinct photo cases,
 literal crop arithmetic and reviewer agreement, and publishing its own quiz
-without answer explanations in the initial page. The first and second quizzes
-are on Week 2 and Week 3 respectively; Week 1 remains lecture-only.
+without answer explanations in the initial page. `bio-quiz.test.ts` covers the
+third tutorial's Unicode budget, overlapping token matches, candidate length
+checks, new exposure reversal and gated grading/publication. The first three
+quizzes are on Weeks 2–4 respectively; Week 1 remains lecture-only.
 `scripts/audit-tutorial-quiz.mjs`, also called by `pnpm check:browser`,
 checks that no answer request or reveal occurs before all six responses and
 submission. It covers keyboard navigation, partial/mixed/full attempts,
 invalid numeric input, a failed request and retry, reset, no-JS fallback,
-contrast and mobile layout for both quizzes, with all six cases at four
-viewport sizes and image loading/containment checks for the crop diagram.
+contrast and mobile layout for all three quizzes, with all six cases at four
+viewport sizes and image loading/containment checks for the crop and token diagrams.
 These are practice checks, not course grades.
 
 `photo-kit.test.ts` extracts the exact Week 3 student ZIP, checks it against the
