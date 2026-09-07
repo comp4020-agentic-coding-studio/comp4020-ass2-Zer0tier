@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-labelledby="title description">
+  <title id="title">Inputs for an independent contingency model</title>
+  <desc id="description">Base 85 minutes and $18. Lateness has probability 20 percent and adds 25 minutes. Closure has probability 15 percent and adds ten minutes and $2. Target 110 minutes; hard limits 120 minutes and $20. No joint probabilities or tail result are shown.</desc>
+  <rect width="640" height="400" fill="#fff7fa"/>
+  <g font-family="Arial, sans-serif" text-anchor="middle" fill="#272c38" font-size="30">
+    <text x="320" y="40">Assumed base: 85 min · $18</text>
+    <rect x="48" y="62" width="544" height="106" rx="8" fill="#dfeaf9" stroke="#28538a" stroke-width="3"/>
+    <text x="320" y="105">Late: 20% probability</text>
+    <text x="320" y="147">Adds 25 min</text>
+    <rect x="48" y="188" width="544" height="106" rx="8" fill="#f9dbe7" stroke="#903252" stroke-width="3"/>
+    <text x="320" y="231">Closed: 15% probability</text>
+    <text x="320" y="273">Adds 10 min and $2</text>
+    <text x="320" y="336">Independent events · target 110 min</text>
+    <text x="320" y="379">Hard limits: 120 min · $20</text>
+  </g>
+</svg>

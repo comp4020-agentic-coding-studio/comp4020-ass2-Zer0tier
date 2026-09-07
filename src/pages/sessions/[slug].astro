@@ -14,6 +14,7 @@ import { matchAuditQuiz } from "../../data/quizzes/match-audit";
 import { messageAuditQuiz } from "../../data/quizzes/message-audit";
 import { communicationAuditQuiz } from "../../data/quizzes/communication-audit";
 import { threatAuditQuiz } from "../../data/quizzes/threat-audit";
+import { handoverAuditQuiz } from "../../data/quizzes/handover-audit";
 import { formatCourseDate } from "../../lib/dates";
 import { graphCollections, sessionLabels, siteConfig } from "../../site-config";
 
@@ -40,6 +41,7 @@ const { Content } = await render(session);
   {session.id === '06-message-tree' && <TutorialQuiz quiz={messageAuditQuiz} answersUrl="/data/quizzes/message-audit.json" />}
   {session.id === '07-communication' && <TutorialQuiz quiz={communicationAuditQuiz} answersUrl="/data/quizzes/communication-audit.json" />}
   {session.id === '08-threat-model' && <TutorialQuiz quiz={threatAuditQuiz} answersUrl="/data/quizzes/threat-audit.json" />}
+  {session.id === '09-offline-handover' && <TutorialQuiz quiz={handoverAuditQuiz} answersUrl="/data/quizzes/handover-audit.json" />}
   <SpecList spec={session.data.spec}>
     Before you finish, check your engineering artefact against these requirements.
   </SpecList>

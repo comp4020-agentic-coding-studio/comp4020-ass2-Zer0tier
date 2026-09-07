@@ -56,6 +56,13 @@ const fixtures = [
     withheld: 'precision = 100 × 6/16 = 37.5%', feedback: ['100 × 6/16 = 37.5%', '12/61 ≈ 19.67%', 'window is [4, 6)'],
     captureCases: [1, 2, 4, 5],
   },
+  {
+    id: 'handover-audit', route: 'sessions/09-offline-handover/', firstQuestion: 'venues', numberQuestion: 'tail',
+    allCorrect: ['screened', 'new-version', '3', 'dependent', 'revise', 'terminal'],
+    mixed: ['penalty', 'new-version', '20', 'same-tail', 'auto-switch', 'terminal'],
+    withheld: '0.20 × 0.15 = 0.03 = 3%', feedback: ['0.20 × 0.15 = 0.03 = 3%', '91.5 minutes in both models', 'confirmBy = 1000'],
+    captureCases: [0, 2, 3, 5],
+  },
 ];
 
 export async function inspectTutorialQuiz(browser, root, screenshots) {

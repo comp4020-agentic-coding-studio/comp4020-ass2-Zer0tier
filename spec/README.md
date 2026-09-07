@@ -32,12 +32,15 @@ Poisson and utility calculations, changed game, shifted deadline and ledger
 branches, plus gated grading/publication. `threat-quiz.test.ts` covers the
 seventh tutorial's coded observations, new confusion matrices, cost tie,
 base-rate projection and review branches, plus gated grading/publication.
-The first seven quizzes are on Weeks 2–8 respectively; Week 1 remains lecture-only.
+`handover-quiz.test.ts` covers the eighth tutorial's hard venue limits, changed
+bill and version, new joint outcomes, dependence, fallback limits and terminal
+confirmation branches, plus gated grading/publication. The first eight quizzes
+are on Weeks 2–9 respectively; Week 1 remains lecture-only.
 `scripts/audit-tutorial-quiz.mjs`, also called by `pnpm check:browser`,
 checks that no answer request or reveal occurs before all six responses and
 submission. It covers keyboard navigation, partial/mixed/full attempts,
 invalid numeric input, a failed request and retry, reset, no-JS fallback,
-contrast and mobile layout for all seven quizzes, with all six cases at four
+contrast and mobile layout for all eight quizzes, with all six cases at four
 viewport sizes and image loading/containment checks for the teaching diagrams.
 These are practice checks, not course grades.
 

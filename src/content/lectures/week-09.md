@@ -31,12 +31,12 @@ Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/d
 
 ### 90-minute tutorial
 
-Thursday, **2–3.30 pm**. Follow the [Week 9 tutorial](/sessions/09-offline-handover/): **20 minutes venue filtering; 20 minutes handshake; 30 minutes contingencies; 20 minutes dependence**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+Thursday, **2–3.30 pm**. Follow the [Week 9 tutorial](/sessions/09-offline-handover/): **20 minutes venue filtering; 20 minutes handshake; 30 minutes contingencies; 20 minutes dependence review and quiz**. The last block includes ten minutes for the interactive quiz and its debrief. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
 
 ### Independent work · about 210 minutes
 
 - **30 minutes — before Monday:** Bring the Threat model and Match probability model; inspect the venue cards and the separate Atrium proposal.
-- **90 minutes — between Monday and Thursday:** Review remaining worked answers, especially joint-probability bounds and fallback state changes (slides 37–41 and 43–46). Open the ten-file workbook and prepare the version/cost records for Thursday.
+- **90 minutes — between Monday and Thursday:** Review remaining worked answers, especially joint-probability bounds and fallback state changes (slides 37–41 and 43–46). Open the ten-file workbook and prepare the version/cost records, dependence calculation and one mutation/restoration result for Thursday's review.
 - **90 minutes — consolidation and assessment:** Check the Offline handover plan, rejection reasons and cancellation traces. Preserve the versions and assumptions needed by the final project.
 
 Together this is about **six hours: 60 + 90 + 210 minutes**. Slides and full-length exercises outside the lecture selection are independent study unless assigned in the tutorial’s four blocks. Use the worked answers to check an attempt; optional extensions can use consolidation time. The complete route below reuses this material and adds no scheduled meeting or extra three-hour study requirement.
