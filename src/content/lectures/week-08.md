@@ -31,12 +31,12 @@ Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/d
 
 ### 90-minute tutorial
 
-Thursday, **2–3.30 pm**. Follow the [Week 8 tutorial](/sessions/08-threat-model/): **20 minutes asset flow; 25 minutes detector calculations; 20 minutes triage; 25 minutes review-state replay**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+Thursday, **2–3.30 pm**. Follow the [Week 8 tutorial](/sessions/08-threat-model/): **20 minutes asset flow; 25 minutes detector calculations; 20 minutes triage; 25 minutes review-state replay and quiz**. The last block includes ten minutes for the interactive quiz and its debrief. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
 
 ### Independent work · about 210 minutes
 
 - **30 minutes — before Monday:** Bring the Week 2 boundary map and Week 7 state machine. Inspect the seven triage cards and the scored-row schema.
-- **90 minutes — between Monday and Thursday:** Review the remaining pack, especially uncertain heuristics, prevalence assumptions and review histories (slides 11–14, 33–34 and 36–42). Open the six-file workbook and list the event cases to inspect in the tutorial.
+- **90 minutes — between Monday and Thursday:** Review the remaining pack, especially uncertain heuristics, prevalence assumptions and review histories (slides 11–14, 33–34 and 36–42). Open the six-file workbook, prepare your review wrapper and list the event cases to inspect in the tutorial.
 - **90 minutes — consolidation and assessment:** Complete the Threat model and literal boundary tests; carry its findings and controls into the final project’s release plan.
 
 Together this is about **six hours: 60 + 90 + 210 minutes**. Slides and full-length exercises outside the lecture selection are independent study unless assigned in the tutorial’s four blocks. Use the worked answers to check an attempt; optional extensions can use consolidation time. The complete route below reuses this material and adds no scheduled meeting or extra three-hour study requirement.

@@ -49,6 +49,13 @@ const fixtures = [
     withheld: 'gives 5q = 3.5', feedback: ['q = 0.7', 'r = 3/5', 'window [5, 8)'],
     captureCases: [2, 3, 4, 5],
   },
+  {
+    id: 'threat-audit', route: 'sessions/08-threat-model/', firstQuestion: 'boundary', numberQuestion: 'precision',
+    allCorrect: ['remove', 'coded', '37.5', 'cost-aware', 'projected', 'retain'],
+    mixed: ['declaration', 'coded', '75', 'always-high', 'recall', 'retain'],
+    withheld: 'precision = 100 × 6/16 = 37.5%', feedback: ['100 × 6/16 = 37.5%', '12/61 ≈ 19.67%', 'window is [4, 6)'],
+    captureCases: [1, 2, 4, 5],
+  },
 ];
 
 export async function inspectTutorialQuiz(browser, root, screenshots) {
