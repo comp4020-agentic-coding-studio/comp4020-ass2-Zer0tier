@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="420" viewBox="0 0 640 420" role="img" aria-labelledby="title desc">
+  <title id="title">Half-open sampling intervals for the new C row</title>
+  <desc id="desc">C: 0 inclusive to 0.375 exclusive. A: 0.375 inclusive to 0.625 exclusive. N: 0.625 inclusive to 0.875 exclusive. E: 0.875 inclusive to 1 exclusive.</desc>
+  <rect width="640" height="420" rx="14" fill="#fff7fa"/>
+  <g font-family="Arial, sans-serif" font-size="30" fill="#272c38">
+    <text x="320" y="44" text-anchor="middle">C row · half-open intervals</text>
+    <rect x="32" y="66" width="576" height="64" rx="8" fill="#dfeaf9" stroke="#315f98" stroke-width="2"/>
+    <text x="58" y="108">C</text><text x="190" y="108">0 ≤ u &lt; 0.375</text>
+    <rect x="32" y="146" width="576" height="64" rx="8" fill="#f9dbe7" stroke="#983657" stroke-width="2"/>
+    <text x="58" y="188">A</text><text x="190" y="188">0.375 ≤ u &lt; 0.625</text>
+    <rect x="32" y="226" width="576" height="64" rx="8" fill="#dfeaf9" stroke="#315f98" stroke-width="2"/>
+    <text x="58" y="268">N</text><text x="190" y="268">0.625 ≤ u &lt; 0.875</text>
+    <rect x="32" y="306" width="576" height="64" rx="8" fill="#f9dbe7" stroke="#983657" stroke-width="2"/>
+    <text x="58" y="348">E</text><text x="190" y="348">0.875 ≤ u &lt; 1</text>
+    <text x="320" y="406" text-anchor="middle">Include left · exclude right</text>
+  </g>
+</svg>

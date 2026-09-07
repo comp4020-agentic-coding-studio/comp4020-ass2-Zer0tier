@@ -63,6 +63,13 @@ const fixtures = [
     withheld: '0.20 × 0.15 = 0.03 = 3%', feedback: ['0.20 × 0.15 = 0.03 = 3%', '91.5 minutes in both models', 'confirmBy = 1000'],
     captureCases: [0, 2, 3, 5],
   },
+  {
+    id: 'date-audit', route: 'sessions/10-date-simulation/', firstQuestion: 'orientation', numberQuestion: 'endpoint',
+    allCorrect: ['row-update', 'half-open', '37.5', 'prefix', 'review-bill', 'withdrawal'],
+    mixed: ['normalise', 'half-open', '12.5', 'guaranteed', 'auto-split', 'withdrawal'],
+    withheld: 'Their sum is 0.375 = 37.5%', feedback: ['Their sum is 0.375 = 37.5%', '177/800 = 0.22125', 'pending → agreed → declined'],
+    captureCases: [1, 2, 3, 5],
+  },
 ];
 
 export async function inspectTutorialQuiz(browser, root, screenshots) {

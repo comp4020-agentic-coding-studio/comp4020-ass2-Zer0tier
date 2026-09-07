@@ -31,12 +31,12 @@ Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/d
 
 ### 90-minute tutorial
 
-Thursday, **2–3.30 pm**. Follow the [Week 10 tutorial](/sessions/10-date-simulation/): **20 minutes exact propagation; 30 minutes simulation; 20 minutes sensitivity; 20 minutes metaphor and bill review**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+Thursday, **2–3.30 pm**. Follow the [Week 10 tutorial](/sessions/10-date-simulation/): **20 minutes exact propagation; 30 minutes simulation; 20 minutes sensitivity; 20 minutes observation review and quiz**. The last block includes ten minutes for the interactive quiz and its debrief. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
 
 ### Independent work · about 210 minutes
 
 - **30 minutes — before Monday:** Bring the Offline handover plan and Communication state machine; read the four-state matrix and the sampling convention.
-- **90 minutes — between Monday and Thursday:** Review remaining worked derivations, particularly eventual absorption, sampler boundaries and the memory counterexample (slides 16–19, 22–23 and 36–39). Open the eleven-file workbook and check the seed/horizon settings for Thursday.
+- **90 minutes — between Monday and Thursday:** Review remaining worked derivations, particularly eventual absorption, sampler boundaries and the memory counterexample (slides 16–19, 22–23 and 36–39). Open the eleven-file workbook, check the seed/horizon settings and prepare the arrival/bill trace and a memoryless counterexample for Thursday's review.
 - **90 minutes — consolidation and assessment:** Finish the Date transition model, compare errors and preserve the separate observation export. Write the model-limit explanation for the final project.
 
 Together this is about **six hours: 60 + 90 + 210 minutes**. Slides and full-length exercises outside the lecture selection are independent study unless assigned in the tutorial’s four blocks. Use the worked answers to check an attempt; optional extensions can use consolidation time. The complete route below reuses this material and adds no scheduled meeting or extra three-hour study requirement.
