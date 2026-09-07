@@ -42,6 +42,13 @@ const fixtures = [
     withheld: 'Equating them gives 10λ = 1.5', feedback: ['λ = 0.15 utility units per second', '9/40 = 22.5%', '14/20 = 70%'],
     captureCases: [1, 2, 3, 5],
   },
+  {
+    id: 'communication-audit', route: 'sessions/07-communication/', firstQuestion: 'receipt', numberQuestion: 'threshold',
+    allCorrect: ['fields', 'complement', '0.7', 'best-responses', 'late', 'preserve'],
+    mixed: ['delivered', 'complement', '0.9', 'dominant', 'extend', 'preserve'],
+    withheld: 'gives 5q = 3.5', feedback: ['q = 0.7', 'r = 3/5', 'window [5, 8)'],
+    captureCases: [2, 3, 4, 5],
+  },
 ];
 
 export async function inspectTutorialQuiz(browser, root, screenshots) {

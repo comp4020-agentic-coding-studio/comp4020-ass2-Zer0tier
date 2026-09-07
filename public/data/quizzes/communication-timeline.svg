@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480" role="img" aria-labelledby="title description">
+  <title id="title">A three-hour observation window and four event records</title>
+  <desc id="description">Send at 5 hours, wait at 5.1 hours, read at 6 hours, reply at 8 hours. No timeout record is supplied. This diagram shows inputs only.</desc>
+  <rect width="640" height="480" fill="#fff7fa"/>
+  <path d="M320 122V407" fill="none" stroke="#28538a" stroke-width="4"/>
+  <g font-family="Arial, sans-serif" text-anchor="middle" fill="#272c38" font-size="32">
+    <text x="320" y="42">Authored event replay · hours</text>
+    <text x="320" y="82">Window length: 3 h</text>
+    <g fill="#dfeaf9" stroke="#28538a" stroke-width="3">
+      <rect x="48" y="106" width="544" height="62" rx="8"/>
+      <rect x="48" y="186" width="544" height="62" rx="8"/>
+      <rect x="48" y="266" width="544" height="62" rx="8"/>
+    </g>
+    <rect x="48" y="346" width="544" height="62" rx="8" fill="#f9dbe7" stroke="#903252" stroke-width="3"/>
+    <text x="320" y="148">5.00 · send record</text>
+    <text x="320" y="228">5.10 · wait</text>
+    <text x="320" y="308">6.00 · read receipt</text>
+    <text x="320" y="388">8.00 · reply</text>
+    <text x="320" y="455" font-size="30">No timeout record was supplied.</text>
+  </g>
+</svg>
