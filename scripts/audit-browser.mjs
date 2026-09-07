@@ -4,6 +4,7 @@ import { readdirSync, mkdirSync, writeFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { gitOrigin, resolveDeployment } from './pages-base.ts';
 import { inspectDeck } from './audit-decks.mjs';
+import { inspectTutorialQuiz } from './audit-tutorial-quiz.mjs';
 
 const { base } = resolveDeployment(process.env, gitOrigin);
 const origin = process.env.AUDIT_ORIGIN ?? 'http://127.0.0.1:4322';
@@ -288,6 +289,8 @@ try {
   await network.send('Network.emulateNetworkConditions',{offline:false,latency:0,downloadThroughput:-1,uploadThroughput:-1});
   await network.detach();
   console.log('Phone homepage remained usable with a cold cache, 150ms latency and 200kB/s download.');
+
+  await inspectTutorialQuiz(browser, root, screenshots);
 
   for (const route of routes.filter(route => route.startsWith('decks/'))) {
     await inspectDeck(page, root + route, screenshots);

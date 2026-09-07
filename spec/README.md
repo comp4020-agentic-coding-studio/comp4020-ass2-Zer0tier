@@ -15,6 +15,14 @@ the built model and CSV files, checking stateful Elo and exposure allocation.
 None judges prose quality, feature-rating honesty or
 whether a declared dependency is educationally useful.
 
+`tutorial-quiz.test.ts` checks the first tutorial's six application cases,
+complete-attempt grading and absence of solution explanations in the initial
+HTML. `scripts/audit-tutorial-quiz.mjs`, also called by `pnpm check:browser`,
+checks that no answer request or reveal occurs before all six responses and
+submission. It covers keyboard navigation, partial/mixed/full attempts,
+invalid numeric input, a failed request and retry, reset, no-JS fallback,
+contrast and mobile layout. These are practice checks, not course grades.
+
 `photo-kit.test.ts` extracts the exact Week 3 student ZIP, checks it against the
 individual downloads, runs its workbook and verifies literal numeric answers.
 It changes image bytes and frozen crop metadata in temporary copies to prove

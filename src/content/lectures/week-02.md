@@ -31,7 +31,7 @@ Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/d
 
 ### 90-minute tutorial
 
-Thursday, **2–3.30 pm**. Follow the [Week 2 tutorial](/sessions/02-platforms/): **20 minutes pipeline/source audit; 25 minutes Elo implementation; 25 minutes census audit; 20 minutes feedback and claim repair**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+Thursday, **2–3.30 pm**. Follow the [Week 2 tutorial](/sessions/02-platforms/): **20 minutes pipeline/source audit; 25 minutes Elo implementation; 25 minutes census audit; 20 minutes feedback, claim repair and quiz**. The last block includes ten minutes for the interactive quiz and its debrief. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
 
 ### Independent work · about 210 minutes
 

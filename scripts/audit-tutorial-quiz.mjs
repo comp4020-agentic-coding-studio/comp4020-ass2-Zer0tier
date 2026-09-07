@@ -1,0 +1,166 @@
+import { chromium, expect } from '@playwright/test';
+import { createRequire } from 'node:module';
+import { mkdirSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import assert from 'node:assert/strict';
+import { gitOrigin, resolveDeployment } from './pages-base.ts';
+
+const axePath = createRequire(import.meta.resolve('astro-theme-university')).resolve('axe-core/axe.min.js');
+const allCorrect = ['filtered', 'scoped', '1412', 'corrected', 'bounded', 'allocation'];
+const mixed = ['highest', 'scoped', '1424', 'old', 'causal', 'allocation'];
+
+export async function inspectTutorialQuiz(browser, root, screenshots) {
+  const context = await browser.newContext({ reducedMotion: 'reduce' });
+  const page = await context.newPage();
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  const quiz = page.locator('#platform-audit-quiz');
+  const form = quiz.locator('form');
+  const results = quiz.locator('[data-quiz-results]');
+  const submit = quiz.getByRole('button', { name: 'Reveal answers', exact: true });
+  const keyUrl = root + 'data/quizzes/platform-audit.json';
+  let answerRequests = 0;
+  page.on('request', request => { if (request.url() === keyUrl) answerRequests++; });
+
+  async function open() {
+    await page.goto(root + 'sessions/02-platforms/#platform-audit-quiz');
+    await expect(quiz).toHaveAttribute('data-enhanced', 'true');
+  }
+  async function choose(index, response) {
+    await quiz.locator(`[data-quiz-step="${index}"]`).click();
+    const field = quiz.locator('[data-quiz-question]').nth(index);
+    if (index === 2) await field.getByRole('textbox').fill(response);
+    else await field.locator(`input[value="${response}"]`).check();
+  }
+  async function noReveal() {
+    await expect(results).toBeHidden();
+    assert.equal(await quiz.locator('[data-quiz-feedback] article').count(), 0);
+    assert(!(await quiz.textContent()).includes('Then 1400 + 24'), 'No worked solution exists in the hidden DOM');
+  }
+  async function geometryAndAxe(label) {
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), page.viewportSize().width, label);
+    const targets = await quiz.locator('label.quiz-option, button:visible, input[type="text"]:visible').evaluateAll(elements => elements.filter(el => el.checkVisibility()).map(el => {
+      const r = el.getBoundingClientRect(); return { text: el.textContent, w: r.width, h: r.height };
+    }));
+    assert(targets.every(t => t.w >= 44 && t.h >= 44), `${label}: touch targets ${JSON.stringify(targets)}`);
+    await page.addScriptTag({ path: axePath });
+    const violations = await page.evaluate(async () => (await window.axe.run(document, {
+      runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'] },
+    })).violations.map(v => ({ id: v.id, targets: v.nodes.map(n => n.target) })));
+    assert.deepEqual(violations, [], label);
+  }
+
+  try {
+    for (const viewport of [{ width: 1920, height: 1080 }, { width: 390, height: 844 }]) {
+      await page.setViewportSize(viewport);
+      await open();
+      const requestsBefore = answerRequests;
+      await noReveal();
+      await expect(submit).toBeDisabled();
+      await geometryAndAxe(`Initial quiz at ${viewport.width}`);
+      if (screenshots) await quiz.screenshot({ path: `${screenshots}/quiz-initial-${viewport.width}.png` });
+
+      // A direct submit cannot bypass the button's completion gate.
+      await form.evaluate(el => el.requestSubmit());
+      await expect(quiz.locator('[data-quiz-error]')).toBeFocused();
+      await expect(quiz.locator('[data-error-list] li')).toHaveCount(6);
+      await noReveal();
+      assert.equal(answerRequests, requestsBefore);
+
+      // Actual native-radio keyboard interaction, including changing a choice.
+      await quiz.locator('[data-error-list] a').first().click();
+      await expect(quiz.locator('input[name="queue"]').first()).toBeFocused();
+      await page.keyboard.press('Space');
+      await page.keyboard.press('ArrowDown');
+      await expect(quiz.locator('input[value="filtered"]')).toBeChecked();
+      await choose(0, mixed[0]);
+      await choose(1, mixed[1]);
+      await choose(2, 'not a number');
+      await expect(quiz.locator('[data-quiz-status]')).toContainText('2 of 6 answered');
+      await form.evaluate(el => el.requestSubmit());
+      await expect(quiz.locator('input[name="elo"]')).toHaveAttribute('aria-invalid', 'true');
+      await geometryAndAxe(`Incomplete quiz at ${viewport.width}`);
+      await choose(2, mixed[2]);
+      await choose(3, mixed[3]);
+      await choose(4, mixed[4]);
+      await expect(quiz.locator('[data-quiz-status]')).toContainText('5 of 6 answered');
+      await expect(submit).toBeDisabled();
+      await form.evaluate(el => el.requestSubmit());
+      await noReveal();
+      assert.equal(answerRequests, requestsBefore, 'Five answers must not fetch the solutions');
+
+      await choose(5, mixed[5]);
+      await quiz.getByRole('button', { name: 'Previous case', exact: true }).click();
+      await expect(quiz.locator('input[value="causal"]')).toBeChecked();
+      await expect(submit).toBeEnabled();
+      await noReveal();
+      assert.equal(answerRequests, requestsBefore, 'Completing the sixth case does not auto-reveal');
+
+      // A failed solution request keeps the attempt and supports a real retry.
+      await page.route(keyUrl, route => route.fulfill({ status: 503, body: 'Temporarily unavailable' }), { times: 1 });
+      await submit.click();
+      await expect(quiz.locator('[data-quiz-load-error]')).toBeVisible();
+      await expect(submit).toBeFocused();
+      await noReveal();
+      await submit.click();
+      await expect(quiz.locator('[data-quiz-result-title]')).toHaveText('2 of 6 cases checked correctly');
+      await expect(quiz.locator('[data-quiz-result-title]')).toBeFocused();
+      await expect(results.locator('article')).toHaveCount(6);
+      await expect(results).toContainText('1412');
+      await expect(results).toContainText('36/900 = 4%');
+      await geometryAndAxe(`Worked feedback at ${viewport.width}`);
+      if (screenshots) await results.screenshot({ path: `${screenshots}/quiz-feedback-${viewport.width}.png` });
+
+      await quiz.getByRole('button', { name: 'Try again', exact: true }).click();
+      await noReveal();
+      await expect(quiz.locator('[data-quiz-status]')).toContainText('0 of 6 answered');
+      await expect(submit).toBeDisabled();
+      assert.equal(await quiz.locator('input:checked').count(), 0);
+      await expect(quiz.locator('input[name="elo"]')).toHaveValue('');
+      for (let i = 0; i < allCorrect.length; i++) await choose(i, allCorrect[i]);
+      await submit.focus();
+      await page.keyboard.press('Enter');
+      await expect(quiz.locator('[data-quiz-result-title]')).toHaveText('6 of 6 cases checked correctly');
+      await page.reload();
+      await expect(quiz.locator('[data-quiz-status]')).toContainText('0 of 6 answered');
+      await noReveal();
+    }
+
+    for (const viewport of [{ width: 375, height: 667 }, { width: 844, height: 390 }]) {
+      await page.setViewportSize(viewport);
+      await open();
+      for (let index = 0; index < 6; index++) {
+        await quiz.locator(`[data-quiz-step="${index}"]`).click();
+        await geometryAndAxe(`Case ${index + 1} at ${viewport.width}`);
+      }
+    }
+    const noJs = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+    const staticPage = await noJs.newPage();
+    await staticPage.goto(root + 'sessions/02-platforms/#platform-audit-quiz');
+    await expect(staticPage.locator('[data-quiz-fallback]')).toBeVisible();
+    await expect(staticPage.locator('[data-quiz-question]:visible')).toHaveCount(6);
+    await expect(staticPage.locator('[data-quiz-submit]')).toBeDisabled();
+    await expect(staticPage.locator('[data-quiz-results]')).toBeHidden();
+    const staticUrl = staticPage.url();
+    await staticPage.locator('input[name="elo"]').fill('100');
+    await staticPage.keyboard.press('Enter');
+    assert.equal(staticPage.url(), staticUrl, 'No-JS Enter must not send responses as URL parameters');
+    assert.equal(await staticPage.evaluate(() => document.documentElement.scrollWidth), 390);
+    await noJs.close();
+    assert.deepEqual(errors, []);
+    console.log('Tutorial quiz passed: six-case completion gate, no early solution requests, keyboard, mixed/full scores, retry, load recovery, no-JS, axe and four viewports.');
+  } finally {
+    await context.close();
+  }
+}
+
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const { base } = resolveDeployment(process.env, gitOrigin);
+  const root = `${process.env.AUDIT_ORIGIN ?? 'http://127.0.0.1:4322'}${base.replace(/\/$/, '')}/`;
+  const screenshots = process.env.AUDIT_SCREENSHOTS ?? '/tmp/tutorial-quiz-audit';
+  mkdirSync(screenshots, { recursive: true });
+  const browser = await chromium.launch();
+  try { await inspectTutorialQuiz(browser, root, screenshots); }
+  finally { await browser.close(); }
+}

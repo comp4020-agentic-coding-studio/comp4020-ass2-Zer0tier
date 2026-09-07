@@ -49,6 +49,12 @@ teaching week just because it has no tutorial. Week 2 uses the week 1 lecture's
 boundary example and creates its own map within the platform audit. Protect
 the twelve-lecture/eleven-tutorial split and absence of stale links in spec/.
 Each tutorial builds an engineering artefact for an evaluated profile release.
+Tutorial quizzes use new fictional cases that apply the week's knowledge.
+Keep correctness, scores and worked explanations hidden until every question
+has a response and the student submits. An incorrect but valid response counts
+as an attempt. Check the gate in the browser, including Enter, missing answers
+and retries; no early solution fetch or hidden answer markup. Fit quizzes into
+the existing 90-minute tutorial rather than adding contact time.
 Use technical deadpan: define the objective, implement the model, then find the
 assumption that breaks it. The student's revised twelve-week sequence is the
 contract: introduction; platform architecture/Elo; photography; NLP/bio A/B
