@@ -1,0 +1,64 @@
+---
+interface Props { kind:'bridge'|'architectures'|'record'|'quorum'|'stale'|'expiry'|'terminal'|'exit'|'retention'|'identity'|'reproduction'|'difference'|'rollback'|'early'|'late'|'handover'; }
+const {kind}=Astro.props;
+const tables={
+  architectures:{caption:'Two separate fictional architectures; neither is a default',headers:['Example','Scope','Limit'],rows:[['A + B','Agreed monogamy','No person is owned'],['P + Q + R','Shared ENM planning','No access to other dyads']],note:'Only affected commitments belong in the shared agreement. Everyone retains an exit.'},
+  record:{caption:'A proposal must identify what would change',headers:['Field','Example'],rows:[['Agreement / base','routine-example / v1'],['Affected participants','A and B'],['Proposed routine','Two optional activity choices'],['Decision window','Ticks [1, 10)']],note:'Record exact terms, purpose and privacy boundary. These ticks prescribe no real waiting time.'},
+  quorum:{caption:'Proposal creation does not count as an acceptance',headers:['Event','Acceptances','Current'],rows:[['Propose','0 of 2','v1'],['A accepts','1 of 2','v1'],['B accepts','2 of 2','v2']],note:'The separate three-person example needs 3 of 3, not a majority.'},
+  stale:{caption:'A client still holding v1 must not overwrite v2',headers:['Stored state','Incoming base','Result'],rows:[['v1','v1','Review proposal'],['v2','v1','Reject stale write'],['v2','Any version + end','End immediately']],note:'Version checks protect a change. They must never become a barrier to leaving.'},
+  expiry:{caption:'A bounded reporting window, not a response obligation',headers:['Last acceptance','Outcome','Current'],rows:[['Tick 9','Adopted','v2'],['Tick 10','Expired','v1'],['No response; clock 10','Expired','v1']],note:'Expired is not rejected. The old routine is recorded, not automatically enforced.'},
+  retention:{caption:'Day 14 · five invented inventory records',headers:['Record','Action'],rows:[['Source bundle','Retain for purpose'],['Raw events','Plan own-copy deletion'],['Scratch drafts','Plan own-copy deletion'],['Other person’s copy','Outside control'],['Boundary summary','Retain for purpose']],note:'Two records / three own copies are due. No listed file is deleted by this planner.'},
+  identity:{caption:'Do not collapse three different identifiers',headers:['Identifier','What it names'],rows:[['Agreement version','Which terms were acknowledged'],['Release label','Which software snapshot is selected'],['Content digest','Which exact bytes match']],note:'A matching hash is not an agreement, an identity proof or a security review.'},
+  difference:{caption:'Fault drill · compare to the retained four-file manifest',headers:['Check','Finding'],rows:[['Changed','index.html'],['Extra','obsolete.txt'],['Missing','None'],['Score still printed','93.75 / rank 2']],note:'The faulty page lost “Fine to pass.” Its old evaluation is no longer evidence for the rendered text.'},
+  early:{caption:'Call the earlier boundary functions',headers:['Week','Attempt after closure','Result'],rows:[['6','Reply after declined boundary','stop'],['7','Late reply after decline','closed preserved'],['8','Clear a hold after decline','closed preserved']],note:'These are actual function calls, not a table of expected behaviour copied into a report.'},
+  late:{caption:'Preserve endings through the remaining handoffs',headers:['Week','Boundary','Check'],rows:[['9','Cancelled proposal','No date export'],['10','Ended meeting','No later change'],['11','Declined observation','Still declined'],['12','Ended agreement','No reopening']],note:'The software restore never writes to these agreement records.'},
+  handover:{caption:'One index across eleven tutorial artefacts',headers:['Weeks','Evidence to locate'],rows:[['2–4','Audit, photo manifest, bio protocol'],['5–7','Probability, messages, communication'],['8–10','Threats, offline plan, date model'],['11–12','Evaluation, maintenance and exit']],note:'Add actual local paths, versions and checks. A course link does not prove your artefact exists.'},
+};
+const flows={
+  bridge:{caption:'Week 11 release → reproducible maintenance input',steps:[['Take receipt','Exact candidate + failed rank'],['Check provenance','Sixteen sources + manifest'],['Rebuild','A new directory with those inputs'],['Retain evidence','Byte checks + actual browser review']],note:'The reference remains 93.75, rank 2/100. No new candidate is created to improve the score.'},
+  terminal:{caption:'Adopting a change and ending use different rules',steps:[['Change','All named participants acknowledge exact terms'],['End','One participant can end at any phase']],note:'Practical dependencies do not become a condition for ending. Late events cannot reopen the record.'},
+  exit:{caption:'An ending can be clear while practical work remains',steps:[['Record the ending','Clear boundary; no persuasion loop'],['List dependencies','Owner, task, separate status'],['Minimise records','Purpose, copies and expiry'],['Keep control scoped','Only your own systems and copies']],note:'No protocol guarantees zero emotional pain. No return item buys renewed agreement.'},
+  reproduction:{caption:'Rebuild with the original Week 11 generator',steps:[['Received','Existing example or labelled reconstruction'],['Clean source','Copy exactly sixteen verified inputs'],['Reproduced','New four-file output directory'],['Compare','All four output files match byte for byte']],note:'This is same-host reproduction, not an independent machine or a hermetic environment.'},
+  rollback:{caption:'Actual local snapshots in the drill',steps:[['Baseline','Retained four-file manifest'],['Faulty','Exit removed + stale extra file'],['Restored','Complete baseline bytes in a new folder'],['Inspect','Text, evaluation, keyboard and viewport']],note:'The damaged copy stays available as evidence. No public deployment is switched.'},
+};
+const table=kind in tables ? tables[kind as keyof typeof tables] : null;
+const flow=kind in flows ? flows[kind as keyof typeof flows] : null;
+---
+<figure class="maintenance-figure">
+  {table && <>
+    <figcaption>{table.caption}</figcaption>
+    <table><thead><tr>{table.headers.map(header=><th scope="col">{header}</th>)}</tr></thead><tbody>
+      {table.rows.map(row=><tr><th scope="row">{row[0]}</th>{row.slice(1).map(cell=><td>{cell}</td>)}</tr>)}
+    </tbody></table><p class="note">{table.note}</p>
+  </>}
+  {flow && <>
+    <figcaption>{flow.caption}</figcaption>
+    <ol>{flow.steps.map(([title,body])=><li><strong>{title}</strong><span>{body}</span></li>)}</ol>
+    <p class="note">{flow.note}</p>
+  </>}
+</figure>
+<style>
+  .maintenance-figure { width:min(100%,1100px); margin:.5rem auto 1rem; text-align:left; }
+  figcaption,.note { font-size:clamp(16px,1.3vw,24px) !important; line-height:1.35; }
+  figcaption { margin-bottom:.7rem; }
+  .note { margin:.7rem 0 0; }
+  table { width:100%; border-collapse:collapse; font-size:clamp(16px,1.6vw,30px); line-height:1.35; }
+  :is(th,td) { text-align:left; padding:.6rem; background:var(--course-paper); color:var(--course-ink); border-bottom:1px solid var(--course-blue-ink); }
+  ol { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.7rem; margin:0; padding:0; list-style:none; counter-reset:stage; }
+  li { display:grid; gap:.4rem; margin:0; padding:.8rem; border:2px solid var(--course-blue-ink); border-radius:8px; background:var(--course-paper); color:var(--course-ink); font-size:clamp(18px,1.6vw,30px) !important; line-height:1.3; counter-increment:stage; }
+  strong { color:var(--course-blue-ink); }
+  strong::before { content:counter(stage) '. '; }
+  @media (width < 650px) {
+    ol { grid-template-columns:1fr; gap:.5rem; }
+    li { padding:.6rem; gap:.25rem; }
+    :is(th,td) { padding:.5rem .3rem; overflow-wrap:anywhere; }
+  }
+  @media (height < 540px) {
+    .maintenance-figure { margin:.2rem auto; }
+    figcaption { margin-bottom:.3rem; }
+    .note { margin-top:.3rem; }
+    table,li { font-size:18px !important; }
+    :is(th,td) { padding:.3rem; }
+    li { padding:.5rem; gap:.2rem; }
+  }
+</style>

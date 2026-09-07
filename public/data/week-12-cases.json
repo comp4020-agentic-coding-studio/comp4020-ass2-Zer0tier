@@ -1,0 +1,40 @@
+{
+  "version":"week-12-v1",
+  "scope":"Authored classroom agreements, event ticks, retention days and a local software fault drill. These are separate scenarios, not new facts about Alex, observed relationships or a retention policy for real personal data.",
+  "agreement":{
+    "id":"routine-example","version":1,"participants":["A","B"],"acknowledgedBy":["A","B"],
+    "terms":{"architecture":"mutually agreed monogamy","routine":"Board games are an optional default; confirm each meeting separately.","privacy":"Share only the planning details needed for this agreement; no account or location access."}
+  },
+  "proposal":{"id":"p1","type":"propose","at":1,"actor":"A","baseVersion":1,"proposalId":"routine-options","expiresAt":10,
+    "terms":{"architecture":"mutually agreed monogamy","routine":"Offer a choice of two activities at an optional check-in; either can pass.","privacy":"Share only the planning details needed for this agreement; no account or location access."}},
+  "acknowledgements":[
+    {"id":"a1","type":"accept","at":2,"actor":"A","baseVersion":1,"proposalId":"routine-options"},
+    {"id":"b1","type":"accept","at":3,"actor":"B","baseVersion":1,"proposalId":"routine-options"}
+  ],
+  "networkAgreement":{
+    "id":"shared-planning-example","version":1,"participants":["P","Q","R"],"acknowledgedBy":["P","Q","R"],
+    "terms":{"architecture":"ethical non-monogamy, independently agreed","routine":"A shared optional planning check-in concerns only these three adults' shared commitments.","privacy":"Do not disclose another dyad's private details or claim control over unrelated relationships."}
+  },
+  "retentionScope":"A planning-only fixture: days after fictional submission, with expiry at day >= retainUntil. These 7/14/30-day numbers are invented, not institutional or legal rules. The program deletes no listed record and sends no request.",
+  "inventory":[
+    {"id":"source-bundle","owner":"student","synthetic":true,"purpose":"Reproduce assessed release","copies":["source archive","local backup"],"retainUntil":30,"releaseDependency":true},
+    {"id":"raw-events","owner":"student","synthetic":true,"purpose":"Review classroom event trace","copies":["notebook","local backup"],"retainUntil":14,"releaseDependency":false},
+    {"id":"scratch-drafts","owner":"student","synthetic":true,"purpose":"Temporary wording exercise","copies":["scratch folder"],"retainUntil":7,"releaseDependency":false},
+    {"id":"other-copy","owner":"other","synthetic":true,"purpose":"Another person's independently held classroom copy","copies":["outside this workspace"],"retainUntil":7,"releaseDependency":false},
+    {"id":"boundary-summary","owner":"student","synthetic":true,"purpose":"Minimal terminal marker for this exercise's no-retry check","copies":["local review record"],"retainUntil":30,"releaseDependency":true}
+  ],
+  "fault":{"id":"dropped-exit","target":"index.html","needle":"Fine to pass.","replacement":"","scope":"Deliberately remove the exit wording from a disposable local release copy. Keep the trusted baseline manifest and evaluation unchanged so the defect is detectable."},
+  "handover":[
+    {"week":2,"artifact":"Platform audit","route":"02-platforms"},
+    {"week":3,"artifact":"Photo asset manifest","route":"03-photo-assets"},
+    {"week":4,"artifact":"Bio experiment protocol","route":"04-bio-experiment"},
+    {"week":5,"artifact":"Match probability model","route":"05-match-probability"},
+    {"week":6,"artifact":"Message decision tree","route":"06-message-tree"},
+    {"week":7,"artifact":"Communication state machine","route":"07-communication"},
+    {"week":8,"artifact":"Threat model","route":"08-threat-model"},
+    {"week":9,"artifact":"Offline handover plan","route":"09-offline-handover"},
+    {"week":10,"artifact":"Date transition model","route":"10-date-simulation"},
+    {"week":11,"artifact":"Follow-up evaluation","route":"11-follow-up"},
+    {"week":12,"artifact":"Maintenance and exit manual","route":"12-maintenance"}
+  ]
+}

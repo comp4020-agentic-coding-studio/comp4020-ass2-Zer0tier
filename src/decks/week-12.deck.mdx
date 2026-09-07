@@ -1,0 +1,493 @@
+---
+title: 'System Maintenance and Graceful Deprecation · Week 12'
+description: 'A three-hour teaching pack: versioned agreements, terminal endings, retention, clean reproduction and software rollback.'
+---
+
+import DeckTools from "../components/DeckTools.astro";
+import MaintenanceFigure from "../components/MaintenanceFigure.astro";
+
+<DeckTools />
+
+# Restore the software. Respect the ending.
+
+System Maintenance and Graceful Deprecation
+
+SLOP1276 · Week 12
+
+The release has a previous version. A person does not.
+
+---
+
+## The engineering output
+
+Build a **Maintenance and exit manual**, clean reproduction log, software rollback evidence and an index of eleven tutorial artefacts.
+
+Keep the exact Week 11 candidate, including the failed target.
+
+All agreements, ticks, retention days and faults are **authored teaching fixtures**.
+
+---
+
+## A three-hour route
+
+**30 min** · scope and versioned agreements.
+
+**35 min** · stale writes, expiry and endings. **10 min** · break.
+
+**30 min** · routines, dependencies and retention.
+
+**40 min** · reproduce, damage and restore the release.
+
+**35 min** · check the evidence chain and defend its limits.
+
+---
+
+## Take receipt before changing anything
+
+<MaintenanceFigure kind="bridge" />
+
+---
+
+## Acquisition was only the first subsystem
+
+A relationship is not a successfully acquired user.
+
+Maintenance needs agreements that can change, communication about those changes and room for either person to leave.
+
+The software analogy ends where it claims ownership of a human.
+
+---
+
+## Architectures are scoped examples
+
+<MaintenanceFigure kind="architectures" />
+
+---
+
+## Version the shared record
+
+<MaintenanceFigure kind="record" />
+
+---
+
+## Exercise · propose, then acknowledge
+
+**6 minutes.** A proposes optional activity choices at tick 1, based on v1.
+
+A explicitly accepts at tick 2; B accepts at tick 3.
+
+Trace the current version and pending responses.
+
+Does writing the proposal count as accepting it?
+
+---
+
+## Answer · the proposal stays separate
+
+<MaintenanceFigure kind="quorum" />
+
+---
+
+## A coded response needs an actor and target
+
+An acceptance names the exact proposal and base version.
+
+Duplicate delivery of the **same event** cannot add a vote. A new ID from the same actor cannot supply another person's response.
+
+The last adopted terms remain separate from pending terms.
+
+The code records authored acknowledgements; it proves no person's identity.
+
+---
+
+## The stale-copy problem
+
+<MaintenanceFigure kind="stale" />
+
+---
+
+## Exercise · two copies started at v1
+
+**5 minutes.** One change is adopted and creates v2. Another local copy submits a proposal based on v1.
+
+Overwrite v2, silently rebase to v2, or reject the stale proposal?
+
+What evidence would the first two choices invent or discard?
+
+---
+
+## Answer · review the actual current terms
+
+Reject the stale write. Read v2 and its changes before making a separately reviewed proposal.
+
+[RFC 9110: If-Match](https://www.rfc-editor.org/rfc/rfc9110.html#name-if-match) supplies the software precondition analogy.
+
+Our reducer is local. A distributed implementation needs an atomic check and update at its authority.
+
+Ending never depends on a current base version.
+
+---
+
+## A deadline supplies no answer
+
+<MaintenanceFigure kind="expiry" />
+
+---
+
+## Exercise · what is terminal?
+
+**5 minutes.** Compare three branches:
+
+No final acceptance by tick 10.
+
+B explicitly rejects the changed routine at tick 3.
+
+B ends the agreement at tick 3.
+
+Name the status of the proposal and the whole agreement.
+
+---
+
+## Answer · preserve the distinction
+
+No response: proposal **expired**, still review.
+
+Explicit no to the change: proposal **rejected**, still review. Do not retry its terms under a new ID.
+
+End: whole scoped agreement **ended**.
+
+Recorded old terms are not automatically enforced. Expiry is not an invitation to keep asking.
+
+---
+
+## Adopting and ending use different rules
+
+<MaintenanceFigure kind="terminal" />
+
+---
+
+## Exercise · end during review
+
+**5 minutes.** Only A has accepted a pending change. B ends the agreement.
+
+Now deliver a late acceptance, a clock tick and an old-version restoration attempt.
+
+Compare the **complete snapshot** after each input, not just the phase label.
+
+---
+
+## Answer · the terminal guard wins
+
+The pending proposal becomes **cancelled-by-ending**. The agreement records **endedBy: B**.
+
+Every later input leaves the complete ended record unchanged.
+
+No second vote, up-to-date screen or settled practical task is required to end.
+
+A new identifier cannot be used to bypass this boundary.
+
+---
+
+## Make the convention testable
+
+Reject unknown actors, stale versions, conflicting IDs and backwards chronology.
+
+Accept exact duplicate delivery once. Use **[1,10)** for this proposal window.
+
+In a disposable copy, remove the ended guard or include tick 10. Predict the failing literal answer, run, restore and rerun.
+
+A classroom ledger is not tamper-proof storage.
+
+---
+
+## Break · 10 minutes
+
+When you return, separate the ending from the remaining practical work.
+
+Then restore the actual Week 11 files.
+
+---
+
+## The “comfortable rut” scenario
+
+One fictional participant explicitly says: **“I want more choice than the same activity each time.”**
+
+The maintenance objective is to make that change discussable.
+
+Latency, facial expression or an emoji count does not supply the statement.
+
+More monitoring is not automatically better maintenance.
+
+---
+
+## Exercise · measure what is needed
+
+**5 minutes.** Compare collecting daily location, read-receipt and mood records with an optional check-in about activity choices.
+
+What is the stated need? Which information serves it?
+
+How can the participant decline the discussion or end the arrangement?
+
+---
+
+## Answer · a bounded change request
+
+Ask about the activity choice directly, if the discussion is welcome.
+
+Name scope, affected participants, proposed terms and the option to pass.
+
+Surveillance cannot supply agreement.
+
+“Would you like to discuss changing our usual activity? Fine to leave it for now or say no.” is an authored draft, not a sent message.
+
+---
+
+## Deprecate without a persuasion loop
+
+<MaintenanceFigure kind="exit" />
+
+---
+
+## Exercise · the game is still borrowed
+
+**5 minutes.** An agreement ends while a borrowed game and an unresolved expense remain.
+
+Someone proposes keeping the relationship active until both are settled.
+
+Repair the model and write one bounded practical task record.
+
+---
+
+## Answer · two independent statuses
+
+**Agreement: ended.** Practical task: unresolved.
+
+Record the item, owner, task and a separately acceptable method. Do not invent delivery or payment.
+
+An unresolved task cannot require an in-person meeting or buy renewed agreement.
+
+No protocol guarantees zero emotional pain.
+
+---
+
+## Inventory purpose, owner and copies
+
+<MaintenanceFigure kind="retention" />
+
+---
+
+## Exercise · where did the backup go?
+
+**5 minutes.** The raw-event exercise exists in a notebook and a backup. Only the notebook copy is removed.
+
+Is its deletion task complete? What control do you have over another person's copy?
+
+At day 30, what happens to files still required for release reproduction?
+
+---
+
+## Answer · record the remaining scope
+
+Both own copies belong in the plan. The other person's copy stays **outside control**.
+
+At day 30, two release dependencies require review rather than automatic deletion.
+
+[W3C data minimization](https://www.w3.org/TR/privacy-principles/#data-minimization) supports limiting unnecessary data.
+
+The 7/14/30-day periods are invented. The planner deletes no listed file and sends no request.
+
+---
+
+## Three identifiers, different jobs
+
+<MaintenanceFigure kind="identity" />
+
+---
+
+## Define what must reproduce
+
+[Reproducible Builds](https://reproducible-builds.org/docs/definition/) ties the claim to specified source, environment, instructions and output bytes.
+
+Record the Node version, platform and architecture.
+
+Week 12 compares **four output files**. The baseline score stays **93.75, rank 2**.
+
+Same-host reproduction does not prove an independent machine will match.
+
+---
+
+## A clean directory, the real generator
+
+<MaintenanceFigure kind="reproduction" />
+
+---
+
+## Nineteen downloads, one command
+
+Save the [three new files and sixteen Week 11 dependencies](/lectures/week-12/#run-the-nineteen-file-workbook) together.
+
+**node week-12-worked-examples.mjs --work-dir ./maintenance-lab**
+
+The directory must be new. Add **--release-dir ./example-rc1** to consume the existing unchanged example.
+
+Your own candidate uses your own documented build, not replacement reference scores.
+
+---
+
+## Exercise · compare the complete output set
+
+**5 minutes.** One output file has changed, another is missing and an extra file appears.
+
+Design the report fields that distinguish them.
+
+Would “the HTML opens” or “rank is still 2” prove reproduction?
+
+Keep the expected manifest from before the fault.
+
+---
+
+## Answer · missing, changed and extra
+
+Report each category separately. The actual drill below changes one file and adds another; no file is missing.
+
+<MaintenanceFigure kind="difference" />
+
+---
+
+## Restore the whole snapshot
+
+<MaintenanceFigure kind="rollback" />
+
+---
+
+## Exercise · two misleading repairs
+
+**5 minutes.** Repair A recalculates expected hashes from the faulty files.
+
+Repair B copies only index.html back, leaving obsolete.txt.
+
+Explain why both miss the stated restoration contract.
+
+What changes if the rollback archive itself no longer matches the retained manifest?
+
+---
+
+## Answer · retain the expected answer
+
+A changes the baseline to fit the fault. B leaves a stale extra output.
+
+Restore the complete declared snapshot. Reject a changed archive.
+
+[Git revert](https://git-scm.com/docs/git-revert) records a reversal as a new commit; this workbook uses local file snapshots.
+
+Matching self-generated hashes cannot prove provenance if both files and hashes were replaced.
+
+---
+
+## Exercise · inspect the restored page
+
+**10 minutes plus discussion.** Open faulty/index.html and restored/index.html. Compare the candidate to the frozen text.
+
+Check the restored exit wording and evaluation link with Tab, Shift+Tab and Enter.
+
+Inspect **1920×1080** and **390×844**, resize and enlarge text.
+
+Record actual results. Hashes do not prove rendered accessibility.
+
+---
+
+## Check earlier terminal boundaries
+
+<MaintenanceFigure kind="early" />
+
+---
+
+## Preserve them through maintenance
+
+<MaintenanceFigure kind="late" />
+
+---
+
+## Use the right check for each artefact
+
+Weeks 2–5 supply observations, assets, experiments and probability or feasibility calculations.
+
+Audit their evidence boundaries; a score function needs no invented breakup transition.
+
+Week 10's simulated N/E states remain separate from observed agreement and withdrawal.
+
+Software restoration writes none of those agreement records.
+
+---
+
+## The one-page handover index
+
+<MaintenanceFigure kind="handover" />
+
+---
+
+## Exercise · a link is not a dependency
+
+**5 minutes.** An index row says only “see the Week 9 tutorial.”
+
+Replace it with your actual artefact path, version, a recorded check and the later operation that consumes it.
+
+If the artefact is missing, what should the index say?
+
+---
+
+## Answer · make the handoff inspectable
+
+For example: identify the actual offline-plan file, its cost version, cancellation check and date-model consumer.
+
+A missing record stays a gap with work to complete. Do not fabricate a successful check.
+
+The generated handover template leaves all eleven evidence cells **To record**.
+
+Course links explain requirements; student files supply the evidence.
+
+---
+
+## Acceptance and quality remain separate
+
+Acceptance: the fictional page opens, matches the evaluated text and reproduces its published result.
+
+Quality: the explanation assesses evidence, scope, sensitivity and failed assumptions.
+
+The final's rubric grades engineering and judgment.
+
+It does not grade romantic outcomes or achieved benchmark rank.
+
+---
+
+## Defend the inconvenient result
+
+Locate one actual rejected candidate, one revision prompted by real report or exam feedback and one limiting result.
+
+If feedback or a revision is missing, name the gap. Do not invent a tutor comment or a first-person experience.
+
+The reference **rank 2/100** is an example of preserving a limitation.
+
+---
+
+## The existing final-project handoff
+
+**50% · 28 May 2027 · 5 pm Canberra time.**
+
+Model card: **1,200–1,600 words**. Separate defence: **300 words**.
+
+Keep the release, reproduction files, validation appendix, maintenance manual, rollback and actual browser evidence.
+
+Use the static URL or accepted local-build/demonstration route in the [project brief](/assessments/profile-deployment/).
+
+---
+
+## The final invariant
+
+The software can return to an earlier release.
+
+An ended agreement stays ended.
+
+Keep the failed target, the boundaries and enough evidence for another person to understand both.
+
+[Week 12 tutorial](/sessions/12-maintenance/) · [Worked notes and downloads](/lectures/week-12/)

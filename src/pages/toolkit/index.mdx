@@ -233,6 +233,43 @@ report and input/output checksums. Record actual keyboard and viewport checks
 separately. Week 12 needs this exact source/build record for reproduction and
 software rollback. A checksum is a byte comparison, not proof of consent.
 
+## Week 12 maintenance and rollback · version 1
+
+The [nineteen-file offline workbook](/lectures/week-12/#run-the-nineteen-file-workbook)
+adds [authored agreements and inventory](/data/week-12-cases.json),
+[agreement, retention and comparison functions](/data/week-12-models.mjs), and
+an [executable reproduction drill](/data/week-12-worked-examples.mjs). Keep the
+sixteen unchanged Week 11 downloads beside them. Run:
+
+```sh
+node week-12-worked-examples.mjs --work-dir ./maintenance-lab
+```
+
+Use a new output directory. Add `--release-dir ./example-rc1` to consume an
+existing unchanged Week 11 teaching release; otherwise the drill reconstructs
+that example. With no arguments it prints the report and cleans up only its own
+temporary drill directory. The automatic route supports this reference release;
+use your own build instructions and declared outputs for your own candidate.
+
+| Check | Literal reference result |
+| --- | --- |
+| Reproduction | All four received output files match the clean-copy rebuild. |
+| Injected fault | Changed `index.html` loses “Fine to pass.”; `obsolete.txt` is extra. |
+| Restoration | Four trusted files match; the extra file is absent. |
+| Evaluation | Primary 93.75/rank 2 and sensitivity 90/rank 2; changed-case failure retained. |
+| Proposed change | Versions 1, 1, 2 after propose/A/B; final acceptance at tick 10 expires. |
+| Ending | Either participant can end; later events leave the entire record unchanged. |
+| Retention | Day 14 plans removal of two records covering three own copies; no deletion is executed. |
+| Earlier boundaries | Actual Week 6–12 calls preserve refusal, cancellation, departure or ending. |
+
+Inspect `faulty/index.html` and `restored/index.html` in a browser. The generated
+report records byte comparisons and the environment; it supplies no browser
+result or independent-machine claim. Complete `handover-template.md` with your
+eleven tutorial artefacts, including real check results and feedback evidence.
+Release hashes do not authenticate people, and software rollback cannot reopen
+an ended agreement. The [tutorial](/sessions/12-maintenance/) turns this evidence
+into the existing Maintenance and exit manual.
+
 <h2 id="benchmark">Null Island v1 · the top-1% contract</h2>
 
 [Download the 99 synthetic controls](/data/null-island-controls.csv) and
