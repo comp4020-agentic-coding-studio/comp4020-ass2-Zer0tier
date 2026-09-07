@@ -28,6 +28,13 @@ const fixtures = [
     withheld: 'their union is {0, 1, 2}', feedback: ['100 × 3/4 = 75%', 'A = 38/80 = 47.5%', '0.06/0.12 = 50%'],
     captureCases: [1, 2, 3],
   },
+  {
+    id: 'match-audit', route: 'sessions/05-match-probability/', firstQuestion: 'conditional', numberQuestion: 'joint',
+    allCorrect: ['reverse', 'shared-draw', '12', 'studio', 'denominators', 'conservative'],
+    mixed: ['forward', 'shared-draw', '40', 'atrium', 'count-winner', 'conservative'],
+    withheld: 'P(A and B) = 0.40 × 0.30 = 0.12', feedback: ['20/100 = 20%', '0.40 × 0.30 = 0.12', 'rank = 1 + 4 = 5/100'],
+    captureCases: [2, 3, 4],
+  },
 ];
 
 export async function inspectTutorialQuiz(browser, root, screenshots) {

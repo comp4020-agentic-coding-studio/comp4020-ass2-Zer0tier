@@ -21,14 +21,17 @@ HTML. `photo-quiz.test.ts` covers the second tutorial's distinct photo cases,
 literal crop arithmetic and reviewer agreement, and publishing its own quiz
 without answer explanations in the initial page. `bio-quiz.test.ts` covers the
 third tutorial's Unicode budget, overlapping token matches, candidate length
-checks, new exposure reversal and gated grading/publication. The first three
-quizzes are on Weeks 2–4 respectively; Week 1 remains lecture-only.
+checks, new exposure reversal and gated grading/publication. `match-quiz.test.ts`
+covers the fourth tutorial's conditional probabilities, repeated models,
+travel boundaries, time-window rates and a new rating vector against the
+unchanged 99 controls, plus gated grading/publication. The first four quizzes
+are on Weeks 2–5 respectively; Week 1 remains lecture-only.
 `scripts/audit-tutorial-quiz.mjs`, also called by `pnpm check:browser`,
 checks that no answer request or reveal occurs before all six responses and
 submission. It covers keyboard navigation, partial/mixed/full attempts,
 invalid numeric input, a failed request and retry, reset, no-JS fallback,
-contrast and mobile layout for all three quizzes, with all six cases at four
-viewport sizes and image loading/containment checks for the crop and token diagrams.
+contrast and mobile layout for all four quizzes, with all six cases at four
+viewport sizes and image loading/containment checks for the teaching diagrams.
 These are practice checks, not course grades.
 
 `photo-kit.test.ts` extracts the exact Week 3 student ZIP, checks it against the
