@@ -8,6 +8,7 @@ import TeachingTeam from "../../components/TeachingTeam.astro";
 import WeekNavigation from "../../components/WeekNavigation.astro";
 import TutorialQuiz from "../../components/TutorialQuiz.astro";
 import { platformAuditQuiz } from "../../data/quizzes/platform-audit";
+import { photoAuditQuiz } from "../../data/quizzes/photo-audit";
 import { formatCourseDate } from "../../lib/dates";
 import { graphCollections, sessionLabels, siteConfig } from "../../site-config";
 
@@ -28,6 +29,7 @@ const { Content } = await render(session);
   <p><strong>{formatCourseDate(session.data.date)}</strong></p>
   <Content />
   {session.id === '02-platforms' && <TutorialQuiz quiz={platformAuditQuiz} answersUrl="/data/quizzes/platform-audit.json" />}
+  {session.id === '03-photo-assets' && <TutorialQuiz quiz={photoAuditQuiz} answersUrl="/data/quizzes/photo-audit.json" />}
   <SpecList spec={session.data.spec}>
     Before you finish, check your engineering artefact against these requirements.
   </SpecList>

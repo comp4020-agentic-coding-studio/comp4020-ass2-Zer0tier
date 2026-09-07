@@ -39,8 +39,9 @@ error summary with links to the missing cases. Results receive focus after
 submission. Without JavaScript, all six prompts remain readable and the
 reveal control stays disabled; solutions remain hidden.
 
-The Astro component, typed question model and browser behaviour can support
-later tutorial quizzes. Only the first tutorial currently mounts it. The
+The Astro component, typed question model and browser behaviour support
+later tutorial quizzes. The [second tutorial](tutorial-02-quiz.md) now uses it
+with a separate photo-audit question set and a crop diagram. The
 UI/UX skill supplied the error-summary and focus guidance; existing Astro
 scripts and course colour tokens were used without adding a UI framework.
 

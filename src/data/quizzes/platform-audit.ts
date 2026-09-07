@@ -4,6 +4,8 @@ import type { TutorialQuiz } from '../../lib/tutorial-quiz';
 export const platformAuditQuiz: TutorialQuiz = {
   id: 'platform-audit',
   title: 'Your shift at Null Island',
+  intro: 'The dashboard wants a victory lap. Check its arithmetic first.',
+  context: 'All profiles, disclosures and numbers here are fictional teaching examples.',
   questions: [
     {
       id: 'queue', type: 'choice', title: 'The queue jumper', skill: 'Filter → rank → expose',

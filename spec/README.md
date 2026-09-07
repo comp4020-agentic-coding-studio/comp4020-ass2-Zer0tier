@@ -17,11 +17,17 @@ whether a declared dependency is educationally useful.
 
 `tutorial-quiz.test.ts` checks the first tutorial's six application cases,
 complete-attempt grading and absence of solution explanations in the initial
-HTML. `scripts/audit-tutorial-quiz.mjs`, also called by `pnpm check:browser`,
+HTML. `photo-quiz.test.ts` covers the second tutorial's distinct photo cases,
+literal crop arithmetic and reviewer agreement, and publishing its own quiz
+without answer explanations in the initial page. The first and second quizzes
+are on Week 2 and Week 3 respectively; Week 1 remains lecture-only.
+`scripts/audit-tutorial-quiz.mjs`, also called by `pnpm check:browser`,
 checks that no answer request or reveal occurs before all six responses and
 submission. It covers keyboard navigation, partial/mixed/full attempts,
 invalid numeric input, a failed request and retry, reset, no-JS fallback,
-contrast and mobile layout. These are practice checks, not course grades.
+contrast and mobile layout for both quizzes, with all six cases at four
+viewport sizes and image loading/containment checks for the crop diagram.
+These are practice checks, not course grades.
 
 `photo-kit.test.ts` extracts the exact Week 3 student ZIP, checks it against the
 individual downloads, runs its workbook and verifies literal numeric answers.

@@ -7,12 +7,13 @@ type QuestionContent = {
   prompt: string;
   evidence?: { caption: string; columns: string[]; rows: string[][] };
   tool?: string;
+  illustration?: { src: string; alt: string; caption: string; width: number; height: number };
 };
 export type QuizQuestion = QuestionContent & (
   | { type: 'choice'; options: Choice[] }
   | { type: 'number'; inputLabel: string }
 );
-export type TutorialQuiz = { id: string; title: string; questions: QuizQuestion[] };
+export type TutorialQuiz = { id: string; title: string; intro: string; context: string; questions: QuizQuestion[] };
 export type QuizAttempt = Record<string, string>;
 export type AnswerKey = Record<string, { answer: string | number; explanation: string }>;
 

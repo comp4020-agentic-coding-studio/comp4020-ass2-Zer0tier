@@ -11,9 +11,9 @@ const questionId = (id: string) => `${quiz.id}-${id}`;
   <header class="quiz-header">
     <p class="quiz-kicker">Interactive quiz · {quiz.questions.length} cases · about 8 minutes + 2 to review</p>
     <h2 id={`${quiz.id}-title`}>{quiz.title}</h2>
-    <p>The dashboard wants a victory lap. Check its arithmetic first.</p>
+    <p>{quiz.intro}</p>
     <p class="quiz-instructions">Make a decision in every case, then select <strong>Reveal answers</strong>. You can change any response before submitting. Scores and explanations stay hidden until the whole quiz is answered.</p>
-    <p class="quiz-note">All profiles, disclosures and numbers here are fictional teaching examples. Practice only: no course marks. Responses stay on this page; reloading starts a fresh attempt.</p>
+    <p class="quiz-note">{quiz.context} Practice only: no course marks. Responses stay on this page; reloading starts a fresh attempt.</p>
   </header>
 
   <p class="quiz-fallback" data-quiz-fallback>The cases are readable without JavaScript. Enable JavaScript to navigate, submit your responses and unlock the explanations.</p>
@@ -46,6 +46,10 @@ const questionId = (id: string) => `${quiz.id}-${id}`;
       </legend>
       <p class="quiz-skill">{question.skill}</p>
       <p class="quiz-scenario">{question.scenario}</p>
+      {question.illustration && <figure class="quiz-illustration">
+        <img src={withBase(question.illustration.src)} alt={question.illustration.alt} width={question.illustration.width} height={question.illustration.height} loading="lazy" />
+        <figcaption>{question.illustration.caption}</figcaption>
+      </figure>}
       {question.evidence && <div class="quiz-evidence">
         <table>
           <caption>{question.evidence.caption}</caption>
@@ -129,6 +133,9 @@ const questionId = (id: string) => `${quiz.id}-${id}`;
   .quiz-case-title { display: block; font-size: 1.55rem; font-weight: 650; line-height: 1.3; letter-spacing: -.02em; }
   .quiz-skill { margin: .5rem 0 1.5rem; font-size: .9rem; color: var(--course-muted); }
   .quiz-scenario { margin: 0 0 1.2rem; }
+  .quiz-illustration { margin: 1.5rem 0; }
+  .quiz-illustration img { display: block; width: 100%; height: auto; border: 1px solid var(--course-line); border-radius: 8px; }
+  .quiz-illustration figcaption { margin-top: .65rem; color: var(--course-muted); font-size: .9rem; line-height: 1.6; }
   .quiz-evidence { margin: 1.5rem 0; }
   .quiz-evidence table { width: 100%; margin: 0; font-size: 1rem; line-height: 1.5; border-collapse: collapse; }
   .quiz-evidence caption { text-align: left; color: var(--course-muted); font-size: .85rem; padding-bottom: .65rem; }

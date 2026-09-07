@@ -7,24 +7,41 @@ import assert from 'node:assert/strict';
 import { gitOrigin, resolveDeployment } from './pages-base.ts';
 
 const axePath = createRequire(import.meta.resolve('astro-theme-university')).resolve('axe-core/axe.min.js');
-const allCorrect = ['filtered', 'scoped', '1412', 'corrected', 'bounded', 'allocation'];
-const mixed = ['highest', 'scoped', '1424', 'old', 'causal', 'allocation'];
+const fixtures = [
+  {
+    id: 'platform-audit', route: 'sessions/02-platforms/', firstQuestion: 'queue', numberQuestion: 'elo',
+    allCorrect: ['filtered', 'scoped', '1412', 'corrected', 'bounded', 'allocation'],
+    mixed: ['highest', 'scoped', '1424', 'old', 'causal', 'allocation'],
+    withheld: 'Then 1400 + 24', feedback: ['1412', '36/900 = 4%'],
+  },
+  {
+    id: 'photo-audit', route: 'sessions/03-photo-assets/', firstQuestion: 'provenance', numberQuestion: 'crop',
+    allCorrect: ['blocked', 'isolated', '25', 'unresolved', 'rowwise', 'freeze'],
+    mixed: ['looks', 'isolated', '50', 'recognised', 'totals', 'freeze'],
+    withheld: '400 × 300 = 120,000', feedback: ['120,000/480,000 = 25%', 'T1, T4, T7 and T8'],
+  },
+];
 
 export async function inspectTutorialQuiz(browser, root, screenshots) {
+  for (const fixture of fixtures) await inspectQuiz(browser, root, screenshots, fixture);
+}
+
+async function inspectQuiz(browser, root, screenshots, fixture) {
+  const { id, route, firstQuestion, numberQuestion, allCorrect, mixed } = fixture;
   const context = await browser.newContext({ reducedMotion: 'reduce' });
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
-  const quiz = page.locator('#platform-audit-quiz');
+  const quiz = page.locator(`#${id}-quiz`);
   const form = quiz.locator('form');
   const results = quiz.locator('[data-quiz-results]');
   const submit = quiz.getByRole('button', { name: 'Reveal answers', exact: true });
-  const keyUrl = root + 'data/quizzes/platform-audit.json';
+  const keyUrl = root + `data/quizzes/${id}.json`;
   let answerRequests = 0;
   page.on('request', request => { if (request.url() === keyUrl) answerRequests++; });
 
   async function open() {
-    await page.goto(root + 'sessions/02-platforms/#platform-audit-quiz');
+    await page.goto(root + route + `#${id}-quiz`);
     await expect(quiz).toHaveAttribute('data-enhanced', 'true');
   }
   async function choose(index, response) {
@@ -36,7 +53,7 @@ export async function inspectTutorialQuiz(browser, root, screenshots) {
   async function noReveal() {
     await expect(results).toBeHidden();
     assert.equal(await quiz.locator('[data-quiz-feedback] article').count(), 0);
-    assert(!(await quiz.textContent()).includes('Then 1400 + 24'), 'No worked solution exists in the hidden DOM');
+    assert(!(await quiz.textContent()).includes(fixture.withheld), 'No worked solution exists in the hidden DOM');
   }
   async function geometryAndAxe(label) {
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), page.viewportSize().width, label);
@@ -44,6 +61,13 @@ export async function inspectTutorialQuiz(browser, root, screenshots) {
       const r = el.getBoundingClientRect(); return { text: el.textContent, w: r.width, h: r.height };
     }));
     assert(targets.every(t => t.w >= 44 && t.h >= 44), `${label}: touch targets ${JSON.stringify(targets)}`);
+    for (const illustration of await quiz.locator('img:visible').all()) {
+      await illustration.scrollIntoViewIfNeeded();
+      await expect(illustration).toHaveJSProperty('complete', true);
+      assert(await illustration.evaluate(el => el.naturalWidth > 0), `${label}: illustration loaded`);
+      const box = await illustration.boundingBox();
+      assert(box && box.x >= 0 && box.x + box.width <= page.viewportSize().width, `${label}: illustration fits`);
+    }
     await page.addScriptTag({ path: axePath });
     const violations = await page.evaluate(async () => (await window.axe.run(document, {
       runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'] },
@@ -59,7 +83,14 @@ export async function inspectTutorialQuiz(browser, root, screenshots) {
       await noReveal();
       await expect(submit).toBeDisabled();
       await geometryAndAxe(`Initial quiz at ${viewport.width}`);
-      if (screenshots) await quiz.screenshot({ path: `${screenshots}/quiz-initial-${viewport.width}.png` });
+      if (screenshots) await quiz.screenshot({ path: `${screenshots}/${id}-quiz-initial-${viewport.width}.png` });
+      for (let index = 1; index < 6; index++) {
+        await quiz.locator(`[data-quiz-step="${index}"]`).click();
+        await geometryAndAxe(`${id} case ${index + 1} at ${viewport.width}`);
+        if (screenshots && id === 'photo-audit' && (index === 2 || index === 4)) {
+          await quiz.screenshot({ path: `${screenshots}/${id}-case-${index + 1}-${viewport.width}.png` });
+        }
+      }
 
       // A direct submit cannot bypass the button's completion gate.
       await form.evaluate(el => el.requestSubmit());
@@ -70,16 +101,16 @@ export async function inspectTutorialQuiz(browser, root, screenshots) {
 
       // Actual native-radio keyboard interaction, including changing a choice.
       await quiz.locator('[data-error-list] a').first().click();
-      await expect(quiz.locator('input[name="queue"]').first()).toBeFocused();
+      await expect(quiz.locator(`input[name="${firstQuestion}"]`).first()).toBeFocused();
       await page.keyboard.press('Space');
       await page.keyboard.press('ArrowDown');
-      await expect(quiz.locator('input[value="filtered"]')).toBeChecked();
+      await expect(quiz.locator(`input[name="${firstQuestion}"]`).nth(1)).toBeChecked();
       await choose(0, mixed[0]);
       await choose(1, mixed[1]);
       await choose(2, 'not a number');
       await expect(quiz.locator('[data-quiz-status]')).toContainText('2 of 6 answered');
       await form.evaluate(el => el.requestSubmit());
-      await expect(quiz.locator('input[name="elo"]')).toHaveAttribute('aria-invalid', 'true');
+      await expect(quiz.locator(`input[name="${numberQuestion}"]`)).toHaveAttribute('aria-invalid', 'true');
       await geometryAndAxe(`Incomplete quiz at ${viewport.width}`);
       await choose(2, mixed[2]);
       await choose(3, mixed[3]);
@@ -92,7 +123,7 @@ export async function inspectTutorialQuiz(browser, root, screenshots) {
 
       await choose(5, mixed[5]);
       await quiz.getByRole('button', { name: 'Previous case', exact: true }).click();
-      await expect(quiz.locator('input[value="causal"]')).toBeChecked();
+      await expect(quiz.locator(`input[value="${mixed[4]}"]`)).toBeChecked();
       await expect(submit).toBeEnabled();
       await noReveal();
       assert.equal(answerRequests, requestsBefore, 'Completing the sixth case does not auto-reveal');
@@ -107,17 +138,16 @@ export async function inspectTutorialQuiz(browser, root, screenshots) {
       await expect(quiz.locator('[data-quiz-result-title]')).toHaveText('2 of 6 cases checked correctly');
       await expect(quiz.locator('[data-quiz-result-title]')).toBeFocused();
       await expect(results.locator('article')).toHaveCount(6);
-      await expect(results).toContainText('1412');
-      await expect(results).toContainText('36/900 = 4%');
+      for (const explanation of fixture.feedback) await expect(results).toContainText(explanation);
       await geometryAndAxe(`Worked feedback at ${viewport.width}`);
-      if (screenshots) await results.screenshot({ path: `${screenshots}/quiz-feedback-${viewport.width}.png` });
+      if (screenshots) await results.screenshot({ path: `${screenshots}/${id}-quiz-feedback-${viewport.width}.png` });
 
       await quiz.getByRole('button', { name: 'Try again', exact: true }).click();
       await noReveal();
       await expect(quiz.locator('[data-quiz-status]')).toContainText('0 of 6 answered');
       await expect(submit).toBeDisabled();
       assert.equal(await quiz.locator('input:checked').count(), 0);
-      await expect(quiz.locator('input[name="elo"]')).toHaveValue('');
+      await expect(quiz.locator(`input[name="${numberQuestion}"]`)).toHaveValue('');
       for (let i = 0; i < allCorrect.length; i++) await choose(i, allCorrect[i]);
       await submit.focus();
       await page.keyboard.press('Enter');
@@ -137,19 +167,19 @@ export async function inspectTutorialQuiz(browser, root, screenshots) {
     }
     const noJs = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
     const staticPage = await noJs.newPage();
-    await staticPage.goto(root + 'sessions/02-platforms/#platform-audit-quiz');
+    await staticPage.goto(root + route + `#${id}-quiz`);
     await expect(staticPage.locator('[data-quiz-fallback]')).toBeVisible();
     await expect(staticPage.locator('[data-quiz-question]:visible')).toHaveCount(6);
     await expect(staticPage.locator('[data-quiz-submit]')).toBeDisabled();
     await expect(staticPage.locator('[data-quiz-results]')).toBeHidden();
     const staticUrl = staticPage.url();
-    await staticPage.locator('input[name="elo"]').fill('100');
+    await staticPage.locator(`input[name="${numberQuestion}"]`).fill('100');
     await staticPage.keyboard.press('Enter');
     assert.equal(staticPage.url(), staticUrl, 'No-JS Enter must not send responses as URL parameters');
     assert.equal(await staticPage.evaluate(() => document.documentElement.scrollWidth), 390);
     await noJs.close();
     assert.deepEqual(errors, []);
-    console.log('Tutorial quiz passed: six-case completion gate, no early solution requests, keyboard, mixed/full scores, retry, load recovery, no-JS, axe and four viewports.');
+    console.log(`${id} quiz passed: six-case completion gate, no early solution requests, keyboard, mixed/full scores, retry, load recovery, no-JS, axe and all six cases at four viewports.`);
   } finally {
     await context.close();
   }

@@ -31,7 +31,7 @@ Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/d
 
 ### 90-minute tutorial
 
-Thursday, **2–3.30 pm**. Follow the [Week 3 tutorial](/sessions/03-photo-assets/): **20 minutes manifest fields; 20 minutes calculations; 25 minutes ambiguity review; 25 minutes selection and freeze**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+Thursday, **2–3.30 pm**. Follow the [Week 3 tutorial](/sessions/03-photo-assets/): **20 minutes manifest fields; 20 minutes calculations; 25 minutes ambiguity review; 25 minutes selection, freeze and quiz**. The last block includes ten minutes for the interactive quiz and its debrief. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
 
 ### Independent work · about 210 minutes
 
