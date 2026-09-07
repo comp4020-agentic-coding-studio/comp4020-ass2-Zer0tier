@@ -37,13 +37,15 @@ bill and version, new joint outcomes, dependence, fallback limits and terminal
 confirmation branches, plus gated grading/publication. `date-quiz.test.ts`
 covers the ninth tutorial's matrix orientation, sampling boundaries, two-step
 probability, new seeded counts and bill/observation branches, plus gated
-grading/publication. The first nine quizzes are on Weeks 2–10 respectively;
-Week 1 remains lecture-only.
+grading/publication. `followup-quiz.test.ts` covers the tenth tutorial's new
+cutoffs, dashboard counts, time/rate accounting, reweighted ranks, availability
+boundary and frozen release, plus gated grading/publication. The first ten
+quizzes are on Weeks 2–11 respectively; Week 1 remains lecture-only.
 `scripts/audit-tutorial-quiz.mjs`, also called by `pnpm check:browser`,
 checks that no answer request or reveal occurs before all six responses and
 submission. It covers keyboard navigation, partial/mixed/full attempts,
 invalid numeric input, a failed request and retry, reset, no-JS fallback,
-contrast and mobile layout for all nine quizzes, with all six cases at four
+contrast and mobile layout for all ten quizzes, with all six cases at four
 viewport sizes and image loading/containment checks for the teaching diagrams.
 These are practice checks, not course grades.
 

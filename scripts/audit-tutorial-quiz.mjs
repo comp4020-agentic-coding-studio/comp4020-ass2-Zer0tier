@@ -70,6 +70,13 @@ const fixtures = [
     withheld: 'Their sum is 0.375 = 37.5%', feedback: ['Their sum is 0.375 = 37.5%', '177/800 = 0.22125', 'pending → agreed → declined'],
     captureCases: [1, 2, 3, 5],
   },
+  {
+    id: 'followup-audit', route: 'sessions/11-follow-up/', firstQuestion: 'cutoff', numberQuestion: 'rate',
+    allCorrect: ['history', 'denominators', '3', 'common-weights', 'fidelity', 'rendered'],
+    mixed: ['include-edge', 'denominators', '0.05', 'drop-ties', 'route-only', 'rendered'],
+    withheld: 'Five benefit units divided by 5/3 hours gives 3', feedback: ['100 × 5/16 = 31.25%', 'Five benefit units divided by 5/3 hours gives 3', 'rank = 1 + 1 + 4 = 6/100'],
+    captureCases: [1, 2, 3, 5],
+  },
 ];
 
 export async function inspectTutorialQuiz(browser, root, screenshots) {

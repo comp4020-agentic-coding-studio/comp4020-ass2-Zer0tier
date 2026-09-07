@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="420" viewBox="0 0 640 420" role="img" aria-labelledby="title desc">
+  <title id="title">Four recorded activity intervals</title>
+  <desc id="desc">Elapsed minutes: outbound travel [0, 15), time together [15, 75), return travel [85, 105), compose follow-up [105, 110). No activity is recorded in the gap [75, 85). Rows are not to scale.</desc>
+  <rect width="640" height="420" rx="14" fill="#fff7fa"/>
+  <g font-family="Arial, sans-serif" font-size="30" fill="#272c38">
+    <text x="320" y="44" text-anchor="middle">Recorded intervals · minutes</text>
+    <rect x="32" y="66" width="576" height="64" rx="8" fill="#dfeaf9" stroke="#315f98" stroke-width="2"/>
+    <text x="54" y="108">Outbound</text><text x="365" y="108">[0, 15)</text>
+    <rect x="32" y="146" width="576" height="64" rx="8" fill="#f9dbe7" stroke="#983657" stroke-width="2"/>
+    <text x="54" y="188">Together</text><text x="365" y="188">[15, 75)</text>
+    <rect x="32" y="226" width="576" height="64" rx="8" fill="#dfeaf9" stroke="#315f98" stroke-width="2"/>
+    <text x="54" y="268">Return</text><text x="365" y="268">[85, 105)</text>
+    <rect x="32" y="306" width="576" height="64" rx="8" fill="#f9dbe7" stroke="#983657" stroke-width="2"/>
+    <text x="54" y="348">Compose</text><text x="365" y="348">[105, 110)</text>
+    <text x="320" y="406" text-anchor="middle">No entry in [75, 85) · not to scale</text>
+  </g>
+</svg>

@@ -31,12 +31,12 @@ Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/d
 
 ### 90-minute tutorial
 
-Thursday, **2–3.30 pm**. Follow the [Week 11 tutorial](/sessions/11-follow-up/): **20 minutes log audit; 25 minutes frozen evaluation; 20 minutes changed conditions; 25 minutes release preparation**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+Thursday, **2–3.30 pm**. Follow the [Week 11 tutorial](/sessions/11-follow-up/): **20 minutes log audit; 25 minutes frozen evaluation; 20 minutes changed conditions; 25 minutes release review and quiz**. The last block includes ten minutes for the interactive quiz and its debrief. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
 
 ### Independent work · about 210 minutes
 
 - **30 minutes — before Monday:** Bring the exact Week 5 freeze, Date transition model and Offline handover plan. Inspect their versions before evaluating anything.
-- **90 minutes — between Monday and Thursday:** Review remaining worked examples, especially cost overlap, candidate evidence and changed-case tests (slides 14, 25–26 and 36–42). Download the sixteen-file workbook and locate your own release’s build instructions before Thursday.
+- **90 minutes — between Monday and Thursday:** Review remaining worked examples, especially cost overlap, candidate evidence and changed-case tests (slides 14, 25–26 and 36–42). Download the sixteen-file workbook, locate your own release’s build instructions and generate the labelled worked-example release into a new directory for Thursday's browser and reproduction review. Preserve your own frozen candidate for evaluation before revision.
 - **90 minutes — consolidation and assessment:** Finish the Follow-up evaluation and inspect the generated HTML in a browser. Preserve the failed target, exact files and reproduction instructions for next week and the project.
 
 Together this is about **six hours: 60 + 90 + 210 minutes**. Slides and full-length exercises outside the lecture selection are independent study unless assigned in the tutorial’s four blocks. Use the worked answers to check an attempt; optional extensions can use consolidation time. The complete route below reuses this material and adds no scheduled meeting or extra three-hour study requirement.
