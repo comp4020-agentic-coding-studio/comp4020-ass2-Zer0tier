@@ -15,9 +15,37 @@ An offline meeting has transport constraints, opening times and people who can c
 
 By the end, you should be able to filter venues before ranking preferences, account for both travel legs, distinguish cost arithmetic from a cost agreement, enumerate four joint outcomes, compare means with tail risk, and preserve cancellation when a late confirmation arrives. Every venue, price, route, probability and event in this pack is **authored fictional teaching data**. There is no venue recommendation, booking, payment or actual recipient experiment.
 
-## Three-hour teaching route
+## Scheduled teaching and independent work
 
-Use the [50-slide deck](/decks/week-09/) with these worked notes. This route includes explanations, individual calculations, discussion and debriefs. The [90-minute tutorial](/sessions/09-offline-handover/) retains its normal slot and allocation; discuss completed calculations instead of requiring students to repeat them. Solo implementation and review are accepted.
+### 60-minute lecture
+
+Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/decks/week-09/), in order. The timings include explanation, brief working and questions; full exercise timers elsewhere belong to the complete resource route.
+
+| Lecture time | Slides | Focus |
+| --- | --- | --- |
+| 0–10 min | 5–7, 10 | Reject infeasible venues before applying preferences and explain access assumptions. |
+| 10–25 min | 12, 15–18, 20 | Trace costs, version-specific confirmations, revised terms and cancellation. |
+| 25–40 min | 22–24, 27–28 | Enumerate joint contingencies and calculate expectation and strict exceedance. |
+| 40–55 min | 32–33, 36, 42 | Change dependence while preserving marginals and explain fallback limits. |
+| 55–60 min | 48, 50 | Check the Offline handover plan and the Week 10 boundary. |
+
+### 90-minute tutorial
+
+Thursday, **2–3.30 pm**. Follow the [Week 9 tutorial](/sessions/09-offline-handover/): **20 minutes venue filtering; 20 minutes handshake; 30 minutes contingencies; 20 minutes dependence**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+
+### Independent work · about 210 minutes
+
+- **30 minutes — before Monday:** Bring the Threat model and Match probability model; inspect the venue cards and the separate Atrium proposal.
+- **90 minutes — between Monday and Thursday:** Review remaining worked answers, especially joint-probability bounds and fallback state changes (slides 37–41 and 43–46). Open the ten-file workbook and prepare the version/cost records for Thursday.
+- **90 minutes — consolidation and assessment:** Check the Offline handover plan, rejection reasons and cancellation traces. Preserve the versions and assumptions needed by the final project.
+
+Together this is about **six hours: 60 + 90 + 210 minutes**. Slides and full-length exercises outside the lecture selection are independent study unless assigned in the tutorial’s four blocks. Use the worked answers to check an attempt; optional extensions can use consolidation time. The complete route below reuses this material and adds no scheduled meeting or extra three-hour study requirement.
+
+<span id="three-hour-teaching-route"></span>
+
+## Complete teaching pack
+
+The full **50-slide pack** and all worked notes remain the complete resource. This **180-minute reference route includes a ten-minute break** for someone facilitating the whole pack in one sitting. It is separate from the scheduled selections above: the break slide is skipped in the 60-minute lecture and the tutorial keeps its own 90-minute plan. These are facilitation estimates, including practical work and debriefs.
 
 | Elapsed time | Slides | Work and evidence |
 | --- | --- | --- |

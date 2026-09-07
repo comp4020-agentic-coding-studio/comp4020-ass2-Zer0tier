@@ -17,9 +17,37 @@ This week produces a **Maintenance and exit manual**, a clean reproduction log, 
 
 All agreements, participant IDs, event ticks, retention days and injected faults below are **authored classroom fixtures**. They are separate scenarios, not new biography for Alex or observations about anyone's relationship. No personal disclosure is required. The semester ends with a reproducible record, not a better-looking score.
 
-## Three-hour teaching route
+## Scheduled teaching and independent work
 
-Use the [50-slide deck](/decks/week-12/) with these worked notes. Exercises include debriefs; the [90-minute tutorial](/sessions/12-maintenance/) keeps its 20/20/30/20-minute allocation. Review completed lecture work instead of repeating it. Solo implementation and review are accepted.
+### 60-minute lecture
+
+Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/decks/week-12/), in order. The timings include explanation, brief working and questions; full exercise timers elsewhere belong to the complete resource route.
+
+| Lecture time | Slides | Focus |
+| --- | --- | --- |
+| 0–10 min | 4–7, 9 | Take receipt of the release and define scoped agreements and explicit acceptance. |
+| 10–25 min | 11, 14–15, 17, 20 | Demonstrate stale-write rejection, expiry and a terminal ending. |
+| 25–40 min | 22, 24–25, 28–29 | Distinguish optional routine changes, practical dependencies and copies under your control. |
+| 40–55 min | 31–34, 37 | Identify the exact build, reproduce it and demonstrate software restoration. |
+| 55–60 min | 44, 48–50 | Check the artefact index and rehearse the final defence. |
+
+### 90-minute tutorial
+
+Thursday, **2–3.30 pm**. Follow the [Week 12 tutorial](/sessions/12-maintenance/): **20 minutes maintenance agreement; 20 minutes endings and retention; 30 minutes reproduction and rollback; 20 minutes defence**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+
+### Independent work · about 210 minutes
+
+- **30 minutes — before Monday:** Inventory the Week 11 release, Threat model and all eleven tutorial artefacts. Read the agreement and retention fixtures.
+- **90 minutes — between Monday and Thursday:** Review remaining traces and answers, especially acceptance boundaries, manifest checking and earlier terminal states (slides 8, 10, 12–13, 16, 18–19, 30, 35–36 and 38–43). Download the nineteen-file workbook and check that the unchanged release and build instructions are available before Thursday.
+- **90 minutes — consolidation and assessment:** Use Thursday’s feedback to finish the Maintenance and exit manual, reproduction log and artefact index. Reserve this time before the Friday 28 May, 5 pm project deadline; extensions are optional.
+
+Together this is about **six hours: 60 + 90 + 210 minutes**. Slides and full-length exercises outside the lecture selection are independent study unless assigned in the tutorial’s four blocks. Use the worked answers to check an attempt; optional extensions can use consolidation time. The complete route below reuses this material and adds no scheduled meeting or extra three-hour study requirement.
+
+<span id="three-hour-teaching-route"></span>
+
+## Complete teaching pack
+
+The full **50-slide pack** and all worked notes remain the complete resource. This **180-minute reference route includes a ten-minute break** for someone facilitating the whole pack in one sitting. It is separate from the scheduled selections above: the break slide is skipped in the 60-minute lecture and the tutorial keeps its own 90-minute plan. These are facilitation estimates, including practical work and debriefs.
 
 | Time | Slides | Activity |
 | --- | --- | --- |

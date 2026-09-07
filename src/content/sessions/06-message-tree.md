@@ -17,14 +17,14 @@ spec:
 
 Bring the **Bio experiment protocol** and **Match probability model**: the supported bio, frozen **A-portrait-v1** photo, and checked invitation with its route assumptions. Recipient availability remains unknown. Save the [four-file Week 6 workbook](/lectures/week-06/#run-the-worked-calculations), or use its tables in a spreadsheet or your preferred language. All recipient cards and counts are authored fixtures; no real profiles, app account or messaging history are required.
 
+Follow the [60-minute lecture selection and independent-work plan](/lectures/week-06/#scheduled-teaching-and-independent-work). Complete the preparation and open the workbook before Thursday. The four blocks below are the entire **90-minute tutorial**; use existing lecture or study working for review and refinement. Remaining pack material belongs to the week’s independent study allocation.
+
 ## 90-minute tutorial
 
 1. **20 minutes — classify and repair openers.** Compare “Hey,” the campaign/queue joke, the board-games question and the plain introduction. Join each claimed shared detail to an Alex fact and a supplied recipient quote. Repair the U1 and H1 examples without inventing interests, history or availability. Keep the Week 5 invitation optional and separate from the frozen bio.
 2. **25 minutes — implement the ordered tree.** Use the declared snapshot fields and return stop, review, respond, pending or a local draft. Trace refusal plus a shared topic, sent-without-reply, a reply to an opener and a late reply after closure. Test missing topic evidence, unknown boundaries and malformed Boolean/history values. The function returns a decision; it does not send or store a message.
 3. **20 minutes — calculate rates and costs.** Reproduce 2/10 and 4/10, the 20-point difference and ratio 2; then recode one reply and explain the changed comparison. Calculate U = 10p − λt with the separate assumed probabilities and ten/thirty-second costs. Verify the crossover at λ = 0.10, the message tie, and defer winning at λ = 0.25.
 4. **25 minutes — adversarial review and handoff.** Move context ahead of refusal and show a literal test failing; restore the order. Compare the separate pressure fixture's any-reply and answer rates, excluding the demand before scoring. Test repeated pending input and unchanged input data. Exchange or self-review the evidence, then save the constraints Week 7's state machine must preserve.
-
-The [180-minute teaching route](/lectures/week-06/#a-180-minute-teaching-route) provides explanations, separate worked answers and a break around these practical tasks. Bring completed lecture exercises for review rather than repeating them. Solo implementation and review are accepted.
 
 ## Deliverable: Message decision tree
 

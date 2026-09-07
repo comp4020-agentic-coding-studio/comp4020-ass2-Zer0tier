@@ -17,9 +17,37 @@ A profile bio is small enough to inspect and large enough to contain several uns
 
 By the end, you should be able to implement a declared text budget and phrase matcher, revise a bio without changing Alex's facts, reproduce the exposure reversal, and distinguish an observed difference from a causal or practical conclusion.
 
-## A 180-minute teaching route
+## Scheduled teaching and independent work
 
-This pack supports three hours of active teaching, including a ten-minute break. The time comes from implementation, individual or paired exercises and separate worked debriefs, not slide count alone.
+### 60-minute lecture
+
+Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/decks/week-04/), in order. The timings include explanation, brief working and questions; full exercise timers elsewhere belong to the complete resource route.
+
+| Lecture time | Slides | Focus |
+| --- | --- | --- |
+| 0–10 min | 4–6, 9 | Freeze Alex’s case and image, inspect both texts and declare the code-point budget. |
+| 10–25 min | 12–13, 16–17, 21 | Demonstrate token coverage, its failure cases and an evidence-supported revision. |
+| 25–40 min | 23–26, 29 | Reproduce the pooled reversal and explain its unequal exposure weights. |
+| 40–55 min | 33, 35, 39–40, 42 | Connect allocation and outcome definitions to the separate balanced-fixture z calculation. |
+| 55–60 min | 48–50 | Repair the report’s conclusions and identify what Thursday must verify. |
+
+### 90-minute tutorial
+
+Thursday, **2–3.30 pm**. Follow the [Week 4 tutorial](/sessions/04-bio-experiment/): **20 minutes text pipeline and revision; 25 minutes reversal; 20 minutes uncertainty; 25 minutes protocol and report**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+
+### Independent work · about 210 minutes
+
+- **30 minutes — before Monday:** Reopen the Platform audit and Photo asset manifest; read the two authored bios and the declared tokenizer rules.
+- **90 minutes — between Monday and Thursday:** Work through the remaining explanations, especially standardisation (slides 30–32), stopping (36) and uncertainty limits (44–46). Open the five-file workbook and draft the report before Thursday; bring unresolved calculations to the tutorial.
+- **90 minutes — consolidation and assessment:** Use the tutorial feedback to finish the Bio experiment protocol and data report. Reserve this time before the Friday 19 March, 5 pm report deadline.
+
+Together this is about **six hours: 60 + 90 + 210 minutes**. Slides and full-length exercises outside the lecture selection are independent study unless assigned in the tutorial’s four blocks. Use the worked answers to check an attempt; optional extensions can use consolidation time. The complete route below reuses this material and adds no scheduled meeting or extra three-hour study requirement.
+
+<span id="a-180-minute-teaching-route"></span>
+
+## Complete teaching pack
+
+The full **50-slide pack** and all worked notes remain the complete resource. This **180-minute reference route includes a ten-minute break** for someone facilitating the whole pack in one sitting. It is separate from the scheduled selections above: the break slide is skipped in the 60-minute lecture and the tutorial keeps its own 90-minute plan. These are facilitation estimates, including practical work and debriefs.
 
 | Elapsed time | Slides | Activity and evidence produced |
 | --- | --- | --- |
@@ -31,7 +59,7 @@ This pack supports three hours of active teaching, including a ten-minute break.
 | 145–170 min | 39–46 | Work through the balanced fixture, units and pooled z; audit the calculation in six minutes; compare larger and sparse fixtures. |
 | 170–180 min | 47–50 | Correct the report's three claims in five minutes; debrief and hand the supported candidate to Week 5. |
 
-Use this as a facilitation pack across the scheduled lecture, Thursday's **90-minute tutorial** and guided study. It does not change the timetable. A useful split is 80 minutes of explanations/debriefs, ten minutes of break and 90 minutes of practical work following the tutorial plan. When an exercise is completed in the lecture, bring its evidence into the tutorial for review rather than repeating it. Optional extensions below add 15–25 minutes.
+Optional extensions below can use 15–25 minutes of independent consolidation time.
 
 ## Freeze the case before optimising the sentence
 

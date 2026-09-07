@@ -19,6 +19,8 @@ Bring the **[Follow-up evaluation](/sessions/11-follow-up/)**, **[Threat model](
 
 Download the [nineteen-file Week 12 workbook](/lectures/week-12/#run-the-nineteen-file-workbook) before the session. The three new files sit beside the sixteen unchanged Week 11 downloads. Node runs the reference drill offline without additional packages. Use the [worked lecture](/lectures/week-12/) and [50-slide deck](/decks/week-12/) for the traces and debriefs; review completed lecture work instead of repeating it.
 
+Follow the [60-minute lecture selection and independent-work plan](/lectures/week-12/#scheduled-teaching-and-independent-work). Complete the preparation and open the workbook before Thursday. The four blocks below are the entire **90-minute tutorial**; use existing lecture or study working for review and refinement. Remaining pack material belongs to the week’s independent study allocation.
+
 ## 90-minute tutorial
 
 1. **20 minutes — design maintenance.** Write a separate fictional agreement-change scenario for monogamy or ethical non-monogamy; add no biography to Alex. Name the affected participants, current terms/version, proposed terms, exact acknowledgements and expiry. Trace propose/A/B as versions **1, 1, 2**, with the proposal separate until adoption. Reject a stale v1 proposal after v2. Compare a last acceptance at tick **9** with one at **10** in the authored **[1, 10)** window. Explain why expiry supplies neither agreement nor refusal. Solo implementation and review are accepted.

@@ -17,9 +17,37 @@ After a match, communication becomes a protocol with another operator. An opener
 
 By the end, you should be able to justify an opener with case evidence, implement refusal-first routing, preserve pending and closed decisions, compare invented reply rates and costs, and pass an explicit behavioural contract to Week 7's asynchronous model.
 
-## A 180-minute teaching route
+## Scheduled teaching and independent work
 
-This pack combines explanations, implementation, individual or paired exercises and separate worked debriefs. It includes a ten-minute break; slide count alone does not supply three hours of teaching.
+### 60-minute lecture
+
+Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/decks/week-06/), in order. The timings include explanation, brief working and questions; full exercise timers elsewhere belong to the complete resource route.
+
+| Lecture time | Slides | Focus |
+| --- | --- | --- |
+| 0–10 min | 4–6, 9 | Join each opener claim to supplied evidence and preserve the boundary before scoring. |
+| 10–25 min | 11–13, 16–17 | Trace the ordered snapshot decision and explain pending input and a pure function. |
+| 25–40 min | 22–23, 27, 29, 32 | Calculate reply rates, introduce time cost and derive the utility crossover. |
+| 40–55 min | 36–38, 41–42 | Exclude pressure before optimisation and specify adversarial tests. |
+| 55–60 min | 46, 50 | Identify the asynchronous handoff and check one exam-style explanation. |
+
+### 90-minute tutorial
+
+Thursday, **2–3.30 pm**. Follow the [Week 6 tutorial](/sessions/06-message-tree/): **20 minutes opener evidence; 25 minutes ordered tree; 20 minutes rates and utility; 25 minutes tests and handoff**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+
+### Independent work · about 210 minutes
+
+- **30 minutes — before Monday:** Bring the Bio experiment protocol and Match probability model; inspect the supplied recipient evidence and snapshot fields.
+- **90 minutes — between Monday and Thursday:** Review remaining worked cases, especially malformed inputs, cost ties and the limits of the tests (slides 18–20, 33–35 and 43–45). Open the four-file workbook and annotate the cases to test on Thursday.
+- **90 minutes — consolidation and assessment:** Finish the tested Message decision tree and handoff. Use the remaining study time for paper explanations of rates, utility and guard order before the midterm.
+
+Together this is about **six hours: 60 + 90 + 210 minutes**. Slides and full-length exercises outside the lecture selection are independent study unless assigned in the tutorial’s four blocks. Use the worked answers to check an attempt; optional extensions can use consolidation time. The complete route below reuses this material and adds no scheduled meeting or extra three-hour study requirement.
+
+<span id="a-180-minute-teaching-route"></span>
+
+## Complete teaching pack
+
+The full **50-slide pack** and all worked notes remain the complete resource. This **180-minute reference route includes a ten-minute break** for someone facilitating the whole pack in one sitting. It is separate from the scheduled selections above: the break slide is skipped in the 60-minute lecture and the tutorial keeps its own 90-minute plan. These are facilitation estimates, including practical work and debriefs.
 
 | Elapsed time | Slides | Activity and evidence produced |
 | --- | --- | --- |
@@ -30,7 +58,7 @@ This pack combines explanations, implementation, individual or paired exercises 
 | 110–145 min | 32–41 | Derive the cost crossover; solve ties and abstention in five minutes; inspect the pressure counterexample and repair its optimiser in six minutes. |
 | 145–180 min | 42–50 | Break the guard order in seven minutes; review what tests cannot prove; prepare a six-minute handoff review and an exam-style exit ticket. |
 
-Use this route across the scheduled lecture, Thursday's **90-minute tutorial** and guided study. One split is 80 minutes of explanations/debriefs, ten minutes of break and 90 practical minutes following the tutorial plan. Bring exercises already completed in the lecture into the tutorial for review rather than repeating them. Solo implementation and review are accepted. Optional extensions below add 15–25 minutes.
+Optional extensions below can use 15–25 minutes of independent consolidation time.
 
 ## Reuse the supported candidate and feasible plan
 

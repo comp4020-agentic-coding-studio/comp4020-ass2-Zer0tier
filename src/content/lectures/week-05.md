@@ -17,9 +17,37 @@ A match requires two selection events. This week makes their denominator explici
 
 By the end, you should be able to trace conditional probabilities, distinguish expectation from a chance of at least one event, stress-test independence, implement travel and budget constraints, and defend a benchmark score without describing it as a dating forecast.
 
-## A 180-minute teaching route
+## Scheduled teaching and independent work
 
-The pack supports three hours of explanations, implementation, exercises and separate worked debriefs, including a ten-minute break.
+### 60-minute lecture
+
+Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/decks/week-05/), in order. The timings include explanation, brief working and questions; full exercise timers elsewhere belong to the complete resource route.
+
+| Lecture time | Slides | Focus |
+| --- | --- | --- |
+| 0–10 min | 5–8 | Define a reciprocal opportunity and derive the joint and conditional probabilities. |
+| 10–25 min | 11–13, 16, 20 | Compare expected counts with the chance of any match; show what dependence changes. |
+| 25–40 min | 22–24, 26–27 | Apply whole-outing time and cost checks to the supplied routes. |
+| 40–55 min | 33–34, 37, 41, 44 | Compare time-window rates and explain the frozen benchmark objective and tie rule. |
+| 55–60 min | 46, 50 | Check the freeze record and the model’s limits. |
+
+### 90-minute tutorial
+
+Thursday, **2–3.30 pm**. Follow the [Week 5 tutorial](/sessions/05-match-probability/): **25 minutes probability; 20 minutes geography; 20 minutes time windows; 25 minutes benchmark freeze**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+
+### Independent work · about 210 minutes
+
+- **30 minutes — before Monday:** Bring the supported bio, frozen photo and Platform audit; read the opportunity table and three invented routes.
+- **90 minutes — between Monday and Thursday:** Review remaining derivations and worked answers, particularly heterogeneous probabilities, cap eligibility and the time-window protocol (slides 17–19, 28–31 and 38–40). Open the workbook and prepare a candidate evidence sheet for Thursday.
+- **90 minutes — consolidation and assessment:** Check and save the Match probability model, dated objective and unchanged controls. Practise explaining both independence assumptions for the midterm.
+
+Together this is about **six hours: 60 + 90 + 210 minutes**. Slides and full-length exercises outside the lecture selection are independent study unless assigned in the tutorial’s four blocks. Use the worked answers to check an attempt; optional extensions can use consolidation time. The complete route below reuses this material and adds no scheduled meeting or extra three-hour study requirement.
+
+<span id="a-180-minute-teaching-route"></span>
+
+## Complete teaching pack
+
+The full **50-slide pack** and all worked notes remain the complete resource. This **180-minute reference route includes a ten-minute break** for someone facilitating the whole pack in one sitting. It is separate from the scheduled selections above: the break slide is skipped in the 60-minute lecture and the tutorial keeps its own 90-minute plan. These are facilitation estimates, including practical work and debriefs.
 
 | Elapsed time | Slides | Activity and evidence produced |
 | --- | --- | --- |
@@ -30,7 +58,7 @@ The pack supports three hours of explanations, implementation, exercises and sep
 | 110–145 min | 32–40 | Contrast Sunday counts and rates; repair a headline in six minutes; repair a proposed time experiment in eight minutes and discuss what a generator would establish. |
 | 145–180 min | 41–50 | Apply rating evidence; reproduce both ranks in seven minutes; freeze the target; spend six minutes reviewing records and finish with the invitation and exit ticket. |
 
-Use the pack across the scheduled lecture, Thursday's **90-minute tutorial** and guided study; it does not add a meeting. One split is 80 minutes of explanations/debriefs, ten minutes of break and the tutorial's 90 practical minutes. Carry completed exercise traces into the tutorial for review instead of repeating them. Solo implementation and review are accepted. Optional extensions below add 15–25 minutes.
+Optional extensions below can use 15–25 minutes of independent consolidation time.
 
 ## Bring the earlier artefacts into the model
 

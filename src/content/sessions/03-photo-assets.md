@@ -17,7 +17,7 @@ spec:
 
 Bring the **Platform audit** and the [Week 3 photo kit](/data/week-03-photo-kit.zip), or three equivalent fictional asset descriptions/drawings. Use the audit's source/claim/unknown fields to start the manifest; keep unknowns instead of filling them from appearance. No identifiable real people are needed.
 
-The [47-slide pack](/decks/week-03/) has a 180-minute route across teaching and study. This tutorial uses its exercises within the existing 90 minutes. Carry forward work already done in the lecture. [Worked notes and answers](/lectures/week-03/) accompany every activity.
+Follow the [60-minute lecture selection and independent-work plan](/lectures/week-03/#scheduled-teaching-and-independent-work). Complete the preparation and open the workbook before Thursday. The four blocks below are the entire **90-minute tutorial**; use existing lecture or study working for review and refinement. Remaining pack material belongs to the week’s independent study allocation.
 
 ## 90-minute tutorial
 

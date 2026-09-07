@@ -19,6 +19,8 @@ Bring the **Communication state machine** and the boundary map from your week 2 
 
 Open the [lecture's six-file offline workbook](/lectures/week-08/#run-the-worked-calculations). Its 100 scored rows and seven triage cards are separate authored fixtures. Scores are arbitrary points, not probabilities; M/B row IDs reveal answer labels and must not become predictor features. No reverse-image search or third-party image upload is part of this exercise.
 
+Follow the [60-minute lecture selection and independent-work plan](/lectures/week-08/#scheduled-teaching-and-independent-work). Complete the preparation and open the workbook before Thursday. The four blocks below are the entire **90-minute tutorial**; use existing lecture or study working for review and refinement. Remaining pack material belongs to the week’s independent study allocation.
+
 ## 90-minute tutorial
 
 1. **20 minutes — map threats.** Spend five minutes recovering the Week 2 boundaries, ten drawing the path from a fictional message to a proposed address/payment form, and five reviewing the controls. Name assets, crossings and actor opportunities for automation, a financial scam and identity misrepresentation. Keep observations separate from accusations. Output one labelled flow and a control for each asset.

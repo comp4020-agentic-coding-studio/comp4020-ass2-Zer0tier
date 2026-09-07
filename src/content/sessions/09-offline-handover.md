@@ -19,6 +19,8 @@ Bring the **Threat model**, **Match probability model** and Alex's fixed **Frida
 
 Open the [ten-file offline workbook](/lectures/week-09/#run-and-challenge-the-workbook). It recalculates the unchanged Week 5 Library plan (100 minutes, $14) and constructs the actual Week 8 review snapshot. Week 9's new Atrium proposal is a separate 90-minute, $14 fixture. Do not merge the two durations or infer acceptance from review clearance. Venue observations, prices, events and probabilities are authored; no actual venue search, booking or payment is required.
 
+Follow the [60-minute lecture selection and independent-work plan](/lectures/week-09/#scheduled-teaching-and-independent-work). Complete the preparation and open the workbook before Thursday. The four blocks below are the entire **90-minute tutorial**; use existing lecture or study working for review and refinement. Remaining pack material belongs to the week’s independent study allocation.
+
 ## 90-minute tutorial
 
 1. **20 minutes — filter venues.** Spend eight minutes tracing the three primary cards, seven listing every rejection and five reviewing the checked Annex alternative. Use public/private setting, opening times, route access, noise, lighting, transport and exits. Apply hard checks before preference scores. Explain why delaying the Gallery departure repairs its opening mismatch but worsens its late return. Save one route timeline and the rejection table.

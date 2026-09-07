@@ -15,7 +15,37 @@ Texting is asynchronous. Sending, delivery, reading and replying are different e
 
 [Open the 50-slide teaching deck](/decks/week-07/). **A/D** or the scroll wheel changes slides; **Esc** returns here. Your output is a **Communication state machine**, with a transition table, reproducible event traces and calculations you can explain on paper.
 
-## A 180-minute teaching route
+## Scheduled teaching and independent work
+
+### 60-minute lecture
+
+Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/decks/week-07/), in order. The timings include explanation, brief working and questions; full exercise timers elsewhere belong to the complete resource route.
+
+| Lecture time | Slides | Focus |
+| --- | --- | --- |
+| 0–15 min | 5, 9–12, 15 | Distinguish event observations and derive the Poisson zero-arrival probability with its assumptions. |
+| 15–30 min | 18–20, 24–25 | Compare clarification, waiting and stopping; keep admissibility outside utility. |
+| 30–45 min | 26, 28–30, 33 | Read both payoff coordinates, trace best responses and demonstrate mixed-strategy indifference in the changed matrix. |
+| 45–55 min | 35–39 | Trace timeout and refusal through the state machine; distinguish phase from observation result. |
+| 55–60 min | 49–50 | Check paper working and name the remaining midterm revision tasks. |
+
+### 90-minute tutorial
+
+Thursday, **2–3.30 pm**. Follow the [Week 7 tutorial](/sessions/07-communication/): **20 minutes Poisson arrivals; 25 minutes utility; 20 minutes game analysis; 25 minutes event replay**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+
+### Independent work · about 210 minutes
+
+- **30 minutes — before Monday:** Reconnect the Week 6 tree and Week 5 model after the teaching pause; read the event definitions and Poisson assumptions.
+- **90 minutes — between Monday and Thursday:** Review remaining derivations, especially the rate mixture, changed-game best responses and exact event boundary (slides 16, 31–32, 34 and 40–46). Open the five-file workbook and attempt paper calculations before Thursday.
+- **90 minutes — consolidation and assessment:** Reserve 90 minutes for midterm revision before Friday 23 April’s 11 am exam: start earlier in the week and use Thursday’s tutorial to resolve questions. Save the Communication state machine and review the weeks 1–7 assumptions; this estimate excludes the separately timetabled exam itself.
+
+Together this is about **six hours: 60 + 90 + 210 minutes**. Slides and full-length exercises outside the lecture selection are independent study unless assigned in the tutorial’s four blocks. Use the worked answers to check an attempt; optional extensions can use consolidation time. The complete route below reuses this material and adds no scheduled meeting or extra three-hour study requirement.
+
+<span id="a-180-minute-teaching-route"></span>
+
+## Complete teaching pack
+
+The full **50-slide pack** and all worked notes remain the complete resource. This **180-minute reference route includes a ten-minute break** for someone facilitating the whole pack in one sitting. It is separate from the scheduled selections above: the break slide is skipped in the 60-minute lecture and the tutorial keeps its own 90-minute plan. These are facilitation estimates, including practical work and debriefs.
 
 | Elapsed time | Slides | Activity and evidence produced |
 | --- | --- | --- |
@@ -26,7 +56,7 @@ Texting is asynchronous. Sending, delivery, reading and replying are different e
 | 105–140 min | 26–34 | Read both payoff coordinates; trace best responses; repair dominance after a payoff change in seven minutes; derive a symmetric mixed equilibrium. |
 | 140–180 min | 35–50 | Implement events and observation windows; trace late arrivals and duplicates; complete deadline and refusal tests; review the Week 8 handoff and exam working. |
 
-This combines explanations, exercises and separate worked debriefs. Use it across the lecture, Thursday's **90-minute tutorial** and guided study: about 80 minutes of explanations/review, ten minutes of break and the tutorial's 90 practical minutes. Bring already completed exercises for review instead of repeating them. Solo work is accepted. The optional extension adds 15–25 minutes; duration is a teaching estimate, not a consequence of slide count.
+Optional extensions below can use 15–25 minutes of independent consolidation time.
 
 ## Carry the previous artefacts across the break
 

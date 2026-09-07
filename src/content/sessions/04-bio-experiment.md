@@ -21,6 +21,8 @@ The [50-slide pack](/decks/week-04/) and [worked lecture notes](/lectures/week-0
 
 Use the manifest's **A-portrait-v1** for both bio variants: identical bytes, crop, alt text and display treatment. Alex's Friday 5–7 pm window, $20 total budget, bus travel, board games, puns and relationship possibility stay fixed. The authored bios have no measured outcomes; the CSV's A/B labels do not identify those texts.
 
+Follow the [60-minute lecture selection and independent-work plan](/lectures/week-04/#scheduled-teaching-and-independent-work). Complete the preparation and open the workbook before Thursday. The four blocks below are the entire **90-minute tutorial**; use existing lecture or study working for review and refinement. Remaining pack material belongs to the week’s independent study allocation.
+
 ## 90-minute tutorial
 
 1. **20 minutes — implement and inspect the text pipeline.** Count original Unicode code points against the 150 ceiling. Follow the declared ASCII tokenizer and exact dictionary; union overlapping token spans. Test the 150/151 boundary, punctuation, overlapping phrases and empty-token input. Reproduce A's 80 code points and 3/14 coverage, and B's 101 code points and 0/20. Quote evidence for clarity, specificity, feasibility and exit using the toolkit's anchors. Repair missing logistics without inventing facts; the notes include a 103-code-point answer.

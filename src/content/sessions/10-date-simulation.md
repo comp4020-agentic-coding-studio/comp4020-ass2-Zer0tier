@@ -19,6 +19,8 @@ Bring the **Offline handover plan** and **Communication state machine**, includi
 
 All transition probabilities, bills and responses are authored. No real meeting, private messages, payment or personal disclosure is needed. The event fixture continues Friday 7 May's fictional plan; the tutorial remains Thursday 13 May. Model steps have no duration in minutes.
 
+Follow the [60-minute lecture selection and independent-work plan](/lectures/week-10/#scheduled-teaching-and-independent-work). Complete the preparation and open the workbook before Thursday. The four blocks below are the entire **90-minute tutorial**; use existing lecture or study working for review and refinement. Remaining pack material belongs to the week’s independent study allocation.
+
 ## 90-minute tutorial
 
 1. **20 minutes — propagate exactly.** Spend five minutes defining source rows and destination columns, ten deriving all two-step contributions, and five checking conservation. Starting at C, verify (0.31, 0.16, 0.32, 0.21) with the [reference model](/toolkit/#reference-models). Keep already-absorbed mass in N/E. Explain why discarding C/A gives a different denominator.

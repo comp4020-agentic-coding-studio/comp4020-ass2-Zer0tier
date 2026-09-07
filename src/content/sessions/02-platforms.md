@@ -17,7 +17,7 @@ spec:
 
 This is the first tutorial; week 1 is lecture-only. Review the boundary example in [lecture 1](/lectures/week-01/), read the three primary platform descriptions linked in [week 2](/lectures/week-02/) and open the synthetic census. No completed week 1 lab work is required.
 
-The [46-slide Week 2 pack](/decks/week-02/) includes a 180-minute route across explanation, practice and discussion. This tutorial uses its exercises within the existing 90 minutes; carry forward any work already done in the lecture. The lecture notes provide worked answers and [runnable calculations](/data/week-02-worked-examples.mjs).
+Follow the [60-minute lecture selection and independent-work plan](/lectures/week-02/#scheduled-teaching-and-independent-work). Complete the preparation and open the workbook before Thursday. The four blocks below are the entire **90-minute tutorial**; use existing lecture or study working for review and refinement. Remaining pack material belongs to the week’s independent study allocation.
 
 ## 90-minute tutorial
 

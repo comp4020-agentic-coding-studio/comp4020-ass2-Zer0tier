@@ -15,9 +15,37 @@ The dashboard has four labels. None of them is “probably into you.” This wee
 
 By the end, you should be able to reconstruct a label at a cutoff, defend a denominator, check the units of an ROI claim, reproduce a conservative rank, distinguish changing weights from changing evidence, and verify that the released text is the text evaluated. All records, values, ratings and probabilities are **authored fictional teaching data**. No personal experiment or private conversation is required.
 
-## Three-hour teaching route
+## Scheduled teaching and independent work
 
-Use the [50-slide deck](/decks/week-11/) alongside these worked notes. Exercises include an answer discussion; the [90-minute tutorial](/sessions/11-follow-up/) retains its 20/25/20/25-minute allocation. Discuss calculations already completed in the lecture instead of repeating them. Solo implementation and review are accepted.
+### 60-minute lecture
+
+Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/decks/week-11/), in order. The timings include explanation, brief working and questions; full exercise timers elsewhere belong to the complete resource route.
+
+| Lecture time | Slides | Focus |
+| --- | --- | --- |
+| 0–10 min | 4, 6, 8–9, 11 | Use the worked diagrams to separate observed labels, reporting windows, withdrawals and dashboard denominators. |
+| 10–25 min | 12–13, 15–16, 18 | Audit elapsed time and distinguish a retrospective ratio from prospective utility. |
+| 25–40 min | 22–24, 27–28 | Freeze text and evidence, then explain the primary score and conservative rank. |
+| 40–55 min | 30, 33–35, 38 | Separate common-weight sensitivity from a changed-case failure and prevent control-text leakage. |
+| 55–60 min | 43, 49–50 | Identify the release outputs, final-project evidence and Week 12 handoff. |
+
+### 90-minute tutorial
+
+Thursday, **2–3.30 pm**. Follow the [Week 11 tutorial](/sessions/11-follow-up/): **20 minutes log audit; 25 minutes frozen evaluation; 20 minutes changed conditions; 25 minutes release preparation**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+
+### Independent work · about 210 minutes
+
+- **30 minutes — before Monday:** Bring the exact Week 5 freeze, Date transition model and Offline handover plan. Inspect their versions before evaluating anything.
+- **90 minutes — between Monday and Thursday:** Review remaining worked examples, especially cost overlap, candidate evidence and changed-case tests (slides 14, 25–26 and 36–42). Download the sixteen-file workbook and locate your own release’s build instructions before Thursday.
+- **90 minutes — consolidation and assessment:** Finish the Follow-up evaluation and inspect the generated HTML in a browser. Preserve the failed target, exact files and reproduction instructions for next week and the project.
+
+Together this is about **six hours: 60 + 90 + 210 minutes**. Slides and full-length exercises outside the lecture selection are independent study unless assigned in the tutorial’s four blocks. Use the worked answers to check an attempt; optional extensions can use consolidation time. The complete route below reuses this material and adds no scheduled meeting or extra three-hour study requirement.
+
+<span id="three-hour-teaching-route"></span>
+
+## Complete teaching pack
+
+The full **50-slide pack** and all worked notes remain the complete resource. This **180-minute reference route includes a ten-minute break** for someone facilitating the whole pack in one sitting. It is separate from the scheduled selections above: the break slide is skipped in the 60-minute lecture and the tutorial keeps its own 90-minute plan. These are facilitation estimates, including practical work and debriefs.
 
 | Time | Slides | Teaching activity |
 | --- | --- | --- |

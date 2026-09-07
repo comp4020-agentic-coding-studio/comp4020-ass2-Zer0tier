@@ -15,9 +15,37 @@ A profile photograph is an information asset, not a universal attractiveness mea
 
 By the end, you should be able to record provenance and transformations, calculate a declared lighting ratio and identification-failure rate, separate detection from identity, and freeze an image for a controlled bio comparison. Use the supplied schematic drawings or your own fictional placeholders. No camera, face detector or personal photograph is required.
 
-## Using the 47-slide teaching pack
+## Scheduled teaching and independent work
 
-The full route takes **180 minutes including a 10-minute break**. It budgets time for active work, not just reading slides. Split it across the scheduled lecture, the existing 90-minute tutorial and guided study as needed. Carry work forward and do each exercise once; teaching dates and tutorial duration are unchanged.
+### 60-minute lecture
+
+Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/decks/week-03/), in order. The timings include explanation, brief working and questions; full exercise timers elsewhere belong to the complete resource route.
+
+| Lecture time | Slides | Focus |
+| --- | --- | --- |
+| 0–10 min | 4–7 | Separate provenance, permission and identity in the three asset records. |
+| 10–25 min | 10–12, 15 | Explain the lighting-ratio convention and controlled capture with one worked ratio. |
+| 25–40 min | 18–19, 22, 25–26 | Calculate retained crop area and distinguish detection confidence from identity evidence. |
+| 40–55 min | 28, 30, 32, 36 | Explain failure denominators, reviewer disagreement and the manifest fields. |
+| 55–60 min | 43, 46–47 | Show the frozen asset record and check the Week 4 handoff. |
+
+### 90-minute tutorial
+
+Thursday, **2–3.30 pm**. Follow the [Week 3 tutorial](/sessions/03-photo-assets/): **20 minutes manifest fields; 20 minutes calculations; 25 minutes ambiguity review; 25 minutes selection and freeze**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+
+### Independent work · about 210 minutes
+
+- **30 minutes — before Monday:** Inspect the three assets and read their provenance records in the photo kit. Bring the Platform audit.
+- **90 minutes — between Monday and Thursday:** Review remaining slides and worked answers, including controlled capture and alt text (slides 16–17 and 37–39). Unpack the photo kit and draft questions about missing evidence; keep the tutorial’s calculation and selection tasks for Thursday.
+- **90 minutes — consolidation and assessment:** Check the completed Photo asset manifest and byte fingerprint, then use the frozen image and source audit in the data report draft.
+
+Together this is about **six hours: 60 + 90 + 210 minutes**. Slides and full-length exercises outside the lecture selection are independent study unless assigned in the tutorial’s four blocks. Use the worked answers to check an attempt; optional extensions can use consolidation time. The complete route below reuses this material and adds no scheduled meeting or extra three-hour study requirement.
+
+<span id="using-the-47-slide-teaching-pack"></span>
+
+## Complete teaching pack
+
+The full **47-slide pack** and all worked notes remain the complete resource. This **180-minute reference route includes a ten-minute break** for someone facilitating the whole pack in one sitting. It is separate from the scheduled selections above: the break slide is skipped in the 60-minute lecture and the tutorial keeps its own 90-minute plan. These are facilitation estimates, including practical work and debriefs.
 
 | Elapsed time | Slides | Work and evidence produced |
 | --- | --- | --- |

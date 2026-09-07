@@ -25,6 +25,24 @@ This course is for students comfortable with probability and pseudocode. Work on
 
 The examples below practise those three tasks during the lecture. They are not a separate tutorial or assessed submission.
 
+## Scheduled teaching and independent work
+
+### 60-minute lecture
+
+Monday, **11 am–12 pm**. Use the complete [16-slide deck](/decks/week-01/) in the following order.
+
+| Lecture time | Slides | Focus |
+| --- | --- | --- |
+| 0–10 min | 1–4 | Introduce the course question and distinguish recommendations, replies and relationships. |
+| 10–25 min | 5–7 | Work through Alex’s constraints and the two invitation checks. |
+| 25–40 min | 8–9 | Classify supplied facts, observations and hidden state; discuss the boundary example. |
+| 40–55 min | 10–13 | Check bio claims against case evidence and explain participation and tool-use rules. |
+| 55–60 min | 14–16 | Connect the semester sequence, questions and Week 2 preparation. |
+
+### Tutorial and independent work
+
+**No tutorial in week 1.** The examples are completed during the lecture; there is no separate deliverable. Optional independent review: revisit the boundary example and course policies. Week 2’s preparation is allocated in its own teaching plan. All 16 slides and the worked notes remain available as the complete Week 1 resource.
+
 ## Meet Alex
 
 The [toolkit's fixed case](/toolkit/#benchmark) describes Alex as an adult CS student who likes board games and terrible puns. Alex is free **Friday 5–7 pm**, has a **$20 outing budget**, travels by **bus**, and wants to meet someone with the possibility of a relationship. These facts are supplied inputs. Do not invent an extra interest, skill or possession to make a profile sound better.

@@ -15,9 +15,37 @@ Week 1 separated supplied facts, observations and hidden state. This week puts a
 
 By the end, you should be able to trace retrieval, filtering, ordering and exposure; audit a platform claim; reproduce a toy Elo update; and explain an exposure rate using a named population. Use probability, arithmetic and pseudocode. All profiles, scores, counts and response probabilities in the exercises are **synthetic**.
 
-## Using the 46-slide teaching pack
+## Scheduled teaching and independent work
 
-The complete route takes **180 minutes including a 10-minute break**, with time to calculate, discuss and revise. This is a suggested facilitation plan, not a claim that 46 pages take three hours to read. It can be split across the scheduled lecture, the existing 90-minute tutorial and guided study; the timetable is unchanged. For the lecture, introduce the models and worked answers. Use the tutorial for implementation and audit work, and complete the remaining source reading and synthesis as study. Do each exercise once, carrying the same artefact forward.
+### 60-minute lecture
+
+Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/decks/week-02/), in order. The timings include explanation, brief working and questions; full exercise timers elsewhere belong to the complete resource route.
+
+| Lecture time | Slides | Focus |
+| --- | --- | --- |
+| 0–10 min | 4–5, 7, 11 | Trace retrieval through exposure and demonstrate the source/claim/unknown distinction. |
+| 10–25 min | 17–20, 22 | Derive toy Elo and work through equal- and unequal-rating updates. |
+| 25–40 min | 29–31, 33–34 | Compare counts with rates and explain how an assumed allocator preserves an advantage. |
+| 40–55 min | 37–38, 40–41 | Name census populations; work through missing counts and invalid rows. |
+| 55–60 min | 45–46 | Check understanding and identify the Platform audit handoff. |
+
+### 90-minute tutorial
+
+Thursday, **2–3.30 pm**. Follow the [Week 2 tutorial](/sessions/02-platforms/): **20 minutes pipeline/source audit; 25 minutes Elo implementation; 25 minutes census audit; 20 minutes feedback and claim repair**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+
+### Independent work · about 210 minutes
+
+- **30 minutes — before Monday:** Read the three platform descriptions (slides 12–14), revisit Week 1’s boundary example and open the census.
+- **90 minutes — between Monday and Thursday:** Review the remaining pack, especially event logging, the stateful Elo trace and synthesis (slides 10, 23–27 and 42–44). Prepare questions and download the four workbook files; the tutorial performs the four practical tasks.
+- **90 minutes — consolidation and assessment:** Finish and check the Platform audit, record source limitations and carry its population definitions into the data report.
+
+Together this is about **six hours: 60 + 90 + 210 minutes**. Slides and full-length exercises outside the lecture selection are independent study unless assigned in the tutorial’s four blocks. Use the worked answers to check an attempt; optional extensions can use consolidation time. The complete route below reuses this material and adds no scheduled meeting or extra three-hour study requirement.
+
+<span id="using-the-46-slide-teaching-pack"></span>
+
+## Complete teaching pack
+
+The full **46-slide pack** and all worked notes remain the complete resource. This **180-minute reference route includes a ten-minute break** for someone facilitating the whole pack in one sitting. It is separate from the scheduled selections above: the break slide is skipped in the 60-minute lecture and the tutorial keeps its own 90-minute plan. These are facilitation estimates, including practical work and debriefs.
 
 | Elapsed time | Slides | Work and evidence produced |
 | --- | --- | --- |

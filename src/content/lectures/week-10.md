@@ -15,9 +15,37 @@ The transition matrix has four states. The people have rather more. This week bu
 
 By the end, you should be able to propagate a row-vector distribution, trace every contribution to a two-step result, sample categorical transitions, explain simulation error, preserve absorbing states and resolve a waiting protocol using explicit prior costs. Every probability, arrival, bill and response below is **authored fictional teaching data**. No real date, private message, profile or payment is needed.
 
-## Three-hour teaching route
+## Scheduled teaching and independent work
 
-Use the [50-slide deck](/decks/week-10/) with these notes. The route includes calculation time and answer discussions; the [90-minute tutorial](/sessions/10-date-simulation/) keeps its 20/30/20/20-minute allocation. Discuss completed work instead of repeating it. Solo implementation and review are accepted.
+### 60-minute lecture
+
+Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/decks/week-10/), in order. The timings include explanation, brief working and questions; full exercise timers elsewhere belong to the complete resource route.
+
+| Lecture time | Slides | Focus |
+| --- | --- | --- |
+| 0–10 min | 4–8 | Distinguish confirmation from arrival and define matrix orientation and absorbing states. |
+| 10–25 min | 11–12, 14–15 | Propagate the two-step distribution and explain the denominator. |
+| 25–40 min | 21, 24–27 | Demonstrate categorical sampling, path reset and an exact-versus-seeded comparison. |
+| 40–55 min | 30, 33, 35, 40–41 | Explain sensitivity, the memoryless assumption and the bill deadlock through actual costs. |
+| 55–60 min | 46, 49–50 | Preserve withdrawal and identify the observation handoff. |
+
+### 90-minute tutorial
+
+Thursday, **2–3.30 pm**. Follow the [Week 10 tutorial](/sessions/10-date-simulation/): **20 minutes exact propagation; 30 minutes simulation; 20 minutes sensitivity; 20 minutes metaphor and bill review**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+
+### Independent work · about 210 minutes
+
+- **30 minutes — before Monday:** Bring the Offline handover plan and Communication state machine; read the four-state matrix and the sampling convention.
+- **90 minutes — between Monday and Thursday:** Review remaining worked derivations, particularly eventual absorption, sampler boundaries and the memory counterexample (slides 16–19, 22–23 and 36–39). Open the eleven-file workbook and check the seed/horizon settings for Thursday.
+- **90 minutes — consolidation and assessment:** Finish the Date transition model, compare errors and preserve the separate observation export. Write the model-limit explanation for the final project.
+
+Together this is about **six hours: 60 + 90 + 210 minutes**. Slides and full-length exercises outside the lecture selection are independent study unless assigned in the tutorial’s four blocks. Use the worked answers to check an attempt; optional extensions can use consolidation time. The complete route below reuses this material and adds no scheduled meeting or extra three-hour study requirement.
+
+<span id="three-hour-teaching-route"></span>
+
+## Complete teaching pack
+
+The full **50-slide pack** and all worked notes remain the complete resource. This **180-minute reference route includes a ten-minute break** for someone facilitating the whole pack in one sitting. It is separate from the scheduled selections above: the break slide is skipped in the 60-minute lecture and the tutorial keeps its own 90-minute plan. These are facilitation estimates, including practical work and debriefs.
 
 | Elapsed time | Slides | Work and evidence |
 | --- | --- | --- |

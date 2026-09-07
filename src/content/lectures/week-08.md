@@ -15,9 +15,37 @@ This week turns the [Week 2 Platform audit](/sessions/02-platforms/) and [Week 7
 
 By the end, you should be able to draw an asset flow across a trust boundary; distinguish a bot, financial scam and identity inconsistency; calculate four detector metrics; compare thresholds under explicit error costs; explain a base-rate change; and replay a review hold without overriding a refusal. All cases, labels and scores in this pack are **authored teaching fixtures**. No classifier is trained and no actual person is investigated.
 
-## Three-hour teaching route
+## Scheduled teaching and independent work
 
-Use the [50-slide deck](/decks/week-08/) with these notes. The route includes explanation, individual working, discussion and debriefs. Run the existing [90-minute tutorial](/sessions/08-threat-model/) in its normal slot; review already completed work instead of repeating each exercise. Solo implementation and review are accepted.
+### 60-minute lecture
+
+Monday, **11 am–12 pm**. Use only these selections from the [complete deck](/decks/week-08/), in order. The timings include explanation, brief working and questions; full exercise timers elsewhere belong to the complete resource route.
+
+| Lecture time | Slides | Focus |
+| --- | --- | --- |
+| 0–10 min | 4–6, 9–10 | Recover the trust boundary and distinguish observations, threats and controls. |
+| 10–25 min | 15–18 | Fill the confusion matrix and derive its metric denominators. |
+| 25–40 min | 22, 25–27, 29 | Compare tested thresholds under explicit error costs. |
+| 40–55 min | 30–32, 35, 39 | Project a base-rate change and show why review cannot override refusal. |
+| 55–60 min | 43–44, 50 | State detector limits and check the release handoff. |
+
+### 90-minute tutorial
+
+Thursday, **2–3.30 pm**. Follow the [Week 8 tutorial](/sessions/08-threat-model/): **20 minutes asset flow; 25 minutes detector calculations; 20 minutes triage; 25 minutes review-state replay**. These four blocks fill the whole session. Bring lecture working for checking and refinement; complete each exercise once. Solo work and review are accepted.
+
+### Independent work · about 210 minutes
+
+- **30 minutes — before Monday:** Bring the Week 2 boundary map and Week 7 state machine. Inspect the seven triage cards and the scored-row schema.
+- **90 minutes — between Monday and Thursday:** Review the remaining pack, especially uncertain heuristics, prevalence assumptions and review histories (slides 11–14, 33–34 and 36–42). Open the six-file workbook and list the event cases to inspect in the tutorial.
+- **90 minutes — consolidation and assessment:** Complete the Threat model and literal boundary tests; carry its findings and controls into the final project’s release plan.
+
+Together this is about **six hours: 60 + 90 + 210 minutes**. Slides and full-length exercises outside the lecture selection are independent study unless assigned in the tutorial’s four blocks. Use the worked answers to check an attempt; optional extensions can use consolidation time. The complete route below reuses this material and adds no scheduled meeting or extra three-hour study requirement.
+
+<span id="three-hour-teaching-route"></span>
+
+## Complete teaching pack
+
+The full **50-slide pack** and all worked notes remain the complete resource. This **180-minute reference route includes a ten-minute break** for someone facilitating the whole pack in one sitting. It is separate from the scheduled selections above: the break slide is skipped in the 60-minute lecture and the tutorial keeps its own 90-minute plan. These are facilitation estimates, including practical work and debriefs.
 
 | Elapsed time | Slides | Work and evidence |
 | --- | --- | --- |

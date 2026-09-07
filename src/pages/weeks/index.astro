@@ -11,6 +11,7 @@ const phaseFor = (week: number) => phases[week <= 3 ? 0 : week <= 7 ? 1 : 2];
 ---
 <CourseLayout title="Timetable" description="Twelve weeks. One evaluated release. Every tutorial produces an engineering artefact the next stage can inspect.">
   <p>Lectures: Mondays, 11 am–12 pm. Tutorials: Thursdays, 2–3.30 pm, in weeks 2–12 only, starting 4 March. Both meet in Systems Lab 2. Week 1 is lecture-only. Teaching pauses from 5–18 April; week 7 starts on 19 April. The midterm is 23 April, 11 am–12.30 pm.</p>
+  <p>In weeks 2–12, plan for a <strong>60-minute lecture, 90-minute tutorial and about 210 minutes of independent work</strong>: six hours altogether. Each lecture page identifies the selected slides and preparation, practice and assessment tasks. The larger teaching packs remain complete resources; their 180-minute routes include a break for a full sitting and add no extra meeting. The midterm occupies its separate exam slot.</p>
   <fieldset class="week-filter" hidden>
     <legend>Explore a chapter</legend>
     <div class="filter-buttons"><button type="button" aria-pressed="true" data-phase="all">All 12 weeks</button>{phases.map(phase => <button type="button" aria-pressed="false" data-phase={phase}>{phase}</button>)}</div>

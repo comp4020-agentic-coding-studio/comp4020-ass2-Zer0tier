@@ -19,6 +19,8 @@ Bring the frozen **Match probability model** candidate (exact text, ratings and 
 
 Download the [sixteen-file workbook](/lectures/week-11/#run-and-challenge-the-workbook) before class. It executes the earlier protocol functions, imports Week 4's supported bio and checks Week 5's actual library plan. Its default is an explicitly labelled teaching snapshot assembled now, not a recovery of your earlier candidate. Evaluate your own Week 5 freeze first; use the worked example as a reproducibility reference. All inputs are synthetic; solo implementation and review are accepted.
 
+Follow the [60-minute lecture selection and independent-work plan](/lectures/week-11/#scheduled-teaching-and-independent-work). Complete the preparation and open the workbook before Thursday. The four blocks below are the entire **90-minute tutorial**; use existing lecture or study working for review and refinement. Remaining pack material belongs to the week’s independent study allocation.
+
 ## 90-minute tutorial
 
 1. **20 minutes — audit the log.** Reproduce 90 + 20 + 5 = **115 minutes**, reject overlapping elapsed-time accounting and critique 10/115. Keep this log separate from the earlier itinerary. Trace agreed, declined, pending and unobserved labels; the counterpart's event exactly at cutoff 1086 is outside the half-open window. Recount the separate dashboard's **25% among all** versus **50% among resolved** records. Neither “nice time” nor a simulation draw supplies an agreement.

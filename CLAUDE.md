@@ -97,7 +97,13 @@ build.
 - After each requested change is complete and verified, commit the work before
   ending the task. The student explicitly requires commits after changes.
 - For lecture-content reviews, first assess whether the material supports roughly
-  three hours and ideally more than 30 slides. Fill gaps with useful diagrams,
+  three hours as a complete resource and ideally more than 30 slides. The
+  timetable remains a 60-minute Monday lecture and a 90-minute Thursday
+  tutorial in weeks 2–12. Give explicit timed lecture slide selections and
+  independent tasks (about 210 minutes within the published six-hour week).
+  Retain the larger pack and its 180-minute reference route, but label its
+  break as belonging to a full sitting, not the scheduled lecture. Week 1
+  remains lecture-only with no separate deliverable. Fill gaps with useful diagrams,
   sourced evidence, labelled synthetic data and worked exercises, then review
   coherence with the week's topic and the weeks on either side. Give a timed
   teaching route; slide count alone is not evidence of duration.
