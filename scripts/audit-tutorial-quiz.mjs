@@ -77,6 +77,13 @@ const fixtures = [
     withheld: 'Five benefit units divided by 5/3 hours gives 3', feedback: ['100 × 5/16 = 31.25%', 'Five benefit units divided by 5/3 hours gives 3', 'rank = 1 + 1 + 4 = 6/100'],
     captureCases: [1, 2, 3, 5],
   },
+  {
+    id: 'maintenance-audit', route: 'sessions/12-maintenance/', firstQuestion: 'acknowledgements', numberQuestion: 'copies',
+    allCorrect: ['distinct', 'half-open', '5', 'terminal', 'snapshot', 'scoped-evidence'],
+    mixed: ['deliveries', 'half-open', '2', 'version-gate', 'copy-over', 'scoped-evidence'],
+    withheld: 'Thus 3 + 2 = 5 own copies', feedback: ['The five versions are 1, 1, 1, 1, 2.', 'Thus 3 + 2 = 5 own copies', 'Missing: manifest.json and README.txt.'],
+    captureCases: [0, 1, 2, 4],
+  },
 ];
 
 export async function inspectTutorialQuiz(browser, root, screenshots) {

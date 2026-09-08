@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="390" viewBox="0 0 640 390" role="img" aria-labelledby="title desc">
+  <title id="title">Two response branches at the expiry boundary</title>
+  <desc id="desc">Both branches have proposal window [20, 28), with U accepting at 21. Branch A has V responding at 27; branch B has V responding at 28. Filled starts include 20; open endpoints exclude 28. Position follows tick value.</desc>
+  <rect width="640" height="390" rx="14" fill="#fff7fa"/>
+  <g font-family="Arial, sans-serif" font-size="30" fill="#272c38">
+    <text x="320" y="42" text-anchor="middle">Proposal window [20, 28)</text>
+    <text x="32" y="92">A · V responds at 27</text>
+    <path d="M56 136H584" stroke="#315f98" stroke-width="10"/>
+    <circle cx="56" cy="136" r="9" fill="#315f98"/>
+    <circle cx="584" cy="136" r="9" fill="#fff7fa" stroke="#315f98" stroke-width="3"/>
+    <path d="M122 122V150 M518 122V150" stroke="#272c38" stroke-width="3"/>
+    <text x="56" y="183" text-anchor="middle">20</text><text x="122" y="183" text-anchor="middle">21</text>
+    <text x="518" y="183" text-anchor="middle">27</text><text x="584" y="183" text-anchor="middle">28</text>
+    <path d="M518 108V125" stroke="#983657" stroke-width="4"/>
+    <text x="32" y="238">B · V responds at 28</text>
+    <path d="M56 282H584" stroke="#315f98" stroke-width="10"/>
+    <circle cx="56" cy="282" r="9" fill="#315f98"/>
+    <circle cx="584" cy="282" r="9" fill="#fff7fa" stroke="#315f98" stroke-width="3"/>
+    <path d="M122 268V296 M518 268V296" stroke="#272c38" stroke-width="3"/>
+    <text x="56" y="329" text-anchor="middle">20</text><text x="122" y="329" text-anchor="middle">21</text>
+    <text x="518" y="329" text-anchor="middle">27</text><text x="584" y="329" text-anchor="middle">28</text>
+    <path d="M584 254V270" stroke="#983657" stroke-width="4"/>
+    <text x="320" y="376" text-anchor="middle">Both branches: U accepts at 21</text>
+  </g>
+</svg>
