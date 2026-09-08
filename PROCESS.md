@@ -1,53 +1,61 @@
 # Process overview
 
-<!-- TEMPLATE: this file is a shape to fill in, not a form. Replace everything
-     in it with your own overview, and delete this comment — `pnpm
-     check:evidence` will remind you if it's still here. -->
+I began with “How to Find a Partner” and requested pink and blue styling. I
+then rejected that broad direction and chose **Applied Algorithmic Romance &
+Profile Optimization**. This gave the course a specific technical problem:
+build a fictional profile, evaluate it and explain what the evaluation cannot
+establish. The agent recorded the new direction and failing requirements before
+replacing the earlier working course. The change involved its assessments,
+models and examples as well as its title
+([72b7d1f](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/72b7d1f),
+[fd89196](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/fd89196)).
 
-Written by you, for a reader: how you got from the brief to the harness and
-agentic workflow behind this submission. Markers read this file and follow its
-citations; they don't trawl the repo for evidence you didn't point at.
+The design centres on cumulative work: each week should produce something
+needed later. The agent's course-design review considered the practical
+progression in [How to Make (Almost) Anything](https://fab.cba.mit.edu/classes/863.25/)
+and [CMU's assessment-alignment guidance](https://www.cmu.edu/teaching/assessment/basics/alignment.html).
+In this course, the photo stays fixed during the bio experiment, and the
+evaluated candidate carries into the release and maintenance tasks. When I
+supplied a revised twelve-week sequence, the exam also needed revision because
+its stable-matching topic was no longer taught. `CLAUDE.md` now requires actual
+reuse of earlier artefacts, while literal tests protect the sequence,
+preparation dates and assessment weights
+([264b89d](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/264b89d)).
 
-This file is the shape; the course site's
-[assessment page](https://comp.anu.edu.au/courses/comp4020-agentic-coding-studio/topics/assessment/#what-you-submit)
-is the requirement, and its
-[word counts](https://comp.anu.edu.au/courses/comp4020-agentic-coding-studio/topics/assessment/#word-counts)
-cover every deliverable.
+My correction, “There should not have tutorial at week 1,” exposed another
+assumption. The timetable was generated from tutorials, so deleting that
+tutorial alone would also hide the first teaching week. The repair generated
+the timetable from lectures with optional tutorials. A new contract protects
+twelve lectures, eleven tutorials and the absence of stale links
+([9276d5b](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/9276d5b)).
+Expanding the teaching packs later exposed a related pacing problem: their
+three-hour routes did not describe the scheduled one-hour lectures. The
+corrected harness separates the complete resource from timed lecture selections,
+90-minute tutorials and independent work. Allocation tests check those totals
+and actual slide references
+([448f876](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/448f876)).
 
-## What I built
+Usability needed equally concrete direction. I supplied
+[COMP4130](https://comp.anu.edu.au/courses/comp4130/) as the navigation reference
+and requested clearer typography. The result uses familiar course sections and
+Public Sans. Browser review found that menu links could report themselves
+visible while their expanding wrapper still clipped them. The audit now waits
+for the list to fit; that lesson also entered the harness
+([4020c2e](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/4020c2e)).
 
-One paragraph: the thing, and the idea behind it.
+I then worked through the tutorials with the agent, adding application quizzes.
+Their contract requires a response to every case and explicit submission before
+revealing answers. Incorrect attempts count, and retries preserve the opportunity
+to practise. The agent tested missing answers, Enter submission, failed solution
+requests and phone layouts. Removing the completion guard deliberately made a
+test fail before restoration. The same component now serves all eleven tutorials
+([768e67a](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/768e67a),
+[05530fa](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/05530fa)).
 
-## How I got here
-
-The account of the process: how the work actually went, and how you knew the
-result was right. Tell it in whatever order makes it clear. A weekly prototype
-needs a paragraph or two; an assignment needs more.
-
-Cite the record as you go, as links whose text is the commit hash or range and
-whose target is this repo's commit or compare URL, so a reader clicks straight
-to the evidence:
-
-- one commit: [`a1b2c3d`](https://github.com/YOUR-ORG/YOUR-REPO/commit/a1b2c3d)
-- a range:
-  [`a1b2c3d...e4f5a6b`](https://github.com/YOUR-ORG/YOUR-REPO/compare/a1b2c3d...e4f5a6b)
-
-To pair a prompt with the commit it produced, quote the prompt (curated, not a
-full transcript) next to the citation:
-
-> the prompt, verbatim
-
-Screenshots are welcome where one carries the point better than a sentence does.
-Commit the file to this repo and link it with a **relative** path, which is what
-makes it render on GitHub: `![alt text](docs/before.png)`. Images don't count
-towards the word count and don't replace the citation.
-
-## Before you ship
-
-`pnpm check:evidence` verifies that this comment is gone, that your citations
-resolve to real commits, that a crit week's reflection entry is in
-`reflections/`, and that your `CLAUDE.md` is there. It checks that your account
-is traceable, not that it is good: that is the marker's call.
-
-Images aren't checked: unlike a citation whose SHA doesn't resolve, a broken
-image is visible the moment this file is rendered on GitHub.
+These checks protect specific promises. The harness leaves humour, clarity of
+explanations and the educational value of a dependency to human judgement;
+matching titles or passing arithmetic cannot establish those qualities. The
+development record contains 168 passing tests and browser checks of 52 pages,
+but these are local results. Public deployment still needs verification.
+Codex assisted with implementation, testing and drafting this account from the
+recorded directions and commit history.
