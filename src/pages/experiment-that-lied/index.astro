@@ -1,0 +1,12 @@
+---
+import CourseLayout from '../../layouts/CourseLayout.astro';
+import ExperimentThatLied from '../../components/ExperimentThatLied.astro';
+import { withBase } from 'astro-theme-university/url';
+---
+<CourseLayout title="The Experiment That Lied" description="Alex’s dashboard has picked a winner. The spreadsheet would like a word.">
+  <p>Predict, inspect, revise. Follow one tempting conclusion from the Week 4 exposure dashboard to the evidence note that will accompany Alex’s fictional release.</p>
+  <ExperimentThatLied />
+  <h2>Take the evidence back to the course</h2>
+  <p>Use this investigation during the existing reversal block in the <a href={withBase('/sessions/04-bio-experiment/')}>Week 4 tutorial</a>. Keep the note with your Bio experiment protocol and use its limitations in the <a href={withBase('/assessments/market-report/')}>data report</a>. The full protocol still needs your declared outcome, window and analysis plan.</p>
+  <p>The <a href={withBase('/toolkit/#experiment')}>balanced A/B calculator</a> explores a separate fixture. For this reversal’s arithmetic and its limits, return to the <a href={withBase('/lectures/week-04/')}>Week 4 notes</a>. <a href={withBase('/release-day/')}>Release Day</a> revisits your conclusion in Week 12.</p>
+</CourseLayout>

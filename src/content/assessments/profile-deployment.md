@@ -55,6 +55,8 @@ Figures, tables, code and source/tool notes are outside the word count. Use the 
 
 ## Acceptance versus quality
 
+[Release Day](/release-day/) lets you rehearse a review using the evidence note from Week 4. Its trace can accompany the maintenance manual, but its supplied faults and simulated acceptance are practice: they do not validate your own files, supply feedback on your project or replace any required submission evidence.
+
 The page must open, identify itself as fictional and correspond to the evaluated text. The scorer must reproduce your published result from the provided inputs. Those are acceptance checks. The rubric separately rewards your judgement about leakage, exposure, metric gaming and failed assumptions.
 
 Using a local build for this fictional assessment does not change the public GitHub Pages requirement for the actual website assignment.

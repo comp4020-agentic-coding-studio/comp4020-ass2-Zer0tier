@@ -1,0 +1,142 @@
+---
+import { withBase } from 'astro-theme-university/url';
+import '../styles/evidence-labs.css';
+---
+<section class="evidence-lab" data-release-lab aria-label="Release Day rehearsal">
+  <div class="lab-banner"><span>NULL ISLAND · EVIDENCE LAB 02</span><span>Week 12 · fictional, ungraded practice</span></div>
+  <div class="lab-fallback" data-rel-fallback>
+    <h2>Review the release on paper</h2>
+    <p>The interactive rehearsal needs JavaScript. Inspect three authored faults: a release note says “Bio A caused more responses”; the photo points to a stale draft; the outing costs $24 despite Alex’s $20 total budget.</p>
+    <details><summary>Trace the repairs to earlier weeks</summary><p>Week 4: A’s pooled 26% versus B’s 19% does not establish a text effect, and B leads in both zones. Record the causal result as unknown. Week 3: restore the complete A-portrait-v1 reference and metadata. Week 9: the distinct Atrium proposal takes 90 minutes and costs $14 covering both drinks; it still needs confirmation. Recheck the revised records before deciding whether this classroom rehearsal is ready.</p></details>
+    <p>Use the <a href={withBase('/sessions/12-maintenance/')}>Week 12 workbook</a> for actual file comparison and rollback. This paper review performs no deployment.</p>
+  </div>
+  <div class="lab-body" data-rel-app hidden>
+    <div class="lab-toolbar"><p data-rel-status role="status" aria-live="polite" aria-atomic="true"></p><button type="button" data-rel-reset>Restart this rehearsal</button></div>
+    <section class="lab-panel">
+      <p class="lab-kicker">EIGHT WEEKS LATER</p><h2>Everything was fine yesterday.</h2>
+      <p>Alex’s fictional release has inherited a confident claim, a stale photo reference and an expensive plan. Trace each fault to its evidence, repair the current draft and rerun the checks.</p>
+      <p class="lab-callout" data-rel-origin></p>
+      <details><summary>Bring a saved Week 4 note</summary>
+        <label for="rel-file">Experiment JSON exported by The Experiment That Lied</label>
+        <input type="file" id="rel-file" accept=".json,application/json" data-rel-file aria-describedby="rel-file-help" />
+        <p id="rel-file-help">Choose only the small fictional classroom record. Loading a valid note starts a fresh rehearsal. It stays in your browser; no upload occurs.</p>
+      </details>
+      <p class="lab-error" data-rel-error role="alert"></p>
+      <p><a data-rel-experiment href={withBase('/experiment-that-lied/')}>Reopen this note in The Experiment That Lied</a></p>
+    </section>
+    <div class="lab-columns lab-report">
+      <section class="lab-panel">
+        <p class="lab-kicker">01 · THE CURRENT CANDIDATE</p><h2>Three records. One release.</h2>
+        <p>Run the checks, then select a record to inspect its source. After a repair, the previous check results expire.</p>
+        <div class="lab-file-list" role="group" aria-label="Inspect a release record">
+          <button type="button" class="lab-file" data-rel-inspect="claim" aria-pressed="true"><span>The experiment claim<small>release-note.txt · Week 4</small></span><span class="lab-check-state" data-rel-badge="claim">Not checked</span></button>
+          <button type="button" class="lab-file" data-rel-inspect="photo" aria-pressed="false"><span>The frozen photo<small>photo-reference.json · Week 3</small></span><span class="lab-check-state" data-rel-badge="photo">Not checked</span></button>
+          <button type="button" class="lab-file" data-rel-inspect="plan" aria-pressed="false"><span>The Friday budget<small>outing-proposal.json · Week 9</small></span><span class="lab-check-state" data-rel-badge="plan">Not checked</span></button>
+        </div>
+        <div class="lab-actions"><button type="button" class="lab-primary" data-rel-run>Run release checks</button></div>
+        <div class="lab-result"><h3 data-rel-check-title tabindex="-1">Checks have not run.</h3><p data-rel-check-summary>Read the current records or run all three checks to find the gaps.</p></div>
+        <details><summary>Inspect the carried experiment note</summary><div data-rel-note></div><pre data-rel-record></pre></details>
+      </section>
+      <section class="lab-panel">
+        <p class="lab-kicker">02 · TRACE AND REPAIR</p><h2 data-rel-inspector-title tabindex="-1">The experiment claim</h2>
+        <p data-rel-current></p>
+        <div class="lab-source"><h3>Evidence from the earlier artefact</h3><p data-rel-evidence></p><a data-rel-source href={withBase('/lectures/week-04/')}>Open the source evidence</a></div>
+        <h3>Choose a repair</h3><p>Each choice changes this classroom draft. Inspect the explanation, then rerun the checks to test it.</p>
+        <div class="lab-actions" data-rel-repairs></div>
+        <p class="lab-callout" data-rel-repair-feedback tabindex="-1" hidden></p>
+      </section>
+    </div>
+    <section class="lab-panel">
+      <p class="lab-kicker">03 · YOUR RELEASE DECISION</p><h2>Is this rehearsal ready?</h2>
+      <p>Three passing checks on the current revision allow a ready decision. You may also hold the rehearsal while you review a limitation.</p>
+      <div class="lab-actions"><button type="button" data-rel-hold>Hold this rehearsal</button><button type="button" class="lab-primary" data-rel-ready>Mark rehearsal ready</button></div>
+      <div class="lab-result"><h3 data-rel-decision tabindex="-1">Decision pending</h3><p data-rel-decision-detail>Check the evidence before accepting the candidate.</p></div>
+      <p><strong>This is a record-consistency rehearsal.</strong> It does not hash, change or deploy your project files, and it does not confirm a meeting. The Week 11 reference release and its rank-2 result remain separate. Use the <a href={withBase('/sessions/12-maintenance/')}>Week 12 reproduction and rollback drill</a> to verify actual bytes and rendered pages.</p>
+    </section>
+    <section class="lab-panel">
+      <h2>Your review trail</h2><ol data-rel-history></ol>
+      <div class="lab-actions"><button type="button" data-rel-download>Download release review</button><button type="button" data-rel-download-note>Download current experiment note</button></div>
+      <p class="lab-muted">Keep the trace with your Maintenance and exit manual. It records your classroom choices and remaining Week 4 protocol gaps; it supplies no student project validation or submission.</p>
+    </section>
+  </div>
+</section>
+<script>
+  import { startRelease, sampleRecord, checkRelease, auditRelease, repairRelease, decideRelease, recordFromFragment, readExperimentRecord, recordFragment, conclusions, experimentFeedback, frozenPhoto, releaseScope, type Repair, type ReleaseCheck } from '../lib/evidence-journey';
+  import { downloadJSON, textNode } from '../lib/evidence-ui';
+  const root = document.querySelector<HTMLElement>('[data-release-lab]');
+  if (root) {
+    const get = <T extends HTMLElement = HTMLElement>(name: string) => root.querySelector<T>(`[data-rel-${name}]`)!;
+    let received = sampleRecord(), state = startRelease(received), selected: ReleaseCheck['id'] = 'claim';
+    let origin = 'Using the supplied premature Week 4 note. You can bring your own note using the continuation link or JSON file.';
+    const experimentLink = get<HTMLAnchorElement>('experiment'), experimentPath = experimentLink.getAttribute('href')!;
+    const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+    const repairOptions: Record<ReleaseCheck['id'], { id: Repair; label: string }[]> = {
+      claim: [{ id: 'swap-winner', label: 'Claim that B caused the improvement' }, { id: 'limit-claim', label: 'Revise the source conclusion and limit the claim' }],
+      photo: [{ id: 'rename-photo', label: 'Rename the stale reference to v1' }, { id: 'restore-photo', label: 'Restore the complete frozen photo reference' }],
+      plan: [{ id: 'raise-budget', label: 'Raise the draft budget to $30' }, { id: 'restore-plan', label: 'Use the $14 Atrium proposal' }],
+    };
+    const render = (focus?: string) => {
+      get('origin').textContent = origin;
+      get('status').textContent = `Candidate revision ${state.revision} · ${state.audit ? `${state.audit.checks.filter(c => c.ok).length}/3 checks passed` : 'checks required'} · ${state.decision}.`;
+      const checks = checkRelease(state), active = checks.find(check => check.id === selected)!;
+      for (const button of root.querySelectorAll<HTMLButtonElement>('[data-rel-inspect]')) button.setAttribute('aria-pressed', String(button.dataset.relInspect === selected));
+      for (const badge of root.querySelectorAll<HTMLElement>('[data-rel-badge]')) badge.textContent = state.audit ? (state.audit.checks.find(c => c.id === badge.dataset.relBadge)!.ok ? 'Pass' : 'Hold') : 'Not checked';
+      get('check-title').textContent = state.audit ? `${state.audit.checks.filter(c => c.ok).length} of 3 checks passed on revision ${state.revision}` : 'Checks have not run on this revision.';
+      get('check-summary').textContent = state.audit ? (state.audit.checks.every(c => c.ok) ? 'The classroom records agree. Review the limits before making your decision.' : 'Select a held record to trace its evidence and choose a repair.') : 'Run all three checks after your latest change.';
+      get('inspector-title').textContent = active.title;
+      get('evidence').textContent = active.evidence;
+      get<HTMLAnchorElement>('source').href = base + active.source;
+      const claim = state.note === 'causal' ? `Release note: “${state.record.choices.conclusion === 'causal-b' ? conclusions['causal-b'] : conclusions['causal-a']}”` : 'Release note: “Synthetic CSV: A 26/100, B 19/100. B leads in both zones. No causal bio effect or mapping to Alex’s drafts is established.”';
+      const photo = state.photo === 'frozen' ? `Current reference: ${frozenPhoto.revision} · ${frozenPhoto.file} · crop 150,0,300,400 · recorded alt text and SHA-256 ${frozenPhoto.sha256}.` : `Current reference: ${state.photo === 'renamed' ? 'A-portrait-v1 label' : 'A-portrait-draft label'} · photo-a-draft.svg · stale crop and metadata. This missing draft reference is an authored fault.`;
+      const plan = state.plan === 'atrium' ? 'Current proposal: week-09-v1:atrium-cover · Friday 17:00–18:30 including return travel · $14 total. Separate from the Week 5 Library plan. Confirmation not established in this rehearsal.' : `Current proposal: release-day-v1:faulty-outing · 90 minutes · $24 total · draft budget ${state.plan === 'raised-budget' ? '$30' : '$20'}. This fault scenario is separate from the Week 9 reference.`;
+      get('current').textContent = selected === 'claim' ? claim : selected === 'photo' ? photo : plan;
+      get('repairs').replaceChildren(...repairOptions[selected].map(option => { const button = textNode('button', option.label); button.type = 'button'; button.dataset.relRepair = option.id; return button; }));
+      get('record').textContent = JSON.stringify(state.record, null, 2);
+      const issues = experimentFeedback(state.record.choices);
+      get('note').replaceChildren(textNode('p', `Initial prediction: ${state.record.choices.prediction}. Current conclusion: ${conclusions[state.record.choices.conclusion]}`), textNode('p', issues.length ? `Protocol and evidence review still has ${issues.length} gap(s). A cautious release note does not complete the proposed experiment.` : 'The outline records the supported limitations and controls. The full trial specification and outcomes are still absent.'));
+      if (issues.length) { const list = document.createElement('ul'); list.append(...issues.map(issue => textNode('li', issue))); get('note').append(list); }
+      experimentLink.href = experimentPath + recordFragment(state.record);
+      get('history').replaceChildren(...state.history.map(event => textNode('li', event)));
+      get('decision').textContent = { unreviewed: 'Decision pending', held: 'Rehearsal held', ready: 'Ready for this rehearsal only' }[state.decision];
+      get('decision-detail').textContent = state.decision === 'ready' ? 'The three classroom checks pass on the current revision. Save the trace, then verify your actual project with its own evidence and build.' : state.decision === 'held' ? 'Keep the candidate on hold. Check the current revision, inspect the evidence and repair any remaining faults.' : 'A change invalidates the earlier decision. Run the checks on this revision before marking it ready.';
+      if (focus) get(focus).focus();
+    };
+    root.addEventListener('click', event => {
+      const target = (event.target as HTMLElement).closest<HTMLButtonElement>('button');
+      if (!target) return;
+      if (target.dataset.relInspect) { selected = target.dataset.relInspect as ReleaseCheck['id']; get('repair-feedback').hidden = true; render('inspector-title'); }
+      if (target.dataset.relRepair) {
+        state = repairRelease(state, target.dataset.relRepair as Repair);
+        get('repair-feedback').textContent = state.history.at(-1)!;
+        get('repair-feedback').hidden = false; render('repair-feedback');
+      }
+    });
+    get('run').addEventListener('click', () => { state = auditRelease(state); render('check-title'); });
+    get('hold').addEventListener('click', () => { state = decideRelease(state, 'hold'); render('decision'); });
+    get('ready').addEventListener('click', () => { state = decideRelease(state, 'ready'); render('decision'); });
+    get('reset').addEventListener('click', () => { selection++; get<HTMLInputElement>('file').value = ''; state = startRelease(received); selected = 'claim'; get('repair-feedback').hidden = true; get('error').textContent = ''; render('check-title'); });
+    get('download').addEventListener('click', () => downloadJSON({ schema: 'alex-release-review-v1', fictional: true, scope: releaseScope, origin, received, current: state, protocolGaps: experimentFeedback(state.record.choices) }, 'alex-release-review-v1.json'));
+    get('download-note').addEventListener('click', () => downloadJSON(state.record, 'alex-experiment-v1.json'));
+    // A later selection wins even if an earlier file read finishes afterwards.
+    let selection = 0;
+    get<HTMLInputElement>('file').addEventListener('change', async event => {
+      const input = event.target as HTMLInputElement, file = input.files?.[0], ticket = ++selection;
+      if (!file) return;
+      try {
+        if (file.size > 10000) throw new Error('Use an experiment record smaller than 10 KB.');
+        const record = readExperimentRecord(await file.text());
+        if (ticket !== selection) return;
+        received = record; state = startRelease(received); selected = 'claim';
+        origin = 'Loaded your saved Week 4 note. Its prediction, limitations and protocol choices are carried into this fresh rehearsal.';
+        history.replaceState(null, '', location.pathname + location.search + recordFragment(received));
+        get('error').textContent = ''; get('repair-feedback').hidden = true; render('check-title');
+      } catch (error) { if (ticket === selection) get('error').textContent = `${(error as Error).message} Your current rehearsal is unchanged.`; }
+      finally { if (ticket === selection) input.value = ''; }
+    });
+    try {
+      const incoming = recordFromFragment(location.hash);
+      if (incoming) { received = incoming; state = startRelease(received); origin = 'Carried from your Week 4 investigation. Your original prediction and selected evidence travelled with the conclusion.'; }
+    } catch (error) { get('error').textContent = `${(error as Error).message} The supplied sample is shown instead.`; }
+    render(); get('fallback').hidden = true; get('app').hidden = false;
+  }
+</script>

@@ -22,6 +22,16 @@ const materials = [
       <p>Across twelve weeks, use synthetic data and fictional cases to test assumptions and build a reproducible profile release. Assessment focuses on your engineering and evidence; no dating-app account or real-world dating experiment is required.</p>
     </header>
 
+    <section class="evidence-feature" aria-labelledby="evidence-feature-title">
+      <p class="debugger-feature-label">TWO CONNECTED INVESTIGATIONS</p>
+      <h2 id="evidence-feature-title">From a premature winner to release day</h2>
+      <p>Alex’s dashboard picks a bio. Eight weeks later, the release still carries its unsupported claim. Follow the evidence through both decisions.</p>
+      <div class="evidence-feature-links">
+        <a href={withBase('/experiment-that-lied/')}><strong>The Experiment That Lied <span aria-hidden="true">→</span></strong><span>Week 4 · Open the spreadsheet, challenge the winner and save your evidence note.</span></a>
+        <a href={withBase('/release-day/')}><strong>Release Day <span aria-hidden="true">→</span></strong><span>Week 12 · Carry your note forward, trace three faults and review the repaired release.</span></a>
+      </div>
+    </section>
+
     <section class="debugger-feature" aria-labelledby="debugger-feature-title">
       <p class="debugger-feature-label">INTERACTIVE MESSAGE LAB</p>
       <h2 id="debugger-feature-title">Romance Debugger</h2>
@@ -83,6 +93,13 @@ const materials = [
   }
 
   .debugger-feature { margin-block: 2rem; padding: 1.5rem; border: 1px solid var(--course-line); border-radius: 12px; background: var(--course-blue); }
+  .evidence-feature { margin-block: 2rem; padding: 1.5rem; border: 1px solid var(--course-line); border-radius: 12px; background: var(--course-pink); }
+  .course-home .evidence-feature h2 { margin: .5rem 0 .75rem; }
+  .evidence-feature-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .evidence-feature-links a { display: block; padding: 1rem; border: 1px solid var(--course-line); border-radius: 6px; background: var(--course-paper); color: var(--course-blue-ink); text-decoration: none; }
+  .evidence-feature-links a:hover strong { text-decoration: underline; }
+  .evidence-feature-links span { display: block; margin-top: .5rem; color: var(--course-ink); font-size: 1rem; }
+  .evidence-feature-links strong span { display: inline; color: inherit; }
   .course-home .debugger-feature h2 { margin: .5rem 0 .75rem; }
   .course-home .debugger-feature-label { font-size: .8rem; color: var(--course-blue-ink); font-weight: 600; letter-spacing: .05em; }
   .debugger-feature a { display: inline-block; padding-block: .6rem; min-height: 44px; font-weight: 600; color: var(--course-blue-ink); }
@@ -135,6 +152,7 @@ const materials = [
   }
 
   @media (max-width: 639px) {
+    .evidence-feature-links { grid-template-columns: 1fr; }
     .course-materials ul {
       grid-template-columns: 1fr;
     }

@@ -1,0 +1,12 @@
+---
+import CourseLayout from '../../layouts/CourseLayout.astro';
+import ReleaseDay from '../../components/ReleaseDay.astro';
+import { withBase } from 'astro-theme-university/url';
+---
+<CourseLayout title="Release Day" description="A confident claim, a stale photo and a plan over budget. Follow the evidence back to the week that produced it.">
+  <p>Continue <a href={withBase('/experiment-that-lied/')}>The Experiment That Lied</a>, or begin with the supplied premature note. Review a separate authored release candidate and find out what has to change before its records agree.</p>
+  <ReleaseDay />
+  <h2>Turn the rehearsal into a release review</h2>
+  <p>Use the first five minutes of the existing reproduction and rollback block in the <a href={withBase('/sessions/12-maintenance/')}>Week 12 tutorial</a> to trace one fault. Keep the review trail with your maintenance manual, then complete the actual workbook or your own documented build and browser checks.</p>
+  <p>The <a href={withBase('/assessments/profile-deployment/')}>final project</a> requires your own artefacts, model card and validation. This rehearsal adds no assessment and supplies no completed submission. Return to the <a href={withBase('/toolkit/')}>course toolkit</a> for the source files.</p>
+</CourseLayout>

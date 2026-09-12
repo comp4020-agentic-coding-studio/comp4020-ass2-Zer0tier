@@ -69,6 +69,14 @@ and label manually revealed conversation events as authored examples. A restart
 creates a fresh classroom case; it must not be represented as reopening a closed
 conversation. Verify action traces, keyboard focus, downloads and the no-JS
 fallback alongside the rendered state and evidence at both marking viewports.
+The Experiment That Lied and Release Day are connected, ungraded investigations.
+Use the unchanged four-cell Week 4 CSV; its labels never identify Alex's authored
+bios. Carry the actual selected evidence note via a validated link or local JSON
+file, keeping the initial prediction and received note when conclusions change.
+Release Day is a separate authored record-consistency rehearsal, not the Week 11
+reference release, file hashing, deployment or agreement. Repairs invalidate the
+current check and decision; readiness requires a fresh run on the current revision.
+Retain actual workbook and browser validation within the existing tutorial blocks.
 The student's revised twelve-week sequence is the
 contract: introduction; platform architecture/Elo; photography; NLP/bio A/B
 testing; match probability; opening messages; asynchronous communication;

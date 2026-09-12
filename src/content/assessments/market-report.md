@@ -31,6 +31,8 @@ Use the [market census and bio-exposure files](/toolkit/) to audit those three c
 
 ## Required analysis
 
+For rehearsal, use [The Experiment That Lied](/experiment-that-lied/) to inspect the exposure reversal and record its limitations. Its downloadable note can support your Bio experiment protocol; your submission still needs the complete analysis and reproducible working below.
+
 1. Define active, available and reciprocally eligible populations. Reproduce **150/300**, **40/150** and **40/300**, with units and denominators.
 2. Audit row constraints and show the effect of adding 50 missing active profiles to East while leaving reciprocal counts unchanged.
 3. Compare both bios in aggregate and within each zone. Explain why the pooled winner is not a demonstrated causal winner.

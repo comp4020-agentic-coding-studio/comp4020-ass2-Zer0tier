@@ -1,0 +1,146 @@
+---
+import { comparison, exposureRows, riskOptions } from '../lib/evidence-journey';
+import { withBase } from 'astro-theme-university/url';
+import '../styles/evidence-labs.css';
+const pooled = comparison();
+---
+<section class="evidence-lab" data-experiment-lab aria-label="The Experiment That Lied investigation">
+  <div class="lab-banner"><span>NULL ISLAND · EVIDENCE LAB 01</span><span>Week 4 · fictional, ungraded practice</span></div>
+  <div class="lab-fallback" data-exp-fallback>
+    <h2>Investigate on paper</h2>
+    <p>The interactive investigation needs JavaScript. A has 26 positive responses in 100 exposures; B has 19 in 100. Predict whether that establishes a better bio, then open the evidence.</p>
+    <details><summary>Open the four exposure cells</summary>
+      <ul>{exposureRows.map(row => <li>{row.zone}, {row.variant}: {row.positives}/{row.exposures} = {row.rate * 100}%.</li>)}</ul>
+      <p>B leads in both zones. A has more exposure in the higher-response zone. Neither summary establishes a text effect. The CSV does not identify Alex’s drafts or document random allocation. Write a cautious conclusion and a proposed trial with a frozen photo, random allocation within zones and a fixed stopping rule.</p>
+    </details>
+    <p>Keep that note for the <a href={withBase('/release-day/')}>Release Day paper exercise</a>.</p>
+  </div>
+  <div class="lab-body" data-exp-app hidden>
+    <ol class="lab-progress" aria-label="Investigation progress">
+      {['Predict', 'Pool', 'Inspect', 'Record'].map((label, index) => <li data-exp-step={index}>{index + 1}. {label}</li>)}
+    </ol>
+    <div class="lab-toolbar"><p data-exp-status role="status" aria-live="polite"></p><button type="button" data-exp-reset>Start a fresh investigation</button></div>
+    <p class="lab-error" data-exp-error role="alert"></p>
+    <div class="lab-columns">
+      <div>
+        <section class="lab-panel">
+          <p class="lab-kicker">THE CLAIM ON THE WHITEBOARD</p>
+          <h2>“Bio A wins. Ship the rewrite.”</h2>
+          <p>Alex’s fictional drafts are ready. A separate synthetic dashboard seems to have picked a winner. The letters look reassuringly familiar.</p>
+          <p class="lab-callout">Your job: decide what this evidence can support before that sentence reaches the release notes.</p>
+          <form data-exp-predict>
+            <label for="exp-prediction">Before opening the dashboard, what do you predict?</label>
+            <select id="exp-prediction" name="prediction" required><option value="">Choose a prediction</option><option value="A">A will lead overall</option><option value="B">B will lead overall</option><option value="unknown">I cannot tell yet</option></select>
+            <button type="submit" class="lab-primary">Record prediction and open totals</button>
+          </form>
+          <p data-exp-prediction-note hidden></p>
+        </section>
+        <section class="lab-panel" data-exp-pooled hidden>
+          <h2 data-exp-pooled-title tabindex="-1">The dashboard has a winner.</h2>
+          <p>Positive responses / exposures, pooled across zones. All counts are fabricated teaching data.</p>
+          <div class="lab-stats">{pooled.map(row => <div class="lab-stat">Variant {row.variant}<strong>{row.rate * 100}%</strong><span>{row.positives} / {row.exposures} exposures</span><div class="lab-bar" aria-hidden="true"><span style={`width:${row.rate * 100}%`}></span></div></div>)}</div>
+          <p>A leads by 7 percentage points. Has the dashboard answered Alex’s question?</p>
+          <button type="button" data-exp-reveal>Open the exposure zones</button>
+        </section>
+      </div>
+      <div>
+        <section class="lab-panel" data-exp-empty><p class="lab-kicker">THE UNOPENED SPREADSHEET</p><h2>The denominator is waiting.</h2><p>Make a prediction, inspect the totals, then open the rows that the headline left out.</p><p>The useful outcome is an evidence note you can defend eight weeks later.</p></section>
+        <section class="lab-panel" data-exp-groups hidden>
+          <h2 data-exp-groups-title tabindex="-1">The winner loses twice.</h2>
+          <table class="lab-table"><caption>Positive responses / exposures</caption><thead><tr><th scope="col">Zone</th><th scope="col">A</th><th scope="col">B</th></tr></thead><tbody>
+            {['North', 'South'].map(zone => <tr><th scope="row">{zone}</th>{exposureRows.filter(row => row.zone === zone).map(row => <td>{row.positives}/{row.exposures}<br /><strong>{row.rate * 100}%</strong></td>)}</tr>)}
+          </tbody></table>
+          <p><strong>B leads by 5 percentage points in each zone.</strong> North supplies 80% of A’s exposures and 20% of B’s. Pooling compares different mixes.</p>
+          <details><summary>Compare a shared 50/50 mix</summary><p>Give each zone half the weight: A = 0.5 × 30% + 0.5 × 10% = <strong>20%</strong>; B = 0.5 × 35% + 0.5 × 15% = <strong>25%</strong>. This is a declared hypothetical target mix. It does not recover a causal text effect.</p></details>
+          <p class="lab-callout">Still missing: individual assignment records and a link from these A/B labels to Alex’s drafts. A photo change is also unobserved; the CSV has no photo field.</p>
+          <p><a href={withBase('/data/bio-exposures.csv')} download>Inspect the original CSV</a></p>
+          <button type="button" class="lab-primary" data-exp-write>Write the evidence note</button>
+        </section>
+      </div>
+    </div>
+    <section class="lab-panel lab-report" data-exp-report hidden>
+      <p class="lab-kicker">THE NOTE THAT TRAVELS TO WEEK 12</p>
+      <h2 data-exp-report-title tabindex="-1">What will you put on the record?</h2>
+      <p>Keep observations, unknowns and a proposed follow-up separate. You can export an imperfect draft and revise it later; the feedback will identify its gaps.</p>
+      <form data-exp-record-form>
+        <div class="lab-columns">
+          <div>
+            <label for="exp-conclusion">Conclusion about the bio’s causal effect</label>
+            <select id="exp-conclusion" name="conclusion" required><option value="">Choose a conclusion</option><option value="causal-a">Bio A caused more responses</option><option value="causal-b">Bio B caused more responses</option><option value="unknown">We don’t know yet</option></select>
+            <fieldset><legend>Limitations supported by this record</legend>{riskOptions.map(risk => <label class="lab-check-label"><input type="checkbox" name="risks" value={risk.id} /><span>{risk.label}</span></label>)}</fieldset>
+          </div>
+          <div>
+            <label for="exp-allocation">Allocation for a proposed synthetic trial</label>
+            <select id="exp-allocation" name="allocation" required><option value="">Choose an allocation</option><option value="repeat-mix">Repeat the observed exposure mix</option><option value="within-zone">Randomise within each zone</option></select>
+            <label for="exp-photo">Photo control</label>
+            <select id="exp-photo" name="photo" required><option value="">Choose a photo policy</option><option value="change">Change photo with the bio</option><option value="frozen">Freeze A-portrait-v1 in both arms</option></select>
+            <label for="exp-stopping">Stopping rule</label>
+            <select id="exp-stopping" name="stopping" required><option value="">Choose a stopping rule</option><option value="winner">Stop when a winner appears</option><option value="fixed">Fix the window and sample cap first</option></select>
+            <p class="lab-muted">This is a protocol outline. In your tutorial artefact, also specify the outcome, unique simulated viewer IDs, missing-record handling, analysis weights, uncertainty method and worthwhile effect. No follow-up outcomes have been generated.</p>
+          </div>
+        </div>
+        <button class="lab-primary" type="submit">Check my evidence note</button>
+      </form>
+      <div class="lab-result" data-exp-feedback hidden>
+        <h3 data-exp-feedback-title tabindex="-1"></h3><ul data-exp-issues></ul>
+        <p>The totals are a descriptive result. “We don’t know yet” is a defensible causal conclusion, and it leaves a useful next experiment to specify.</p>
+      </div>
+      <div data-exp-handover hidden>
+        <div class="lab-actions"><button type="button" data-exp-download>Download evidence note</button><a class="lab-link lab-primary" data-exp-continue href={withBase('/release-day/')}>Carry this note to Release Day →</a></div>
+        <p class="lab-muted">The JSON download and continuation link contain only this fictional fixture and your selected choices. Save the file for another session. The note is practice evidence, not a submitted assignment.</p>
+      </div>
+    </section>
+  </div>
+</section>
+<script>
+  import { initialChoices, makeExperimentRecord, experimentFeedback, recordFragment, recordFromFragment, type ExperimentChoices, type ExperimentRecord } from '../lib/evidence-journey';
+  import { downloadJSON, textNode } from '../lib/evidence-ui';
+  const root = document.querySelector<HTMLElement>('[data-experiment-lab]');
+  if (root) {
+    const get = <T extends HTMLElement = HTMLElement>(name: string) => root.querySelector<T>(`[data-exp-${name}]`)!;
+    const predictionForm = get<HTMLFormElement>('predict'), form = get<HTMLFormElement>('record-form');
+    const continuation = get<HTMLAnchorElement>('continue'), releasePath = continuation.getAttribute('href')!;
+    let phase = 0, choices = initialChoices(), record: ExperimentRecord | null = null;
+    const render = (focus?: string) => {
+      get('status').textContent = `Step ${phase + 1} of 4. ${['Make a prediction.', 'Inspect the pooled result.', 'Inspect the exposure mix.', 'Record a conclusion and proposed controls.'][phase]}`;
+      for (const item of root.querySelectorAll<HTMLElement>('[data-exp-step]')) { if (Number(item.dataset.expStep) === phase) item.setAttribute('aria-current', 'step'); else item.removeAttribute('aria-current'); }
+      get('predict').hidden = phase > 0;
+      get('prediction-note').hidden = phase === 0;
+      get('prediction-note').textContent = `Your initial prediction: ${choices.prediction === 'unknown' ? 'cannot tell yet' : `${choices.prediction} will lead overall`}. This prediction stays in your record when you revise the conclusion.`;
+      get('pooled').hidden = phase < 1; get('reveal').hidden = phase !== 1;
+      get('empty').hidden = phase >= 2; get('groups').hidden = phase < 2;
+      get('write').hidden = phase !== 2; get('report').hidden = phase < 3;
+      if (focus) get(focus).focus();
+    };
+    const fill = () => {
+      for (const key of ['conclusion', 'allocation', 'photo', 'stopping'] as const) (form.elements.namedItem(key) as HTMLSelectElement).value = choices[key];
+      for (const input of form.querySelectorAll<HTMLInputElement>('[name="risks"]')) input.checked = choices.risks.includes(input.value as ExperimentChoices['risks'][number]);
+    };
+    predictionForm.addEventListener('submit', event => { event.preventDefault(); choices.prediction = new FormData(predictionForm).get('prediction') as ExperimentChoices['prediction']; phase = 1; render('pooled-title'); });
+    get('reveal').addEventListener('click', () => { phase = 2; render('groups-title'); });
+    get('write').addEventListener('click', () => { phase = 3; render('report-title'); });
+    form.addEventListener('input', () => { record = null; get('feedback').hidden = true; get('handover').hidden = true; });
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const data = new FormData(form);
+      choices = { prediction: choices.prediction, conclusion: data.get('conclusion'), risks: data.getAll('risks'), allocation: data.get('allocation'), photo: data.get('photo'), stopping: data.get('stopping') } as ExperimentChoices;
+      const issues = experimentFeedback(choices);
+      get('issues').replaceChildren(...issues.map(issue => textNode('li', issue)));
+      get('feedback-title').textContent = issues.length ? `Draft saved with ${issues.length} ${issues.length === 1 ? 'gap' : 'gaps'} to review` : 'Evidence note ready to carry forward';
+      get('feedback').hidden = false;
+      record = makeExperimentRecord(choices);
+      continuation.href = releasePath + recordFragment(record);
+      get('handover').hidden = false; get('feedback-title').focus();
+    });
+    get('download').addEventListener('click', () => { if (record) downloadJSON(record, 'alex-experiment-v1.json'); });
+    get('reset').addEventListener('click', () => {
+      choices = initialChoices(); record = null; phase = 0; form.reset(); predictionForm.reset();
+      get('feedback').hidden = true; get('handover').hidden = true; get('error').textContent = '';
+      history.replaceState(null, '', location.pathname + location.search); render();
+      (predictionForm.elements.namedItem('prediction') as HTMLSelectElement).focus();
+    });
+    try { const incoming = recordFromFragment(location.hash); if (incoming) { choices = incoming.choices; phase = 3; fill(); } }
+    catch (error) { get('error').textContent = `${(error as Error).message} A fresh investigation is shown below.`; }
+    render(); get('fallback').hidden = true; get('app').hidden = false;
+  }
+</script>

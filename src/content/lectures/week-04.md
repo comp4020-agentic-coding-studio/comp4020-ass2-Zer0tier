@@ -19,6 +19,8 @@ Alex arrives with the frozen portrait and two fictional bio drafts. A separate s
 
 ## From strings to a testable comparison
 
+Open [The Experiment That Lied](/experiment-that-lied/) to inspect the dashboard in stages and record a conclusion. Save its evidence note for your Bio experiment protocol; [Release Day](/release-day/) will revisit that same note in Week 12. Use it within Thursday’s existing reversal and protocol blocks. It is exploratory practice, separate from the tutorial quiz.
+
 A profile bio is small enough to inspect and large enough to contain several unsupported claims. This week builds a transparent NLP baseline, audits two fictional texts and asks what an A/B comparison could actually establish. The engineering output is a **Bio experiment protocol**, supported by token traces, case evidence and reproducible calculations.
 
 [Open the 50-slide teaching deck](/decks/week-04/). It opens with slide content alone: **A/D** or the scroll wheel changes pages; **Esc** returns here.

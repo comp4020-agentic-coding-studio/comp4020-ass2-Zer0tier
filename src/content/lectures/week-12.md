@@ -15,6 +15,8 @@ slides: /decks/week-12/
 
 Alex's reference profile is ready for handover, including the rank-2 result. A fresh run must reproduce it; an injected software fault must be recoverable. Alongside that release, separate fictional maintenance scenarios ask what happens when terms change, confirmation expires or someone ends an agreement. The rollback command is useful in exactly one of those systems.
 
+In the separate [Release Day rehearsal](/release-day/), reopen your Week 4 evidence note from [The Experiment That Lied](/experiment-that-lied/). Trace a premature causal claim, stale photo reference and over-budget plan to their source records. Save one repair and its recheck during the first five minutes of Thursday’s existing reproduction block. The rehearsal compares classroom records; the workbook below performs the actual file comparison and rollback.
+
 **Investigate this week:** Reproduce and restore the release, then trace the separate agreement scenarios. Which state may return to an earlier version, and which must stay ended?
 
 ## Acquisition was only the first subsystem

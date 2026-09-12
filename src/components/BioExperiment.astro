@@ -1,9 +1,11 @@
 ---
 import { compareBios } from '../lib/romance-models';
+import { withBase } from 'astro-theme-university/url';
 const example = compareBios(120, 1000, 140, 1000);
 ---
 <section class="experiment-panel" aria-labelledby="experiment-heading">
   <h3 id="experiment-heading">Bio experiment sandbox</h3>
+  <p>Investigating the pooled reversal? Start with <a href={withBase('/experiment-that-lied/')}>The Experiment That Lied</a> and carry its evidence note to Release Day. The calculator below uses a separate balanced fixture.</p>
   <p>Balanced synthetic example: A = 120/1,000; B = 140/1,000. B leads by 2.0 percentage points, with z = {example.z!.toFixed(2)}. {example.conclusion}</p>
   <form id="bio-experiment" hidden novalidate>
     <div class="experiment-inputs">
