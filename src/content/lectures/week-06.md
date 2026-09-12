@@ -23,6 +23,8 @@ After a match, communication becomes a protocol with another operator. An opener
 
 [Open the 50-slide teaching deck](/decks/week-06/). **A/D** or the scroll wheel changes slides; **Esc** returns here.
 
+Try the [Romance Debugger](/romance-debugger/): choose Alex's next action in three authored conversations, then inspect the state, decision path, evidence and remaining unknowns. It uses this week's classifier with a local conversation record. Each next event is manually revealed; the scripted replies do not predict anyone's behaviour.
+
 By the end, you should be able to justify an opener with case evidence, implement refusal-first routing, preserve pending and closed decisions, compare invented reply rates and costs, and pass an explicit behavioural contract to Week 7's asynchronous model.
 
 ## Scheduled teaching and independent work

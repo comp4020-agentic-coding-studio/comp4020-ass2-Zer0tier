@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 import { gitOrigin, resolveDeployment } from './pages-base.ts';
 import { inspectDeck } from './audit-decks.mjs';
 import { inspectTutorialQuiz } from './audit-tutorial-quiz.mjs';
+import { inspectRomanceDebugger } from './audit-romance-debugger.mjs';
 
 const { base } = resolveDeployment(process.env, gitOrigin);
 const origin = process.env.AUDIT_ORIGIN ?? 'http://127.0.0.1:4322';
@@ -291,6 +292,7 @@ try {
   console.log('Phone homepage remained usable with a cold cache, 150ms latency and 200kB/s download.');
 
   await inspectTutorialQuiz(browser, root, screenshots);
+  await inspectRomanceDebugger(browser, root, screenshots);
 
   for (const route of routes.filter(route => route.startsWith('decks/'))) {
     await inspectDeck(page, root + route, screenshots);

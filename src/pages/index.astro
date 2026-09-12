@@ -22,6 +22,13 @@ const materials = [
       <p>Across twelve weeks, use synthetic data and fictional cases to test assumptions and build a reproducible profile release. Assessment focuses on your engineering and evidence; no dating-app account or real-world dating experiment is required.</p>
     </header>
 
+    <section class="debugger-feature" aria-labelledby="debugger-feature-title">
+      <p class="debugger-feature-label">INTERACTIVE MESSAGE LAB</p>
+      <h2 id="debugger-feature-title">Romance Debugger</h2>
+      <p>A read receipt arrives. A reply doesn’t. Choose Alex’s next action, then inspect the state and the evidence behind it. “We don’t know yet” is a valid result.</p>
+      <a href={withBase('/romance-debugger/')}>Open the debugger <span aria-hidden="true">→</span></a>
+    </section>
+
     <section aria-labelledby="learning-outcomes">
       <h2 id="learning-outcomes">Learning outcomes</h2>
       <p>At the completion of this course, you will be able to:</p>
@@ -74,6 +81,11 @@ const materials = [
   .course-home h2 {
     margin-block: 2.5rem 1rem;
   }
+
+  .debugger-feature { margin-block: 2rem; padding: 1.5rem; border: 1px solid var(--course-line); border-radius: 12px; background: var(--course-blue); }
+  .course-home .debugger-feature h2 { margin: .5rem 0 .75rem; }
+  .course-home .debugger-feature-label { font-size: .8rem; color: var(--course-blue-ink); font-weight: 600; letter-spacing: .05em; }
+  .debugger-feature a { display: inline-block; padding-block: .6rem; min-height: 44px; font-weight: 600; color: var(--course-blue-ink); }
 
   .course-materials ul {
     display: grid;

@@ -62,6 +62,13 @@ discovery that leads into the next lecture; week 12 ends with the final handover
 Keep the first and last slides aligned with those story beats, within the
 existing slide counts and teaching time. Preserve Alex's supplied facts and
 distinguish separate fixtures, stress tests and authored branches in the story.
+The Romance Debugger is ungraded exploratory practice with immediate feedback
+after each action, separate from the tutorial quizzes and their submission gate.
+Use the existing Week 6 classifier, preserve uncertainty and terminal refusal,
+and label manually revealed conversation events as authored examples. A restart
+creates a fresh classroom case; it must not be represented as reopening a closed
+conversation. Verify action traces, keyboard focus, downloads and the no-JS
+fallback alongside the rendered state and evidence at both marking viewports.
 The student's revised twelve-week sequence is the
 contract: introduction; platform architecture/Elo; photography; NLP/bio A/B
 testing; match probability; opening messages; asynchronous communication;

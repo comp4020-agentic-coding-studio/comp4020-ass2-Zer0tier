@@ -1,0 +1,253 @@
+---
+import { debuggerCases } from '../lib/romance-debugger';
+import { withBase } from 'astro-theme-university/url';
+---
+
+<section class="romance-debugger" data-romance-debugger aria-label="Interactive fictional conversation">
+  <div class="debugger-scope"><span>NULL ISLAND · MESSAGE LAB</span><span>Fictional cases · ungraded practice</span></div>
+  <div data-debugger-fallback class="debugger-fallback">
+    <h2>Trace a conversation on paper</h2>
+    <p>The interactive debugger needs JavaScript. The same decision is readable here: Alex has sent one opener. A read receipt is recorded, but no reply is recorded. Choose whether to wait, send another opener or close the conversation.</p>
+    <details>
+      <summary>Inspect this paper trace</summary>
+      <p>The route stays <strong>pending</strong>. Another opener is held because one is already recorded. “We don’t know yet” preserves the uncertainty. Alex may also close the local conversation without inferring why no reply arrived.</p>
+    </details>
+    <p>Use the <a href={withBase('/lectures/week-06/#a-tree-with-an-exit-a-history-and-an-unknown-state')}>Week 6 worked notes</a> for the complete rule order.</p>
+  </div>
+
+  <div data-debugger-app hidden>
+    <div class="debugger-cases" role="group" aria-label="Choose a fictional case">
+      {debuggerCases.map((item, index) => <button type="button" data-debugger-case={item.id} aria-pressed={index === 0 ? 'true' : 'false'}>
+        <span class="case-number">CASE {String(index + 1).padStart(2, '0')}</span>
+        <strong>{item.title}</strong><span>{item.description}</span>
+      </button>)}
+    </div>
+    <div class="debugger-toolbar">
+      <p data-debugger-status role="status" aria-live="polite" aria-atomic="true"></p>
+      <button type="button" data-debugger-reset>Restart this case</button>
+    </div>
+    <div class="debugger-layout">
+      <section class="conversation-pane" aria-labelledby="debugger-conversation-title">
+        <header class="pane-heading"><span class="pane-number" aria-hidden="true">01</span><h2 id="debugger-conversation-title">The conversation</h2></header>
+        <div class="alex-case"><strong>Alex’s supplied facts</strong><p>Adult CS student. Board games, terrible puns, perhaps a relationship. Friday 5–7 pm · bus travel · $20 total.</p></div>
+        <ol class="message-thread" data-debugger-messages aria-label="Fictional conversation record"></ol>
+        <div class="debugger-decision">
+          <h3 id="debugger-prompt" data-debugger-prompt tabindex="-1"></h3>
+          <p data-debugger-question></p>
+          <div class="debugger-choices" data-debugger-choices role="group" aria-labelledby="debugger-prompt"></div>
+          <p class="decision-hint" data-debugger-hint>Choose an action to inspect its result. Nothing is sent to a real person.</p>
+        </div>
+      </section>
+
+      <section class="inspection-pane" aria-labelledby="debugger-inspection-title">
+        <header class="pane-heading"><span class="pane-number" aria-hidden="true">02</span><h2 id="debugger-inspection-title">Inspect the decision</h2></header>
+        <div data-debugger-empty class="inspection-empty">
+          <span class="empty-mark" aria-hidden="true">?</span>
+          <h3>The next state needs a choice.</h3>
+          <p>Choose an action in the conversation. This panel will show the before and after states, the path through the tree and the supporting evidence.</p>
+          <p>A state can stay unchanged for a good reason.</p>
+        </div>
+        <div data-debugger-result hidden>
+          <p class="result-kicker" data-debugger-verdict></p>
+          <h3 data-debugger-result-title tabindex="-1"></h3>
+          <dl class="state-change"><div><dt>Before</dt><dd data-debugger-before></dd></div><div><dt>After</dt><dd data-debugger-after></dd></div></dl>
+          <p data-debugger-explanation></p>
+          <h4>The tree after your choice</h4>
+          <ol class="decision-path" data-debugger-path></ol>
+          <h4>Evidence in this record</h4>
+          <dl class="debugger-evidence" data-debugger-evidence></dl>
+          <div class="debugger-unknowns"><h4>Still unknown</h4><ul data-debugger-unknowns></ul></div>
+          <div class="debugger-next">
+            <button type="button" class="debugger-primary" data-debugger-continue hidden>Reveal next event</button>
+            <button type="button" class="debugger-primary" data-debugger-retry hidden>Try another action</button>
+            <p data-debugger-complete hidden>Case complete. Keep the trace, or try another case above. The outcome is a defensible record, not a romance score.</p>
+          </div>
+          <details class="debugger-snapshot"><summary>Inspect the current snapshot</summary><pre data-debugger-snapshot></pre></details>
+        </div>
+      </section>
+    </div>
+    <section class="debugger-history" aria-labelledby="debugger-history-title">
+      <div class="history-heading"><h2 id="debugger-history-title">Your decision trail</h2><button type="button" data-debugger-download disabled>Download trace</button></div>
+      <p data-debugger-history-empty>Your choices will appear here, including actions the tree holds.</p>
+      <ol data-debugger-history></ol>
+      <p class="trace-note">The download contains this fictional case and your choices. Restarting or opening a case clears the current trail.</p>
+    </section>
+  </div>
+</section>
+
+<script>
+  import { startDebugger, chooseAction, advanceDebugger, retryAction, currentScene, inspectSnapshot, exportTrace, stateLabels, treeRules } from '../lib/romance-debugger';
+  const root = document.querySelector<HTMLElement>('[data-romance-debugger]');
+  if (root) {
+    const get = <T extends HTMLElement = HTMLElement>(name: string) => root.querySelector<T>(`[data-debugger-${name}]`)!;
+    const node = <K extends keyof HTMLElementTagNameMap>(tag: K, text: string, className = '') => {
+      const element = document.createElement(tag);
+      element.textContent = text;
+      if (className) element.className = className;
+      return element;
+    };
+    let state = startDebugger('shared');
+    const render = (focus?: 'prompt' | 'result-title') => {
+      const scene = currentScene(state);
+      const current = inspectSnapshot(state);
+      get('status').textContent = `Current route: ${stateLabels[current.action]}. ${state.history.length} ${state.history.length === 1 ? 'choice' : 'choices'} recorded.`;
+      for (const button of root.querySelectorAll<HTMLButtonElement>('[data-debugger-case]')) button.setAttribute('aria-pressed', String(button.dataset.debuggerCase === state.caseId));
+      get('messages').replaceChildren(...state.messages.map(message => {
+        const item = node('li', '', `message message-${message.kind}`);
+        item.append(node('span', message.speaker, 'message-speaker'), node('p', message.text));
+        return item;
+      }));
+      get('prompt').textContent = scene.title;
+      get('question').textContent = scene.prompt;
+      get('choices').replaceChildren(...scene.choices.map(choice => {
+        const button = node('button', choice.label);
+        button.type = 'button';
+        button.dataset.debuggerAction = choice.id;
+        return button;
+      }));
+      get('choices').hidden = Boolean(state.latest);
+      get('hint').textContent = state.latest ? 'Your choice is recorded. Inspect the decision to continue.' : 'Choose an action to inspect its result. Nothing is sent to a real person.';
+      get('empty').hidden = Boolean(state.latest);
+      get('result').hidden = !state.latest;
+      if (state.latest) {
+        const result = state.latest;
+        get('result').dataset.accepted = String(result.accepted);
+        get('verdict').textContent = result.accepted ? 'CHOICE ACCEPTED' : 'ACTION HELD';
+        get('result-title').textContent = result.choice;
+        get('before').textContent = stateLabels[result.before.action];
+        get('after').textContent = stateLabels[result.after.action];
+        get('explanation').textContent = result.explanation;
+        get('path').replaceChildren(...treeRules.map(rule => {
+          const visited = result.after.trace.includes(rule.id);
+          const selected = result.after.trace.at(-1) === rule.id;
+          const item = node('li', '', selected ? 'path-selected' : '');
+          item.append(node('strong', rule.title), node('span', selected ? `Result: ${stateLabels[result.after.action]}` : visited ? 'Checked · continue' : 'Not reached'));
+          item.title = rule.description;
+          return item;
+        }));
+        get('evidence').replaceChildren(...result.evidence.flatMap(evidence => [node('dt', evidence.source), node('dd', evidence.quote)]));
+        get('unknowns').replaceChildren(...result.unknowns.map(unknown => node('li', unknown)));
+        get('continue').hidden = !result.accepted || !result.next;
+        get('retry').hidden = result.accepted;
+        get('complete').hidden = !result.accepted || Boolean(result.next);
+        get('snapshot').textContent = JSON.stringify(state.snapshot, null, 2);
+      }
+      get('history-empty').hidden = state.history.length > 0;
+      get('history').replaceChildren(...state.history.map((entry, index) => {
+        const item = node('li', '');
+        item.append(node('strong', `${index + 1}. ${entry.choice}`), node('span', `${entry.accepted ? 'Accepted' : 'Held'} · ${stateLabels[entry.before.action]} → ${stateLabels[entry.after.action]}`));
+        return item;
+      }));
+      get<HTMLButtonElement>('download').disabled = state.history.length === 0;
+      if (focus) get(focus).focus();
+    };
+    root.addEventListener('click', event => {
+      const target = event.target instanceof Element ? event.target.closest<HTMLButtonElement>('button') : null;
+      if (!target || !root.contains(target)) return;
+      if (target.dataset.debuggerCase) { state = startDebugger(target.dataset.debuggerCase); render('prompt'); }
+      else if (target.hasAttribute('data-debugger-reset')) { state = startDebugger(state.caseId); render('prompt'); }
+      else if (target.dataset.debuggerAction) { state = chooseAction(state, target.dataset.debuggerAction); render('result-title'); }
+      else if (target.hasAttribute('data-debugger-continue')) { state = advanceDebugger(state); render('prompt'); }
+      else if (target.hasAttribute('data-debugger-retry')) { state = retryAction(state); render('prompt'); }
+      else if (target.hasAttribute('data-debugger-download')) {
+        const url = URL.createObjectURL(new Blob([JSON.stringify(exportTrace(state), null, 2)], { type: 'application/json' }));
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `romance-debugger-${state.caseId}.json`;
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+    });
+    render();
+    get('app').hidden = false;
+    get('fallback').hidden = true;
+  }
+</script>
+
+<style is:global>
+  .at-main > section.romance-debugger { max-width: none; width: 100%; }
+  .romance-debugger { margin-block: 2rem 3rem; border: 1px solid var(--course-line); border-radius: 16px; background: var(--course-surface-raised); overflow: clip; }
+  .romance-debugger :is(p, ul, ol, dl, details) { max-width: none; }
+  .romance-debugger :is(button, h3[tabindex]):focus-visible { outline: 3px solid var(--course-blue-ink); outline-offset: 4px; }
+  .romance-debugger :is(h2, h3, h4) { margin: 0 0 .8rem; color: var(--course-ink); text-wrap: balance; }
+  .romance-debugger h2 { font-size: 1.3rem; }
+  .romance-debugger h3 { font-size: 1.3rem; line-height: 1.4; }
+  .romance-debugger h4 { margin-top: 1.5rem; font-size: 1rem; }
+  .romance-debugger p { margin: 0 0 1rem; font-size: 1.125rem; line-height: 1.65; }
+  .romance-debugger button { font: inherit; font-size: 1rem; line-height: 1.5; min-height: 44px; border: 1px solid var(--course-muted); border-radius: 8px; padding: .7rem 1rem; color: var(--course-blue-ink); background: var(--course-surface-raised); text-align: left; }
+  .romance-debugger button:hover:not(:disabled) { background: var(--course-blue); border-color: var(--course-blue-ink); }
+  .romance-debugger button:disabled { color: var(--course-muted); background: var(--course-surface); cursor: default; }
+  .debugger-scope { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem 1rem; padding: 1rem 1.5rem; background: var(--course-pink); color: var(--course-pink-ink); font-size: .8rem; font-weight: 600; }
+  .debugger-cases { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: .75rem; padding: 1.5rem 1.5rem 0; }
+  .debugger-cases button { display: grid; gap: .3rem; align-content: start; color: var(--course-ink); }
+  .debugger-cases button[aria-pressed="true"] { border: 2px solid var(--course-blue-ink); padding: calc(.7rem - 1px) calc(1rem - 1px); background: var(--course-blue); }
+  .debugger-cases button > span:last-child { font-size: .875rem; color: var(--course-muted); }
+  .case-number { color: var(--course-blue-ink); font-size: .75rem; letter-spacing: .06em; }
+  .debugger-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 1.5rem; }
+  .debugger-toolbar p { margin: 0; color: var(--course-muted); font-size: .875rem; }
+  .debugger-toolbar button { flex-shrink: 0; }
+  .debugger-layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); border-block: 1px solid var(--course-line); }
+  .conversation-pane, .inspection-pane { padding: 1.5rem; }
+  .inspection-pane { background: var(--course-surface); border-left: 1px solid var(--course-line); }
+  .pane-heading { display: flex; gap: .8rem; align-items: center; margin-bottom: 1.5rem; }
+  .pane-heading h2 { margin: 0; }
+  .pane-number { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--course-blue); color: var(--course-blue-ink); font-size: .8rem; flex-shrink: 0; }
+  .alex-case { border-block: 1px solid var(--course-line); padding-block: 1rem; }
+  .alex-case > strong { font-size: .875rem; }
+  .alex-case p { font-size: 1rem; margin: .4rem 0 0; }
+  .message-thread { list-style: none; display: grid; gap: 1rem; padding: 1.5rem 0; margin: 0; }
+  .message-thread .message { padding: 1rem; border: 1px solid var(--course-line); border-radius: 12px 12px 12px 3px; margin: 0; background: var(--course-paper); }
+  .message-thread .message-outgoing, .message-thread .message-draft { margin-left: 1.75rem; background: var(--course-blue); border-radius: 12px 12px 3px 12px; }
+  .message-thread .message-system { padding: .5rem 0; border: 0; background: none; }
+  .message-thread .message-boundary { border-left: 3px solid var(--course-pink-ink); }
+  .message-speaker { display: block; font-weight: 600; font-size: .8rem; color: var(--course-muted); margin-bottom: .4rem; }
+  .message-thread p { margin: 0; font-size: 1.0625rem; }
+  .message-system p { font-size: .95rem; }
+  .debugger-decision { padding-top: 1.5rem; border-top: 1px solid var(--course-line); }
+  .debugger-choices { display: grid; gap: .65rem; }
+  .romance-debugger .decision-hint { margin: 1rem 0 0; font-size: .875rem; color: var(--course-muted); }
+  .inspection-empty { padding-block: 2rem; }
+  .empty-mark { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; margin-bottom: 1.5rem; border: 1px solid var(--course-blue-ink); border-radius: 50%; font-size: 2rem; color: var(--course-blue-ink); }
+  .romance-debugger .result-kicker { font-size: .8rem; font-weight: 600; color: var(--course-blue-ink); }
+  [data-debugger-result][data-accepted="false"] .result-kicker { color: var(--course-pink-ink); }
+  .state-change { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 1.25rem 0; }
+  .state-change > div { padding: .85rem; background: var(--course-surface-raised); border: 1px solid var(--course-line); border-radius: 8px; }
+  .state-change dt { color: var(--course-muted); font-size: .8rem; }
+  .state-change dd { margin: .25rem 0 0; font-size: 1rem; font-weight: 600; color: var(--course-blue-ink); }
+  .decision-path { padding: 0; list-style: none; margin: 0; }
+  .decision-path li { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: .25rem .75rem; border-left: 2px solid var(--course-line); padding: .7rem .8rem; margin: 0; font-size: .875rem; }
+  .decision-path span { font-size: .8rem; color: var(--course-muted); }
+  .decision-path .path-selected { background: var(--course-blue); border-color: var(--course-blue-ink); }
+  .debugger-evidence { margin: 0; }
+  .debugger-evidence dt { font-size: .8rem; font-weight: 600; color: var(--course-muted); margin-top: .9rem; }
+  .debugger-evidence dd { margin: .3rem 0 0; font-size: 1rem; line-height: 1.6; }
+  .debugger-unknowns { margin-top: 1.5rem; padding: 1rem; border-left: 3px solid var(--course-pink-ink); background: var(--course-paper); }
+  .debugger-unknowns h4 { margin: 0 0 .5rem; }
+  .debugger-unknowns ul { margin: 0; padding-left: 1.2rem; }
+  .debugger-unknowns li { font-size: 1rem; line-height: 1.6; margin: .35rem 0; }
+  .debugger-next { margin-top: 1.5rem; }
+  .romance-debugger .debugger-primary { background: var(--course-blue-ink); color: white; border-color: var(--course-blue-ink); }
+  .romance-debugger .debugger-primary:hover { color: var(--course-blue-ink); }
+  .romance-debugger .debugger-snapshot { background: var(--course-surface-raised); padding: .65rem; margin-bottom: 0; }
+  .debugger-snapshot pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .875rem; color: var(--course-ink); background: none; padding: .5rem; margin: 0; }
+  .debugger-history, .debugger-fallback { padding: 1.5rem; }
+  .history-heading { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+  .history-heading h2 { margin: 0; }
+  .debugger-history ol { list-style: none; padding: 0; margin: 0; }
+  .debugger-history li { display: grid; gap: .25rem; padding-block: .75rem; margin: 0; border-top: 1px solid var(--course-line); font-size: 1rem; }
+  .debugger-history li span { font-size: .875rem; color: var(--course-muted); }
+  .romance-debugger .trace-note { margin: 1rem 0 0; font-size: .875rem; color: var(--course-muted); }
+  @media (width < 850px) {
+    .debugger-layout { grid-template-columns: 1fr; }
+    .inspection-pane { border-left: 0; border-top: 1px solid var(--course-line); }
+  }
+  @media (width < 640px) {
+    .debugger-cases { grid-template-columns: 1fr; padding: 1rem 1rem 0; }
+    .debugger-cases button > span:last-child { display: none; }
+    .debugger-cases button { grid-template-columns: auto 1fr; gap: .7rem; align-items: center; }
+    .debugger-toolbar { flex-wrap: wrap; }
+    .conversation-pane, .inspection-pane, .debugger-history, .debugger-toolbar, .debugger-fallback, .debugger-scope { padding: 1rem; }
+    .debugger-toolbar button { font-size: .875rem; }
+    .state-change { grid-template-columns: 1fr; }
+  }
+</style>

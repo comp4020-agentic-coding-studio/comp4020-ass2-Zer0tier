@@ -1,0 +1,15 @@
+---
+import CourseLayout from '../../layouts/CourseLayout.astro';
+import RomanceDebugger from '../../components/RomanceDebugger.astro';
+import { withBase } from 'astro-theme-university/url';
+---
+
+<CourseLayout title="Romance Debugger" description="One conversation. Several possible actions. Only the evidence gets to change the state.">
+  <p>Step into Alex’s fictional message thread. Choose an action, inspect its result, then reveal the next authored event. Sometimes the useful answer is <strong>“we don’t know yet.”</strong></p>
+  <RomanceDebugger />
+  <section aria-labelledby="debugger-course-links">
+    <h2 id="debugger-course-links">Take the trace back to the course</h2>
+    <p>This practice uses the <a href={withBase('/lectures/week-06/')}>Week 6 message decision tree</a>. It adds a local record of your choices and manually revealed events. The replies are scripted examples; a choice does not cause or predict someone’s response.</p>
+    <p>In the <a href={withBase('/sessions/06-message-tree/')}>Week 6 tutorial</a>, use a trace during the existing tree exercise, then explain the same route in your pseudocode. <a href={withBase('/lectures/week-07/')}>Week 7</a> adds explicit clocks and observation windows. You can also return to the <a href={withBase('/toolkit/')}>course toolkit</a>.</p>
+  </section>
+</CourseLayout>
