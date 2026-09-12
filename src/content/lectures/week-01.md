@@ -9,6 +9,14 @@ slides: /decks/week-01/
 related: [sessions/02-platforms]
 ---
 
+## Alex's story · Alex opens a blank profile
+
+*Fictional course story · Week 1.*
+
+Alex, our fictional CS student on Null Island, starts with a blank profile and a modest specification: board games, terrible puns, perhaps a relationship. The first draft says “Seeking synergistic engagement.” It is grammatical. It could also advertise a printer. Alex replaces it with concrete details and sketches a Friday invitation. Before the profile goes any further, someone needs to check what those words actually promise.
+
+**Investigate this week:** Use Alex's supplied facts to audit the bio and two invitations. Which claims can you check, and what remains unknown?
+
 ## The syllabus drop
 
 The opening provocation is a **claim to test**: “Love is an inefficient market problem solvable through data structures.” A system can store availability and reject an invitation that conflicts with it. Whether a recipient feels interested is a different question. This week we work through what a small model can establish and where its evidence runs out.
@@ -99,3 +107,9 @@ A dataset may contain “reply observed.” It may not silently convert that int
 Our scraping ethics begin with provenance, permission, purpose and minimisation. Public visibility is not permission to harvest a neighbourhood. Parse the course's synthetic CSVs; do not scrape apps, private messages or classmates. The [policies](/policies/) define the boundary.
 
 The [lecture deck](/decks/week-01/) presents the case, questions, worked answers and semester map. Continue to [week 2's lecture](/lectures/week-02/) and the [first tutorial](/sessions/02-platforms/). Bring the worked example; build the boundary map during that tutorial.
+
+## What Alex discovers
+
+Alex leaves with a bio that says something checkable. The invitation still needs a bus route, and no line of text establishes another person's interest. Then a more basic gap appears: a profile can be ready without anyone seeing it. Alex's next task is to follow the draft into the platform's retrieval, ranking and exposure pipeline.
+
+[Follow Alex into the ranking queue in Week 2](/lectures/week-02/).

@@ -9,6 +9,14 @@ related: [sessions/09-offline-handover]
 slides: /decks/week-09/
 ---
 
+## Alex's story · The café plan changes version
+
+*Fictional course story · Week 9.*
+
+In the supplied reply-and-clearance branch, Alex can finally draft an offline proposal. The workbook introduces Atrium as a new option beside the earlier Library plan. Its two drinks, bus journey and meeting window fit the stated limits. Then the cost-sharing exercise changes who would pay. A previous “yes” is suddenly attached to a plan nobody is proposing anymore.
+
+**Investigate this week:** Check the complete itinerary, then replay proposal revisions and confirmations. Which version has each person actually agreed to?
+
 ## Migrating to the physical server
 
 An offline meeting has transport constraints, opening times and people who can change their minds. The engineering task is to make a proposal understandable and revisable without treating a favourable score as agreement. Your output is an **Offline handover plan**: venue decisions, explicit proposed costs, versioned confirmation records, a cancel branch and an exact contingency table.
@@ -231,3 +239,9 @@ Save one **Offline handover plan** containing the venue rejections, itinerary, m
 The export function accepts only a currently confirmed, unheld plan. It carries the exact proposal version, both confirmation actors, proposed cost arrangement and prior evidence references. It does **not** establish arrival or continuing agreement. [Week 10](/lectures/week-10/) uses that explicit cost agreement when examining the “Who pays?” deadlock, and models conversation after arrival as a separate authored exercise. It must preserve the ability to end the interaction.
 
 **Exit ticket.** Repair three claims: “Good lighting outweighs an inaccessible exit”; “96 expected minutes means the tail is small”; “The earlier confirmation covers a changed bill.” Give the hard constraint, the joint-event calculation and the version-specific agreement rule.
+
+## What Alex discovers
+
+Alex's worked Atrium plan takes 90 minutes and $14 under the cover-both arrangement. Changing its terms clears the confirmations; agreement belongs to a specific version. The confirmed branch can now pass its plan to the meeting exercise. It cannot report that anyone arrived. Next week starts at that gap between a confirmed plan and an observed event.
+
+[Carry Alex's confirmed plan into Week 10](/lectures/week-10/).

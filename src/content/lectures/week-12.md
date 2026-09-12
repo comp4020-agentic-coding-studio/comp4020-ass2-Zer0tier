@@ -9,6 +9,14 @@ related: [sessions/12-maintenance]
 slides: /decks/week-12/
 ---
 
+## Alex's story · The handover includes an ending
+
+*Fictional course story · Week 12.*
+
+Alex's reference profile is ready for handover, including the rank-2 result. A fresh run must reproduce it; an injected software fault must be recoverable. Alongside that release, separate fictional maintenance scenarios ask what happens when terms change, confirmation expires or someone ends an agreement. The rollback command is useful in exactly one of those systems.
+
+**Investigate this week:** Reproduce and restore the release, then trace the separate agreement scenarios. Which state may return to an earlier version, and which must stay ended?
+
 ## Acquisition was only the first subsystem
 
 A relationship is not a successfully acquired user. Maintenance means making changing agreements legible, allowing disagreement and preserving an exit. A static site has a previous version you can restore. A person does not.
@@ -300,3 +308,9 @@ Submit the [final project](/assessments/profile-deployment/) by **28 May 2027, 5
 The final invariant is simple enough to test: the software can return to an earlier release; an ended agreement stays ended. Keep the failed target, the boundaries and the evidence needed for someone else to understand both.
 
 [Continue to the Week 12 tutorial](/sessions/12-maintenance/).
+
+## Alex's final handover
+
+Alex's journey closes with a profile another person can inspect, reproduce and maintain, including the missed benchmark target. The separate agreement exercises preserve changes and endings without rewriting anyone's answer. The opening blank profile has become an evidence trail. The course's final handover is that trail: what the system knows, what remains unknown and how to stop using it.
+
+[Take the evidence trail into the final project](/assessments/profile-deployment/).

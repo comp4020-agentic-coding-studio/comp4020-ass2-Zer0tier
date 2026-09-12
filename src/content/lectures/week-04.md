@@ -9,6 +9,14 @@ slides: /decks/week-04/
 related: [sessions/04-bio-experiment]
 ---
 
+## Alex's story · The winning bio loses twice
+
+*Fictional course story · Week 4.*
+
+Alex arrives with the frozen portrait and two fictional bio drafts. A separate synthetic exposure dashboard announces “Bio A wins.” Open the zone rows and B leads in both. These counts do not measure Alex's drafts, but the tempting mistake is already on the whiteboard: choose the winning letter and claim the rewrite worked. Alex's experiment needs a better specification than that.
+
+**Investigate this week:** Audit the text against Alex's facts, then explain the pooled reversal. What must a follow-up experiment hold fixed and randomise?
+
 ## From strings to a testable comparison
 
 A profile bio is small enough to inspect and large enough to contain several unsupported claims. This week builds a transparent NLP baseline, audits two fictional texts and asks what an A/B comparison could actually establish. The engineering output is a **Bio experiment protocol**, supported by token traces, case evidence and reproducible calculations.
@@ -243,3 +251,9 @@ Save your **Bio experiment protocol**, candidate versions and quoted evidence. T
 3. **Protocol review, 10 minutes:** exchange proposed protocols or review your own. Find an ambiguity in IDs, missing observations, stopping, uncertainty analysis or the simulated generator. Write an adversarial example and a concrete repair before producing outcomes.
 
 [Continue to the Week 4 tutorial](/sessions/04-bio-experiment/).
+
+## What Alex discovers
+
+Alex's repaired bio states supported details, and the protocol separates wording from audience allocation. The pooled winner was an exposure-mix result; it did not establish a causal winner. Even a well-defined positive response would leave another question unanswered: what counts as mutual selection? Alex takes the supported candidate into next week's probability model.
+
+[Define a match with Alex in Week 5](/lectures/week-05/).

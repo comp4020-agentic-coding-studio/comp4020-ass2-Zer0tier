@@ -9,6 +9,14 @@ related: [sessions/11-follow-up]
 slides: /decks/week-11/
 ---
 
+## Alex's story · One minute changes the dashboard
+
+*Fictional course story · Week 11.*
+
+Alex opens the follow-up report. At the exercise cutoff, only one next-date agreement is visible; the completed authored trace contains both. Meanwhile, the frozen profile's benchmark result is rank 2/100. Moving the cutoff or the scoring weights could make a tidier headline. Alex's release now needs to show which result answers which question, including the result that missed its target.
+
+**Investigate this week:** Reconstruct the cutoff label and conservative rank. Can another reader reproduce the release while distinguishing baseline, sensitivity and changed-case results?
+
 ## The dashboard after the date
 
 The dashboard has four labels. None of them is “probably into you.” This week builds a **Follow-up evaluation**: observation rules, a time-allocation critique, a frozen benchmark result, two separate sensitivity cases and a reproducible static release candidate. A disappointing result belongs in the record.
@@ -251,3 +259,9 @@ Re-run into `./example-rc2` and compare the two output files and manifests. Iden
 Save one **Follow-up evaluation**: labels and cutoff, 115-minute critique, primary failed target, common-weight sensitivity, separate changed-case failure, and the release with its actual browser evidence. This supports the existing [final project](/assessments/profile-deployment/), **50%, due 28 May 2027 at 5 pm**; it adds no new essay or assessment. Keep one disappointing result and explain it. The dashboard is complete when the uncertainty is legible.
 
 [Continue to the Week 11 tutorial](/sessions/11-follow-up/).
+
+## What Alex discovers
+
+Alex's reference release keeps rank 2/100, its evidence and the separate stress-test failure. The cutoff label and the completed event record also keep their own meanings. The final problem arrives with the handover: someone else must rebuild exactly this release and recover it if a software update fails. Restoring a file must not restore an ended agreement.
+
+[Hand over Alex's release in Week 12](/lectures/week-12/).

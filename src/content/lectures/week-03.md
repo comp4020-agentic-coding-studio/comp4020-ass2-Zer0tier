@@ -9,6 +9,14 @@ slides: /decks/week-03/
 related: [sessions/03-photo-assets]
 ---
 
+## Alex's story · The crop removes more than background
+
+*Fictional course story · Week 3.*
+
+Alex opens the three supplied schematic photo assets. One crop looks tidy because it has removed context; the record still cannot establish who is shown. A confidence number offers no explanation. After last week's exposure audit, Alex wants a version that can be named, inspected and reused. The profile now needs an asset manifest before it needs a flattering caption.
+
+**Investigate this week:** Use the photo kit to check provenance, identity ambiguity and transformations. Which asset can Alex freeze for a bio experiment?
+
 ## Your first data pipeline has a camera
 
 A profile photograph is an information asset, not a universal attractiveness measurement. This week turns the [Week 2 platform audit](/sessions/02-platforms/) into a **Photo asset manifest**: an inspectable record of where an image came from, what changed, what it shows and why it was selected. A crisp answer to the wrong question is still the wrong answer.
@@ -177,3 +185,9 @@ The [tutorial](/sessions/03-photo-assets/) produces the manifest, source/derivat
 **Exit answers:** 200/50 gives 4:1; 0.98 does not identify which figure is Alex; changing the crop adds another changed input. Carry the manifest forward, including its uncertainties.
 
 The three external readings above were checked on **6 September 2026**. They support lighting roles, detector scope and text alternatives; the course's invented numerical fixtures provide no claim about real romantic outcomes. Recheck the pages before teaching in 2027.
+
+## What Alex discovers
+
+The worked selection keeps A-portrait-v1 and records why the other assets are blocked. Alex can now change the bio while holding the photograph still. That sounds like enough for an experiment, until the next dashboard announces a winning bio without explaining which audience saw each version. The image is controlled; the comparison still needs investigation.
+
+[Investigate the bio dashboard with Alex in Week 4](/lectures/week-04/).

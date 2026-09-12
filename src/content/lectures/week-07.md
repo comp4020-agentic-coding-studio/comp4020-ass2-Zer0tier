@@ -9,6 +9,14 @@ slides: /decks/week-07/
 related: [sessions/07-communication]
 ---
 
+## Alex's story · The read receipt says very little
+
+*Fictional course story · Week 7.*
+
+The authored message traces now let Alex record a send and wait. One records a read receipt; it does not record a reason for the silence that follows. The dashboard would like to fill the gap with a story. Alex has to build a state machine that can retain an observation without inventing the recipient's next decision.
+
+**Investigate this week:** Replay the timed events and compare the arrival, utility and game models. Which conclusions come from observations, and which depend on assumptions?
+
 ## Nobody owes your queue a service-level agreement
 
 Texting is asynchronous. Sending, delivery, reading and replying are different events; an observed read receipt does not explain the next event. This week adds time and retained state to Week 6's tree, compares three mathematical models, and makes each model state what it cannot infer.
@@ -281,3 +289,9 @@ The [midterm](/assessments/matchmaking-exam/) is **23 April 2027, 11 am–12.30 
 For an optional **15–25-minute extension**, sweep q from 0 to 1 and locate intervals where each option is maximal, then verify both ties algebraically. Alternatively, add a delayed-receipt fixture and distinguish observation time from asserted event time without inventing either. State what additional persistence and ordering rules a real system would need.
 
 [Continue to the Week 7 tutorial](/sessions/07-communication/) with your **Communication state machine** and its reproducible evidence.
+
+## What Alex discovers
+
+Alex can distinguish sending, reading, replying and closing. A timeout supplies no motive, and the toy models supply no universal reply time. That becomes useful when the next review exercise places an unanswered message beside a deposit request and conflicting identity claims. Those are separate authored cases: the investigation must distinguish a missing reply from evidence that warrants a hold.
+
+[Review the warning signs with Alex in Week 8](/lectures/week-08/).

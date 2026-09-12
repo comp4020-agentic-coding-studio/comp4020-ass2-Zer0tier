@@ -56,7 +56,13 @@ as an attempt. Check the gate in the browser, including Enter, missing answers
 and retries; no early solution fetch or hidden answer markup. Fit quizzes into
 the existing 90-minute tutorial rather than adding contact time.
 Use technical deadpan: define the objective, implement the model, then find the
-assumption that breaks it. The student's revised twelve-week sequence is the
+assumption that breaks it. Each lecture opens with Alex's fictional weekly
+story and a question investigated through the existing material. Close with a
+discovery that leads into the next lecture; week 12 ends with the final handover.
+Keep the first and last slides aligned with those story beats, within the
+existing slide counts and teaching time. Preserve Alex's supplied facts and
+distinguish separate fixtures, stress tests and authored branches in the story.
+The student's revised twelve-week sequence is the
 contract: introduction; platform architecture/Elo; photography; NLP/bio A/B
 testing; match probability; opening messages; asynchronous communication;
 threat detection; offline handover; Markov first dates; follow-up evaluation;

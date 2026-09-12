@@ -9,6 +9,14 @@ slides: /decks/week-06/
 related: [sessions/06-message-tree]
 ---
 
+## Alex's story · A shared hobby is not a send button
+
+*Fictional course story · Week 6.*
+
+Alex has a checked Library proposal and an empty message box in the fictional exercise. G1's supplied card says “I like board games.” For once, a shared-interest opener has evidence on both sides. Other cards have missing context or a refusal. A template that inserts “board games” everywhere would be efficient at making exactly the wrong assumption.
+
+**Investigate this week:** Use the recipient cards to justify a draft and trace the ordered tree. Which evidence changes the action before you calculate utility?
+
 ## Your opener needs a stop condition
 
 After a match, communication becomes a protocol with another operator. An opener can offer context and a manageable question; it cannot require an answer. This week turns that distinction into an ordered **Message decision tree**, tests conflicting inputs, and asks what a reply-rate objective leaves out.
@@ -290,3 +298,9 @@ The [midterm](/assessments/matchmaking-exam/) is **23 April, 11 am–12.30 pm**.
 For an optional **15–25-minute extension**, enumerate every valid combination of boundary, closed, sent and inbound values, then group results by which guard wins. Include conflicting terminal evidence and verify that no terminal combination produces a draft. Alternatively, add a puns branch with a new authored recipient quote, a supported message and literal tests. Explain why branch coverage still cannot certify the truth of a quote or the quality of a message.
 
 [Continue to the Week 6 tutorial](/sessions/06-message-tree/) with the **Message decision tree** and its reproducible evidence.
+
+## What Alex discovers
+
+Alex's tree can produce a supported draft, preserve a refusal and leave an unanswered opener pending. Running it again does not create permission to send again. The next exercise finally records a send, then a wait. The draft has become a sequence of events, and the tree alone cannot tell Alex what happened between them.
+
+[Follow Alex's message timeline in Week 7](/lectures/week-07/).

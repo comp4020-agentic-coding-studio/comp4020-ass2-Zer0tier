@@ -9,6 +9,14 @@ slides: /decks/week-02/
 related: [sessions/02-platforms]
 ---
 
+## Alex's story · The profile is ready. The audience is missing.
+
+*Fictional course story · Week 2.*
+
+Alex brings last week's checked draft to Null Island's toy ranking queue. The profile has a position on a list; the visibility report is still incomplete. Meanwhile, the supplied exposure examples offer rival success stories depending on whether Alex reads total likes or rates. The dashboard has found a winner before agreeing on the question.
+
+**Investigate this week:** Trace retrieval through exposure, then audit the synthetic counts. What would you need to claim that Alex was actually seen?
+
 ## Who gets seen?
 
 Week 1 separated supplied facts, observations and hidden state. This week puts a recommendation system around that boundary. An ordered profile can remain unseen; an unseen profile cannot receive a like from that viewer. Our question is how a visibility hierarchy could emerge, and which parts we can actually measure.
@@ -173,3 +181,9 @@ Repair this paragraph: “Alex has an Elo of 1216, so Tinder considers Alex attr
 Your platform audit contains the annotated boundary map, scoped source/claim/unknown table, tested Elo trace and exposure/census log. The [90-minute tutorial](/sessions/02-platforms/) uses these same exercises; it creates the first tutorial artefact of the course, with solo work accepted.
 
 **Exit answers:** ranked-but-unseen means exposure is missing; an equal-rating K = 64 win gives 1232; reciprocal eligibility does not establish mutual attraction. Carry the audit's source, permission, purpose and missing-information rules into [week 3's photo assets](/lectures/week-03/). Keep the census definitions for the [data report](/assessments/market-report/).
+
+## What Alex discovers
+
+Alex's audit separates a place in a ranking from a recorded exposure, and counts from rates. Toy Elo cannot fill in the missing observations. Before comparing profile versions, Alex now needs to identify exactly what a viewer would see. The next folder contains three photo assets, including a crop whose missing context is doing too much work.
+
+[Open Alex's photo folder in Week 3](/lectures/week-03/).

@@ -9,6 +9,14 @@ related: [sessions/08-threat-model]
 slides: /decks/week-08/
 ---
 
+## Alex's story · The detector flags the wrong clue
+
+*Fictional course story · Week 8.*
+
+Alex tests the supplied threat-review cards before moving any plan offline. One contains a typo; another asks for a deposit and contradicts its own identity claim. A third offers only a timeout. The detector's score looks decisive, but the cards demand different responses. A review queue that treats them alike has confused a number with an explanation.
+
+**Investigate this week:** Compare the authored observations, detector errors and review transitions. What justifies a local hold, and what would clearance still leave unknown?
+
 ## Your flag is not a verdict
 
 This week turns the [Week 2 Platform audit](/sessions/02-platforms/) and [Week 7 Communication state machine](/lectures/week-07/) into a **Threat model**. The engineering problem is to protect assets, measure errors and choose a proportionate local action while preserving uncertainty. A detector that flags everything has excellent recall and an exhausting review queue.
@@ -211,3 +219,9 @@ Save the **Threat model** with the asset/boundary diagram, matrix, threshold com
 [Week 9](/lectures/week-09/) uses these boundaries to specify the minimum information for a proposed offline meeting: a proposed public place and time, an explicit cost assumption and an easy way to decline or cancel. It does not need a home address, bank credentials or an identity-document upload. Review clearance does not turn an invitation into an accepted plan. Carry the versions, outstanding findings and terminal closure reason alongside the proposal.
 
 **Exit ticket.** Repair three claims: “80% recall means 80% of flags are right”; “no image match proves authenticity”; “cleared review restarts a refused conversation.” Use the correct denominator, the limited observation and the terminal guard in your answers.
+
+## What Alex discovers
+
+Alex's threat model ties a hold to explicit evidence and measures the costs of mistakes. A reviewer clearance cannot certify identity or accept an invitation. Next week's workbook follows a separately authored branch with a reply and assumed clearance. It permits a new proposal to be considered; the place, cost and both confirmations still have to be recorded.
+
+[Build Alex's offline proposal in Week 9](/lectures/week-09/).

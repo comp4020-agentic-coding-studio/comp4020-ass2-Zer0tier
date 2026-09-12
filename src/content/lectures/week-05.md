@@ -9,6 +9,14 @@ slides: /decks/week-05/
 related: [sessions/05-match-probability]
 ---
 
+## Alex's story · The calculator offers 1.2 matches
+
+*Fictional course story · Week 5.*
+
+Alex puts the repaired bio beside the supplied probability model. Across twenty equivalent exposures, the assumed inputs give an expected 1.2 mutual selections. The calendar does not accept fractional bookings. Alex also has a practical question: can a proposed meeting fit Friday's two-hour window, the bus journey and a $20 budget? The percentage and the itinerary need different checks.
+
+**Investigate this week:** Calculate mutual selection and repeated exposure, then audit the venue options. What makes an invitation feasible without making it accepted?
+
 ## Your expected date is not a booking
 
 A match requires two selection events. This week makes their denominator explicit, builds a repeated-opportunity model, checks whether Alex can reach the proposed meeting, and freezes the project's quality benchmark. Each calculation has a different job. Putting a percent sign on all of them does not make them interchangeable.
@@ -269,3 +277,9 @@ It specifies Alex's feasible plan without inventing the recipient's availability
 For an optional **15–25-minute extension**, implement a seeded independent simulation of the twenty-opportunity model and compare its mean and at-least-one frequency with the exact answers. Declare the seed, number of batches and Monte Carlo error rule before running. Then replace the twenty draws per batch with one shared draw and explain the changed distribution. A second extension enumerates feasible subsets under a separately declared time reserve; it must not move Alex's hard constraints.
 
 [Continue to the Week 5 tutorial](/sessions/05-match-probability/) with your **Match probability model**, checked invitation and primary-objective record.
+
+## What Alex discovers
+
+The Library option fits Alex's supplied limits at 100 minutes and $14. The probability result remains an expectation under assumptions, and the invitation remains a proposal. Alex saves it separately from the frozen profile. Next comes the first message: a board-games question could fit, but only if there is evidence that the recipient shares the topic.
+
+[Draft Alex's opening message in Week 6](/lectures/week-06/).

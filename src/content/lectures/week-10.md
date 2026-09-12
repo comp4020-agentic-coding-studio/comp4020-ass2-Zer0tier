@@ -9,6 +9,14 @@ related: [sessions/10-date-simulation]
 slides: /decks/week-10/
 ---
 
+## Alex's story · The simulator books a second date
+
+*Fictional course story · Week 10.*
+
+Alex's confirmed Atrium plan reaches the meeting workbook, where arrival must be recorded separately. Beside it, the toy Markov chain assigns probability to a next-date agreement state. It is tempting to let the simulation fill the observation record. The model has produced an endpoint without receiving either person's answer. Even the bill has its own unfinished conversation.
+
+**Investigate this week:** Compare exact and simulated transitions, then inspect the arrival, bill and agreement traces. Which record could support an actual observation label?
+
 ## A first date, represented badly but explicitly
 
 The transition matrix has four states. The people have rather more. This week builds a **Date transition model**: an exact finite-horizon calculation, a seeded Monte Carlo comparison, a sensitivity result and a separate observation record for the bill discussion. A simulator can check an implementation. It cannot provide somebody else's answer.
@@ -245,3 +253,9 @@ These exact and seeded Markov results belong in the final project's existing [va
 **Exit ticket.** Repair three claims: “absorbing N means agreement cannot change”; “10,000 paths must improve every error”; “acknowledging a bill buys another date.” Keep the mathematical endpoint, the sampling caveat and the explicit human boundary visible in your answers.
 
 [Continue to the Week 10 tutorial](/sessions/10-date-simulation/).
+
+## What Alex discovers
+
+Alex's simulator reproduces an assumed distribution; the separate authored meeting trace records answers. In that trace, the two next-date agreements arrive one minute apart. The meeting can end while those observations remain available for review. Next week's dashboard must choose a cutoff: stopping between the two answers gives a different label from reading the complete record.
+
+[Audit Alex's follow-up dashboard in Week 11](/lectures/week-11/).
