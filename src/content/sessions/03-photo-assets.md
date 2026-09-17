@@ -3,7 +3,7 @@ title: "Data Acquisition: Photography as a Quantitative Asset"
 description: "Treat profile photos as traceable information assets. Test lighting, identity ambiguity and detection confidence using fictional image records."
 week: 3
 date: 2027-03-11
-teachers: [eli-brooks]
+teachers: [joost-nwosu]
 phase: Measure
 output: "Photo asset manifest"
 buildsOn: ["sessions/02-platforms"]

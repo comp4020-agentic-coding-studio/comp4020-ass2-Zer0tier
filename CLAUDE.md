@@ -16,6 +16,16 @@ Preserve all four collection schemas and the generated API.
 Keep the SlopU marks and three institutional colour tokens untouched; pink and
 blue are course accent tokens, never gender labels.
 
+Use Slop University's published staff directory for teaching-team identities:
+Associate Professor Casimir Beng is the course convenor and Dr Joost Nwosu is
+the tutor. Both belong to the School of Continuous Improvement. Preserve their
+published academic titles and link to their slop.university profiles; keep
+course-specific duties and consultation arrangements distinct from university
+biography. Update every teacher reference, help page and assessment contact
+when a staff identity changes. Check university facts and dates against the
+relevant source page, recording the retrieval date in docs/. Research output
+dates and an “active since” year are not a university teaching calendar.
+
 The student's latest reference is COMP4130's course navigation: Home, Lectures,
 Tutorials, Assignments, People, Readings, Timetable, Help, FAQ, Policies, in that
 order. Keep the fixed sessions/assessments collection URLs under the new labels;

@@ -3,7 +3,7 @@ title: "Introduction to Algorithmic Romance"
 description: "Meet Alex, check two invitations and distinguish observations from hidden state. Use supplied facts to test each claim in a fictional bio."
 week: 1
 date: 2027-02-22
-teachers: [mira-chen]
+teachers: [casimir-beng]
 keyConcept: "The Romantic Turing Test"
 slides: /decks/week-01/
 related: [sessions/02-platforms]

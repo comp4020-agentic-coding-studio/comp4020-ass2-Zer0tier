@@ -3,7 +3,7 @@ title: "Natural Language Processing in Profile Bios"
 description: "Tokenise clichés, hold the photo constant and A/B test fictional bios. Explain why a pooled winner can lose in both exposure groups."
 week: 4
 date: 2027-03-18
-teachers: [eli-brooks]
+teachers: [joost-nwosu]
 phase: Model
 output: "Bio experiment protocol"
 buildsOn: ["sessions/02-platforms","sessions/03-photo-assets"]

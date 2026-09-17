@@ -3,7 +3,7 @@ title: "Transitioning to Offline Environments"
 description: "Plan the digital-to-physical handshake: public venues, transport, accessible exits, confirmation and an agreed approach to the bill."
 week: 9
 date: 2027-05-03
-teachers: [mira-chen]
+teachers: [casimir-beng]
 keyConcept: "Reducing the friction of the digital-to-physical handshake"
 related: [sessions/09-offline-handover]
 slides: /decks/week-09/

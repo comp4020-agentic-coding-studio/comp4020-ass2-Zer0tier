@@ -63,4 +63,4 @@ Using a local build for this fictional assessment does not change the public Git
 
 ## Submission and feedback
 
-Due **28 May 2027, 5 pm Canberra time**. Bring the bundle to Mira on removable media or arrange an accessible digital handover at consultation; there is no upload service on this site. Feedback returns within fourteen days. This project contributes **50%** of the course. See [policies](/policies/) for extensions, tool use and review.
+Due **28 May 2027, 5 pm Canberra time**. Bring the bundle to Casimir on removable media or arrange an accessible digital handover at consultation; there is no upload service on this site. Feedback returns within fourteen days. This project contributes **50%** of the course. See [policies](/policies/) for extensions, tool use and review.

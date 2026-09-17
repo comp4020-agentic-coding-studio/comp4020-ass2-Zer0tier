@@ -3,7 +3,7 @@ title: "Stochastic Modeling of the First Date"
 description: "Propagate a fictional conversation through a Markov chain, check a simulation against exact probabilities and resolve the Who pays deadlock."
 week: 10
 date: 2027-05-13
-teachers: [eli-brooks]
+teachers: [joost-nwosu]
 phase: Ship
 output: "Date transition model"
 buildsOn: ["sessions/07-communication","sessions/09-offline-handover"]

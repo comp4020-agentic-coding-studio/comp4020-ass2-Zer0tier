@@ -3,7 +3,7 @@ title: "Platform Architecture and the Elo Hierarchy"
 description: "Inspect Tinder, Bumble and Hinge disclosures, implement toy Elo and distinguish a visibility hierarchy from an observed measure of attractiveness."
 week: 2
 date: 2027-03-04
-teachers: [eli-brooks]
+teachers: [joost-nwosu]
 phase: Measure
 output: "Platform audit"
 buildsOn: ["lectures/week-01"]

@@ -61,6 +61,6 @@ The [bio lab](/sessions/04-bio-experiment/), [match-probability lab](/sessions/0
 
 ## Access, absence and feedback
 
-Arrange a documented access need or an alternative sitting with Mira before the exam where possible. If illness prevents attendance, contact Mira through the fictional consultation arrangement for a deferred sitting; do not submit someone else's answers.
+Arrange a documented access need or an alternative sitting with Casimir before the exam where possible. If illness prevents attendance, contact Casimir through the fictional consultation arrangement for a deferred sitting; do not submit someone else's answers.
 
 Feedback and marked scripts return within seven days. The four section marks sum to 100, scaled to **30%** of the course. [Policies](/policies/) explain reviews and the difference between this exam's rules and tool use on projects.

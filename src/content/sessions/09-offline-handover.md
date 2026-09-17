@@ -3,7 +3,7 @@ title: "Transitioning to Offline Environments"
 description: "Plan the digital-to-physical handshake: public venues, transport, accessible exits, confirmation and an agreed approach to the bill."
 week: 9
 date: 2027-05-06
-teachers: [eli-brooks]
+teachers: [joost-nwosu]
 phase: Ship
 output: "Offline handover plan"
 buildsOn: ["sessions/05-match-probability","sessions/08-threat-model"]

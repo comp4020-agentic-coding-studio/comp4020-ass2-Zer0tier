@@ -3,7 +3,7 @@ title: "System Maintenance and Graceful Deprecation"
 description: "Design explicit relationship agreements, change requests and respectful endings. Reproduce the final release and document its maintenance."
 week: 12
 date: 2027-05-27
-teachers: [eli-brooks]
+teachers: [joost-nwosu]
 phase: Ship
 output: "Maintenance and exit manual"
 buildsOn: ["sessions/08-threat-model","sessions/11-follow-up"]

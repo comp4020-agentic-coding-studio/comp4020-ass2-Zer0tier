@@ -3,7 +3,7 @@ title: "System Maintenance and Graceful Deprecation"
 description: "Design explicit relationship agreements, change requests and respectful endings. Reproduce the final release and document its maintenance."
 week: 12
 date: 2027-05-24
-teachers: [mira-chen]
+teachers: [casimir-beng]
 keyConcept: "Long-term relationship architecture and avoiding the “comfortable rut” system crash"
 related: [sessions/12-maintenance]
 slides: /decks/week-12/

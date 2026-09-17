@@ -3,7 +3,7 @@ title: "The Mathematics of the \"Match\""
 description: "Calculate mutual-selection probabilities, constrain the travel radius and separate peak Sunday exposure from a higher match rate."
 week: 5
 date: 2027-03-25
-teachers: [eli-brooks]
+teachers: [joost-nwosu]
 phase: Model
 output: "Match probability model"
 buildsOn: ["sessions/02-platforms","sessions/04-bio-experiment"]

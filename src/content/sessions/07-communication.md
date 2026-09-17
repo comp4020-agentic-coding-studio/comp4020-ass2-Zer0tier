@@ -3,7 +3,7 @@ title: "Game Theory and Asynchronous Communication"
 description: "Model reply arrivals, response games and ghosting as an observation timeout. A refusal remains terminal even when expected utility disagrees."
 week: 7
 date: 2027-04-22
-teachers: [eli-brooks]
+teachers: [joost-nwosu]
 phase: Model
 output: "Communication state machine"
 buildsOn: ["sessions/05-match-probability","sessions/06-message-tree"]

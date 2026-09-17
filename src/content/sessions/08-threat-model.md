@@ -3,7 +3,7 @@ title: "Threat Modeling and Anomaly Detection"
 description: "Detect bots, financial scams and identity inconsistencies in synthetic cases. Calculate the cost of false alarms before trusting a flag."
 week: 8
 date: 2027-04-29
-teachers: [eli-brooks]
+teachers: [joost-nwosu]
 phase: Ship
 output: "Threat model"
 buildsOn: ["sessions/02-platforms","sessions/07-communication"]

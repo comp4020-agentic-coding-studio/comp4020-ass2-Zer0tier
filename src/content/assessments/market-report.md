@@ -49,6 +49,6 @@ Append a short tool-use and source note outside the word count. Quote counts dir
 
 ## Submission and feedback
 
-Due **19 March 2027, 5 pm Canberra time**. In this fictional course, bring the report and source bundle to Mira on removable media or arrange an accessible digital handover at consultation. This website does not upload or receive submissions. Written feedback returns within seven days.
+Due **19 March 2027, 5 pm Canberra time**. In this fictional course, bring the report and source bundle to Casimir on removable media or arrange an accessible digital handover at consultation. This website does not upload or receive submissions. Written feedback returns within seven days.
 
 The published criteria total 100 points within this assessment; this report contributes **20%** of the course. Keep the feedback: the final model card must explain how it changed your handling of data or claims. [Policies](/policies/) cover extensions and review.

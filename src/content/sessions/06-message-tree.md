@@ -3,7 +3,7 @@ title: "Interaction Protocols: The Initial Message"
 description: "Classify opening messages with a decision tree. Compare context and cost, and expose why forcing a reply is a broken optimisation target."
 week: 6
 date: 2027-04-01
-teachers: [eli-brooks]
+teachers: [joost-nwosu]
 phase: Model
 output: "Message decision tree"
 buildsOn: ["sessions/04-bio-experiment","sessions/05-match-probability"]

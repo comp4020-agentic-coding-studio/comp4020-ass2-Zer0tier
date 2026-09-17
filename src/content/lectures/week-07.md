@@ -3,7 +3,7 @@ title: "Game Theory and Asynchronous Communication"
 description: "Model reply arrivals, response games and ghosting as an observation timeout. A refusal remains terminal even when expected utility disagrees."
 week: 7
 date: 2027-04-19
-teachers: [mira-chen]
+teachers: [casimir-beng]
 keyConcept: "Managing latency and read-receipt strategy"
 slides: /decks/week-07/
 related: [sessions/07-communication]

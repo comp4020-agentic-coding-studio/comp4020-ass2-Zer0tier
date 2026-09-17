@@ -3,7 +3,7 @@ title: "Interaction Protocols: The Initial Message"
 description: "Classify opening messages with a decision tree. Compare context and cost, and expose why forcing a reply is a broken optimisation target."
 week: 6
 date: 2027-03-29
-teachers: [mira-chen]
+teachers: [casimir-beng]
 keyConcept: "Bypassing the conversational firewall"
 slides: /decks/week-06/
 related: [sessions/06-message-tree]

@@ -3,7 +3,7 @@ title: "Data Acquisition: Photography as a Quantitative Asset"
 description: "Treat profile photos as traceable information assets. Test lighting, identity ambiguity and detection confidence using fictional image records."
 week: 3
 date: 2027-03-08
-teachers: [mira-chen]
+teachers: [casimir-beng]
 keyConcept: "Minimizing the “Is that their ex cropped out?” uncertainty variable"
 slides: /decks/week-03/
 related: [sessions/03-photo-assets]

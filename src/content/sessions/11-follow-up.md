@@ -3,7 +3,7 @@ title: "Post-Date Analytics and The \"Second Date\" Metric"
 description: "Separate observed agreement from inferred subtext. Audit the time budget, evaluate a frozen profile and prepare a reproducible release."
 week: 11
 date: 2027-05-20
-teachers: [eli-brooks]
+teachers: [joost-nwosu]
 phase: Ship
 output: "Follow-up evaluation"
 buildsOn: ["sessions/05-match-probability","sessions/09-offline-handover","sessions/10-date-simulation"]

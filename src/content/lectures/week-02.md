@@ -3,7 +3,7 @@ title: "Platform Architecture and the Elo Hierarchy"
 description: "Inspect Tinder, Bumble and Hinge disclosures, implement toy Elo and distinguish a visibility hierarchy from an observed measure of attractiveness."
 week: 2
 date: 2027-03-01
-teachers: [mira-chen]
+teachers: [casimir-beng]
 keyConcept: "The rich-get-richer dynamics of algorithmically enforced attractiveness"
 slides: /decks/week-02/
 related: [sessions/02-platforms]

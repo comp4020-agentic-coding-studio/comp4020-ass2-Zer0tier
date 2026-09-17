@@ -3,7 +3,7 @@ title: "Stochastic Modeling of the First Date"
 description: "Propagate a fictional conversation through a Markov chain, check a simulation against exact probabilities and resolve the Who pays deadlock."
 week: 10
 date: 2027-05-10
-teachers: [mira-chen]
+teachers: [casimir-beng]
 keyConcept: "Navigating the “Who pays?” deadlock"
 related: [sessions/10-date-simulation]
 slides: /decks/week-10/

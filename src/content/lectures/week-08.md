@@ -3,7 +3,7 @@ title: "Threat Modeling and Anomaly Detection"
 description: "Detect bots, financial scams and identity inconsistencies in synthetic cases. Calculate the cost of false alarms before trusting a flag."
 week: 8
 date: 2027-04-26
-teachers: [mira-chen]
+teachers: [casimir-beng]
 keyConcept: "False positives vs. false negatives in romantic threat detection"
 related: [sessions/08-threat-model]
 slides: /decks/week-08/

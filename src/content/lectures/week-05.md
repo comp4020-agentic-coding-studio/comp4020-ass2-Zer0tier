@@ -3,7 +3,7 @@ title: "The Mathematics of the \"Match\""
 description: "Calculate mutual-selection probabilities, constrain the travel radius and separate peak Sunday exposure from a higher match rate."
 week: 5
 date: 2027-03-22
-teachers: [mira-chen]
+teachers: [casimir-beng]
 keyConcept: "Peak system load: Sunday evening swiping"
 slides: /decks/week-05/
 related: [sessions/05-match-probability]

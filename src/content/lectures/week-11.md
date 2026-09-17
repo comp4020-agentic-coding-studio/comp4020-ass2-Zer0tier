@@ -3,7 +3,7 @@ title: "Post-Date Analytics and The \"Second Date\" Metric"
 description: "Separate observed agreement from inferred subtext. Audit the time budget, evaluate a frozen profile and prepare a reproducible release."
 week: 11
 date: 2027-05-17
-teachers: [mira-chen]
+teachers: [casimir-beng]
 keyConcept: "Calculating Return on Investment (ROI) of time spent vs. romantic viability"
 related: [sessions/11-follow-up]
 slides: /decks/week-11/
