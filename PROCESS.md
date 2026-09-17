@@ -1,61 +1,66 @@
 # Process overview
 
-I began with “How to Find a Partner” and requested pink and blue styling. I
-then rejected that broad direction and chose **Applied Algorithmic Romance &
-Profile Optimization**. This gave the course a specific technical problem:
-build a fictional profile, evaluate it and explain what the evaluation cannot
-establish. The agent recorded the new direction and failing requirements before
-replacing the earlier working course. The change involved its assessments,
-models and examples as well as its title
-([72b7d1f](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/72b7d1f),
-[fd89196](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/fd89196)).
+Finding a niche course topic took me longer than expected. Meeting and dating people
+feels difficult today, and, as a computer science student, I was curious about the
+algorithms behind dating apps. That led me to Applied Algorithmic Romance & Profile
+Optimization. A good university course should give students substantial material each
+week, with explanations they can understand and apply. I wanted students to explore how
+dating apps work while thinking more carefully about meeting, communicating with and
+dating people.
+([fd89196](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/fd89196))
 
-The design centres on cumulative work: each week should produce something
-needed later. The agent's course-design review considered the practical
-progression in [How to Make (Almost) Anything](https://fab.cba.mit.edu/classes/863.25/)
-and [CMU's assessment-alignment guidance](https://www.cmu.edu/teaching/assessment/basics/alignment.html).
-In this course, the photo stays fixed during the bio experiment, and the
-evaluated candidate carries into the release and maintenance tasks. When I
-supplied a revised twelve-week sequence, the exam also needed revision because
-its stable-matching topic was no longer taught. `CLAUDE.md` now requires actual
-reuse of earlier artefacts, while literal tests protect the sequence,
-preparation dates and assessment weights
+I initially used COMP2300 as inspiration because its course page felt interesting and
+easy to navigate, asking Codex's Sol model for a rough template. The first attempt
+worked, but I found the background too plain, the teaching material too thin and the
+topic insufficiently distinctive
+([ddb52ca](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/ddb52ca)).
+Giving the agent the clearer dating-and-algorithms direction helped me ask for more
+purposeful content. I also refined the presentation through clearer wording, Public Sans
+typography and a blossom background with coordinated colours.
+([4020c2e](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/4020c2e),
+[d8ca0d5](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/d8ca0d5))
+
+I then prompted the agent week by week, from Week 1 through Week 12, asking for
+explanations, worked examples and exercises that students could understand and explore
+further
+([ddfdf0f...765cad9](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/compare/ddfdf0f...765cad9)).
+This changed what I accepted: having twelve pages was no longer enough. Each week needed
+substance and a place in the course's progression. My prompts became stricter about
+preserving decisions I had already made, especially the theme colours and weekly topics.
+
+Those decisions gradually became part of the harness. The inherited `CLAUDE.md`
+concentrated on general habits such as reading specifications, checking rendered pages
+and verifying changes
+([a5a0169](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/a5a0169)).
+I added course-specific rules: preserve the agreed visual design, protect all twelve
+topics and require later tutorials to use earlier work. In `spec/`, sequence checks
+protect the promised milestones and ensure assessment preparation comes before
+deadlines. These rules made my idea of a coherent course harder for later edits to undo
 ([264b89d](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/264b89d)).
+My demand for richer content also needed limits: the harness distinguishes complete
+teaching packs from scheduled 60-minute lectures, 90-minute tutorials and independent
+work. Teaching-allocation tests check those timings and slide references. This
+translated “enough content” into a planned workload, while leaving whether the
+explanations actually teach well to my review.
+([448f876](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/448f876))
 
-My correction, “There should not have tutorial at week 1,” exposed another
-assumption. The timetable was generated from tutorials, so deleting that
-tutorial alone would also hide the first teaching week. The repair generated
-the timetable from lectures with optional tutorials. A new contract protects
-twelve lectures, eleven tutorials and the absence of stale links
-([9276d5b](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/9276d5b)).
-Expanding the teaching packs later exposed a related pacing problem: their
-three-hour routes did not describe the scheduled one-hour lectures. The
-corrected harness separates the complete resource from timed lecture selections,
-90-minute tutorials and independent work. Allocation tests check those totals
-and actual slide references
-([448f876](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/448f876)).
+That boundary mattered when attempts to improve interaction did not always match what I
+imagined. Even with the Romance Debugger, functioning controls could not tell me whether
+the experience was engaging
+([d4383af](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/d4383af)).
+I deliberately left judgements about readability, humour and educational value outside
+automated acceptance. The unusual combination of dating and computer science made it
+difficult to decide what belonged in each lesson. I needed to read the material and
+judge its relevance; AI could suggest content, but passing checks could not settle that
+decision.
 
-Usability needed equally concrete direction. I supplied
-[COMP4130](https://comp.anu.edu.au/courses/comp4130/) as the navigation reference
-and requested clearer typography. The result uses familiar course sections and
-Public Sans. Browser review found that menu links could report themselves
-visible while their expanding wrapper still clipped them. The audit now waits
-for the list to fit; that lesson also entered the harness
-([4020c2e](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/4020c2e)).
+I also noticed differences between models. In my trials, Claude often made smaller
+visual changes than I wanted, while a newer Codex model responded to similar prompts
+with more substantial changes that felt closer to my intended aesthetic. This encouraged
+me to compare outputs while keeping my own acceptance criteria. My biggest breakthrough
+was choosing the course idea and creatively allocating its content across twelve weeks.
+Connecting those weeks through Alex's continuing story made the progression more
+tangible: each lesson could raise a question that the next helped students investigate.
+([2b50c37](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/2b50c37))
 
-I then worked through the tutorials with the agent, adding application quizzes.
-Their contract requires a response to every case and explicit submission before
-revealing answers. Incorrect attempts count, and retries preserve the opportunity
-to practise. The agent tested missing answers, Enter submission, failed solution
-requests and phone layouts. Removing the completion guard deliberately made a
-test fail before restoration. The same component now serves all eleven tutorials
-([768e67a](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/768e67a),
-[05530fa](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Zer0tier/commit/05530fa)).
-
-These checks protect specific promises. The harness leaves humour, clarity of
-explanations and the educational value of a dependency to human judgement;
-matching titles or passing arithmetic cannot establish those qualities. The
-development record contains 168 passing tests and browser checks of 52 pages,
-but these are local results. Public deployment still needs verification.
-Codex assisted with implementation, testing and drafting this account from the
-recorded directions and commit history.
+Codex helped edit my notes into this account and verify the commit references.
